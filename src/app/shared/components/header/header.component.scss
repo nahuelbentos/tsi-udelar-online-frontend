@@ -1,0 +1,19 @@
+nav > a {
+  padding: 5px;
+  text-decoration: none;
+  color: white;
+}
+
+nav > a.active {
+  padding: 5px;
+  text-decoration: none;
+  background-color: blue;
+}
+
+.header-row {
+  width: 100%;
+}
+
+.a-margin {
+  margin: 0px 10px;
+}
