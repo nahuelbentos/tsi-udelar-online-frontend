@@ -1,54 +1,40 @@
-<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <div mat-dialog-content>
-    <p>What's your favorite animal?</p>
-    <mat-form-field>
-      <mat-label>Favorite Animal</mat-label>
-      <input matInput [(ngModel)]="data.animal">
-      </mat-form -field>
+<form [formGroup]="loginForm">
+
+  <div id="login" class="login-wrapper" *ngIf="!showSppiner">
+
+    <mat-card class="box example-card">
+      <mat-card-header style="margin-bottom: 10px;">
+        <mat-card-title>Iniciar Sesión!</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            El email ingresado es <strong>incorrecto</strong>.
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email es <strong>requerido</strong>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput type="password" placeholder="Contraseña" formControlName="password">
+          <mat-error *ngIf="password.hasError('required')">
+            Password es <strong>requerido</strong>.
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block" (click)="login()">Iniciar sesión
+      </button>
+
+    </mat-card>
+
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-  </div> -->
-
-<div mat-dialog-content class="row center-xs middle-xs">
-
-  <div mat-dialog-content class="col-xs-6">
-    <div mat-dialog-content class="box">
-      <form [formGroup]="loginForm">
-        <!-- *ngIf="!showSppiner" -->
-        <div mat-dialog-content id="login" class="login-wrapper" >
-
-          <mat-card class="box example-card">
-            <mat-card-header style="margin-bottom: 10px;">
-              <mat-card-title mat-dialog-title>Iniciasr Sesión!</mat-card-title>
-            </mat-card-header>
-
-            <mat-card-content>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Usuario" formControlName="user">
-              </mat-form-field>
-
-              <mat-form-field class="example-full-width">
-                <input matInput type="password" placeholder="Contraseña" formControlName="password">
-              </mat-form-field>
-            </mat-card-content>
-
-            <button mat-stroked-button color="accent" class="btn-block" (click)="login()">Iniciar sesión
-            </button>
-
-          </mat-card>
-
-        </div>
-        <!-- <div mat-dialog-content id="spinner" class="login-wrapper" *ngIf="showSppiner">
-          <h2 class="example-h2">Iniciando sesión...</h2>
-          <mat-progress-spinner class="example-margin" color="accent" mode="indeterminate" style="margin: 0px auto;">
-          </mat-progress-spinner>
-        </div> -->
-      </form>
-
-
-    </div>
+  <div id="spinner" class="login-wrapper" *ngIf="showSppiner">
+    <h2 class="example-h2">Iniciando sesión...</h2>
+    <mat-progress-spinner class="example-margin" color="accent" mode="indeterminate" style="margin: 0px auto;">
+    </mat-progress-spinner>
   </div>
-</div>
+</form>

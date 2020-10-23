@@ -5,6 +5,7 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { HeaderComponent } from '../header/header.component';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     private autenticacionService: AutenticacionService,
     public dialogRef: MatDialogRef<HeaderComponent>,
     public dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -38,27 +40,18 @@ export class LoginComponent implements OnInit {
     this.showSppiner = true;
     this.autenticacionService
       .login(this.email.value, this.password.value)
-      .subscribe((res: any) => {
-        console.log('res: ', res);
+      .subscribe(
+        (res: any) => {
+          console.log('res: ', res);
 
-        this.showSppiner = false;
-
-        // if (res.authResponse.LoginEscuela.LoginOk) {
-        //   // mensajeConfirmacion(
-        //   //   'Excelente!',
-        //   //   res.authResponse.LoginEscuela.Mensaje
-        //   // );
-        //   // localStorage.setItem('usrId', this.email.value);
-        //   // localStorage.setItem('infoUsuario', JSON.stringify(res.authResponse));
-
-        //   this.router.navigate(['/escuela/agenda-movil']);
-        // } else {
-        //   // errorMensaje(
-        //   //   'Ocurrió un problema',
-        //   //   res.authResponse.LoginEscuela.Mensaje
-        //   // );
-        // }
-      });
+          this.showSppiner = false;
+        },
+        (err) => {
+          this.showSppiner = false;
+          this.snackBar.open(err.error.errores.mensaje);
+          setTimeout(() => this.snackBar.dismiss(), 3000);
+        }
+      );
   }
 
   get email() {
