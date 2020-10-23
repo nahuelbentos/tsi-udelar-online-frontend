@@ -16,9 +16,9 @@
 
   <div mat-dialog-content class="col-xs-6">
     <div mat-dialog-content class="box">
-      <form>
-
-        <div mat-dialog-content id="login" class="login-wrapper" *ngIf="!showSppiner">
+      <form [formGroup]="loginForm">
+        <!-- *ngIf="!showSppiner" -->
+        <div mat-dialog-content id="login" class="login-wrapper" >
 
           <mat-card class="box example-card">
             <mat-card-header style="margin-bottom: 10px;">
@@ -41,11 +41,11 @@
           </mat-card>
 
         </div>
-        <div mat-dialog-content id="spinner" class="login-wrapper" *ngIf="showSppiner">
+        <!-- <div mat-dialog-content id="spinner" class="login-wrapper" *ngIf="showSppiner">
           <h2 class="example-h2">Iniciando sesión...</h2>
           <mat-progress-spinner class="example-margin" color="accent" mode="indeterminate" style="margin: 0px auto;">
           </mat-progress-spinner>
-        </div>
+        </div> -->
       </form>
 
 

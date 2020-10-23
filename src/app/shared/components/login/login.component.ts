@@ -7,7 +7,7 @@ import {
 } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
-import { HeaderComponent } from 'src/app/shared/components/header/header.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',

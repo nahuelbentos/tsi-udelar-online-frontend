@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/autenticacion/pages/login/login.component';
+import { LoginComponent } from '../login/login.component';
 import Swal from 'sweetalert2';
 
 @Component({

@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "udelar-online-frontend"
+  "defaultProject": "udelar-online-frontend",
+  "cli": {
+    "analytics": "ead2ebce-dc96-40c3-b281-3f56dd37ad63"
+  }
 }
