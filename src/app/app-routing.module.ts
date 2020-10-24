@@ -20,6 +20,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./public/public.module').then((m) => m.PublicModule),
       },
+      {
+        path: 'administrador',
+        loadChildren: () =>
+          import('./administrador/administrador.module').then(
+            (m) => m.AdministradorModule
+          ),
+      },
     ],
   },
 ];

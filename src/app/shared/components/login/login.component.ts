@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
           console.log('res: ', res);
 
           this.showSppiner = false;
+          this.dialogRef.close();
         },
         (err) => {
           this.showSppiner = false;

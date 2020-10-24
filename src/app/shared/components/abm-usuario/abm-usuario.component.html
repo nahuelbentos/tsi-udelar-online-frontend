@@ -1,1 +1,193 @@
-<p>abm-usuario works!</p>
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+
+      <mat-card>
+
+        <form [formGroup]="usuarioForm">
+
+
+          <mat-card-content>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Nombres" formControlName="nombres" required>
+                    <mat-error *ngIf="nombres.hasError('required')">
+                      Nombres es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Apellidos" formControlName="apellidos" required>
+                    <mat-error *ngIf="apellidos.hasError('required')">
+                      Apellidos es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Cedula" formControlName="cedula" required>
+                    <mat-error *ngIf="cedula.hasError('required')">
+                      Cedula es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="fechaNacimiento.hasError('required')">
+                      Fecha de nacimiento es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Dirección" formControlName="direccion" required>
+                    <mat-error *ngIf="direccion.hasError('required')">
+                      Dirección es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Telefono" formControlName="telefono" required>
+                    <mat-error *ngIf="telefono.hasError('required')">
+                      Telefono es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="UserName" formControlName="userName" required>
+                    <mat-error *ngIf="userName.hasError('required')">
+                      User Name es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="box">
+                  <mat-form-field class="full-width">
+
+                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
+                      formControlName="password" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+
+                  </mat-form-field>
+
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Email Personal" formControlName="emailPersonal" required>
+                    <mat-error *ngIf="emailPersonal.hasError('required')">
+                      Email Personal es <strong>requerido</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="emailPersonal.hasError('email')">
+                      El formato del campo Email Personal es <strong>incorrecto</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+
+                    <mat-label>Tipo de Usuario</mat-label>
+                    <mat-select formControlName="tipo" required>
+                      <mat-option *ngFor="let key of tiposOptions" [value]="key"> {{tipos[key]}} </mat-option>
+                    </mat-select>
+
+                    <!-- <input matInput placeholder="Tipo de Usuario" formControlName="tipo" required> -->
+                    <mat-error *ngIf="tipo.hasError('required')">
+                      Tipo de Usuario es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="row">
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Facultad" formControlName="facultad">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+          </mat-card-content>
+          <mat-card-actions align="end">
+
+
+            <button mat-raised-button color="primary" type="button" [disabled]="usuarioForm.invalid"
+              (click)="guardarUsuario($event)" (keyup.enter)="guardarUsuario($event)">Guardar usuario</button>
+            <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
