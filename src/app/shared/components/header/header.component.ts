@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed: ', result);
-      this.router.navigate(['/administrador/usuario/abm-usuario']);
+      this.router.navigate(['/administrador']);
     });
 
     // Swal.fire({

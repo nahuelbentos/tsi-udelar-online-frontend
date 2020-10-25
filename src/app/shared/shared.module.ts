@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AbmUsuarioComponent } from './pages/abm-usuario/abm-usuario.component';
 import { AbmCursoComponent } from './pages/abm-curso/abm-curso.component';
+import { GestionCustomComponent } from './components/gestion-custom/gestion-custom.component';
+import { GestionCursoComponent } from './pages/gestion-curso/gestion-curso.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { AbmCursoComponent } from './pages/abm-curso/abm-curso.component';
     LoginComponent,
     AbmUsuarioComponent,
     AbmCursoComponent,
+    GestionCustomComponent,
+    GestionCursoComponent,
   ],
   exports: [HeaderComponent, FooterComponent],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],

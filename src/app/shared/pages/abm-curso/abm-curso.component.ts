@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Curso } from 'src/app/models/curso.model';
 import { ModalidadCurso } from 'src/app/models/modalidad-curso.enum';
 import { ModalidadCurso2 } from 'src/app/models/modalidad-curso2.enum';
@@ -67,7 +67,8 @@ export class AbmCursoComponent implements OnInit {
     private usuarioService: UsuarioService,
     private cursoService: CursoService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.buildForm();
   }
@@ -93,8 +94,9 @@ export class AbmCursoComponent implements OnInit {
   }
 
   onNoClick(): void {
-    // Me voy a la pantalla de gestión y elimino del Servicio
-    this.router.navigate(['/gestion-curso']);
+    // Hay que suplantar el rol del usuario  (que va a estar en el storage)
+    // en vez de administrador y queda pronto
+    this.router.navigate(['/administrador/curso']);
   }
 
   guardarCurso(event: Event) {
@@ -117,7 +119,7 @@ export class AbmCursoComponent implements OnInit {
         'Excelente!',
         `Se creó el curso ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['/gestion-curso']);
+      this.router.navigate(['gestion-curso']);
     });
   }
 }
