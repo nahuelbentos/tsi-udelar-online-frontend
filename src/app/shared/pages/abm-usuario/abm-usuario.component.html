@@ -16,7 +16,7 @@
                   <mat-form-field class="full-width">
                     <input matInput placeholder="Nombres" formControlName="nombres" required>
                     <mat-error *ngIf="nombres.hasError('required')">
-                      Nombres es <strong>requerido</strong>.
+                      Nombres son <strong>requeridos</strong>.
                     </mat-error>
                   </mat-form-field>
 
@@ -28,7 +28,7 @@
                   <mat-form-field class="full-width">
                     <input matInput placeholder="Apellidos" formControlName="apellidos" required>
                     <mat-error *ngIf="apellidos.hasError('required')">
-                      Apellidos es <strong>requerido</strong>.
+                      Apellidos son <strong>requeridos</strong>.
                     </mat-error>
                   </mat-form-field>
 
@@ -172,7 +172,11 @@
                 <div class="box">
 
                   <mat-form-field class="full-width">
-                    <input matInput placeholder="Facultad" formControlName="facultad">
+                    <mat-label>Facultad</mat-label>
+                    <mat-select formControlName="facultad" required>
+                      <mat-option *ngFor="let facu of facultades" [value]="facu.facultadId"> {{  facu.nombre }}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
                 </div>
               </div>

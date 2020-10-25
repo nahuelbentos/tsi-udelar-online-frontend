@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Facultad } from 'src/app/models/facultad.model';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { Usuario } from 'src/app/models/usuario.model';
+import { FacultadService } from 'src/app/services/facultad.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
@@ -15,13 +17,14 @@ export class AbmUsuarioComponent implements OnInit {
   usuarioForm: FormGroup;
   usuarioId: string;
 
-  public tipos = TipoUsuario;
-
-  public tiposOptions = [];
+  tipos = TipoUsuario;
+  tiposOptions = [];
 
   primeraVez = false;
   modo: string;
   hide = true;
+
+  facultades: Facultad[] = [];
 
   get nombres() {
     return this.usuarioForm.get('nombres');
@@ -67,6 +70,7 @@ export class AbmUsuarioComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
+    private facultadService: FacultadService,
     private fb: FormBuilder,
     private router: Router
   ) {
@@ -75,6 +79,10 @@ export class AbmUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.tiposOptions = Object.keys(this.tipos);
+
+    this.facultadService
+      .getFacultades()
+      .subscribe((facultades) => (this.facultades = facultades));
   }
 
   private buildForm() {
@@ -97,6 +105,7 @@ export class AbmUsuarioComponent implements OnInit {
     // Me voy a la pantalla de gestión y elimino del Servicio
     this.router.navigate(['/gestion-usuario']);
   }
+
   guardarUsuario(event: Event) {
     event.preventDefault();
 

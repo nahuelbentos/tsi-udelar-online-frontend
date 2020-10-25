@@ -5,11 +5,17 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-import { AbmUsuarioComponent } from './components/abm-usuario/abm-usuario.component';
-import { AbmCursoComponent } from './components/abm-curso/abm-curso.component';
+import { AbmUsuarioComponent } from './pages/abm-usuario/abm-usuario.component';
+import { AbmCursoComponent } from './pages/abm-curso/abm-curso.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LoginComponent, AbmUsuarioComponent, AbmCursoComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    AbmUsuarioComponent,
+    AbmCursoComponent,
+  ],
   exports: [HeaderComponent, FooterComponent],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
 })
