@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 
 @Component({
   selector: 'app-gestion-curso',
@@ -43,4 +44,11 @@ export class GestionCursoComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onEliminar(data: EliminarRow) {
+    console.log('Estoy en el padre, el datao fue: ', data);
+    if (data.elimino) {
+      // Llamamos al backend para eliminar el registro.
+    }
+  }
 }

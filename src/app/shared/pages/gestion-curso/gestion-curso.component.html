@@ -1,2 +1,3 @@
-<app-gestion-custom [dataInput]="cursos" [columns]="columnas" tipoSingular="curso" tipoPlural="cursos">
+<app-gestion-custom [dataInput]="cursos" [columns]="columnas" tipoSingular="curso" tipoPlural="cursos"
+  (eliminar)="onEliminar($event)">
 </app-gestion-custom>

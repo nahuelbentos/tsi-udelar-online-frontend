@@ -1,8 +1,16 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
 
 @Component({
@@ -18,6 +26,8 @@ export class GestionCustomComponent implements OnInit {
   @Input() dataInput: {}[] = [];
   @Input() tipoPlural: string;
   @Input() tipoSingular: string;
+
+  @Output() eliminar: EventEmitter<EliminarRow> = new EventEmitter();
 
   verUsuario: boolean;
   filtro: string;
@@ -79,6 +89,7 @@ export class GestionCustomComponent implements OnInit {
             /*
             Habría que ver como se soluciona esto.
             */
+            this.eliminar.emit({ elimino: true, id: rowData.id });
           }
         });
 
