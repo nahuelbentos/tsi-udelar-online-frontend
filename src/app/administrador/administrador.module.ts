@@ -4,22 +4,24 @@ import { CommonModule } from '@angular/common';
 import { AdministradorRoutingModule } from './administrador-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavComponent } from './components/nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [HomeComponent, NavComponent],
+  declarations: [HomeComponent, NavAdministradorComponent],
   imports: [
     CommonModule,
     AdministradorRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
+    SharedModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,

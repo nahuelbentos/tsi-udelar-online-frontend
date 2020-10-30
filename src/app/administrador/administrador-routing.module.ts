@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
-import { NavComponent } from './components/nav/nav.component';
+import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: NavComponent,
+    component: NavAdministradorComponent,
     children: [
       {
         path: 'curso/abm-curso',
@@ -21,7 +21,7 @@ const routes: Routes = [
         data: { titulo: 'Gestión de Cursos' },
       },
       {
-        path: '/usuario/abm-usuario',
+        path: 'usuario/abm-usuario',
         component: AbmUsuarioComponent,
         data: { titulo: 'ABM de Usuarios' },
       },
