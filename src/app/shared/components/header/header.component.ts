@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 
 @Component({
   selector: 'app-header',
@@ -15,27 +16,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   login() {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      data: {
-        msg: 'Hola',
-      },
-    });
+    const dialogRef = this.dialog.open(LoginComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed: ', result);
-      this.router.navigate(['/administrador']);
+    dialogRef.afterClosed().subscribe((usuarioSesion: UsuarioSesion) => {
+      if (usuarioSesion) {
+        localStorage.setItem('usuarioSesion', JSON.stringify(usuarioSesion));
+        this.router.navigate(['/' + usuarioSesion.tipo.toLowerCase()]);
+      }
     });
-
-    // Swal.fire({
-    //   title: 'Login',
-    //   icon: 'info',
-    //   html:
-    //     '<input id="email" type="email" class="swal2-input" #email>' +
-    //     '<input id="password" type="password" class="swal2-input" #password>',
-    //   preConfirm: () => ({
-    //     email: document.getElementById('email').value,
-    //     password: document.getElementById('password').value,
-    //   }),
-    // }).then((res) => console.log(res));
   }
 }
