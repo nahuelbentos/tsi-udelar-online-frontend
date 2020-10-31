@@ -14,4 +14,12 @@ export class CursoService {
   createCurso(curso: Curso) {
     return this.http.post(this.baseUrl, curso);
   }
+
+  getCursos() {
+    return this.http.get<Curso[]>(this.baseUrl);
+  }
+
+  deleteCurso(cursoId: string) {
+    return this.http.delete(`${this.baseUrl}/${cursoId}`);
+  }
 }
