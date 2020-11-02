@@ -14,6 +14,10 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Cursos',
     },
     {
+      link: 'comunicado',
+      titulo: 'Comunicados',
+    },
+    {
       link: 'curso/abm-curso',
       titulo: 'ABM - Curso',
     },
@@ -21,8 +25,11 @@ export class NavAdministradorComponent implements OnInit {
       link: 'usuario/abm-usuario',
       titulo: 'ABM - Usuario',
     },
+    {
+      link: 'comunicado/abm-comunicado',
+      titulo: 'ABM - Comunicado',
+    },
   ];
   constructor() {}
-
   ngOnInit(): void {}
 }

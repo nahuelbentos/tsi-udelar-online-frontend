@@ -17,6 +17,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.component';
+import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-comunicado.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { RouterModule } from '@angular/router';
     GestionCustomComponent,
     GestionCursoComponent,
     NavCustomComponent,
+    AbmComunicadoComponent,
+    GestionComunicadoComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
