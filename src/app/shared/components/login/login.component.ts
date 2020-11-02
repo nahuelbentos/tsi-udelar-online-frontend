@@ -7,6 +7,7 @@ import {
 } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { HeaderComponent } from '../header/header.component';
 
@@ -41,11 +42,11 @@ export class LoginComponent implements OnInit {
     this.autenticacionService
       .login(this.email.value, this.password.value)
       .subscribe(
-        (res: any) => {
-          console.log('res: ', res);
+        (usuarioSesion: UsuarioSesion) => {
+          console.log('res: ', usuarioSesion);
 
           this.showSppiner = false;
-          this.dialogRef.close();
+          this.dialogRef.close(usuarioSesion);
         },
         (err) => {
           this.showSppiner = false;

@@ -33,13 +33,7 @@ export class AbmCursoComponent implements OnInit {
   modo: string;
   hide = true;
 
-  templateCursos: TemplateCurso[] = [
-    {
-      templateCursoId: '9F4CA882-B42F-473B-85E9-BEFD1E818B7F',
-      nombre: 'General',
-      descripcion: 'Este es el template general',
-    },
-  ];
+  templateCursos: TemplateCurso[] = [];
 
   get nombre() {
     return this.cursoForm.get('nombre');
@@ -64,12 +58,12 @@ export class AbmCursoComponent implements OnInit {
   }
 
   constructor(
-    private usuarioService: UsuarioService,
     private cursoService: CursoService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
   ) {
+    console.log('cursoId: ');
     this.buildForm();
   }
 
@@ -77,9 +71,31 @@ export class AbmCursoComponent implements OnInit {
     this.modalidadesOptions = Object.keys(this.modalidades);
 
     // Cuando este pronto el ws, se va el comentario
-    // this.cursoService
-    //   .getTemplateCurso()
-    //   .subscribe((templateCursos) => (this.templateCursos = templateCursos));
+    this.cursoService
+      .getTemplateCursos()
+      .subscribe((templateCursos) => (this.templateCursos = templateCursos));
+
+    this.route.queryParams.subscribe((param) => {
+      this.modo = param.modo;
+      this.cursoId = param.id;
+
+      if (param.id) {
+        this.cursoService
+          .getCursosById(this.cursoId)
+          .subscribe((curso) => this.setValuesOnForm(curso));
+      }
+    });
+  }
+
+  private setValuesOnForm(curso: Curso) {
+    this.nombre.setValue(curso.nombre);
+    this.descripcion.setValue(curso.descripcion);
+    this.modalidadCurso.setValue(curso.modalidad);
+    this.requiereMatriculacion.setValue(
+      this.modalidadesOptions[curso.modalidad]
+    );
+    this.salaVirtual.setValue(curso.salaVirtual);
+    this.templateCurso.setValue(curso.templateCurso.templateCursoId);
   }
 
   private buildForm() {
@@ -108,18 +124,34 @@ export class AbmCursoComponent implements OnInit {
 
     const curso = new Curso(this.nombre.value);
 
+    curso.cursoId = this.cursoId;
     curso.descripcion = this.descripcion.value;
-    curso.modalidadCurso = this.modalidadCurso.value;
-    curso.requiereMatriculacion = this.requiereMatriculacion.value;
+    curso.modalidad = this.modalidadCurso.value;
+
+    curso.requiereMatriculacion = this.requiereMatriculacion.value
+      ? this.requiereMatriculacion.value
+      : false;
     curso.salaVirtual = this.salaVirtual.value;
     curso.templateCursoId = this.templateCurso.value;
 
+    this.modo === 'INS' ? this.crearCurso(curso) : this.editarCurso(curso);
+  }
+
+  private crearCurso = (curso: Curso) =>
     this.cursoService.createCurso(curso).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el curso ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['gestion-curso']);
+      this.router.navigate(['/administrador/curso']);
     });
-  }
+
+  private editarCurso = (curso: Curso) =>
+    this.cursoService.updateCurso(curso).subscribe(() => {
+      mensajeConfirmacion(
+        'Excelente!',
+        `Se modificó el curso ${this.nombre.value} exitosamente.`
+      ).then();
+      this.router.navigate(['/administrador/curso']);
+    });
 }
