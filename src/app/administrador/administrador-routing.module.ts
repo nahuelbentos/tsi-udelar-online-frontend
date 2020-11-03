@@ -7,6 +7,8 @@ import { NavComponent } from './components/nav/nav.component';
 
 const routes: Routes = [
   {
+
+
     path: '',
     component: NavComponent,
     children: [
@@ -33,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdministradorRoutingModule {}
+export class AdministradorRoutingModule { }

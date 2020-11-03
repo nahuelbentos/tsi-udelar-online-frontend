@@ -27,6 +27,13 @@ const routes: Routes = [
             (m) => m.AdministradorModule
           ),
       },
+      {
+        path: 'docente',
+        loadChildren: () =>
+          import('./docente/docente.module').then(
+            (m) => m.DocenteModule
+          ),
+      },
     ],
   },
 ];
@@ -35,4 +42,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -9,6 +9,8 @@ import { AbmUsuarioComponent } from './pages/abm-usuario/abm-usuario.component';
 import { AbmCursoComponent } from './pages/abm-curso/abm-curso.component';
 import { GestionCustomComponent } from './components/gestion-custom/gestion-custom.component';
 import { GestionCursoComponent } from './pages/gestion-curso/gestion-curso.component';
+import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
+import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,10 @@ import { GestionCursoComponent } from './pages/gestion-curso/gestion-curso.compo
     AbmCursoComponent,
     GestionCustomComponent,
     GestionCursoComponent,
+    AbmRespuestaComponent,
+    AbmTemaForoComponent,
   ],
   exports: [HeaderComponent, FooterComponent],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
 })
-export class SharedModule {}
+export class SharedModule { }
