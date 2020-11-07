@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Curso } from '../models/curso.model';
 import { TemplateCurso } from '../models/template-curso.model';
 
+/* tslint:disable:semicolon */
 @Injectable({
   providedIn: 'root',
 })

@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe((usuarioSesion: UsuarioSesion) => {
       if (usuarioSesion) {
         localStorage.setItem('usuarioSesion', JSON.stringify(usuarioSesion));
+
         this.router.navigate(['/' + usuarioSesion.tipo.toLowerCase()]);
       }
     });

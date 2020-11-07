@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
   ViewChild,
@@ -18,7 +19,7 @@ import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
   templateUrl: './gestion-custom.component.html',
   styleUrls: ['./gestion-custom.component.scss'],
 })
-export class GestionCustomComponent implements OnInit {
+export class GestionCustomComponent implements OnInit, OnChanges {
   dataSource: MatTableDataSource<any>;
 
   // tslint:disable-next-line: no-input-rename
@@ -52,6 +53,10 @@ export class GestionCustomComponent implements OnInit {
 
     this.tooltipEditar = `Editar ${this.tipoSingular}`;
     this.tooltipEliminar = `Eliminar ${this.tipoSingular}`;
+  }
+
+  ngOnChanges(value) {
+    console.log('value: ', value);
   }
 
   applyFilter(event: Event) {
