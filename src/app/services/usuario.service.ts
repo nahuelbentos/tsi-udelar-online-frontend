@@ -7,9 +7,20 @@ import { Usuario } from '../models/usuario.model';
   providedIn: 'root',
 })
 export class UsuarioService {
+
+  baseUrl = `${environment.baseUrl}/usuario`;
+
   constructor(private http: HttpClient) {}
 
-  createUsuario(usuario: Usuario) {
-    return this.http.post(`${environment.baseUrl}/usuario`, usuario);
-  }
+  createUsuario = (usuario: Usuario) => this.http.post(this.baseUrl, usuario);
+
+  updateUsuario = (usuario: Usuario) => this.http.put(`${this.baseUrl}/${usuario.email}`, usuario);
+
+  getUsuarios = () => this.http.get<Usuario[]>(this.baseUrl);
+
+  getUsuarioById = (usuarioId: string) => this.http.get<Usuario>(`${this.baseUrl}/id/${usuarioId}`);
+
+  getUsuarioByEmail = (usuarioEmail: string) => this.http.get<Usuario>(`${this.baseUrl}/email/${usuarioEmail}`);
+
+  deleteUsuario = (usuarioId: string) => this.http.delete(`${this.baseUrl}/${usuarioId}`);
 }

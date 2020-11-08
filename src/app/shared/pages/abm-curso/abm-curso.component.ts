@@ -5,6 +5,7 @@ import { Curso } from 'src/app/models/curso.model';
 import { ModalidadCurso } from 'src/app/models/modalidad-curso.enum';
 import { ModalidadCurso2 } from 'src/app/models/modalidad-curso2.enum';
 import { TemplateCurso } from 'src/app/models/template-curso.model';
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { CursoService } from 'src/app/services/curso.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -23,6 +24,7 @@ enum PrintMedia {
   styleUrls: ['./abm-curso.component.scss'],
 })
 export class AbmCursoComponent implements OnInit {
+  usuarioLogueado: UsuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
   cursoForm: FormGroup;
   cursoId: string;
 
@@ -63,7 +65,7 @@ export class AbmCursoComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    console.log('cursoId: ');
+
     this.buildForm();
   }
 
@@ -80,9 +82,7 @@ export class AbmCursoComponent implements OnInit {
       this.cursoId = param.id;
 
       if (param.id) {
-        this.cursoService
-          .getCursosById(this.cursoId)
-          .subscribe((curso) => this.setValuesOnForm(curso));
+        this.cursoService.getCursoById(this.cursoId).subscribe((curso) => this.setValuesOnForm(curso));
       }
     });
   }
@@ -110,9 +110,10 @@ export class AbmCursoComponent implements OnInit {
   }
 
   onNoClick(): void {
+    
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate(['/administrador/curso']);
+    this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`]);
   }
 
   guardarCurso(event: Event) {
@@ -143,7 +144,7 @@ export class AbmCursoComponent implements OnInit {
         'Excelente!',
         `Se creó el curso ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['/administrador/curso']);
+      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`]);
     });
 
   private editarCurso = (curso: Curso) =>
@@ -152,6 +153,6 @@ export class AbmCursoComponent implements OnInit {
         'Excelente!',
         `Se modificó el curso ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['/administrador/curso']);
+      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`]);
     });
 }

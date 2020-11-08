@@ -17,6 +17,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { GestionUsuarioComponent } from './pages/gestion-usuario/gestion-usuario.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RouterModule } from '@angular/router';
     GestionCustomComponent,
     GestionCursoComponent,
     NavCustomComponent,
+    GestionUsuarioComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

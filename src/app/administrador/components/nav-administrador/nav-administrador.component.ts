@@ -14,12 +14,8 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Cursos',
     },
     {
-      link: 'curso/abm-curso',
-      titulo: 'ABM - Curso',
-    },
-    {
-      link: 'usuario/abm-usuario',
-      titulo: 'ABM - Usuario',
+      link: 'usuario',
+      titulo: 'Usuarios',
     },
   ];
   constructor() {}
