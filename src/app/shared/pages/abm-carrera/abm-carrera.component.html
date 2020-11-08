@@ -1,0 +1,74 @@
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+
+      <mat-card>
+
+        <form [formGroup]="carreraForm">
+
+
+          <mat-card-content>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Nombre" formControlName="nombre" required>
+                    <mat-error *ngIf="nombre.hasError('required')">
+                      Nombre es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Descripcion" formControlName="descripcion" required>
+                    <mat-error *ngIf="descripcion.hasError('required')">
+                      Descripcion es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Facultad</mat-label>
+                    <mat-select formControlName="facultad" required>
+                      <mat-option *ngFor="let facu of facultades" [value]="facu.facultadId"> {{  facu.nombre }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+ 
+          </mat-card-content>
+          <mat-card-actions align="end">
+
+
+            <button mat-raised-button color="primary" type="button" [disabled]="carreraForm.invalid"
+              (click)="guardarCarrera($event)" (keyup.enter)="guardarCarrera($event)">Guardar Carrera</button>
+            <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>

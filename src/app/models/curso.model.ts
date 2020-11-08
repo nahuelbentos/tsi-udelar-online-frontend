@@ -1,5 +1,6 @@
 import { ModalidadCurso } from './modalidad-curso.enum';
 import { TemplateCurso } from './template-curso.model';
+import { Usuario } from './usuario.model';
 
 export class Curso {
   constructor(
@@ -13,12 +14,4 @@ export class Curso {
     public usuarios?: Usuario[],
     public cursoId?: string
   ) {}
-}
-
-interface Usuario {
-  userId: string;
-  nombreCompleto: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
 }

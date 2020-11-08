@@ -17,6 +17,10 @@ export class NavAdministradorComponent implements OnInit {
       link: 'usuario',
       titulo: 'Usuarios',
     },
+    {
+      link: 'carrera',
+      titulo: 'Carreras',
+    },
   ];
   constructor() {}
 

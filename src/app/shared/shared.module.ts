@@ -18,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { GestionUsuarioComponent } from './pages/gestion-usuario/gestion-usuario.component';
+import { GestionCarreraComponent } from './pages/gestion-carrera/gestion-carrera.component';
+import { AbmCarreraComponent } from './pages/abm-carrera/abm-carrera.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { GestionUsuarioComponent } from './pages/gestion-usuario/gestion-usuario
     GestionCursoComponent,
     NavCustomComponent,
     GestionUsuarioComponent,
+    GestionCarreraComponent,
+    AbmCarreraComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
