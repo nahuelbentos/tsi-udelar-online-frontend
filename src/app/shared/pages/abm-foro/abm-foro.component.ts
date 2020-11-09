@@ -59,7 +59,6 @@ export class AbmForoComponent implements OnInit {
   private setValuesOnForm(foro: Foro) {
     this.titulo.setValue(foro.titulo);
     this.descripcion.setValue(foro.descripcion);
-    
   }
 
   private buildForm() {
@@ -89,7 +88,6 @@ export class AbmForoComponent implements OnInit {
     foro.foroId = this.foroId;
     foro.titulo = this.titulo.value;
     foro.descripcion = this.descripcion.value;
-    
 
     this.modo === 'INS'
       ? this.crearForo(foro)
