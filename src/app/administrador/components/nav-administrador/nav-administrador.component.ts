@@ -14,12 +14,28 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Facultades',
     },
     {
+
       link: 'curso',
       titulo: 'Cursos',
     },
     {
       link: 'encuesta',
       titulo: 'Encuestas',
+
+      link: 'usuario',
+      titulo: 'Usuarios',
+    },
+    {
+      link: 'carrera',
+      titulo: 'Carreras',
+    },
+    {
+      link: 'foro',
+      titulo: 'Foros',
+    },
+    {
+      link: 'material',
+      titulo: 'Materiales',
     },
   ];
   constructor() {}

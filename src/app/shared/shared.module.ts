@@ -17,11 +17,22 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+
 import { GestionFacultadComponent } from './pages/gestion-facultad/gestion-facultad.component';
 import { AbmFacultadComponent } from './pages/abm-facultad/abm-facultad.component';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 import { GestionEncuestaComponent } from './pages/gestion-encuesta/gestion-encuesta.component';
 import { AbmEncuestaComponent } from './pages/abm-encuesta/abm-encuesta.component';
+import { GestionUsuarioComponent } from './pages/gestion-usuario/gestion-usuario.component';
+import { GestionCarreraComponent } from './pages/gestion-carrera/gestion-carrera.component';
+import { AbmCarreraComponent } from './pages/abm-carrera/abm-carrera.component';
+import { GestionMaterialComponent } from './pages/gestion-material/gestion-material.component';
+
+import { AbmMaterialComponent } from './pages/abm-material/abm-material.component';
+import { MatFileUploadModule } from 'mat-file-upload';
+import { GestionForoComponent } from './pages/gestion-foro/gestion-foro.component';
+import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
+
 
 @NgModule({
   declarations: [
@@ -33,10 +44,19 @@ import { AbmEncuestaComponent } from './pages/abm-encuesta/abm-encuesta.componen
     GestionCustomComponent,
     GestionCursoComponent,
     NavCustomComponent,
+
     GestionFacultadComponent,
     AbmFacultadComponent,
     GestionEncuestaComponent,
     AbmEncuestaComponent,
+    GestionUsuarioComponent,
+    GestionCarreraComponent,
+    AbmCarreraComponent,
+    AbmMaterialComponent,
+    GestionMaterialComponent,
+    GestionForoComponent,
+    AbmForoComponent,
+
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
@@ -50,7 +70,9 @@ import { AbmEncuestaComponent } from './pages/abm-encuesta/abm-encuesta.componen
     MatIconModule,
     MatListModule,
     RouterModule,
+
     NgxMatColorPickerModule,
+    MatFileUploadModule,
   ],
   providers: [
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }

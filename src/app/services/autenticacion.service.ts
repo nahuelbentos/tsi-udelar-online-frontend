@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { UsuarioSesion } from '../models/usuario-sesion.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class AutenticacionService {
     console.log('email: ', email);
     console.log('password: ', password);
 
-    return this.http.post(`${this.baseUrl}/login`, {
+    return this.http.post<UsuarioSesion>(`${this.baseUrl}/login`, {
       email,
       password,
     });
