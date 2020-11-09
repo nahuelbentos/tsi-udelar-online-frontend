@@ -17,6 +17,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { GestionFacultadComponent } from './pages/gestion-facultad/gestion-facultad.component';
+import { AbmFacultadComponent } from './pages/abm-facultad/abm-facultad.component';
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
+import { GestionEncuestaComponent } from './pages/gestion-encuesta/gestion-encuesta.component';
+import { AbmEncuestaComponent } from './pages/abm-encuesta/abm-encuesta.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,10 @@ import { RouterModule } from '@angular/router';
     GestionCustomComponent,
     GestionCursoComponent,
     NavCustomComponent,
+    GestionFacultadComponent,
+    AbmFacultadComponent,
+    GestionEncuestaComponent,
+    AbmEncuestaComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
@@ -41,6 +50,10 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatListModule,
     RouterModule,
+    NgxMatColorPickerModule,
   ],
+  providers: [
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
+   ],
 })
 export class SharedModule {}

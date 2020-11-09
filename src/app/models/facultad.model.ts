@@ -8,6 +8,7 @@ export class Facultad {
     public fechaNacimiento?: Date,
     public dominioMail?: string,
     public usuarioLista?: Usuario[],
-    public facultadId?: string
+    public facultadId?: string,
+    public colorPrincipal?: string,
   ) {}
 }
