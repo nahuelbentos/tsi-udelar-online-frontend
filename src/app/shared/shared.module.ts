@@ -20,6 +20,11 @@ import { RouterModule } from '@angular/router';
 import { GestionUsuarioComponent } from './pages/gestion-usuario/gestion-usuario.component';
 import { GestionCarreraComponent } from './pages/gestion-carrera/gestion-carrera.component';
 import { AbmCarreraComponent } from './pages/abm-carrera/abm-carrera.component';
+import { GestionMaterialComponent } from './pages/gestion-material/gestion-material.component';
+
+import { AbmMaterialComponent } from './pages/abm-material/abm-material.component';
+import { MatFileUploadModule } from 'mat-file-upload';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +39,8 @@ import { AbmCarreraComponent } from './pages/abm-carrera/abm-carrera.component';
     GestionUsuarioComponent,
     GestionCarreraComponent,
     AbmCarreraComponent,
+    AbmMaterialComponent,
+    GestionMaterialComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
@@ -47,6 +54,7 @@ import { AbmCarreraComponent } from './pages/abm-carrera/abm-carrera.component';
     MatIconModule,
     MatListModule,
     RouterModule,
+    MatFileUploadModule,
   ],
 })
 export class SharedModule {}

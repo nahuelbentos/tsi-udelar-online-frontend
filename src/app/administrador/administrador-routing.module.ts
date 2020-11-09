@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
+import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
+import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 
@@ -45,6 +47,17 @@ const routes: Routes = [
         path: 'usuario/abm-usuario',
         component: AbmUsuarioComponent,
         data: { titulo: 'ABM de Usuarios' },
+      },
+      {
+        path: 'material',
+        component: GestionMaterialComponent,
+        data: { titulo: 'Gestión de materiales' },
+      },
+
+      {
+        path: 'material/abm-material',
+        component: AbmMaterialComponent,
+        data: { titulo: 'ABM de materiales' },
       },
     ],
   },
