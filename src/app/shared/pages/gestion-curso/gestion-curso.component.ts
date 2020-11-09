@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Curso } from 'src/app/models/curso.model';
+import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
+import { CursoService } from 'src/app/services/curso.service';
 
 @Component({
   selector: 'app-gestion-curso',
@@ -6,41 +11,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestion-curso.component.scss'],
 })
 export class GestionCursoComponent implements OnInit {
-  cursos = [
-    {
-      CursoId: 'A4E6248A-C19F-4C98-875B-07DCF3E19F50',
-      id: 'A4E6248A-C19F-4C98-875B-07DCF3E19F50',
-      Descripcion: 'Taller de Net Core del 2020',
-      Nombre: 'TSE 2020 - Se la bancosss',
-      Modalidad: 2,
-      RequiereMatriculacion: true,
-      SalaVirtual: 'salaVirtual-TSI.com',
-      TemplateCursoId: '9F4CA882-B42F-473B-85E9-BEFD1E818B7F',
-    },
-    {
-      CursoId: 'F7B4C98D-AFB2-4839-AD4E-C78539F8ECE8',
-      id: 'F7B4C98D-AFB2-4839-AD4E-C78539F8ECE8',
-      Descripcion: 'Curso creado desde el frontend',
-      Nombre: 'Curso Angular',
-      Modalidad: 1,
-      RequiereMatriculacion: true,
-      SalaVirtual: '14/6/2020',
-      TemplateCursoId: '9F4CA882-B42F-473B-85E9-BEFD1E818B7F',
-    },
-    {
-      id: '2639748C-6762-4064-8D46-EC7BC521FB4B',
-      Descripcion: 'Taller de JAVA del 2020',
-      Nombre: 'TSE 2020 - Se la banca',
-      Modalidad: 2,
-      RequiereMatriculacion: false,
-      SalaVirtual: 'salaVirtual-TSI.com',
-      TemplateCursoId: '9F4CA882-B42F-473B-85E9-BEFD1E818B7F',
-    },
-  ];
+  cursos: Curso[];
+  createComponent = false;
+  columnas = ['nombre', 'descripcion', 'modalidad', 'actions'];
 
-  columnas = ['Nombre', 'Descripcion', 'Modalidad', 'actions'];
-
-  constructor() {}
+  constructor(private cursoService: CursoService) {
+    this.getCursos();
+  }
 
   ngOnInit(): void {}
+
+  onEliminar(data: EliminarRow) {
+    if (data.elimino) {
+      this.createComponent = false;
+      // Llamamos al backend para eliminar el registro.
+      this.cursoService
+        .deleteCurso(data.id)
+        .subscribe((res) => this.getCursos());
+    }
+  }
+
+  getCursos() {
+    this.cursoService.getCursos().subscribe((cursos) => {
+      this.cursos = cursos.map((curso) => ({ ...curso, id: curso.cursoId }));
+      this.createComponent = true;
+    });
+  }
 }

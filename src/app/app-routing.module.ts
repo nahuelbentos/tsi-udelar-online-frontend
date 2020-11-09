@@ -28,6 +28,11 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'alumno',
+        loadChildren: () =>
+          import('./alumno/alumno.module').then((m) => m.AlumnoModule),
+      },
+      {
         path: 'docente',
         loadChildren: () =>
           import('./docente/docente.module').then(

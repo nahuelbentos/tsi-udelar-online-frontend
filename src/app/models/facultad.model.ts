@@ -5,9 +5,9 @@ export class Facultad {
     public nombre: string,
     public descripcion?: string,
     public urlAcceso?: string,
-    public fechaNacimiento?: Date,
     public dominioMail?: string,
     public usuarioLista?: Usuario[],
-    public facultadId?: string
+    public facultadId?: string,
+    public colorPrincipal?: string,
   ) {}
 }

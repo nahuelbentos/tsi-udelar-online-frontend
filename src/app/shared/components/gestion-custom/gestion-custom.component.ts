@@ -1,8 +1,18 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Columna } from 'src/app/models/columna.model';
+import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
 
 @Component({
@@ -10,7 +20,7 @@ import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
   templateUrl: './gestion-custom.component.html',
   styleUrls: ['./gestion-custom.component.scss'],
 })
-export class GestionCustomComponent implements OnInit {
+export class GestionCustomComponent implements OnInit, OnChanges {
   dataSource: MatTableDataSource<any>;
 
   // tslint:disable-next-line: no-input-rename
@@ -18,6 +28,8 @@ export class GestionCustomComponent implements OnInit {
   @Input() dataInput: {}[] = [];
   @Input() tipoPlural: string;
   @Input() tipoSingular: string;
+
+  @Output() eliminar: EventEmitter<EliminarRow> = new EventEmitter();
 
   verUsuario: boolean;
   filtro: string;
@@ -42,6 +54,10 @@ export class GestionCustomComponent implements OnInit {
 
     this.tooltipEditar = `Editar ${this.tipoSingular}`;
     this.tooltipEliminar = `Eliminar ${this.tipoSingular}`;
+  }
+
+  ngOnChanges(value) {
+    console.log('value: ', value);
   }
 
   applyFilter(event: Event) {
@@ -79,6 +95,7 @@ export class GestionCustomComponent implements OnInit {
             /*
             Habría que ver como se soluciona esto.
             */
+            this.eliminar.emit({ elimino: true, id: rowData.id });
           }
         });
 
