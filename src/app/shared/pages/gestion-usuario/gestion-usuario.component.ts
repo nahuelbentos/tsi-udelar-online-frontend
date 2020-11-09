@@ -12,8 +12,9 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class GestionUsuarioComponent implements OnInit {
   usuarios: Usuario[];
   createComponent = false;
-  
+
   columnas: string[] = ['nombres', 'apellidos', 'email', 'actions'];
+
   /*
   [
     { key: 'nombres', description: 'Nombres' },
@@ -21,6 +22,7 @@ export class GestionUsuarioComponent implements OnInit {
     { key: 'tipoUsuario', description: 'Tipo de Usuario' },
     { key: 'actions', description: 'actions' },
   ];
+  ['nombres', 'apellidos', 'email', 'actions'];
   */
   constructor(private usuarioService: UsuarioService) {
     this.getUsuarios();
@@ -39,9 +41,13 @@ export class GestionUsuarioComponent implements OnInit {
     if (data.elimino) {
       this.createComponent = false;
       // Llamamos al backend para eliminar el registro.
-      
-      const usuario = await this.usuarioService.getUsuarioById(data.id).toPromise();
-      this.usuarioService.deleteUsuario(usuario.email).subscribe((res) => this.getUsuarios());
+
+      const usuario = await this.usuarioService
+        .getUsuarioById(data.id)
+        .toPromise();
+      this.usuarioService
+        .deleteUsuario(usuario.email)
+        .subscribe((res) => this.getUsuarios());
     }
   }
 }
