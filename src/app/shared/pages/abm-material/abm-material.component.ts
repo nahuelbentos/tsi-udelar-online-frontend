@@ -13,10 +13,8 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-material.component.scss'],
 })
 export class AbmMaterialComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse(
-    localStorage.getItem('usuarioSesion')
-  );
-  
+  usuarioLogueado: UsuarioSesion = JSON.parse( localStorage.getItem('usuarioSesion') );
+
   materialForm: FormGroup;
   materialId: string;
 
@@ -145,7 +143,7 @@ export class AbmMaterialComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/material`,
       ]);
-    });
+    })
 
   private editMaterial = (material: Material) =>
     this.materialService.updateMaterial(material).subscribe(() => {
@@ -156,5 +154,5 @@ export class AbmMaterialComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/material`,
       ]);
-    });
+    })
 }
