@@ -22,6 +22,10 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Carreras',
     },
     {
+      link: 'foro',
+      titulo: 'Foros',
+    },
+    {
       link: 'material',
       titulo: 'Materiales',
     },

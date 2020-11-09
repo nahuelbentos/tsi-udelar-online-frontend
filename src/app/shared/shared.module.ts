@@ -24,6 +24,8 @@ import { GestionMaterialComponent } from './pages/gestion-material/gestion-mater
 
 import { AbmMaterialComponent } from './pages/abm-material/abm-material.component';
 import { MatFileUploadModule } from 'mat-file-upload';
+import { GestionForoComponent } from './pages/gestion-foro/gestion-foro.component';
+import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { MatFileUploadModule } from 'mat-file-upload';
     AbmCarreraComponent,
     AbmMaterialComponent,
     GestionMaterialComponent,
+    GestionForoComponent,
+    AbmForoComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
