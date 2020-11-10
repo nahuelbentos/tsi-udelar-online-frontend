@@ -32,6 +32,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./alumno/alumno.module').then((m) => m.AlumnoModule),
       },
+      {
+        path: 'docente',
+        loadChildren: () =>
+          import('./docente/docente.module').then(
+            (m) => m.DocenteModule
+          ),
+      },
     ],
   },
 ];
@@ -40,4 +47,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -17,6 +17,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
+import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
+
+import { GestionFacultadComponent } from './pages/gestion-facultad/gestion-facultad.component';
+import { AbmFacultadComponent } from './pages/abm-facultad/abm-facultad.component';
+import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
+import { GestionEncuestaComponent } from './pages/gestion-encuesta/gestion-encuesta.component';
+import { AbmEncuestaComponent } from './pages/abm-encuesta/abm-encuesta.component';
 import { GestionUsuarioComponent } from './pages/gestion-usuario/gestion-usuario.component';
 import { GestionCarreraComponent } from './pages/gestion-carrera/gestion-carrera.component';
 import { AbmCarreraComponent } from './pages/abm-carrera/abm-carrera.component';
@@ -38,6 +46,11 @@ import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
     GestionCustomComponent,
     GestionCursoComponent,
     NavCustomComponent,
+
+    GestionFacultadComponent,
+    AbmFacultadComponent,
+    GestionEncuestaComponent,
+    AbmEncuestaComponent,
     GestionUsuarioComponent,
     GestionCarreraComponent,
     AbmCarreraComponent,
@@ -45,6 +58,9 @@ import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
     GestionMaterialComponent,
     GestionForoComponent,
     AbmForoComponent,
+
+    AbmRespuestaComponent,
+    AbmTemaForoComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
@@ -58,7 +74,12 @@ import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
     MatIconModule,
     MatListModule,
     RouterModule,
+
+    NgxMatColorPickerModule,
     MatFileUploadModule,
   ],
+  providers: [
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
+   ],
 })
-export class SharedModule {}
+export class SharedModule { }

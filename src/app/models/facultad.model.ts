@@ -7,6 +7,7 @@ export class Facultad {
     public urlAcceso?: string,
     public dominioMail?: string,
     public usuarioLista?: Usuario[],
-    public facultadId?: string
+    public facultadId?: string,
+    public colorPrincipal?: string,
   ) {}
 }

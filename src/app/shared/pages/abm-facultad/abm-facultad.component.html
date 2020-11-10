@@ -1,0 +1,117 @@
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+
+      <mat-card>
+
+        <form [formGroup]="facultadForm">
+
+
+          <mat-card-content>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Nombre" formControlName="nombre" required>
+                    <mat-error *ngIf="nombre.hasError('required')">
+                      Nombre es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Descripcion" formControlName="descripcion" required>
+                    <mat-error *ngIf="descripcion.hasError('required')">
+                      Descripcion es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+                  <mat-form-field class="full-width">
+                    <mat-label>URL de acceso</mat-label>
+                    <input matInput placeholder="URL de acceso" formControlName="urlAcceso" required>
+                    <mat-error *ngIf="urlAcceso.hasError('required')">
+                      URL de acceso es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="box">
+                  <mat-form-field class="full-width">
+                    <mat-label>Fecha de fundación</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="fechaNacimiento" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Dominio de correo" formControlName="dominioMail" required>
+                    <mat-error *ngIf="dominioMail.hasError('required')">
+                      Dominio de correo es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Lista de usuarios</mat-label>
+                    <mat-select formControlName="usuarioLista" multiple>
+                      <mat-option *ngFor="let usuario of usuariosLista" [value]="usuario.usuarioId">
+                        {{  usuario.nombres }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                </div>
+              </div>
+              <div class="col-xs-6">
+                <div class="box">
+                  <mat-form-field>
+                    <input required placeholder="Color principal" matInput formControlName="colorCtr" [ngxMatColorPicker]="picker2" >
+                    <ngx-mat-color-toggle matSuffix [for]="picker2"></ngx-mat-color-toggle>
+                    <ngx-mat-color-picker #picker2 touchUi="true" color="#0f89f0"></ngx-mat-color-picker>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+
+          </mat-card-content>
+          <mat-card-actions align="end">
+
+
+            <button mat-raised-button color="primary" type="button" [disabled]="facultadForm.invalid"
+              (click)="guardarFacultad($event)" (keyup.enter)="guardarFacultad($event)">Guardar Facultad</button>
+            <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>
