@@ -23,6 +23,8 @@ import { NavAdministradorComponent } from './components/nav-administrador/nav-ad
 
 const routes: Routes = [
   {
+
+
     path: '',
     component: NavAdministradorComponent,
     children: [
@@ -112,4 +114,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdministradorRoutingModule {}
+export class AdministradorRoutingModule { }

@@ -17,6 +17,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
+import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
+import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
 
 import { GestionFacultadComponent } from './pages/gestion-facultad/gestion-facultad.component';
 import { AbmFacultadComponent } from './pages/abm-facultad/abm-facultad.component';
@@ -57,6 +59,8 @@ import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
     GestionForoComponent,
     AbmForoComponent,
 
+    AbmRespuestaComponent,
+    AbmTemaForoComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
@@ -78,4 +82,4 @@ import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
    ],
 })
-export class SharedModule {}
+export class SharedModule { }
