@@ -61,6 +61,7 @@ const routes: Routes = [
         component: AbmMaterialComponent,
         data: { titulo: 'ABM de materiales' },
       },
+
       {
         path: 'foro',
         component: GestionForoComponent,
@@ -72,6 +73,7 @@ const routes: Routes = [
         component: AbmForoComponent,
         data: { titulo: 'ABM de foros' },
       },
+
     ],
   },
 ];

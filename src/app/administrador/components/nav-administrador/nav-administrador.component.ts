@@ -22,10 +22,19 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Carreras',
     },
     {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> fd5cb77d55b4459a78e49e536390df78cf717008
       link: 'foro',
       titulo: 'Foros',
     },
     {
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e619c66b1e373a315325a250acceab4564c4f771
+>>>>>>> fd5cb77d55b4459a78e49e536390df78cf717008
       link: 'material',
       titulo: 'Materiales',
     },
