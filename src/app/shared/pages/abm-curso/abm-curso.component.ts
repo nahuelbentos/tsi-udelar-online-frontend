@@ -129,9 +129,7 @@ export class AbmCursoComponent implements OnInit {
     curso.descripcion = this.descripcion.value;
     curso.modalidad = this.modalidadCurso.value;
 
-    curso.requiereMatriculacion = this.requiereMatriculacion.value
-      ? this.requiereMatriculacion.value
-      : false;
+    curso.requiereMatriculacion = this.requiereMatriculacion.value ? this.requiereMatriculacion.value : false;
     curso.salaVirtual = this.salaVirtual.value;
     curso.templateCursoId = this.templateCurso.value;
 

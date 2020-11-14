@@ -7,6 +7,7 @@ import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
 
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
+import { AbmSeccionComponent } from '../shared/pages/abm-seccion/abm-seccion.component';
 
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
@@ -18,6 +19,7 @@ import { GestionFacultadComponent } from '../shared/pages/gestion-facultad/gesti
 import { GestionForoComponent } from '../shared/pages/gestion-foro/gestion-foro.component';
 
 import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
+import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion-seccion.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 
@@ -104,6 +106,18 @@ const routes: Routes = [
         path: 'foro/abm-foro',
         component: AbmForoComponent,
         data: { titulo: 'ABM de foros' },
+      },
+
+      {
+        path: 'seccion',
+        component: GestionSeccionComponent,
+        data: { titulo: 'Gestión de secciones' },
+      },
+
+      {
+        path: 'seccion/abm-seccion',
+        component: AbmSeccionComponent,
+        data: { titulo: 'ABM de secciones' },
       },
 
     ],

@@ -3,6 +3,7 @@ export class Seccion {
     public nombre: string,
     public descripcion?: string,
     public isDefault?: boolean,
-    public isVisible?: boolean
+    public isVisible?: boolean,
+    public seccionId?: string
   ) {}
 }

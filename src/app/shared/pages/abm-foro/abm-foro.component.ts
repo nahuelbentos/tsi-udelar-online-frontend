@@ -14,13 +14,12 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-foro.component.scss']
 })
 export class AbmForoComponent implements OnInit {
- usuarioLogueado: UsuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+  usuarioLogueado: UsuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
   foroForm: FormGroup;
   foroId: string;
 
   primeraVez = false;
-  modo: string;
-  hide = true;
+  modo: string; 
 
   facultades: Facultad[] = [];
 
@@ -89,30 +88,18 @@ export class AbmForoComponent implements OnInit {
     foro.titulo = this.titulo.value;
     foro.descripcion = this.descripcion.value;
 
-    this.modo === 'INS'
-      ? this.crearForo(foro)
-      : this.editarForo(foro);
+    this.modo === 'INS' ? this.crearForo(foro) : this.editarForo(foro);
   }
 
   private crearForo = (foro: Foro) =>
     this.foroService.createForo(foro).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se creó el foro ${this.titulo.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
-      ]);
+      mensajeConfirmacion('Excelente!', `Se creó el foro ${this.titulo.value} exitosamente.`).then();
+      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`]);
     })
 
   private editarForo = (foro: Foro) =>
     this.foroService.updateForo(foro).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se modificó el foro ${this.titulo.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
-      ]);
+      mensajeConfirmacion('Excelente!', `Se modificó el foro ${this.titulo.value} exitosamente.`).then();
+      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`]);
     })
 }
