@@ -36,6 +36,12 @@ import { GestionForoComponent } from './pages/gestion-foro/gestion-foro.componen
 import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
 import { AbmSeccionComponent } from './pages/abm-seccion/abm-seccion.component';
 import { GestionSeccionComponent } from './pages/gestion-seccion/gestion-seccion.component';
+import { SeleccionarCustomComponent } from './components/seleccionar-custom/seleccionar-custom.component';
+import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/seleccionar-seccion.component';
+import { SeleccionarFacultadComponent } from './dialogs/seleccionar-facultad/seleccionar-facultad.component';
+import { SeleccionarCursoComponent } from './dialogs/seleccionar-curso/seleccionar-curso.component';
+import { SeleccionarCarreraComponent } from './dialogs/seleccionar-carrera/seleccionar-carrera.component';
+import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
 
 
 @NgModule({
@@ -65,6 +71,12 @@ import { GestionSeccionComponent } from './pages/gestion-seccion/gestion-seccion
     AbmTemaForoComponent,
     AbmSeccionComponent,
     GestionSeccionComponent,
+    SeleccionarCustomComponent,
+    SeleccionarSeccionComponent,
+    SeleccionarFacultadComponent,
+    SeleccionarCursoComponent,
+    SeleccionarCarreraComponent,
+    SeleccionarTemplateCursoComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

@@ -30,10 +30,7 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   @Input() tipoSingular: string;
 
   @Output() eliminar: EventEmitter<EliminarRow> = new EventEmitter();
-
-  verUsuario: boolean;
-  filtro: string;
-
+ 
   tooltipEditar: string;
   tooltipEliminar: string;
 
@@ -77,6 +74,7 @@ export class GestionCustomComponent implements OnInit, OnChanges {
         console.log(ruta);
         const params: { modo: string; id?: string } = { modo };
 
+        // tslint:disable-next-line: curly
         if (rowData && rowData.id) params.id = rowData.id;
 
         this.router.navigate([`abm-${this.tipoSingular}`], {
