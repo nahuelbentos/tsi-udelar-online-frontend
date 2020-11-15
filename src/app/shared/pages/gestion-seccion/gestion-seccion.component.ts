@@ -14,7 +14,9 @@ export class GestionSeccionComponent implements OnInit {
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
 
-  constructor(private seccionService: SeccionService) {
+  constructor(
+    private seccionService: SeccionService
+  ) {
     this.getSecciones();
   }
 
@@ -32,8 +34,12 @@ export class GestionSeccionComponent implements OnInit {
 
   getSecciones() {
     this.seccionService.getSecciones().subscribe((secciones) => {
-      this.secciones = secciones.map((seccion) => ({ ...seccion, id: seccion.seccionId }));
+      this.secciones = secciones.map((seccion) => ({
+        ...seccion,
+        id: seccion.seccionId,
+      }));
       this.createComponent = true;
     });
   }
+
 }
