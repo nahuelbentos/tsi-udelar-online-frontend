@@ -34,6 +34,7 @@ import { AbmMaterialComponent } from './pages/abm-material/abm-material.componen
 import { MatFileUploadModule } from 'mat-file-upload';
 import { GestionForoComponent } from './pages/gestion-foro/gestion-foro.component';
 import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
+import { AbmMensajeComponent } from './pages/abm-mensaje/abm-mensaje.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
 
     AbmRespuestaComponent,
     AbmTemaForoComponent,
+    AbmMensajeComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
