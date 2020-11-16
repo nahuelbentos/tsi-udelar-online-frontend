@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-<<<<<<< HEAD
-import { Encuesta } from 'src/app/models/encuesta.model';
-import { ActividadService } from 'src/app/services/actividad.service';
-
-=======
 import { Actividad } from 'src/app/models/actividad.model';
 import { ActividadService } from 'src/app/services/actividad.service';
->>>>>>> ABM-facultad-encuesta
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
 @Component({
