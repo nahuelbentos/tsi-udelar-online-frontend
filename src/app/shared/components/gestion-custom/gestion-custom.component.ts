@@ -67,13 +67,13 @@ export class GestionCustomComponent implements OnInit {
     switch (modo) {
       case 'INS':
       case 'UPD':
-        const ruta = `/${this.tipoSingular}/abm-${this.tipoSingular}`;
+        const ruta = `/${this.tipoSingular.toLocaleLowerCase().trim()}/abm-${this.tipoSingular.toLocaleLowerCase().trim()}`;
         console.log(ruta);
         const params: { modo: string; id?: string } = { modo };
 
         if (rowData && rowData.id) params.id = rowData.id;
 
-        this.router.navigate([`abm-${this.tipoSingular}`], {
+        this.router.navigate([`abm-${this.tipoSingular.toLocaleLowerCase().trim()}`], {
           queryParams: params,
           relativeTo: this.route,
         });

@@ -22,4 +22,10 @@ export class ComunicadoService {
   deleteComunicado(comunicadoId: string) {
     return this.http.delete(`${this.baseUrl}/${comunicadoId}`);
   }
+
+  updateComunicado = (comunicado: Comunicado) =>
+  this.http.put(`${this.baseUrl}/${comunicado.comunicadoId}`, comunicado)
+
+  getComunicadoById = (comunicadoId: string) =>
+    this.http.get<Comunicado>(`${this.baseUrl}/${comunicadoId}`)
 }

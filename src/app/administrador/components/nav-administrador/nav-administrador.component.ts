@@ -18,6 +18,10 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Comunicados',
     },
     {
+      link: 'templatecurso',
+      titulo: 'TemplateCurso',
+    },
+    {
       link: 'curso/abm-curso',
       titulo: 'ABM - Curso',
     },
@@ -28,6 +32,10 @@ export class NavAdministradorComponent implements OnInit {
     {
       link: 'comunicado/abm-comunicado',
       titulo: 'ABM - Comunicado',
+    },
+    {
+      link: 'templatecurso/abm-templatecurso',
+      titulo: 'ABM - TemplateCurso',
     },
   ];
   constructor() {}

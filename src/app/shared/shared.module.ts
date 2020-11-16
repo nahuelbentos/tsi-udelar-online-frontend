@@ -19,6 +19,8 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.component';
 import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-comunicado.component';
+import { AbmTemplatecursoComponent } from './pages/abm-templatecurso/abm-templatecurso.component';
+import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-c
     NavCustomComponent,
     AbmComunicadoComponent,
     GestionComunicadoComponent,
+    AbmTemplatecursoComponent,
+    GestionTemplatecursoComponent
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

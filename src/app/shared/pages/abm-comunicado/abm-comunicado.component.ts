@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Comunicado } from 'src/app/models/Comunicado';
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { ComunicadoService } from 'src/app/services/comunicado.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
@@ -50,6 +51,22 @@ export class AbmComunicadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((param) => {
+      this.modo = param.modo;
+      this.comunicadoId = param.id;
+
+      if (param.id) {
+        this.comunicadoService
+          .getComunicadoById(this.comunicadoId)
+          .subscribe((comunicado) => this.setValuesOnForm(comunicado));
+      }
+    });
+  }
+
+  private setValuesOnForm(comunicado: Comunicado) {
+    this.nombre.setValue(comunicado.nombre);
+    this.descripcion.setValue(comunicado.descripcion);
+    this.url.setValue(comunicado.url);
   }
 
   onNoClick(): void {
@@ -64,19 +81,39 @@ export class AbmComunicadoComponent implements OnInit {
     if (this.comunicadoForm.invalid) {
       return;
     }
+    const usuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
     const comunicado = new Comunicado(this.nombre.value, this.descripcion.value, this.url.value);
-
+    console.log(' JSON usuarioSesion', JSON.parse(localStorage.getItem('usuarioSesion')));
+    console.log('usuarioSesion', localStorage.getItem('usuarioSesion').toString());
+    console.log('usuarioSesion variable ', usuarioSesion.toString());
+    console.log('usuarioSesion.CI ', usuarioSesion.ci);
+    console.log('usuarioSesion.userName ', usuarioSesion.userName);
+    comunicado.usuarioEmail = usuarioSesion.email;
     comunicado.descripcion = this.descripcion.value;
     comunicado.nombre = this.nombre.value;
     comunicado.url = this.url.value;
+    comunicado.comunicadoId = this.comunicadoId;
 
-    this.comunicadoService.createComunicado(comunicado).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se creó el comunicado ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate(['gestion-comunicado']);
-    });
+    this.modo === 'INS' ? this.crearComunicado(comunicado) : this.editarComunicado(comunicado);
   }
 
+
+private crearComunicado = (comunicado: Comunicado) =>
+  this.comunicadoService.createComunicado(comunicado).subscribe(() => {
+    mensajeConfirmacion(
+      'Excelente!',
+      `Se creó el comunicado ${this.nombre.value} exitosamente.`
+    ).then();
+    this.router.navigate(['/administrador/comunicado']);
+  })
+
+
+private editarComunicado = (comunicado: Comunicado) =>
+  this.comunicadoService.updateComunicado(comunicado).subscribe(() => {
+    mensajeConfirmacion(
+      'Excelente!',
+      `Se modificó el curso ${this.nombre.value} exitosamente.`
+    ).then();
+    this.router.navigate(['/administrador/comunicado']);
+  })
 }
