@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Actividad } from 'src/app/models/actividad.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
+<<<<<<< HEAD
 import { Encuesta } from 'src/app/models/encuesta.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 
+=======
+import { ActividadService } from 'src/app/services/actividad.service';
+>>>>>>> ABM-facultad-encuesta
 
 @Component({
   selector: 'app-gestion-encuesta',
@@ -10,7 +15,7 @@ import { ActividadService } from 'src/app/services/actividad.service';
   styleUrls: ['./gestion-encuesta.component.scss']
 })
 export class GestionEncuestaComponent implements OnInit {
-  encuestas: Encuesta[];
+  encuestas: Actividad[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
 
@@ -31,10 +36,19 @@ export class GestionEncuestaComponent implements OnInit {
   }
 
   getEncuestas() {
+<<<<<<< HEAD
 
     // Falta agregarle un parametro que sea Tipo => Lo estaba viendo chaba a esto me parece.
     this.actividadService.getActividades().subscribe((encuestas) => {
       this.encuestas = encuestas.map((encuesta) => ({ ...encuesta, id: encuesta.actividadId }));
+=======
+    this.actividadService.getActividades().subscribe((actividades) => {
+      actividades.forEach((actividad) => {
+        if (actividad.tipo === 'encuesta') {
+          this.encuestas.push(actividad);
+        }
+      });
+>>>>>>> ABM-facultad-encuesta
       this.createComponent = true;
     });
   }

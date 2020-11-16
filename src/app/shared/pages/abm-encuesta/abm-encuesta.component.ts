@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+<<<<<<< HEAD
 import { Encuesta } from 'src/app/models/encuesta.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 
+=======
+import { Actividad } from 'src/app/models/actividad.model';
+import { ActividadService } from 'src/app/services/actividad.service';
+>>>>>>> ABM-facultad-encuesta
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
 @Component({
@@ -59,7 +64,7 @@ export class AbmEncuestaComponent implements OnInit {
       return;
     }
 
-    const encuesta = new Encuesta(this.nombre.value);
+    const encuesta = new Actividad(this.nombre.value);
 
     encuesta.descripcion = this.descripcion.value;
     encuesta.esAdministradorFacultad = this.esAdministadorFacultad.value;
@@ -67,7 +72,7 @@ export class AbmEncuestaComponent implements OnInit {
     this.actividadService.createActividad(encuesta).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se creó el curso ${this.nombre.value} exitosamente.`
+        `Se creó la encuesta ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate(['gestion-encuesta']);
     });
