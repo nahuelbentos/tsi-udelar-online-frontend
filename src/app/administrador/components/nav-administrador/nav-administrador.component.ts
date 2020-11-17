@@ -10,6 +10,10 @@ export class NavAdministradorComponent implements OnInit {
   rol = 'administrador';
   routes: RutasNav[] = [
     {
+      link: 'facultad',
+      titulo: 'Facultades',
+    },
+    {
       link: 'curso',
       titulo: 'Cursos',
     },
@@ -22,20 +26,28 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'TemplateCurso',
     },
     {
-      link: 'curso/abm-curso',
-      titulo: 'ABM - Curso',
+      link: 'encuesta',
+      titulo: 'Encuestas',
     },
     {
-      link: 'usuario/abm-usuario',
-      titulo: 'ABM - Usuario',
+      link: 'usuario',
+      titulo: 'Usuarios',
     },
     {
-      link: 'comunicado/abm-comunicado',
-      titulo: 'ABM - Comunicado',
+      link: 'carrera',
+      titulo: 'Carreras',
     },
     {
-      link: 'templatecurso/abm-templatecurso',
-      titulo: 'ABM - TemplateCurso',
+      link: 'foro',
+      titulo: 'Foros',
+    },
+    {
+      link: 'material',
+      titulo: 'Materiales',
+    },
+    {
+      link: 'seccion',
+      titulo: 'Secciones',
     },
   ];
   constructor() {}

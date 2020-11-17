@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
   ViewChild,
@@ -10,6 +11,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Columna } from 'src/app/models/columna.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
 
@@ -18,7 +20,7 @@ import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
   templateUrl: './gestion-custom.component.html',
   styleUrls: ['./gestion-custom.component.scss'],
 })
-export class GestionCustomComponent implements OnInit {
+export class GestionCustomComponent implements OnInit, OnChanges {
   dataSource: MatTableDataSource<any>;
 
   // tslint:disable-next-line: no-input-rename
@@ -52,6 +54,10 @@ export class GestionCustomComponent implements OnInit {
 
     this.tooltipEditar = `Editar ${this.tipoSingular}`;
     this.tooltipEliminar = `Eliminar ${this.tipoSingular}`;
+  }
+
+  ngOnChanges(value) {
+    console.log('value: ', value);
   }
 
   applyFilter(event: Event) {

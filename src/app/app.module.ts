@@ -7,7 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AbmTemaForoComponent } from './shared/pages/abm-temaforo/abm-temaforo.component';
+import { AbmRespuestaComponent } from './shared/pages/abm-respuesta/abm-respuesta.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -20,4 +21,4 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
