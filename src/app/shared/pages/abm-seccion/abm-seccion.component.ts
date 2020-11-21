@@ -6,9 +6,12 @@ import { Seccion } from 'src/app/models/seccion.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { SeccionService } from 'src/app/services/seccion.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+<<<<<<< HEAD
 import { SeleccionarCarreraComponent } from '../../dialogs/seleccionar-carrera/seleccionar-carrera.component';
 import { SeleccionarCursoComponent } from '../../dialogs/seleccionar-curso/seleccionar-curso.component';
 import { SeleccionarFacultadComponent } from '../../dialogs/seleccionar-facultad/seleccionar-facultad.component';
+=======
+>>>>>>> a649f560207ac458e502ba73f00b77ec5206820c
 import { SeleccionarSeccionComponent } from '../../dialogs/seleccionar-seccion/seleccionar-seccion.component';
 
 @Component({
