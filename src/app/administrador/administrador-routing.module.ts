@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
+import { RoleGuard } from '../guards/role.guard';
 import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
@@ -25,10 +27,11 @@ import { NavAdministradorComponent } from './components/nav-administrador/nav-ad
 
 const routes: Routes = [
   {
-
-
     path: '',
     component: NavAdministradorComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    canActivateChild: [AuthGuard, RoleGuard],
+    data: { role: 'administrador' },
     children: [
       {
         path: 'curso',
@@ -53,7 +56,6 @@ const routes: Routes = [
         data: { titulo: 'ABM de Carreras' },
       },
       {
-
         path: 'facultad',
         component: GestionFacultadComponent,
         data: { titulo: 'Gestión de Facultades' },
@@ -119,7 +121,6 @@ const routes: Routes = [
         component: AbmSeccionComponent,
         data: { titulo: 'ABM de secciones' },
       },
-
     ],
   },
 ];

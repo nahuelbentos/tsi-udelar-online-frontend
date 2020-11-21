@@ -10,13 +10,15 @@ export class AutenticacionService {
   baseUrl = `${environment.baseUrl}/auth`;
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string) {
-    console.log('email: ', email);
-    console.log('password: ', password);
+  login = (email: string, password: string) => this.http.post<UsuarioSesion>(`${this.baseUrl}/login`, { email, password });
 
-    return this.http.post<UsuarioSesion>(`${this.baseUrl}/login`, {
-      email,
-      password,
-    });
-  }
+  validarToken = (token: string) => this.http.post<boolean>(`${this.baseUrl}/validate-token`, { token });
+
+  setUser = (usuarioSesion: UsuarioSesion)  => localStorage.setItem('usuarioSesion', JSON.stringify(usuarioSesion));
+
+  getUser = (): UsuarioSesion => JSON.parse(localStorage.getItem('usuarioSesion'));
+
+  setToken = (token: string)  => localStorage.setItem('token', token);
+
+  getToken = (): string => localStorage.getItem('token');
 }

@@ -4,6 +4,7 @@ import { LoginComponent } from '../login/login.component';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,11 @@ import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(
+    private autenticacionService: AutenticacionService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,7 +25,8 @@ export class HeaderComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((usuarioSesion: UsuarioSesion) => {
       if (usuarioSesion) {
-        localStorage.setItem('usuarioSesion', JSON.stringify(usuarioSesion));
+        this.autenticacionService.setUser(usuarioSesion);
+        this.autenticacionService.setToken(usuarioSesion.token);
 
         this.router.navigate(['/' + usuarioSesion.tipo.toLowerCase()]);
       }

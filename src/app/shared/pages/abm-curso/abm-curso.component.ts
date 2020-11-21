@@ -10,6 +10,7 @@ import { ModalidadCurso } from 'src/app/models/modalidad-curso.enum';
 import { ModalidadCurso2 } from 'src/app/models/modalidad-curso2.enum';
 import { TemplateCurso } from 'src/app/models/template-curso.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -29,9 +30,7 @@ enum PrintMedia {
   styleUrls: ['./abm-curso.component.scss'],
 })
 export class AbmCursoComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse(
-    localStorage.getItem('usuarioSesion')
-  );
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   cursoForm: FormGroup;
   cursoId: string;
 
@@ -68,6 +67,7 @@ export class AbmCursoComponent implements OnInit {
   }
 
   constructor(
+    private autenticacionService:AutenticacionService,
     private cursoService: CursoService,
     private fb: FormBuilder,
     public dialog: MatDialog,

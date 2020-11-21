@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Material } from 'src/app/models/material.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
@@ -13,7 +14,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-material.component.scss'],
 })
 export class AbmMaterialComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse( localStorage.getItem('usuarioSesion') );
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
 
   materialForm: FormGroup;
   materialId: string;
@@ -39,6 +40,7 @@ export class AbmMaterialComponent implements OnInit {
   }
 
   constructor(
+    private autenticacionService: AutenticacionService,
     private materialService: MaterialService,
     private fb: FormBuilder,
     private router: Router,
@@ -143,7 +145,7 @@ export class AbmMaterialComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/material`,
       ]);
-    })
+    });
 
   private editMaterial = (material: Material) =>
     this.materialService.updateMaterial(material).subscribe(() => {
@@ -154,5 +156,5 @@ export class AbmMaterialComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/material`,
       ]);
-    })
+    });
 }
