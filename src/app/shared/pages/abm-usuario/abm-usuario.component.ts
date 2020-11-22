@@ -5,6 +5,7 @@ import { Facultad } from 'src/app/models/facultad.model';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { Usuario } from 'src/app/models/usuario.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
@@ -15,7 +16,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-usuario.component.scss'],
 })
 export class AbmUsuarioComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   usuarioForm: FormGroup;
   usuarioId: string;
 
@@ -75,6 +76,7 @@ export class AbmUsuarioComponent implements OnInit {
   }
 
   constructor(
+    private autenticacionService: AutenticacionService,
     private usuarioService: UsuarioService,
     private facultadService: FacultadService,
     private fb: FormBuilder,
@@ -140,7 +142,9 @@ export class AbmUsuarioComponent implements OnInit {
 
   onNoClick(): void {
     // Me voy a la pantalla de gestión y elimino del Servicio
-    this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`]);
+    this.router.navigate([
+      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+    ]);
   }
 
   guardarUsuario(event: Event) {
@@ -164,32 +168,32 @@ export class AbmUsuarioComponent implements OnInit {
     usuario.facultadId = this.facultad.value;
     usuario.tipo = this.tipo.value;
 
-
-    this.modo === 'INS' ? this.crearUsuario(usuario) : this.editarUsuario(usuario);
-
+    this.modo === 'INS'
+      ? this.crearUsuario(usuario)
+      : this.editarUsuario(usuario);
   }
 
-  crearUsuario(usuario: Usuario){
-
+  crearUsuario(usuario: Usuario) {
     this.usuarioService.createUsuario(usuario).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
-      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`]);
+      this.router.navigate([
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+      ]);
     });
-
   }
 
-  editarUsuario(usuario: Usuario){
-
+  editarUsuario(usuario: Usuario) {
     this.usuarioService.updateUsuario(usuario).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
-      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`]);
+      this.router.navigate([
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+      ]);
     });
-
   }
 }

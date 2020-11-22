@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
+import { RoleGuard } from '../guards/role.guard';
+import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
 import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
@@ -7,8 +10,12 @@ import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
 
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
+import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respuesta.component';
+import { AbmSeccionComponent } from '../shared/pages/abm-seccion/abm-seccion.component';
+import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
+import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 
@@ -18,15 +25,17 @@ import { GestionFacultadComponent } from '../shared/pages/gestion-facultad/gesti
 import { GestionForoComponent } from '../shared/pages/gestion-foro/gestion-foro.component';
 
 import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
+import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion-seccion.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 
 const routes: Routes = [
   {
-
-
     path: '',
     component: NavAdministradorComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    canActivateChild: [AuthGuard, RoleGuard],
+    data: { role: 'administrador' },
     children: [
       {
         path: 'curso',
@@ -51,7 +60,6 @@ const routes: Routes = [
         data: { titulo: 'ABM de Carreras' },
       },
       {
-
         path: 'facultad',
         component: GestionFacultadComponent,
         data: { titulo: 'Gestión de Facultades' },
@@ -106,6 +114,39 @@ const routes: Routes = [
         data: { titulo: 'ABM de foros' },
       },
 
+      {
+        path: 'actividad',
+        component: GestionActividadComponent,
+        data: { titulo: 'Gestión de actividades' },
+      },
+
+      {
+        path: 'actividad/abm-actividad',
+        component: AbmActividadComponent,
+        data: { titulo: 'ABM de actividades' },
+      },
+
+      {
+        path: 'seccion',
+        component: GestionSeccionComponent,
+        data: { titulo: 'Gestión de secciones' },
+      },
+
+      {
+        path: 'seccion/abm-seccion',
+        component: AbmSeccionComponent,
+        data: { titulo: 'ABM de secciones' },
+      },
+      {
+        path: 'temaforo/abm-temaforo',
+        component: AbmTemaForoComponent,
+        data: { titulo: 'ABM de TemaForo' },
+      }, 
+      {
+        path: 'respuesta/abm-respuesta',
+        component: AbmRespuestaComponent,
+        data: { titulo: 'ABM de Respuesta' },
+      },
     ],
   },
 ];

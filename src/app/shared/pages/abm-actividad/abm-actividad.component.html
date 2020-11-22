@@ -1,0 +1,254 @@
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+
+      <mat-card>
+
+        <form [formGroup]="actividadForm">
+
+
+          <mat-card-content>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Nombre" formControlName="nombre" required>
+                    <mat-error *ngIf="nombre.hasError('required')">
+                      Nombre es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Descripción" formControlName="descripcion" required>
+                    <mat-error *ngIf="descripcion.hasError('required')">
+                      Descripción es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Fecha de Realizada</mat-label>
+                    <input matInput [matDatepicker]="pickerRealizada" formControlName="fechaRealizada" required>
+                    <mat-datepicker-toggle matSuffix [for]="pickerRealizada"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerRealizada></mat-datepicker>
+                    <mat-error *ngIf="fechaRealizada.hasError('required')">
+                      Fecha de Realizada es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Fecha de Finalizada</mat-label>
+                    <input matInput [matDatepicker]="pickerFinalizada" formControlName="fechaFinalizada" required>
+                    <mat-datepicker-toggle matSuffix [for]="pickerFinalizada"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFinalizada></mat-datepicker>
+                    <mat-error *ngIf="fechaFinalizada.hasError('required')">
+                      Fecha de Finalizada es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row center-xs">
+
+              <div class="col-xs-12">
+                <div class="box">
+
+
+                  <mat-form-field class="full-width">
+
+                    <mat-label>Tipo de Actividad</mat-label>
+                    <mat-select formControlName="tipo" required>
+                      <mat-option *ngFor="let key of tiposOptions" [value]="key"> {{tipos[key]}} </mat-option>
+                    </mat-select>
+
+                    <mat-error *ngIf="tipo.hasError('required')">
+                      Tipo de Actividad es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div [ngSwitch]="tipo.value">
+ 
+
+ 
+                
+                  <div class="row" *ngSwitchCase="'Trabajo'">
+                    <div class="col-xs">
+                      <div class="box">
+
+                        <div class="row">
+
+                          <div class="col-xs-12">
+                            <div class="box">
+
+                              <mat-checkbox formControlName="esIndividual">
+                                Es Individual?
+                              </mat-checkbox>
+
+                            </div>
+                          </div>
+
+                          <div class="col-xs-12">
+                            <div class="box">
+
+                              <mat-form-field class="full-width">
+                                <input matInput placeholder="Calificación" formControlName="calificacion">
+                              </mat-form-field>
+
+                            </div>
+                          </div>
+
+                          <div class="col-xs-12">
+                            <div class="box">
+                              <mat-form-field class="full-width">
+                                <input matInput placeholder="Nota" formControlName="nota">
+                              </mat-form-field>
+                            </div>
+                          </div>
+
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+          
+
+          
+            <div class="row" *ngSwitchCase="'Encuesta'">
+              <div class="col-xs">
+                <div class="box">
+
+                  <mat-checkbox formControlName="esAdministradorFacultad">
+                    Es Administrador Facultad?
+                  </mat-checkbox>
+
+
+                </div>
+              </div>
+            </div> 
+
+          
+            <div class="row" *ngSwitchCase="'ClaseDictada'">
+              <div class="col-xs">
+                <div class="box">
+
+
+
+
+                </div>
+              </div>
+            </div>
+          
+          
+            <div class="row" *ngSwitchCase="'PruebaOnline'">
+             
+              <div class="col-xs-12">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Fecha de Prueba</mat-label>
+                    <input matInput [matDatepicker]="pickerPrueba" formControlName="fecha" required>
+                    <mat-datepicker-toggle matSuffix [for]="pickerPrueba"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerPrueba></mat-datepicker>
+                    <mat-error *ngIf="fecha.hasError('required')">
+                      Fecha de Prueba es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+
+                </div>
+              </div>
+
+              <div class="col-xs-12">
+                <div class="box">
+                  <mat-checkbox formControlName="activa">
+                    Activa?
+                  </mat-checkbox>
+                </div>
+              </div>
+
+              <div class="col-xs-12">
+                <div class="box">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="URL de la prueba" formControlName="url">
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+              <div class="col-xs-12">
+                <div class="box">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Minutos de Expiración de URL" formControlName="minutosExpiracion">
+                  </mat-form-field>
+
+                </div>
+              </div>
+
+            </div> 
+ 
+</div>
+
+
+
+      <span [ngSwitch]="tipo.value">
+        <p *ngSwitchCase="'Trabajo'">
+          trabajo
+        </p>
+        <p *ngSwitchCase="'ClaseDictada'">
+          clase dictada
+        </p>
+        <p *ngSwitchDefault>
+          otro
+        </p>
+      </span>
+
+
+      </mat-card-content>
+      <mat-card-actions align="end">
+
+
+        <button mat-raised-button color="primary" type="button" [disabled]="actividadForm.invalid"
+          (click)="guardarActividad($event)" (keyup.enter)="guardarActividad($event)">Guardar Actividad</button>
+        <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+      </mat-card-actions>
+      </form>
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>

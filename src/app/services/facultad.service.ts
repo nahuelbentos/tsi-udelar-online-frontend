@@ -21,4 +21,6 @@ export class FacultadService {
   deleteFacultad(facultadId: string) {
     return this.http.delete(`${this.baseUrl}/${facultadId}`);
   }
+
+  getFacultadById = (facultadId: string) => this.http.get<Facultad>(`${this.baseUrl}/${facultadId}`);
 }

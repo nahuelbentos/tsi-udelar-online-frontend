@@ -90,7 +90,6 @@ export class AbmFacultadComponent implements OnInit {
 
     facultad.descripcion = this.descripcion.value;
     facultad.urlAcceso = this.urlAcceso.value;
-    facultad.fechaNacimiento = this.fechaNacimiento.value;
     facultad.dominioMail = this.dominioMail.value;
     facultad.usuarioLista = this.usuarioLista.value;
     facultad.colorPrincipal = this.colorPrincipal.value.hex;

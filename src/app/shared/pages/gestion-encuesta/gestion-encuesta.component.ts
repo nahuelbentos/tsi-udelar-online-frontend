@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Actividad } from 'src/app/models/actividad.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
-import { Encuesta } from 'src/app/models/encuesta.model';
-import { EncuestaService } from 'src/app/services/encuesta.service';
+import { ActividadService } from 'src/app/services/actividad.service';
 
 @Component({
   selector: 'app-gestion-encuesta',
@@ -9,11 +9,11 @@ import { EncuestaService } from 'src/app/services/encuesta.service';
   styleUrls: ['./gestion-encuesta.component.scss']
 })
 export class GestionEncuestaComponent implements OnInit {
-  encuestas: Encuesta[];
+  encuestas: Actividad[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
 
-  constructor(private encuestaService: EncuestaService) {
+  constructor(private actividadService: ActividadService) {
     this.getEncuestas();
   }
 
@@ -23,15 +23,19 @@ export class GestionEncuestaComponent implements OnInit {
     if (data.elimino) {
       this.createComponent = false;
       // Llamamos al backend para eliminar el registro.
-      this.encuestaService
-        .deleteEncuesta(data.id)
+      this.actividadService
+        .deleteActividad(data.id)
         .subscribe((res) => this.getEncuestas());
     }
   }
 
   getEncuestas() {
-    this.encuestaService.getEncuestas().subscribe((encuestas) => {
-      this.encuestas = encuestas.map((encuesta) => ({ ...encuesta, id: encuesta.encuestaId }));
+    this.actividadService.getActividades().subscribe((actividades) => {
+      actividades.forEach((actividad) => {
+        if (actividad.tipo === 'encuesta') {
+          this.encuestas.push(actividad);
+        }
+      });
       this.createComponent = true;
     });
   }

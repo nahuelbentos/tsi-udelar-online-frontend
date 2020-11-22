@@ -5,22 +5,22 @@ import { Carrera } from 'src/app/models/carrera.model';
 import { Facultad } from 'src/app/models/facultad.model';
 import { Foro } from 'src/app/models/foro.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { ForoService } from 'src/app/services/foro.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
 @Component({
   selector: 'app-abm-foro',
   templateUrl: './abm-foro.component.html',
-  styleUrls: ['./abm-foro.component.scss']
+  styleUrls: ['./abm-foro.component.scss'],
 })
 export class AbmForoComponent implements OnInit {
- usuarioLogueado: UsuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   foroForm: FormGroup;
   foroId: string;
 
   primeraVez = false;
   modo: string;
-  hide = true;
 
   facultades: Facultad[] = [];
 
@@ -33,6 +33,7 @@ export class AbmForoComponent implements OnInit {
   }
 
   constructor(
+    private autenticacionService: AutenticacionService,
     private foroService: ForoService,
     private fb: FormBuilder,
     private router: Router,
@@ -42,8 +43,6 @@ export class AbmForoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
       this.foroId = param.id;
@@ -72,7 +71,7 @@ export class AbmForoComponent implements OnInit {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
     this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
+      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
     ]);
   }
 
@@ -89,9 +88,7 @@ export class AbmForoComponent implements OnInit {
     foro.titulo = this.titulo.value;
     foro.descripcion = this.descripcion.value;
 
-    this.modo === 'INS'
-      ? this.crearForo(foro)
-      : this.editarForo(foro);
+    this.modo === 'INS' ? this.crearForo(foro) : this.editarForo(foro);
   }
 
   private crearForo = (foro: Foro) =>
@@ -103,7 +100,7 @@ export class AbmForoComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
       ]);
-    })
+    });
 
   private editarForo = (foro: Foro) =>
     this.foroService.updateForo(foro).subscribe(() => {
@@ -114,5 +111,5 @@ export class AbmForoComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
       ]);
-    })
+    });
 }
