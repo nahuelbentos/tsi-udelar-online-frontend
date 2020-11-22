@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatAutocomplete } from '@angular/material/autocomplete';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { from, Observable, of } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { Curso } from 'src/app/models/curso.model';
 import { ModalidadCurso } from 'src/app/models/modalidad-curso.enum';
 import { ModalidadCurso2 } from 'src/app/models/modalidad-curso2.enum';
 import { TemplateCurso } from 'src/app/models/template-curso.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { SeleccionarTemplateCursoComponent } from '../../dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
 
 enum PrintMedia {
   Newspaper = 1,
@@ -24,7 +30,7 @@ enum PrintMedia {
   styleUrls: ['./abm-curso.component.scss'],
 })
 export class AbmCursoComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   cursoForm: FormGroup;
   cursoId: string;
 
@@ -35,6 +41,7 @@ export class AbmCursoComponent implements OnInit {
   modo: string;
   hide = true;
 
+  filteredTemplateCursos: Observable<TemplateCurso[]>;
   templateCursos: TemplateCurso[] = [];
 
   get nombre() {
@@ -60,12 +67,13 @@ export class AbmCursoComponent implements OnInit {
   }
 
   constructor(
+    private autenticacionService:AutenticacionService,
     private cursoService: CursoService,
     private fb: FormBuilder,
+    public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute
   ) {
-
     this.buildForm();
   }
 
@@ -75,16 +83,43 @@ export class AbmCursoComponent implements OnInit {
     // Cuando este pronto el ws, se va el comentario
     this.cursoService
       .getTemplateCursos()
-      .subscribe((templateCursos) => (this.templateCursos = templateCursos));
+      .subscribe((templateCursos) => this.setTemplateCursos(templateCursos));
 
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
       this.cursoId = param.id;
 
       if (param.id) {
-        this.cursoService.getCursoById(this.cursoId).subscribe((curso) => this.setValuesOnForm(curso));
+        this.cursoService
+          .getCursoById(this.cursoId)
+          .subscribe((curso) => this.setValuesOnForm(curso));
       }
     });
+  }
+
+  setTemplateCursos(templateCursos: TemplateCurso[]) {
+    this.templateCursos = templateCursos;
+
+    /* Test Autocomplete*/
+
+    this.filteredTemplateCursos = this.templateCurso.valueChanges.pipe(
+      startWith(''),
+      map((templateCurso: TemplateCurso) =>
+        templateCurso
+          ? this.filterTemplates(templateCurso)
+          : this.templateCursos.slice()
+      )
+    );
+
+    /* Test Autocomplete*/
+  }
+
+  private filterTemplates(value: any): TemplateCurso[] {
+    const filterValue = value.toLowerCase();
+
+    return this.templateCursos.filter((templateCurso) =>
+      templateCurso.nombre.toLowerCase().includes(filterValue)
+    );
   }
 
   private setValuesOnForm(curso: Curso) {
@@ -110,10 +145,11 @@ export class AbmCursoComponent implements OnInit {
   }
 
   onNoClick(): void {
-    
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`]);
+    this.router.navigate([
+      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
+    ]);
   }
 
   guardarCurso(event: Event) {
@@ -129,7 +165,9 @@ export class AbmCursoComponent implements OnInit {
     curso.descripcion = this.descripcion.value;
     curso.modalidad = this.modalidadCurso.value;
 
-    curso.requiereMatriculacion = this.requiereMatriculacion.value ? this.requiereMatriculacion.value : false;
+    curso.requiereMatriculacion = this.requiereMatriculacion.value
+      ? this.requiereMatriculacion.value
+      : false;
     curso.salaVirtual = this.salaVirtual.value;
     curso.templateCursoId = this.templateCurso.value;
 
@@ -142,7 +180,9 @@ export class AbmCursoComponent implements OnInit {
         'Excelente!',
         `Se creó el curso ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`]);
+      this.router.navigate([
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
+      ]);
     });
 
   private editarCurso = (curso: Curso) =>
@@ -151,6 +191,20 @@ export class AbmCursoComponent implements OnInit {
         'Excelente!',
         `Se modificó el curso ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`]);
+      this.router.navigate([
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
+      ]);
     });
+
+  seleccionarTemplateCurso(autocomplete: MatAutocomplete) {
+    console.log(autocomplete);
+    
+    const dialogRef = this.dialog.open(SeleccionarTemplateCursoComponent, {
+      height: 'auto',
+      width: '700px',
+    });
+    dialogRef
+      .afterClosed()
+      .subscribe((seccion) => console.log('seccion: ', seccion));
+  }
 }

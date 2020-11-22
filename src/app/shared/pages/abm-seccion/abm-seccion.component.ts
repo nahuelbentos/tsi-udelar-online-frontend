@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { Seccion } from 'src/app/models/seccion.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { SeccionService } from 'src/app/services/seccion.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { SeleccionarCarreraComponent } from '../../dialogs/seleccionar-carrera/seleccionar-carrera.component';
+import { SeleccionarCursoComponent } from '../../dialogs/seleccionar-curso/seleccionar-curso.component';
+import { SeleccionarFacultadComponent } from '../../dialogs/seleccionar-facultad/seleccionar-facultad.component';
+import { SeleccionarSeccionComponent } from '../../dialogs/seleccionar-seccion/seleccionar-seccion.component';
 
 @Component({
   selector: 'app-abm-seccion',
@@ -12,7 +18,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-seccion.component.scss'],
 })
 export class AbmSeccionComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
 
   seccionForm: FormGroup;
   seccionId: string;
@@ -37,7 +43,9 @@ export class AbmSeccionComponent implements OnInit {
   }
 
   constructor(
+    private autenticacionService: AutenticacionService,
     private seccionService: SeccionService,
+    public dialog: MatDialog,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -46,17 +54,17 @@ export class AbmSeccionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
       this.seccionId = param.id;
       console.log(param);
       console.log(this.seccionId);
-      
-      if (param.id) {
-        this.seccionService.getSeccionById(this.seccionId).subscribe((seccion) => this.setValuesOnForm(seccion));
-      }
 
+      if (param.id) {
+        this.seccionService
+          .getSeccionById(this.seccionId)
+          .subscribe((seccion) => this.setValuesOnForm(seccion));
+      }
     });
   }
 
@@ -78,13 +86,17 @@ export class AbmSeccionComponent implements OnInit {
 
   onNoClick(): void {
     // en vez de administrador y queda pronto
-    this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`]);
+    this.router.navigate([
+      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`,
+    ]);
   }
 
-  guardarSeccion(event: Event){
+  guardarSeccion(event: Event) {
     event.preventDefault();
 
-    if(this.seccionForm.invalid) { return; }
+    if (this.seccionForm.invalid) {
+      return;
+    }
 
     const seccion = new Seccion(this.nombre.value);
 
@@ -93,20 +105,43 @@ export class AbmSeccionComponent implements OnInit {
     seccion.isDefault = this.isDefault.value;
     seccion.isVisible = this.isVisible.value;
 
-      console.log(this.seccionId);
+    console.log(this.seccionId);
 
-    this.modo === 'INS' ? this.crearSeccion(seccion) : this.editarSeccion(seccion);
-
+    this.modo === 'INS'
+      ? this.crearSeccion(seccion)
+      : this.editarSeccion(seccion);
   }
 
-  private crearSeccion = (seccion: Seccion) => this.seccionService.createSeccion(seccion).subscribe( () => {
-    mensajeConfirmacion('Excelente!', `Se creó la sección ${seccion.nombre} exitosamente.`).then();
-    this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`]);
-  })
+  private crearSeccion = (seccion: Seccion) =>
+    this.seccionService.createSeccion(seccion).subscribe(() => {
+      mensajeConfirmacion(
+        'Excelente!',
+        `Se creó la sección ${seccion.nombre} exitosamente.`
+      ).then();
+      this.router.navigate([
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`,
+      ]);
+    });
 
-  private editarSeccion = (seccion: Seccion) => this.seccionService.updateSeccion(seccion).subscribe( () => {
-    mensajeConfirmacion('Excelente!', `Se modificó la sección ${seccion.nombre} exitosamente.`).then();
-    this.router.navigate([`/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`]);
-  })
+  private editarSeccion = (seccion: Seccion) =>
+    this.seccionService.updateSeccion(seccion).subscribe(() => {
+      mensajeConfirmacion(
+        'Excelente!',
+        `Se modificó la sección ${seccion.nombre} exitosamente.`
+      ).then();
+      this.router.navigate([
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`,
+      ]);
+    });
 
+  // Test Dialog
+  openDialog = () => {
+    const dialogRef = this.dialog.open(SeleccionarCursoComponent, {
+      height: 'auto',
+      width: '700px',
+    });
+    dialogRef
+      .afterClosed()
+      .subscribe((seccion) => console.log('seccion: ', seccion));
+  };
 }

@@ -42,6 +42,14 @@ import { AbmSeccionComponent } from './pages/abm-seccion/abm-seccion.component';
 import { GestionSeccionComponent } from './pages/gestion-seccion/gestion-seccion.component';
 import { AbmMensajetemaComponent } from './pages/abm-mensajetema/abm-mensajetema.component';
 import { GestionMensajetemaComponent } from './pages/gestion-mensajetema/gestion-mensajetema.component';
+import { SeleccionarCustomComponent } from './components/seleccionar-custom/seleccionar-custom.component';
+import { SeleccionarCarreraComponent } from './dialogs/seleccionar-carrera/seleccionar-carrera.component';
+import { SeleccionarCursoComponent } from './dialogs/seleccionar-curso/seleccionar-curso.component';
+import { SeleccionarFacultadComponent } from './dialogs/seleccionar-facultad/seleccionar-facultad.component';
+import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/seleccionar-seccion.component';
+import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
+import { AbmActividadComponent } from './pages/abm-actividad/abm-actividad.component';
+import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component';
 
 
 @NgModule({
@@ -76,6 +84,14 @@ import { GestionMensajetemaComponent } from './pages/gestion-mensajetema/gestion
     GestionSeccionComponent,
     AbmMensajetemaComponent,
     GestionMensajetemaComponent,
+    SeleccionarCustomComponent,
+    SeleccionarSeccionComponent,
+    SeleccionarFacultadComponent,
+    SeleccionarCursoComponent,
+    SeleccionarCarreraComponent,
+    SeleccionarTemplateCursoComponent,
+    AbmActividadComponent,
+    GestionActividadComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
