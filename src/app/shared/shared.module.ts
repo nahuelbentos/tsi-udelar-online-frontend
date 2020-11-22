@@ -42,6 +42,8 @@ import { SeleccionarFacultadComponent } from './dialogs/seleccionar-facultad/sel
 import { SeleccionarCursoComponent } from './dialogs/seleccionar-curso/seleccionar-curso.component';
 import { SeleccionarCarreraComponent } from './dialogs/seleccionar-carrera/seleccionar-carrera.component';
 import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
+import { AbmActividadComponent } from './pages/abm-actividad/abm-actividad.component';
+import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-templat
     SeleccionarCursoComponent,
     SeleccionarCarreraComponent,
     SeleccionarTemplateCursoComponent,
+    AbmActividadComponent,
+    GestionActividadComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

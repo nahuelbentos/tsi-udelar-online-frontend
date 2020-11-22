@@ -71,7 +71,7 @@ export class AbmForoComponent implements OnInit {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
     this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
+      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
     ]);
   }
 

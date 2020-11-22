@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
+import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
 import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
@@ -9,9 +10,12 @@ import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
 
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
+import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respuesta.component';
 import { AbmSeccionComponent } from '../shared/pages/abm-seccion/abm-seccion.component';
+import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
+import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 
@@ -111,6 +115,18 @@ const routes: Routes = [
       },
 
       {
+        path: 'actividad',
+        component: GestionActividadComponent,
+        data: { titulo: 'Gestión de actividades' },
+      },
+
+      {
+        path: 'actividad/abm-actividad',
+        component: AbmActividadComponent,
+        data: { titulo: 'ABM de actividades' },
+      },
+
+      {
         path: 'seccion',
         component: GestionSeccionComponent,
         data: { titulo: 'Gestión de secciones' },
@@ -120,6 +136,16 @@ const routes: Routes = [
         path: 'seccion/abm-seccion',
         component: AbmSeccionComponent,
         data: { titulo: 'ABM de secciones' },
+      },
+      {
+        path: 'temaforo/abm-temaforo',
+        component: AbmTemaForoComponent,
+        data: { titulo: 'ABM de TemaForo' },
+      }, 
+      {
+        path: 'respuesta/abm-respuesta',
+        component: AbmRespuestaComponent,
+        data: { titulo: 'ABM de Respuesta' },
       },
     ],
   },
