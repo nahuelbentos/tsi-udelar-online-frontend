@@ -1,0 +1,43 @@
+<p>abm-comunicado works!</p>
+
+<div class="row margin-abm">
+    <div class="col-xs-offset-1 col-xs-10">
+      <div class="box">
+  
+        <mat-card>
+  
+          <form [formGroup]="mensajeTemaForm">
+  
+  
+            <mat-card-content>
+  
+              <div class="row">
+                <div class="col-xs-6">
+                  <div class="box">
+  
+                    <mat-form-field class="full-width">
+                      <input matInput placeholder="Contenido" formControlName="contenido" required>
+                      <mat-error *ngIf="contenido.hasError('required')">
+                        Contenido <strong>requerido</strong>.
+                      </mat-error>
+                    </mat-form-field>
+  
+                  </div>
+                </div>
+              </div>
+  
+            </mat-card-content>
+            <mat-card-actions align="end">
+  
+  
+              <button mat-raised-button color="primary" type="button" [disabled]="mensajeTemaForm.invalid"
+                (click)="guardarMensajeTema($event)" (keyup.enter)="guardarMensajeTema($event)">Guardar Mensaje Tema</button>
+              <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+            </mat-card-actions>
+          </form>
+        </mat-card>
+  
+  
+      </div>
+    </div>
+  </div>
