@@ -128,17 +128,14 @@ export class AbmActividadComponent implements OnInit {
       fechaRealizada: ['', Validators.required],
       fechaFinalizada: ['', Validators.required],
       tipo: ['', Validators.required],
-      esAdministradorFacultad: [false, Validators.required],
-      esIndividual: [false, Validators.required],
-      calificacion: ['', Validators.required],
-      nota: ['', Validators.required],
-      fecha: ['', Validators.required],
-      url: ['', Validators.required],
-      minutosExpiracion: [
-        '',
-        [Validators.required, Validators.pattern(new RegExp('[0-9]', 'g'))],
-      ],
-      activa: ['', Validators.required],
+      esAdministradorFacultad: [false],
+      esIndividual: [false],
+      calificacion: [''],
+      nota: [''],
+      fecha: [''],
+      url: [''],
+      minutosExpiracion: [''],
+      activa: [''],
     });
   }
 
@@ -158,7 +155,7 @@ export class AbmActividadComponent implements OnInit {
     }
 
     const actividad = new Actividad(this.nombre.value);
-
+    
     actividad.actividadId = this.actividadId;
     actividad.nombre = this.nombre.value;
     actividad.descripcion = this.descripcion.value;

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
 import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
+
 import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
@@ -16,6 +17,7 @@ import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.
 
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
 import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
+
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 
