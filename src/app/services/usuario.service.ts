@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { UsuarioRole } from '../models/usuario-role.model';
 import { Usuario } from '../models/usuario.model';
 
 @Injectable({
@@ -23,4 +24,8 @@ export class UsuarioService {
   getUsuarioByEmail = (usuarioEmail: string) => this.http.get<Usuario>(`${this.baseUrl}/email/${usuarioEmail}`);
 
   deleteUsuario = (usuarioId: string) => this.http.delete(`${this.baseUrl}/${usuarioId}`);
+
+  haveRole = (usuarioRole: UsuarioRole) => this.http.post<boolean>(`${this.baseUrl}/tiene-role`, usuarioRole);
+
+
 }

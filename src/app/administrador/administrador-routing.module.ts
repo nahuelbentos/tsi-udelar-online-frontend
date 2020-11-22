@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AbmComunicadoComponent } from '../shared/pages/abm-comunicado/abm-comunicado.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { RoleGuard } from '../guards/role.guard';
+import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
+
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { AbmTemplatecursoComponent } from '../shared/pages/abm-templatecurso/abm-templatecurso.component';
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
@@ -13,7 +17,12 @@ import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
 
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
+import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respuesta.component';
 import { AbmSeccionComponent } from '../shared/pages/abm-seccion/abm-seccion.component';
+import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
+
+import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
+
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
 import { GestionEncuestaComponent } from '../shared/pages/gestion-encuesta/gestion-encuesta.component';
 import { GestionFacultadComponent } from '../shared/pages/gestion-facultad/gestion-facultad.component';
@@ -27,10 +36,11 @@ import { NavAdministradorComponent } from './components/nav-administrador/nav-ad
 
 const routes: Routes = [
   {
-
-
     path: '',
     component: NavAdministradorComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    canActivateChild: [AuthGuard, RoleGuard],
+    data: { role: 'administrador' },
     children: [
       {
         path: 'curso',
@@ -131,6 +141,18 @@ const routes: Routes = [
       },
 
       {
+        path: 'actividad',
+        component: GestionActividadComponent,
+        data: { titulo: 'Gestión de actividades' },
+      },
+
+      {
+        path: 'actividad/abm-actividad',
+        component: AbmActividadComponent,
+        data: { titulo: 'ABM de actividades' },
+      },
+
+      {
         path: 'seccion',
         component: GestionSeccionComponent,
         data: { titulo: 'Gestión de secciones' },
@@ -141,7 +163,16 @@ const routes: Routes = [
         component: AbmSeccionComponent,
         data: { titulo: 'ABM de secciones' },
       },
-
+      {
+        path: 'temaforo/abm-temaforo',
+        component: AbmTemaForoComponent,
+        data: { titulo: 'ABM de TemaForo' },
+      }, 
+      {
+        path: 'respuesta/abm-respuesta',
+        component: AbmRespuestaComponent,
+        data: { titulo: 'ABM de Respuesta' },
+      },
     ],
   },
 ];

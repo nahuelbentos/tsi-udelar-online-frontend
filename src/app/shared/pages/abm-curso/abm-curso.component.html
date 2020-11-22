@@ -88,16 +88,23 @@
                 <div class="box">
 
                   <mat-form-field class="full-width">
+
                     <mat-label>Template del curso</mat-label>
-                    <mat-select formControlName="templateCurso" required>
-                      <mat-option *ngFor="let template of templateCursos" [value]="template.templateCursoId">
-                        {{  template.nombre }}
+
+                    <input  matInput formControlName="templateCurso" [matAutocomplete]="auto" >
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                      <mat-option *ngFor="let template of filteredTemplateCursos | async" [value]="template">
+                        {{template.nombre}}
                       </mat-option>
-                    </mat-select>
+                    </mat-autocomplete>
+                    <button mat-icon-button matSuffix [attr.aria-label]="'Hide password'" (click)='seleccionarTemplateCurso(auto)'>
+                      <mat-icon> search </mat-icon>
+                    </button>
                   </mat-form-field>
 
                 </div>
               </div>
+ 
             </div>
 
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Facultad } from 'src/app/models/facultad.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
@@ -14,9 +15,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-carrera.component.scss'],
 })
 export class AbmCarreraComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse(
-    localStorage.getItem('usuarioSesion')
-  );
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   carreraForm: FormGroup;
   carreraId: string;
 
@@ -39,6 +38,7 @@ export class AbmCarreraComponent implements OnInit {
   }
 
   constructor(
+    private autenticacionService: AutenticacionService,
     private carreraService: CarreraService,
     private facultadService: FacultadService,
     private fb: FormBuilder,
@@ -115,7 +115,7 @@ export class AbmCarreraComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
       ]);
-    })
+    });
 
   private editarCarrera = (carrera: Carrera) =>
     this.carreraService.updateCarrera(carrera).subscribe(() => {
@@ -126,5 +126,5 @@ export class AbmCarreraComponent implements OnInit {
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
       ]);
-    })
+    });
 }

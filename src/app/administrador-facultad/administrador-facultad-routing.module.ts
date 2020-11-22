@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
+import { RoleGuard } from '../guards/role.guard';
 
 import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
@@ -22,6 +24,9 @@ const routes: Routes = [
   {
     path: '',
     component: NavAdministradorFacultadComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    canActivateChild: [AuthGuard, RoleGuard],
+    data: { role: 'administrador-facultad' },
     children: [
       {
         path: 'curso',
