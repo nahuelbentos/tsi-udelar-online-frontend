@@ -98,7 +98,22 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-xs">
+                <div class="box">
 
+
+                <mat-file-upload [labelText]="'Seleccionar Archivo:'" [selectButtonText]="'Elegir Archivo'"
+                 [allowMultipleFiles]="false"
+                  [showUploadButton]="false" customSvgIcon="'close'"
+                  (uploadClicked)="onUploadClicked($event)" (selectedFilesChanged)="onSelectedFilesChanged($event)">
+                </mat-file-upload>
+
+
+                </div>
+              </div>
+
+            </div>
 
           </mat-card-content>
           <mat-card-actions align="end">

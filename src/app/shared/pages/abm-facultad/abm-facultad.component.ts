@@ -18,6 +18,11 @@ export class AbmFacultadComponent implements OnInit {
   facultadForm: FormGroup;
   facultadId: string;
 
+
+  archivoData: string;
+  archivoNombre: string;
+  archivoExtension: string;
+
   usuariosLista: Usuario[] = [
     {
       usuarioId: '9F4CA882-B42F-473B-85E9-BEFD1E818B7F',
@@ -77,6 +82,39 @@ export class AbmFacultadComponent implements OnInit {
     // en vez de administrador y queda pronto
     console.log(this.facultadForm)
     this.router.navigate(['/administrador/facultad']);
+  }
+  onUploadClicked(event) {
+    console.log('onUploadClicked:: ', event);
+  }
+
+  async onSelectedFilesChanged(fileList: FileList) {
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < fileList.length; i++) {
+      const file: File = fileList.item(i);
+      console.log(file);
+
+      this.archivoNombre = file.name.split('.')[0];
+      this.archivoExtension = file.name.split('.')[
+        file.name.split('.').length - 1
+      ];
+      console.log('arcchivoNombre:: ', file.name.split('.')[0]);
+      console.log(
+        'arcchivoExtension:: ',
+        file.name.split('.')[file.name.split('.').length - 1]
+      );
+
+      this.getBase64(file.slice());
+    }
+  }
+
+  getBase64(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    // reader.onload = () => (this.archivoData = reader.result.toString());
+    reader.onload = () => {
+      this.archivoData = reader.result.toString();
+    };
+    reader.onerror = (error) => console.log('Error: ', error);
   }
 
   guardarFacultad(event: Event) {
