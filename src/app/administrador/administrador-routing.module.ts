@@ -142,6 +142,18 @@ const routes: Routes = [
         data: { titulo: 'ABM de secciones' },
       },
 
+      {
+        path: 'mensajetema',
+        component: GestionCursoComponent,
+        data: { titulo: 'Mensaje Tema' },
+      },
+
+      {
+        path: 'mensajetema/abm-mensajetema',
+        component: GestionCursoComponent,
+        data: { titulo: 'ABM de mensaje tema' },
+      },
+
     ],
   },
 ];

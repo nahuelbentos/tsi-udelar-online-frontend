@@ -40,6 +40,8 @@ import { GestionForoComponent } from './pages/gestion-foro/gestion-foro.componen
 import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
 import { AbmSeccionComponent } from './pages/abm-seccion/abm-seccion.component';
 import { GestionSeccionComponent } from './pages/gestion-seccion/gestion-seccion.component';
+import { AbmMensajetemaComponent } from './pages/abm-mensajetema/abm-mensajetema.component';
+import { GestionMensajetemaComponent } from './pages/gestion-mensajetema/gestion-mensajetema.component';
 
 
 @NgModule({
@@ -72,6 +74,8 @@ import { GestionSeccionComponent } from './pages/gestion-seccion/gestion-seccion
     AbmTemaForoComponent,
     AbmSeccionComponent,
     GestionSeccionComponent,
+    AbmMensajetemaComponent,
+    GestionMensajetemaComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
