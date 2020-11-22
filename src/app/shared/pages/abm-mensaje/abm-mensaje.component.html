@@ -15,7 +15,7 @@
 
                   <mat-form-field class="full-width">
                     <input matInput placeholder="Emisor" formControlName="emisor" required>
-                    <mat-error *ngIf="nombre.hasError('required')">
+                    <mat-error *ngIf="emisor.hasError('required')">
                       Emisor es <strong>requerido</strong>.
                     </mat-error>
                   </mat-form-field>
@@ -30,7 +30,7 @@
 
                   <mat-form-field class="full-width">
                     <input matInput placeholder="Mensaje" formControlName="mensaje" required>
-                    <mat-error *ngIf="descripcion.hasError('required')">
+                    <mat-error *ngIf="mensaje.hasError('required')">
                       Mensaje es <strong>requerido</strong>.
                     </mat-error>
                   </mat-form-field>

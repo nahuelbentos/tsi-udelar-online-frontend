@@ -45,6 +45,13 @@ import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-templat
 import { AbmActividadComponent } from './pages/abm-actividad/abm-actividad.component';
 import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component';
 import { AbmMensajeComponent } from './pages/abm-mensaje/abm-mensaje.component';
+import { GestionMensajeComponent } from './pages/gestion-mensaje/gestion-mensaje.component';
+import { GestionTemaforoComponent } from './pages/gestion-temaforo/gestion-temaforo.component';
+import { GestionRespuestaComponent } from './pages/gestion-respuesta/gestion-respuesta.component';
+import { AbmCursoseccionComponent } from './pages/abm-cursoseccion/abm-cursoseccion.component';
+import { AbmTemplatecursoseccionComponent } from './pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
+import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
+import { GestionTemplateCursoSeccionComponent } from './pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
 
 
 @NgModule({
@@ -83,6 +90,13 @@ import { AbmMensajeComponent } from './pages/abm-mensaje/abm-mensaje.component';
     AbmActividadComponent,
     GestionActividadComponent,
     AbmMensajeComponent,
+    GestionMensajeComponent,
+    GestionTemaforoComponent,
+    GestionRespuestaComponent,
+    AbmCursoseccionComponent,
+    AbmTemplatecursoseccionComponent,
+    GestionCursoSeccionComponent,
+    GestionTemplateCursoSeccionComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

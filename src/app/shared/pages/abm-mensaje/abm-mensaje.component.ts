@@ -5,7 +5,6 @@ import { Mensaje } from 'src/app/models/mensaje.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { MensajeService } from 'src/app/services/mensaje.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-abm-mensaje',
@@ -103,7 +102,7 @@ export class AbmMensajeComponent implements OnInit {
     })
 
   private editarMensaje = (mensaje: Mensaje) =>
-    this.mensajeService.updateCarrera(mensaje).subscribe(() => {
+    this.mensajeService.updateMensaje(mensaje).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se modificó el mensaje ${this.mensaje.value} exitosamente.`

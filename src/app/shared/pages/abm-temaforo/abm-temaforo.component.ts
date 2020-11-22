@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TemaForo } from 'src/app/models/temaforo.model';
+import { TemaForo } from 'src/app/models/tema-foro.model';
 import { TemaForoService } from 'src/app/services/tema-foro.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
@@ -94,9 +94,9 @@ export class AbmTemaForoComponent implements OnInit {
 
     temaforo.asunto = this.asunto.value;
     temaforo.mensaje = this.mensaje.value;
-    temaforo.file = this.file.value;
+    temaforo.archivoData = this.file.value;
     temaforo.emisor = this.emisor.value;
-    temaforo.subrscripcionADiscusion = this.subrscripcionADiscusion.value;
+    temaforo.subscripcionADiscusion = this.subrscripcionADiscusion.value;
 
     this.temaforoService.createTemaForo(temaforo).subscribe(() => {
       mensajeConfirmacion(

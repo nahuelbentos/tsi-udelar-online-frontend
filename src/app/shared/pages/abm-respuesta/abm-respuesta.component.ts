@@ -71,7 +71,7 @@ export class AbmRespuestaComponent implements OnInit {
       return;
     }
 
-    const respuesta = new Respuesta(this.mensaje.value);
+    const respuesta = new Respuesta(this.mensaje.value,this.usuario.value);
 
     respuesta.mensaje = this.mensaje.value;
 
