@@ -28,6 +28,7 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   @Input() dataInput: {}[] = [];
   @Input() tipoPlural: string;
   @Input() tipoSingular: string;
+  @Input() puedeAgregar: boolean = true;
 
   @Output() eliminar: EventEmitter<EliminarRow> = new EventEmitter();
  

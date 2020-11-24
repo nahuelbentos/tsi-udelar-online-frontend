@@ -51,6 +51,9 @@
                       <mat-option *ngFor="let facu of facultades" [value]="facu.facultadId"> {{  facu.descripcion }}
                       </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="facultad.hasError('required')">
+                      Facultad es <strong>requerido</strong>.
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>

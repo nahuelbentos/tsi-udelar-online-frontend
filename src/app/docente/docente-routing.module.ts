@@ -17,19 +17,9 @@ const routes: Routes = [
     data: { role: 'docente' },
     children: [
       {
-        path: 'temaforo/abm-temaforo',
-        component: AbmTemaForoComponent,
-        data: { titulo: 'ABM de TemaForo' },
-      },
-      {
         path: 'curso',
         component: GestionCursoComponent,
         data: { titulo: 'Gestión de Cursos' },
-      },
-      {
-        path: 'respuesta/abm-respuesta',
-        component: AbmRespuestaComponent,
-        data: { titulo: 'ABM de Respuesta' },
       },
     ],
   },

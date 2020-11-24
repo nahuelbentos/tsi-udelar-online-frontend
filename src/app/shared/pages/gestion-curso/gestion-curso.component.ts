@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Curso } from 'src/app/models/curso.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
 
 @Component({
@@ -11,11 +13,20 @@ import { CursoService } from 'src/app/services/curso.service';
   styleUrls: ['./gestion-curso.component.scss'],
 })
 export class GestionCursoComponent implements OnInit {
+  usuarioSesion: UsuarioSesion = this.autenticacionService.getUser();
+
   cursos: Curso[];
   createComponent = false;
-  columnas = ['nombre', 'descripcion', 'modalidad', 'actions'];
+  puedeAgregar = this.usuarioSesion.rol === 'Administrador';
+  columnas =
+    this.usuarioSesion.rol === 'Administrador'
+      ? ['nombre', 'descripcion', 'modalidad', 'actions']
+      : ['nombre', 'descripcion', 'modalidad'];
 
-  constructor(private cursoService: CursoService) {
+  constructor(
+    private cursoService: CursoService,
+    private autenticacionService: AutenticacionService
+  ) {
     this.getCursos();
   }
 
