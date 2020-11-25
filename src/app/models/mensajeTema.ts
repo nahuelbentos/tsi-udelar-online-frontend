@@ -3,7 +3,7 @@ export class MensajeTema {
       public contenido: string,
       public fechaDeEnviado?: Date,
       public mensajeBloqueado?: boolean,
-      public usuarioEmail?: string,
+      public usuarioId?: string,
       public temaForoId?: string,
       public mensajeTemaId?: string
     ) {}

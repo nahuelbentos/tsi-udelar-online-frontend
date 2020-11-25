@@ -33,6 +33,8 @@ import { GestionMaterialComponent } from '../shared/pages/gestion-material/gesti
 import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion-seccion.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
+import { GestionMensajetemaComponent } from '../shared/pages/gestion-mensajetema/gestion-mensajetema.component';
+import { AbmMensajetemaComponent } from '../shared/pages/abm-mensajetema/abm-mensajetema.component';
 
 const routes: Routes = [
   {
@@ -166,13 +168,13 @@ const routes: Routes = [
 
       {
         path: 'mensajetema',
-        component: GestionCursoComponent,
+        component: GestionMensajetemaComponent,
         data: { titulo: 'Mensaje Tema' },
       },
 
       {
         path: 'mensajetema/abm-mensajetema',
-        component: GestionCursoComponent,
+        component: AbmMensajetemaComponent,
         data: { titulo: 'ABM de mensaje tema' },
       },
 
