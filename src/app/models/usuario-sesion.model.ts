@@ -12,6 +12,7 @@ export class UsuarioSesion {
     public userName?: string,
     public rol?: string,
     public tipo?: TipoUsuario,
-    public facultad?: Facultad
+    public facultad?: Facultad,
+    public id?: string
   ) {}
 }
