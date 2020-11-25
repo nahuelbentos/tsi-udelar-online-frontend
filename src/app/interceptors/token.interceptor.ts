@@ -28,13 +28,11 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log('token', this.autenticacionService.getToken());
-
     this.blockUI.start();
 
     if (this.autenticacionService.getUser()) {
       const token = this.autenticacionService.getToken();
-      console.log('token', token);
+
       if (token) {
         request = request.clone({
           setHeaders: {
@@ -46,10 +44,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       map((event: HttpEvent<any>) => {
-        console.log('1) event:: ', event);
         if (event instanceof HttpResponse) {
-          console.log('2) event:: ', event);
-
           if (event.status !== 200) {
             this.toast.error('Ocurrio algo raro!', 'Ver que onda..', {
               timeOut: 3000,
@@ -60,10 +55,14 @@ export class TokenInterceptor implements HttpInterceptor {
         return event;
       }),
       catchError((err: HttpErrorResponse) => {
-        this.toast.error(err.error.errores.mensaje);
         if (err.status === 401) {
           this.router.navigate(['/login']);
         }
+        const mensajes = err.error.errores.mensajeErrores;
+
+        mensajes && mensajes.length > 0
+          ? mensajes.forEach((mensaje) => this.toast.error(mensaje))
+          : this.toast.error(err.error.errores.mensaje);
 
         return throwError(err);
       }),

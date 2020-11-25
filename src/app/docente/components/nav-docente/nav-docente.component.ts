@@ -14,12 +14,48 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Cursos',
     },
     {
-      link: 'respuesta/abm-respuesta',
-      titulo: 'ABM Respuesta',
+      link: 'perfil',
+      titulo: 'Perfil',
     },
     {
-      link: 'temaforo/abm-temaforo',
-      titulo: 'ABM TemaForo',
+      link: 'administrar-calificaciones',
+      titulo: 'Administrar calificaciones',
+    },
+    {
+      link: 'administrar-foros',
+      titulo: 'Administrar foros',
+    },
+    {
+      link: 'administrar-materiales',
+      titulo: 'Administrar materiales',
+    },
+    {
+      link: 'calendario',
+      titulo: 'Calendario de Actividades',
+    },
+    {
+      link: 'estudiantes',
+      titulo: 'Estudiantes por curso',
+    },
+    {
+      link: 'administrar-pruebas-online',
+      titulo: 'Administrar pruebas online',
+    },
+    {
+      link: 'administrar-entregas',
+      titulo: 'Administrar entregas',
+    },
+    {
+      link: 'administrar-notas-curso-pruebasonline',
+      titulo: 'Manejo de notas de cursos y evaluaciones',
+    },
+    {
+      link: 'encuestas',
+      titulo: 'Encuestas',
+    },
+    {
+      link: 'informes',
+      titulo: 'Informes',
     },
   ];
   constructor() {}

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { UsuarioSesion } from '../models/usuario-sesion.model';
 
@@ -8,7 +9,7 @@ import { UsuarioSesion } from '../models/usuario-sesion.model';
 })
 export class AutenticacionService {
   baseUrl = `${environment.baseUrl}/auth`;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login = (email: string, password: string) => this.http.post<UsuarioSesion>(`${this.baseUrl}/login`, { email, password });
 
@@ -21,4 +22,7 @@ export class AutenticacionService {
   setToken = (token: string)  => localStorage.setItem('token', token);
 
   getToken = (): string => localStorage.getItem('token');
+
+  logout = () => this.router.navigate(['/home']).then( () => localStorage.clear());
+
 }

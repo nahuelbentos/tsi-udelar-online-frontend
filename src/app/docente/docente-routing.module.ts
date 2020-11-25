@@ -5,6 +5,7 @@ import { RoleGuard } from '../guards/role.guard';
 import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respuesta.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
+import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
 
 
@@ -20,6 +21,11 @@ const routes: Routes = [
         path: 'curso',
         component: GestionCursoComponent,
         data: { titulo: 'Gestión de Cursos' },
+      },
+      {
+        path: 'perfil',
+        component: PerfilUsuarioComponent,
+        data: { titulo: 'Perfil de Usuario' },
       },
     ],
   },
