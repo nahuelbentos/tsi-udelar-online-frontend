@@ -49,6 +49,8 @@ import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.co
 import { AbmTemplatecursoComponent } from './pages/abm-templatecurso/abm-templatecurso.component';
 import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-comunicado.component';
 import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
+import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
+import { TestComponentsComponent } from './pages/test-components/test-components.component';
 
 
 @NgModule({
@@ -90,6 +92,8 @@ import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/ges
     AbmActividadComponent,
     GestionActividadComponent,
     PerfilUsuarioComponent,
+    TableDynamicCustomComponent,
+    TestComponentsComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

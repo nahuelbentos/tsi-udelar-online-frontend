@@ -48,11 +48,15 @@ export class NavAdministradorComponent implements OnInit {
     {
       link: 'seccion',
       titulo: 'Secciones',
-    }, 
+    },
     {
       link: 'actividad',
       titulo: 'Actividades',
-    }, 
+    },
+    {
+      link: 'test',
+      titulo: 'Tests',
+    },
   ];
   constructor() {}
   ngOnInit(): void {}
