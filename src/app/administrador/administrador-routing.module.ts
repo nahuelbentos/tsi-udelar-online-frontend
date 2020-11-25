@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AbmComunicadoComponent } from '../shared/pages/abm-comunicado/abm-comunicado.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
 import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
-import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
+
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
+import { AbmTemplatecursoComponent } from '../shared/pages/abm-templatecurso/abm-templatecurso.component';
+import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
+import { GestionComunicadoComponent } from '../shared/pages/gestion-comunicado/gestion-comunicado.component';
+import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
+import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatecurso/gestion-templatecurso.component';
+import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
 import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.component';
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
@@ -14,11 +21,9 @@ import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respues
 import { AbmSeccionComponent } from '../shared/pages/abm-seccion/abm-seccion.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 
-import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
 import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
-import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
-import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 
+import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
 import { GestionEncuestaComponent } from '../shared/pages/gestion-encuesta/gestion-encuesta.component';
 import { GestionFacultadComponent } from '../shared/pages/gestion-facultad/gestion-facultad.component';
 
@@ -28,6 +33,7 @@ import { GestionMaterialComponent } from '../shared/pages/gestion-material/gesti
 import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion-seccion.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
+import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
 
 const routes: Routes = [
   {
@@ -60,6 +66,16 @@ const routes: Routes = [
         data: { titulo: 'ABM de Carreras' },
       },
       {
+        path: 'comunicado',
+        component: GestionComunicadoComponent,
+        data: { titulo: 'Gestión de Comunicados' },
+      },
+      {
+        path: 'templatecurso',
+        component: GestionTemplatecursoComponent,
+        data: { titulo: 'Gestión de TemplateCurso' },
+      },
+      {
         path: 'facultad',
         component: GestionFacultadComponent,
         data: { titulo: 'Gestión de Facultades' },
@@ -89,6 +105,16 @@ const routes: Routes = [
         path: 'usuario/abm-usuario',
         component: AbmUsuarioComponent,
         data: { titulo: 'ABM de Usuarios' },
+      },
+      {
+        path: 'comunicado/abm-comunicado',
+        component: AbmComunicadoComponent,
+        data: { titulo: 'ABM de Comunicados' },
+      },
+      {
+        path: 'templatecurso/abm-templatecurso',
+        component: AbmTemplatecursoComponent,
+        data: { titulo: 'ABM de TemplateCurso' },
       },
       {
         path: 'material',
@@ -141,11 +167,17 @@ const routes: Routes = [
         path: 'temaforo/abm-temaforo',
         component: AbmTemaForoComponent,
         data: { titulo: 'ABM de TemaForo' },
-      }, 
+      },
       {
         path: 'respuesta/abm-respuesta',
         component: AbmRespuestaComponent,
         data: { titulo: 'ABM de Respuesta' },
+      },
+
+      {
+        path: 'test-components',
+        component: TestComponentsComponent,
+        data: { titulo: 'Test components' },
       },
     ],
   },

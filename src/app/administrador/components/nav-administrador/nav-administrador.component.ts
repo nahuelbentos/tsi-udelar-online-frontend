@@ -18,6 +18,14 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Cursos',
     },
     {
+      link: 'comunicado',
+      titulo: 'Comunicados',
+    },
+    {
+      link: 'templatecurso',
+      titulo: 'TemplateCurso',
+    },
+    {
       link: 'encuesta',
       titulo: 'Encuestas',
     },
@@ -40,13 +48,16 @@ export class NavAdministradorComponent implements OnInit {
     {
       link: 'seccion',
       titulo: 'Secciones',
-    }, 
+    },
     {
       link: 'actividad',
       titulo: 'Actividades',
-    }, 
+    },
+    {
+      link: 'test',
+      titulo: 'Tests',
+    },
   ];
   constructor() {}
-
   ngOnInit(): void {}
 }

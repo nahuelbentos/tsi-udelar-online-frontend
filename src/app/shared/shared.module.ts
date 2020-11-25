@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router'; 
 import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
 import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
 
@@ -52,6 +52,13 @@ import { AbmCursoseccionComponent } from './pages/abm-cursoseccion/abm-cursosecc
 import { AbmTemplatecursoseccionComponent } from './pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
 import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
 import { GestionTemplateCursoSeccionComponent } from './pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
+import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.component';
+import { AbmTemplatecursoComponent } from './pages/abm-templatecurso/abm-templatecurso.component';
+import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-comunicado.component';
+import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
+import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
+import { TestComponentsComponent } from './pages/test-components/test-components.component';
 
 
 @NgModule({
@@ -64,7 +71,10 @@ import { GestionTemplateCursoSeccionComponent } from './pages/gestion-templatecu
     GestionCustomComponent,
     GestionCursoComponent,
     NavCustomComponent,
-
+    AbmComunicadoComponent,
+    GestionComunicadoComponent,
+    AbmTemplatecursoComponent,
+    GestionTemplatecursoComponent,
     GestionFacultadComponent,
     AbmFacultadComponent,
     GestionEncuestaComponent,
@@ -89,6 +99,9 @@ import { GestionTemplateCursoSeccionComponent } from './pages/gestion-templatecu
     SeleccionarTemplateCursoComponent,
     AbmActividadComponent,
     GestionActividadComponent,
+    PerfilUsuarioComponent,
+    TableDynamicCustomComponent,
+    TestComponentsComponent,
     AbmMensajeComponent,
     GestionMensajeComponent,
     GestionTemaforoComponent,

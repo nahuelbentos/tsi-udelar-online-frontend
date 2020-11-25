@@ -20,7 +20,7 @@
 
     </div>
     <mat-nav-list>
-      <a *ngFor="let route of routes" mat-list-item [routerLink]="['' + route.link]"> {{ route.titulo }} </a>
+      <a *ngFor="let route of routes" mat-list-item [routerLink]="['' + route.link]"> {{ route.titulo }}  </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -29,11 +29,17 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+
       <h1 class="title">{{titulo}}</h1>
+
+      <button type="button"mat-button (click)="logout()">
+        Logout
+        <mat-icon aria-label="Side nav toggle icon"> exit_to_app </mat-icon>
+      </button>
 
     </mat-toolbar>
 
     <router-outlet></router-outlet>
 
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> 
