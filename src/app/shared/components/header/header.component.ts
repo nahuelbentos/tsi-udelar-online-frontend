@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 
 @Component({
   selector: 'app-header',
@@ -27,8 +28,12 @@ export class HeaderComponent implements OnInit {
       if (usuarioSesion) {
         this.autenticacionService.setUser(usuarioSesion);
         this.autenticacionService.setToken(usuarioSesion.token);
-
-        this.router.navigate(['/' + usuarioSesion.tipo.toLowerCase()]);
+        console.log(usuarioSesion.tipo);
+        
+        const tipo = ( usuarioSesion.tipo === TipoUsuario.AdministradorFacultad)
+            ? 'administrador-facultad'
+            : usuarioSesion.tipo;
+        this.router.navigate(['/' + tipo.toLowerCase()]);
       }
     });
   }

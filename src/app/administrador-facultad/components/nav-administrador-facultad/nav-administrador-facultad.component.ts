@@ -7,16 +7,40 @@ import { RutasNav } from 'src/app/models/rutas-nav.interface';
   styleUrls: ['./nav-administrador-facultad.component.scss'],
 })
 export class NavAdministradorFacultadComponent implements OnInit {
-  rol = 'administrador-facultad';
+  rol = 'administrador facultad';
   routes: RutasNav[] = [
     {
       link: 'facultad',
-      titulo: 'Facultades',
+      titulo: 'Facultad',
+    },
+    {
+      link: 'usuario',
+      titulo: 'Usuarios',
+    },
+    {
+      link: 'template-curso',
+      titulo: 'Templates de Cursos',
+    },
+    {
+      link: 'docente',
+      titulo: 'Docentes',
     },
     {
       link: 'curso',
       titulo: 'Cursos',
     },
+    {
+      link: 'encuesta',
+      titulo: 'Encuestas',
+    },
+    {
+      link: 'publicar-comunicado',
+      titulo: 'Publicar Comunicado',
+    },
+    {
+      link: 'reportes',
+      titulo: 'Reportes',
+    }
   ];
   constructor() {}
 

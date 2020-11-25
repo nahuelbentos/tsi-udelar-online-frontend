@@ -11,14 +11,38 @@ export class NavAlumnoComponent implements OnInit {
   rol = 'alumno';
   routes: RutasNav[] = [
     {
-      link: '/home',
-      titulo: 'home',
+      link: 'explorar-cursos',
+      titulo: 'Explorar Cursos',
     },
     {
-      link: '/home2',
-      titulo: 'home2',
+      link: 'cursos-publicos',
+      titulo: 'Todos los cursos',
     },
-  ];
+    {
+      link: 'matricularse-curso',
+      titulo: 'Matricularse a un Curso',
+    },
+    {
+      link: 'inscripcion-evaluacion',
+      titulo: 'Inscribirse a evaluación',
+    },
+    {
+      link: 'mis-calificaciones',
+      titulo: 'Mis calificaciones',
+    },
+    {
+      link: 'encuesta',
+      titulo: 'Encuestas',
+    },
+    {
+      link: 'publicar-comunicado',
+      titulo: 'Publicar Comunicado',
+    },
+    {
+      link: 'reportes',
+      titulo: 'Reportes',
+    }
+  ]
   constructor() {}
 
   ngOnInit(): void {}

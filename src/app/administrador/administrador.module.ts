@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -23,11 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     LayoutModule,
     SharedModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
+    MaterialModule
   ],
 })
 export class AdministradorModule {}

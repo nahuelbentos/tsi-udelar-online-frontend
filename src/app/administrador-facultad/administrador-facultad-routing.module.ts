@@ -16,6 +16,7 @@ import { GestionEncuestaComponent } from '../shared/pages/gestion-encuesta/gesti
 import { GestionFacultadComponent } from '../shared/pages/gestion-facultad/gestion-facultad.component';
 import { GestionForoComponent } from '../shared/pages/gestion-foro/gestion-foro.component';
 import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
+import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatecurso/gestion-templatecurso.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorFacultadComponent } from './components/nav-administrador-facultad/nav-administrador-facultad.component';
 
@@ -26,7 +27,7 @@ const routes: Routes = [
     component: NavAdministradorFacultadComponent,
     canActivate: [AuthGuard, RoleGuard],
     canActivateChild: [AuthGuard, RoleGuard],
-    data: { role: 'administrador-facultad' },
+    data: { role: 'administradorfacultad' },
     children: [
       {
         path: 'facultad',
@@ -43,14 +44,23 @@ const routes: Routes = [
         component: GestionCursoComponent,
         data: { titulo: 'Gestión de Cursos' },
       },
+      {
+        path: 'template-curso',
+        component: GestionTemplatecursoComponent,
+        data: { titulo: 'Gestión de Template Cursos' },
+      },
 
-     
       {
         path: 'encuesta',
         component: GestionEncuestaComponent,
         data: { titulo: 'Gestión de Encuestas' },
       },
-     
+
+      {
+        path: 'usuario',
+        component: GestionUsuarioComponent,
+        data: { titulo: 'Gestión de Usuarios' },
+      },
       {
         path: 'usuario',
         component: GestionUsuarioComponent,
@@ -63,14 +73,11 @@ const routes: Routes = [
         data: { titulo: 'Gestión de materiales' },
       },
 
-
       {
         path: 'foro',
         component: GestionForoComponent,
         data: { titulo: 'Gestión de foros' },
       },
-
-  
     ],
   },
 ];

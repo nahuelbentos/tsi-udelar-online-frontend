@@ -28,6 +28,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'administrador-facultad',
+        loadChildren: () =>
+          import('./administrador-facultad/administrador-facultad.module').then(
+            (m) => m.AdministradorFacultadModule
+          ),
+      },
+      {
         path: 'alumno',
         loadChildren: () =>
           import('./alumno/alumno.module').then((m) => m.AlumnoModule),
@@ -35,11 +42,14 @@ const routes: Routes = [
       {
         path: 'docente',
         loadChildren: () =>
-          import('./docente/docente.module').then(
-            (m) => m.DocenteModule
-          ),
+          import('./docente/docente.module').then((m) => m.DocenteModule),
       },
     ],
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('./error/error.module').then((m) => m.ErrorModule),
   },
 ];
 
