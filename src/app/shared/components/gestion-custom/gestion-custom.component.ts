@@ -28,9 +28,10 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   @Input() dataInput: {}[] = [];
   @Input() tipoPlural: string;
   @Input() tipoSingular: string;
+  @Input() puedeAgregar = true;
 
   @Output() eliminar: EventEmitter<EliminarRow> = new EventEmitter();
- 
+
   tooltipEditar: string;
   tooltipEliminar: string;
 
@@ -67,20 +68,27 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   }
 
   abm(modo: string, rowData: any) {
+    console.log('rowData:: ', rowData);
+
     switch (modo) {
       case 'INS':
       case 'UPD':
-        const ruta = `/${this.tipoSingular.toLocaleLowerCase().trim()}/abm-${this.tipoSingular.toLocaleLowerCase().trim()}`;
+        const ruta = `/${this.tipoSingular
+          .toLocaleLowerCase()
+          .trim()}/abm-${this.tipoSingular.toLocaleLowerCase().trim()}`;
         console.log(ruta);
         const params: { modo: string; id?: string } = { modo };
 
         // tslint:disable-next-line: curly
         if (rowData && rowData.id) params.id = rowData.id;
 
-        this.router.navigate([`abm-${this.tipoSingular.toLocaleLowerCase().trim()}`], {
-          queryParams: params,
-          relativeTo: this.route,
-        });
+        this.router.navigate(
+          [`abm-${this.tipoSingular.toLocaleLowerCase().trim()}`],
+          {
+            queryParams: params,
+            relativeTo: this.route,
+          }
+        );
 
         break;
 

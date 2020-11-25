@@ -35,6 +35,7 @@ import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { GestionMensajetemaComponent } from '../shared/pages/gestion-mensajetema/gestion-mensajetema.component';
 import { AbmMensajetemaComponent } from '../shared/pages/abm-mensajetema/abm-mensajetema.component';
+import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
 
 const routes: Routes = [
   {
@@ -77,7 +78,6 @@ const routes: Routes = [
         data: { titulo: 'Gestión de TemplateCurso' },
       },
       {
-
         path: 'facultad',
         component: GestionFacultadComponent,
         data: { titulo: 'Gestión de Facultades' },
@@ -187,6 +187,12 @@ const routes: Routes = [
         path: 'respuesta/abm-respuesta',
         component: AbmRespuestaComponent,
         data: { titulo: 'ABM de Respuesta' },
+      },
+
+      {
+        path: 'test-components',
+        component: TestComponentsComponent,
+        data: { titulo: 'Test components' },
       },
     ],
   },

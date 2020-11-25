@@ -16,11 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router';
-import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.component';
-import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-comunicado.component';
-import { AbmTemplatecursoComponent } from './pages/abm-templatecurso/abm-templatecurso.component';
-import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
+import { RouterModule } from '@angular/router'; 
 import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
 import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
 
@@ -50,6 +46,13 @@ import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/selec
 import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
 import { AbmActividadComponent } from './pages/abm-actividad/abm-actividad.component';
 import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component';
+import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.component';
+import { AbmTemplatecursoComponent } from './pages/abm-templatecurso/abm-templatecurso.component';
+import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-comunicado.component';
+import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
+import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
+import { TestComponentsComponent } from './pages/test-components/test-components.component';
 
 
 @NgModule({
@@ -92,6 +95,9 @@ import { GestionActividadComponent } from './pages/gestion-actividad/gestion-act
     SeleccionarTemplateCursoComponent,
     AbmActividadComponent,
     GestionActividadComponent,
+    PerfilUsuarioComponent,
+    TableDynamicCustomComponent,
+    TestComponentsComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

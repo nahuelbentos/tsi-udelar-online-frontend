@@ -10,6 +10,7 @@ export class UsuarioSesion {
     public token?: string,
     public email?: string,
     public userName?: string,
+    public rol?: string,
     public tipo?: TipoUsuario,
     public facultad?: Facultad
   ) {}

@@ -29,47 +29,28 @@ const routes: Routes = [
     data: { role: 'administrador-facultad' },
     children: [
       {
-        path: 'curso',
-        component: GestionCursoComponent,
-        data: { titulo: 'Gestión de Cursos' },
-      },
-
-      {
-        path: 'curso/abm-curso',
-        component: AbmCursoComponent,
-        data: { titulo: 'ABM de Cursos' },
+        path: 'facultad',
+        component: GestionFacultadComponent,
+        data: { titulo: 'Gestión de Facultades' },
       },
       {
         path: 'carrera',
         component: GestionCarreraComponent,
         data: { titulo: 'Gestión de Carreras' },
       },
+      {
+        path: 'curso',
+        component: GestionCursoComponent,
+        data: { titulo: 'Gestión de Cursos' },
+      },
 
-      {
-        path: 'carrera/abm-carrera',
-        component: AbmCarreraComponent,
-        data: { titulo: 'ABM de Carreras' },
-      },
-      {
-        path: 'facultad',
-        component: GestionFacultadComponent,
-        data: { titulo: 'Gestión de Facultades' },
-      },
-      {
-        path: 'facultad/abm-facultad',
-        component: AbmFacultadComponent,
-        data: { titulo: 'ABM de Facultades' },
-      },
+     
       {
         path: 'encuesta',
         component: GestionEncuestaComponent,
         data: { titulo: 'Gestión de Encuestas' },
       },
-      {
-        path: 'encuesta/abm-encuesta',
-        component: AbmEncuestaComponent,
-        data: { titulo: 'ABM de Encuestas' },
-      },
+     
       {
         path: 'usuario',
         component: GestionUsuarioComponent,
@@ -77,21 +58,11 @@ const routes: Routes = [
       },
 
       {
-        path: 'usuario/abm-usuario',
-        component: AbmUsuarioComponent,
-        data: { titulo: 'ABM de Usuarios' },
-      },
-      {
         path: 'material',
         component: GestionMaterialComponent,
         data: { titulo: 'Gestión de materiales' },
       },
 
-      {
-        path: 'material/abm-material',
-        component: AbmMaterialComponent,
-        data: { titulo: 'ABM de materiales' },
-      },
 
       {
         path: 'foro',
@@ -99,11 +70,7 @@ const routes: Routes = [
         data: { titulo: 'Gestión de foros' },
       },
 
-      {
-        path: 'foro/abm-foro',
-        component: AbmForoComponent,
-        data: { titulo: 'ABM de foros' },
-      },
+  
     ],
   },
 ];

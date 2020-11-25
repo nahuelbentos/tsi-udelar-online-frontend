@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { RutasNav } from 'src/app/models/rutas-nav.interface';
 import { ActivationEnd, Router } from '@angular/router';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-nav-custom',
@@ -25,13 +26,10 @@ export class NavCustomComponent implements OnInit, OnDestroy {
     );
 
   constructor(
+    private auth: AutenticacionService,
     private breakpointObserver: BreakpointObserver,
     private router: Router
   ) {
-    console.log('Constructor');
-    console.log('routes: ', this.routes);
-    console.log('rol: ', this.rol);
-
     this.tituloSubs$ = this.getDataRuta().subscribe((data) => {
       this.titulo = data.titulo;
       document.title = `UdelarOnline - ${data.titulo}`;
@@ -39,12 +37,6 @@ export class NavCustomComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    console.log('OnInit');
-
-    console.log('routes: ', this.routes);
-    console.log('rol: ', this.rol);
   }
 
   ngOnDestroy(): void {
@@ -58,4 +50,6 @@ export class NavCustomComponent implements OnInit, OnDestroy {
       map((event: ActivationEnd) => event.snapshot.data)
     );
   }
+
+  logout = () => this.auth.logout();
 }

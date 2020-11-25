@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AbmTemaForoComponent } from './shared/pages/abm-temaforo/abm-temaforo.component';
-import { AbmRespuestaComponent } from './shared/pages/abm-respuesta/abm-respuesta.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { BlockUIModule } from 'ng-block-ui';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,6 +18,16 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
+
+    BlockUIModule.forRoot({
+      delayStop: 200,
+      message: 'Cargando',
+    }),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-center',
+      preventDuplicates: true,
+    }), // ToastrModule added
   ],
 
   providers: [

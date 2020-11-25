@@ -6,7 +6,7 @@ export class Curso {
   constructor(
     public nombre: string,
     public descripcion?: string,
-    public modalidad?: ModalidadCurso,
+    public modalidadCurso?: ModalidadCurso,
     public requiereMatriculacion?: boolean,
     public salaVirtual?: string,
     public templateCursoId?: string,
