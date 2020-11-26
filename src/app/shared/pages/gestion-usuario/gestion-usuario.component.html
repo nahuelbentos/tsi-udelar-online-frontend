@@ -1,3 +1,8 @@
-<app-gestion-custom [dataInput]="usuarios" [columns]="columnas" tipoSingular="usuario" tipoPlural="usuarios"
+<app-gestion-custom 
+[dataInput]="usuarios" 
+[columns]="columnas" 
+[tipoSingular]="tipoSingular" 
+[tituloSingular]="tituloSingular" 
+[tituloPlural]="tituloPlural"
   (eliminar)="onEliminar($event)" *ngIf="createComponent">
 </app-gestion-custom>

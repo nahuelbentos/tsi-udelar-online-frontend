@@ -95,7 +95,13 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     TableDynamicCustomComponent,
     TestComponentsComponent,
   ],
-  exports: [HeaderComponent, FooterComponent, NavCustomComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    NavCustomComponent,
+    GestionUsuarioComponent,
+    AbmUsuarioComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -111,8 +117,6 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     NgxMatColorPickerModule,
     MatFileUploadModule,
   ],
-  providers: [
-    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
-   ],
+  providers: [{ provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }],
 })
-export class SharedModule { }
+export class SharedModule {}

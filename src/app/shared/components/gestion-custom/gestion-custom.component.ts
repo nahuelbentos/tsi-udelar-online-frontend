@@ -26,7 +26,8 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('columns') displayedColumns: string[];
   @Input() dataInput: {}[] = [];
-  @Input() tipoPlural: string;
+  @Input() tituloPlural: string;
+  @Input() tituloSingular: string;
   @Input() tipoSingular: string;
   @Input() puedeAgregar = true;
 
@@ -43,7 +44,7 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     console.log('columns:: ', this.displayedColumns);
     console.log('dataInput:: ', this.dataInput);
-    console.log('tipoPlural:: ', this.tipoPlural);
+    console.log('tituloPlural:: ', this.tituloPlural);
     console.log('tipoSingular:: ', this.tipoSingular);
 
     this.dataSource = new MatTableDataSource(this.dataInput);
@@ -78,9 +79,11 @@ export class GestionCustomComponent implements OnInit, OnChanges {
           .trim()}/abm-${this.tipoSingular.toLocaleLowerCase().trim()}`;
         console.log(ruta);
         const params: { modo: string; id?: string } = { modo };
-
+        
+        console.log('rowData:: ', rowData);
         // tslint:disable-next-line: curly
         if (rowData && rowData.id) params.id = rowData.id;
+        console.log('params:: ', params);
 
         this.router.navigate(
           [`abm-${this.tipoSingular.toLocaleLowerCase().trim()}`],

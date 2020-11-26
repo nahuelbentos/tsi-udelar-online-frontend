@@ -1,18 +1,36 @@
-<mat-button-toggle-group #group="matButtonToggleGroup">
-  <mat-button-toggle value="left" aria-label="Text align left">
-    <mat-icon>format_align_left</mat-icon>
-  </mat-button-toggle>
-  <mat-button-toggle value="center" aria-label="Text align center">
-    <mat-icon>format_align_center</mat-icon>
-  </mat-button-toggle>
-  <mat-button-toggle value="right" aria-label="Text align right">
-    <mat-icon>format_align_right</mat-icon>
-  </mat-button-toggle>
-  <mat-button-toggle value="justify" disabled aria-label="Text align justify">
-    <mat-icon>format_align_justify</mat-icon>
-  </mat-button-toggle>
-</mat-button-toggle-group>
-asdas
+<div class="row center-xs margin-abm">
+  <div class="col-xs-12">
+    <div class="box">
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle (click)="tipo = 'facultades'">Listados de facultades</mat-button-toggle>
+        <mat-button-toggle (click)="tipo = 'curso-facultades'">Listados de cursos por facultades</mat-button-toggle>
+        <mat-button-toggle (click)="tipo = 'curso-estadisticas'">Información estadística de cursos</mat-button-toggle>
+        <mat-button-toggle (click)="tipo = 'facultades-estadisticas'">Información estadística de facultades
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      
+    </div>
+  </div>
+</div>
 
-<!-- <router-outlet></router-outlet> -->
- 
+<div class="row center-xs">
+  <div class="col-xs-12">
+    <div class="box">
+      <ng-container [ngSwitch]="tipo">
+        <ng-container *ngSwitchCase="'facultades'">
+          Aca Va el listado de facultades
+        </ng-container>
+        <ng-container *ngSwitchCase="'curso-facultades'">
+          Aca Va el listado de cursos por facultades
+        </ng-container>
+        <ng-container *ngSwitchCase="'curso-estadisticas'">
+          Aca Va Información estadística de cursos
+        </ng-container>
+        <ng-container *ngSwitchCase="'facultades-estadisticas'">
+          Aca va Información estadística de facultades
+        </ng-container>
+        <ng-container *ngSwitchDefault></ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

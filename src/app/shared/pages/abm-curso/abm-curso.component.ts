@@ -205,6 +205,10 @@ export class AbmCursoComponent implements OnInit {
     });
     dialogRef
       .afterClosed()
-      .subscribe((seccion) => console.log('seccion: ', seccion));
+      .subscribe((templateCurso) => {
+        console.log( templateCurso );
+        
+        this.templateCurso.setValue(  templateCurso );
+      } );
   }
 }

@@ -19,6 +19,8 @@ import { GestionMaterialComponent } from '../shared/pages/gestion-material/gesti
 import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatecurso/gestion-templatecurso.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorFacultadComponent } from './components/nav-administrador-facultad/nav-administrador-facultad.component';
+import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
+import { DocentesComponent } from './pages/docentes/docentes.component';
 
 
 const routes: Routes = [
@@ -77,6 +79,27 @@ const routes: Routes = [
         path: 'foro',
         component: GestionForoComponent,
         data: { titulo: 'Gestión de foros' },
+      },
+      {
+        path: 'usuario',
+        component: GestionUsuarioComponent,
+        data: { titulo: 'Gestión de Usuarios' },
+      },
+
+      {
+        path: 'usuario/abm-usuario',
+        component: AbmUsuarioComponent,
+        data: { titulo: 'ABM de Usuarios' },
+      },
+      {
+        path: 'docente',
+        component: DocentesComponent,
+        data: { titulo: 'Gestión de Docentes' },
+      },
+      {
+        path: 'docente/abm-docente',
+        component: AbmDocenteComponent,
+        data: { titulo: 'ABM de docentes' },
       },
     ],
   },

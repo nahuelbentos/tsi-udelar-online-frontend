@@ -93,16 +93,10 @@ export class PerfilUsuarioComponent implements OnInit {
       .getFacultades()
       .subscribe((facultades) => (this.facultades = facultades));
 
-    this.route.queryParams.subscribe((param) => {
-      this.modo = param.modo;
-      this.usuarioId = param.id;
-
-      if (param.id) {
-        this.usuarioService
-          .getUsuarioById(this.usuarioId)
-          .subscribe((usuario) => this.setValuesOnForm(usuario));
-      }
-    });
+    this.usuarioService
+      .getUsuarioById(this.usuarioLogueado.id)
+      .subscribe((usuario) => this.setValuesOnForm(usuario));
+      
   }
 
   private setValuesOnForm(usuario: Usuario) {
@@ -120,6 +114,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
     this.userName.disable();
     this.email.disable();
+    this.facultad.disable();
+    this.tipo.disable();
   }
 
   private buildForm() {
