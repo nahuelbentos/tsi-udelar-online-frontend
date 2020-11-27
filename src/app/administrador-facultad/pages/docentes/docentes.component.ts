@@ -4,13 +4,12 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 @Component({
   selector: 'app-docentes',
   templateUrl: './docentes.component.html',
-  styleUrls: ['./docentes.component.scss']
+  styleUrls: ['./docentes.component.scss'],
 })
 export class DocentesComponent implements OnInit {
   tipo = TipoUsuario.Docente;
-  constructor() { }
+  actionsHeader = [{}];
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -101,6 +101,7 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     NavCustomComponent,
     GestionUsuarioComponent,
     AbmUsuarioComponent,
+    GestionFacultadComponent,
   ],
   imports: [
     CommonModule,
@@ -117,6 +118,6 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     NgxMatColorPickerModule,
     MatFileUploadModule,
   ],
-  providers: [{ provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }],
+  providers: [],
 })
 export class SharedModule {}

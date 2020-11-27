@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TemplateCurso } from 'src/app/models/template-curso.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { TemplatecursoService } from 'src/app/services/templatecurso.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-abm-templatecurso',
   templateUrl: './abm-templatecurso.component.html',
-  styleUrls: ['./abm-templatecurso.component.scss']
+  styleUrls: ['./abm-templatecurso.component.scss'],
 })
 export class AbmTemplatecursoComponent implements OnInit {
-
   templateCursoForm: FormGroup;
   templateCursoId: string;
 
@@ -29,10 +30,11 @@ export class AbmTemplatecursoComponent implements OnInit {
   }
 
   constructor(
-    private usuarioService: UsuarioService,
+    private autenticacionService: AutenticacionService,
     private templateCursoService: TemplatecursoService,
     private fb: FormBuilder,
     private router: Router,
+    private location: Location,
     private route: ActivatedRoute
   ) {
     this.buildForm();
@@ -66,7 +68,8 @@ export class AbmTemplatecursoComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate(['/administrador/templatecurso']);
+
+    this.location.back();
   }
 
   guardarTemplateCurso(event: Event) {
@@ -76,32 +79,51 @@ export class AbmTemplatecursoComponent implements OnInit {
       return;
     }
     const usuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
-    const templateCurso = new TemplateCurso(this.nombre.value, this.descripcion.value);
-    console.log(' JSON usuarioSesion', JSON.parse(localStorage.getItem('usuarioSesion')));
+    const templateCurso = new TemplateCurso(
+      this.nombre.value,
+      this.descripcion.value
+    );
+    console.log(
+      ' JSON usuarioSesion',
+      JSON.parse(localStorage.getItem('usuarioSesion'))
+    );
+
     templateCurso.descripcion = this.descripcion.value;
     templateCurso.nombre = this.nombre.value;
     templateCurso.templateCursoId = this.templateCursoId;
 
-    this.modo === 'INS' ? this.crearTemplateCurso(templateCurso) : this.editarTemplateCurso(templateCurso);
+    this.modo === 'INS'
+      ? this.crearTemplateCurso(templateCurso)
+      : this.editarTemplateCurso(templateCurso);
   }
 
+  private crearTemplateCurso = (templateCurso: TemplateCurso) =>
+    this.templateCursoService
+      .createTemplateCurso(templateCurso)
+      .subscribe(() => {
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se creó el template curso ${this.nombre.value} exitosamente.`
+        ).then();
+        this.router.navigate([
+          `/${this.autenticacionService
+            .getRolSesion()
+            .toLocaleLowerCase()}/templatecurso`,
+        ]);
+      });
 
-private crearTemplateCurso = (templateCurso: TemplateCurso) =>
-  this.templateCursoService.createTemplateCurso(templateCurso).subscribe(() => {
-    mensajeConfirmacion(
-      'Excelente!',
-      `Se creó el template curso ${this.nombre.value} exitosamente.`
-    ).then();
-    this.router.navigate(['/administrador/templatecurso']);
-  }) 
-
-
-private editarTemplateCurso = (templateCurso: TemplateCurso) =>
-  this.templateCursoService.updateTemplateCurso(templateCurso).subscribe(() => {
-    mensajeConfirmacion(
-      'Excelente!',
-      `Se modificó el template curso ${this.nombre.value} exitosamente.`
-    ).then();
-    this.router.navigate(['/administrador/templatecurso']);
-  })
+  private editarTemplateCurso = (templateCurso: TemplateCurso) =>
+    this.templateCursoService
+      .updateTemplateCurso(templateCurso)
+      .subscribe(() => {
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se modificó el template curso ${this.nombre.value} exitosamente.`
+        ).then();
+        this.router.navigate([
+          `/${this.autenticacionService
+            .getRolSesion()
+            .toLocaleLowerCase()}/templatecurso`,
+        ]);
+      });
 }

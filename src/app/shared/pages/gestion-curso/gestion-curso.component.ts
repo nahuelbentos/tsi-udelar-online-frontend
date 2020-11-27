@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Curso } from 'src/app/models/curso.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
@@ -46,6 +47,6 @@ export class GestionCursoComponent implements OnInit {
     this.cursoService.getCursos().subscribe((cursos) => {
       this.cursos = cursos.map((curso) => ({ ...curso, id: curso.cursoId }));
       this.createComponent = true;
-    });
+    }); 
   }
 }

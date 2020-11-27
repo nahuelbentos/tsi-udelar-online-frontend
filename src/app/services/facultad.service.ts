@@ -14,6 +14,8 @@ export class FacultadService {
     return this.http.post(this.baseUrl, facultad);
   }
 
+  updateFacultad = (facultad: Facultad) => this.http.put(`${this.baseUrl}/${facultad.facultadId}`, facultad);
+
   getFacultades() {
     return this.http.get<Facultad[]>(this.baseUrl);
   }

@@ -4,5 +4,7 @@
 [tipoSingular]="tipoSingular" 
 [tituloSingular]="tituloSingular" 
 [tituloPlural]="tituloPlural"
-  (eliminar)="onEliminar($event)" *ngIf="createComponent">
+[actions]="actions" 
+[actionsHeader]="actionsHeader" 
+  (eliminar)="onEliminar($event)" >
 </app-gestion-custom>

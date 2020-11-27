@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Actions } from 'src/app/models/actions.model';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   tipo: string;
+   actionsHeader = [{}];
+   actions = [{}];
   constructor() { }
 
   ngOnInit(): void {

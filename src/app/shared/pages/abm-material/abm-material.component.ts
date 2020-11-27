@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -44,7 +45,8 @@ export class AbmMaterialComponent implements OnInit {
     private materialService: MaterialService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
@@ -77,9 +79,7 @@ export class AbmMaterialComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/material`,
-    ]);
+    this.location.back();
   }
   onUploadClicked(event) {
     console.log('onUploadClicked:: ', event);
@@ -143,7 +143,7 @@ export class AbmMaterialComponent implements OnInit {
         `Se creó el material ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/material`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/material`,
       ]);
     });
 
@@ -154,7 +154,7 @@ export class AbmMaterialComponent implements OnInit {
         `Se modificó el material ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/material`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/material`,
       ]);
     });
 }

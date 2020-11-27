@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Actions } from 'src/app/models/actions.model';
 import { Columna } from 'src/app/models/columna.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
@@ -23,6 +24,9 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
 
   columnas: string[] = ['nombres', 'apellidos', 'email', 'actions'];
 
+  @Input() actions: Actions[] = null;
+  @Input() actionsHeader: Actions[] = null;
+
   constructor(
     private usuarioService: UsuarioService,
     private auth: AutenticacionService
@@ -46,7 +50,7 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
             this.usuarios = usuarios;
             this.createComponent = true;
           })
-      : this.usuarioService.getUsuariosByRol( this.rol ).subscribe((usuarios) => {
+      : this.usuarioService.getUsuariosByRol(this.rol).subscribe((usuarios) => {
           this.usuarios = usuarios;
           this.createComponent = true;
         });

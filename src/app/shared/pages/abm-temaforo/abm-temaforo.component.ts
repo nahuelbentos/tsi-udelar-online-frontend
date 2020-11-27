@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TemaForo } from 'src/app/models/temaforo.model';
 import { TemaForoService } from 'src/app/services/tema-foro.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { Location } from '@angular/common';
 
 
 enum PrintMedia {
@@ -16,12 +17,11 @@ enum PrintMedia {
 @Component({
   selector: 'app-abm-temaforo',
   templateUrl: './abm-temaforo.component.html',
-  styleUrls: ['./abm-temaforo.component.scss']
+  styleUrls: ['./abm-temaforo.component.scss'],
 })
 export class AbmTemaForoComponent implements OnInit {
   temaforoForm: FormGroup;
   temaforoId: string;
-
 
   get asunto() {
     return this.temaforoForm.get('asunto');
@@ -39,24 +39,21 @@ export class AbmTemaForoComponent implements OnInit {
     return this.temaforoForm.get('subrscripcionADiscusion');
   }
 
-
   constructor(
     private temaforoService: TemaForoService,
     private fb: FormBuilder,
     private router: Router,
+    private location: Location,
     private route: ActivatedRoute
   ) {
     this.buildForm();
   }
 
-
   ngOnInit(): void {
     // this.route.params.subscribe(params => {
-
     // });
     // if (id) {
     //   this.temaforoService.getById(id).suscribe(temaforo => {
-
     //     this.asunto.setValue(temaforo.asunto);
     //     this.mensaje.setValue(temaforo.mensaje);
     //     this.file.setValue(temaforo.file);
@@ -80,7 +77,8 @@ export class AbmTemaForoComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate(['/docente/temaforo']);
+
+    this.location.back();
   }
 
   guardarTemaForo(event: Event) {
@@ -103,8 +101,8 @@ export class AbmTemaForoComponent implements OnInit {
         'Excelente!',
         `Se creó el temaforo ${this.asunto.value} exitosamente.`
       ).then();
+
       this.router.navigate(['gestion-temaforo']);
     });
   }
-
 }

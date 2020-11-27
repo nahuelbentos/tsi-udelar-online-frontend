@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RutasNav } from 'src/app/models/rutas-nav.interface';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-nav-administrador-facultad',
@@ -7,6 +8,7 @@ import { RutasNav } from 'src/app/models/rutas-nav.interface';
   styleUrls: ['./nav-administrador-facultad.component.scss'],
 })
 export class NavAdministradorFacultadComponent implements OnInit {
+  color = `#${this.autenticacionService.getUser().facultad.colorCodigo}`;
   rol = 'administrador facultad';
   routes: RutasNav[] = [
     {
@@ -18,7 +20,7 @@ export class NavAdministradorFacultadComponent implements OnInit {
       titulo: 'Usuarios',
     },
     {
-      link: 'template-curso',
+      link: 'templatecurso',
       titulo: 'Templates de Cursos',
     },
     {
@@ -40,9 +42,9 @@ export class NavAdministradorFacultadComponent implements OnInit {
     {
       link: 'reportes',
       titulo: 'Reportes',
-    }
+    },
   ];
-  constructor() {}
+  constructor(private autenticacionService: AutenticacionService) {}
 
   ngOnInit(): void {}
 }

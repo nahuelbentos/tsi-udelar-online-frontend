@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -43,7 +44,8 @@ export class AbmCarreraComponent implements OnInit {
     private facultadService: FacultadService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
@@ -82,9 +84,7 @@ export class AbmCarreraComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
-    ]);
+    this.location.back();
   }
 
   guardarCarrera(event: Event) {
@@ -113,7 +113,7 @@ export class AbmCarreraComponent implements OnInit {
         `Se creó el carrera ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/carrera`,
       ]);
     });
 
@@ -124,7 +124,7 @@ export class AbmCarreraComponent implements OnInit {
         `Se modificó el carrera ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/carrera`,
       ]);
     });
 }

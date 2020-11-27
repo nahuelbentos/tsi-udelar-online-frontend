@@ -195,7 +195,7 @@ export class AbmUsuarioComponent implements OnInit {
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
       ]);
     });
   }
@@ -204,10 +204,10 @@ export class AbmUsuarioComponent implements OnInit {
     this.usuarioService.updateUsuario(usuario).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
+        `Se modifico el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
       ]);
     });
   }

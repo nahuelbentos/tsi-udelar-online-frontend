@@ -18,7 +18,9 @@
     <div class="box">
       <ng-container [ngSwitch]="tipo">
         <ng-container *ngSwitchCase="'facultades'">
-          Aca Va el listado de facultades
+          
+          <app-gestion-facultad [actions]="actions" [actionsHeader]="actionsHeader" ></app-gestion-facultad>
+
         </ng-container>
         <ng-container *ngSwitchCase="'curso-facultades'">
           Aca Va el listado de cursos por facultades
