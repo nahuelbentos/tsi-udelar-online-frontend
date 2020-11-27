@@ -1,1 +1,15 @@
-<p>test-components works!</p>
+<button (click)="newControl()"> Agregar Pregunta</button>
+<ng-container>
+  <mat-form-field class="example-full-width"*ngFor="let control of controls; let i=index" >
+    <mat-label>Pregunta {{i}} </mat-label>
+    <input type="email" matInput [formControl]="control" placeholder="Ex. pat@example.com">
+    
+  </mat-form-field>
+
+</ng-container>
+
+
+
+<app-table-dynamic-custom [dataInput]="carreras" [dataOutput]="carrerasOutput" [columns]="columnas"
+  tipoSingular="carrera" tipoPlural="carreras" (setDataOutput)="onGetDataOutput($event)" *ngIf="createComponent">
+</app-table-dynamic-custom>

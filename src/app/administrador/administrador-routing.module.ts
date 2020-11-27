@@ -205,6 +205,11 @@ const routes: Routes = [
         component: GestionFacultadComponent,
         data: { titulo: 'Información estadística de facultades' },
       },
+      {
+        path: 'test',
+        component: TestComponentsComponent,
+        data: { titulo: 'test' },
+      },
     ],
   },
 ];
