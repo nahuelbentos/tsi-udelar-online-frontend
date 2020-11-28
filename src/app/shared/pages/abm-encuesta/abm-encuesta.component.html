@@ -36,22 +36,24 @@
               </div>
             </div>
 
+            <button mat-raised-button (click)="agregarPregunta()">Agregar pregunta</button>
             <div class="row">
-              <div class="col-xs-6">
+              <div class="col-xs-12">
                 <div class="box">
-                    <mat-checkbox formControlName="esAdministradorFacultad">Es administrador facultad?
-                    </mat-checkbox>
+                  <mat-form-field class="full-width"*ngFor="let pregunta of preguntas; let i=index" >
+                    <mat-label>Pregunta {{i+1}} </mat-label>
+                    <input matInput [formControl]="pregunta">
+                  </mat-form-field>
                 </div>
               </div>
             </div>
-
 
           </mat-card-content>
           <mat-card-actions align="end">
 
 
             <button mat-raised-button color="primary" type="button" [disabled]="encuestaForm.invalid"
-              (click)="guardarEncuesta($event)" (keyup.enter)="guardarEncuesta($event)">Guardar Encuesta</button>
+            (click)="guardarEncuesta($event)" (keyup.enter)="guardarEncuesta($event)">Guardar Encuesta</button>
             <button mat-raised-button (click)="onNoClick()">Cancelar</button>
           </mat-card-actions>
         </form>
