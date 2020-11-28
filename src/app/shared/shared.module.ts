@@ -52,6 +52,7 @@ import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/ges
 import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
 import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
+import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
 
 
 @NgModule({
@@ -96,6 +97,7 @@ import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/selec
     TableDynamicCustomComponent,
     TestComponentsComponent,
     SeleccionarUsuarioComponent,
+    AutocompleteCustomComponent,
   ],
   exports: [
     HeaderComponent,
@@ -107,6 +109,7 @@ import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/selec
     GestionCarreraComponent,
     GestionCursoComponent,
     SeleccionarUsuarioComponent,
+    AutocompleteCustomComponent,
   ],
   imports: [
     CommonModule,
