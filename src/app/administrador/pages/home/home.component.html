@@ -8,7 +8,7 @@
         <mat-button-toggle (click)="tipo = 'facultades-estadisticas'">Información estadística de facultades
         </mat-button-toggle>
       </mat-button-toggle-group>
-      
+
     </div>
   </div>
 </div>
@@ -18,12 +18,12 @@
     <div class="box">
       <ng-container [ngSwitch]="tipo">
         <ng-container *ngSwitchCase="'facultades'">
-          
+
           <app-gestion-facultad [actions]="actions" [actionsHeader]="actionsHeader" ></app-gestion-facultad>
 
         </ng-container>
         <ng-container *ngSwitchCase="'curso-facultades'">
-          Aca Va el listado de cursos por facultades
+          <app-gestion-curso [actions]="actions" [actionsHeader]="actionsHeader" ></app-gestion-curso>
         </ng-container>
         <ng-container *ngSwitchCase="'curso-estadisticas'">
           Aca Va Información estadística de cursos

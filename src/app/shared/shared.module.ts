@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
 import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
 
@@ -102,6 +102,7 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     GestionUsuarioComponent,
     AbmUsuarioComponent,
     GestionFacultadComponent,
+    GestionCursoComponent,
   ],
   imports: [
     CommonModule,

@@ -19,17 +19,17 @@ export class GestionFacultadComponent implements OnInit {
 
   @Input() actionsHeader  = null; //[{}];
   @Input() actions  = null; //[{}];
- 
+
 
   constructor(private facultadService: FacultadService,
-    private autenticacionService: AutenticacionService) {
+              private autenticacionService: AutenticacionService) {
     this.getFacultades();
   }
 
   ngOnInit(): void {}
 
   onEliminar(data: EliminarRow) {
-    if (data.elimino) { 
+    if (data.elimino) {
       // Llamamos al backend para eliminar el registro.
       this.facultadService
         .deleteFacultad(data.id)
@@ -43,7 +43,7 @@ export class GestionFacultadComponent implements OnInit {
         this.facultades = facultades.map((facultad) => ({
           ...facultad,
           id: facultad.facultadId,
-        })); 
+        }));
       })
       : this.facultades = [this.usuarioSesion.facultad];
   }

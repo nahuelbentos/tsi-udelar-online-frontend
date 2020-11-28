@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Curso } from 'src/app/models/curso.model';
@@ -24,6 +24,9 @@ export class GestionCursoComponent implements OnInit {
       ? ['nombre', 'descripcion', 'modalidad', 'actions']
       : ['nombre', 'descripcion', 'modalidad'];
 
+  @Input() actionsHeader  = null //[{}];
+  @Input() actions  = null; //[{}];
+
   constructor(
     private cursoService: CursoService,
     private autenticacionService: AutenticacionService
@@ -47,6 +50,6 @@ export class GestionCursoComponent implements OnInit {
     this.cursoService.getCursos().subscribe((cursos) => {
       this.cursos = cursos.map((curso) => ({ ...curso, id: curso.cursoId }));
       this.createComponent = true;
-    }); 
+    });
   }
 }
