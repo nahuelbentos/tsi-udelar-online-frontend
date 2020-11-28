@@ -3,6 +3,7 @@ import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dial
 import { SeleccionarRow } from 'src/app/models/seleccionar-row.interface';
 import { TemplateCurso } from 'src/app/models/template-curso.model';
 import { CursoService } from 'src/app/services/curso.service';
+import { TemplatecursoService } from 'src/app/services/templatecurso.service';
 
 @Component({
   selector: 'app-seleccionar-template-curso',
@@ -15,7 +16,7 @@ export class SeleccionarTemplateCursoComponent  {
   columnas = ['actions', 'nombre', 'descripcion'];
 
   constructor(
-    private templateCursoService: CursoService,
+    private templateCursoService: TemplatecursoService,
     public dialogRef: MatDialogRef<any>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -26,7 +27,7 @@ export class SeleccionarTemplateCursoComponent  {
   onSeleccionar(data: SeleccionarRow) {
     if (data.selected) {
       this.templateCursoService
-        .getCursoById(data.id)
+        .getTemplateCursoById(data.id)
         .subscribe((curso) => this.dialogRef.close(curso));
     }
     this.dialogRef.close();

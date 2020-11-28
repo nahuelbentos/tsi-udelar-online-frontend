@@ -22,6 +22,10 @@ export class UsuarioService {
   getUsuariosByRol = (rol: string) => this.http.get<Usuario[]>(`${this.baseUrl}/rol/${rol}`);
   
   getUsuariosByTipo = (tipo: string) => this.http.get<Usuario[]>(`${this.baseUrl}/tipo/${tipo}`);
+  
+  getDocentesByCurso = (id: string) => this.http.get<Usuario[]>(`${this.baseUrl}/docente/curso/${id}`);
+
+  getDocentesByFacultad = (id: string) => this.http.get<Usuario[]>(`${this.baseUrl}/docente/facultad/${id}`);
 
   getUsuarioById = (usuarioId: string) => this.http.get<Usuario>(`${this.baseUrl}/id/${usuarioId}`);
 

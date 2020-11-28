@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private toast: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log('data:', data);
+    
 
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       .login(this.email.value, this.password.value)
       .subscribe(
         (usuarioSesion: UsuarioSesion) => {
-          console.log('res: ', usuarioSesion);
+          
           const color = usuarioSesion.facultad.colorCodigo
             ? `#${usuarioSesion.facultad.colorCodigo}`
             : '#00a9f4';

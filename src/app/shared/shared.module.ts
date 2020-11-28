@@ -51,6 +51,7 @@ import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-c
 import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
 import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
+import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     PerfilUsuarioComponent,
     TableDynamicCustomComponent,
     TestComponentsComponent,
+    SeleccionarUsuarioComponent,
   ],
   exports: [
     HeaderComponent,
@@ -104,6 +106,7 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     GestionFacultadComponent,
     GestionCarreraComponent,
     GestionCursoComponent,
+    SeleccionarUsuarioComponent,
   ],
   imports: [
     CommonModule,

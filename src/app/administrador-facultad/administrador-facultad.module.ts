@@ -8,16 +8,19 @@ import { NavAdministradorFacultadComponent } from './components/nav-administrado
 import { SharedModule } from '../shared/shared.module';
 import { DocentesComponent } from './pages/docentes/docentes.component';
 import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
-import { CursosComponent } from './pages/cursos/cursos.component';
-import { CarrerasComponent } from './pages/carreras/carreras.component';
 
+import { CarrerasComponent } from './pages/carreras/carreras.component';
+import { CursosComponent } from './pages/cursos/cursos.component';
 
 @NgModule({
-  declarations: [HomeComponent, NavAdministradorFacultadComponent, DocentesComponent, AbmDocenteComponent, CursosComponent, CarrerasComponent],
-  imports: [
-    CommonModule,
-    AdministradorFacultadRoutingModule,
-    SharedModule
-  ]
+  declarations: [
+    HomeComponent,
+    NavAdministradorFacultadComponent,
+    DocentesComponent,
+    AbmDocenteComponent,
+    CursosComponent,
+    CarrerasComponent,
+  ],
+  imports: [CommonModule, AdministradorFacultadRoutingModule, SharedModule],
 })
-export class AdministradorFacultadModule { }
+export class AdministradorFacultadModule {}

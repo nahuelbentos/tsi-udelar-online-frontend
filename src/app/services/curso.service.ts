@@ -31,4 +31,8 @@ export class CursoService {
   deleteCurso = (cursoId: string) => this.http.delete(`${this.baseUrl}/${cursoId}`);
 
   getTemplateCursos = () => this.http.get<TemplateCurso[]>(`${environment.baseUrl}/templateCurso`);
+
+  addDocente = (cursoId: string, docenteId: string) => this.http.post(`${this.baseUrl}/docente`, { cursoId, docenteId });
+
+  // removeDocente = (cursoId: string, docenteId: string) => this.http.delete(`${this.baseUrl}/docente/${cursoId}/${docenteId}`);
 }

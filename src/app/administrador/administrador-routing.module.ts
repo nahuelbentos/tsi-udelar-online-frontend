@@ -35,6 +35,7 @@ import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
 import { HomeComponent } from './pages/home/home.component';
+import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
 
 const routes: Routes = [
   {
@@ -46,7 +47,7 @@ const routes: Routes = [
     children: [
       {
         path: 'curso',
-        component: GestionCursoComponent,
+        component: GestionarCursosComponent,
         data: { titulo: 'Gestión de Cursos' },
       },
 

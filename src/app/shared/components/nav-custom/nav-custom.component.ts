@@ -39,7 +39,7 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    
     this.color = changes.color.currentValue;
   }
 

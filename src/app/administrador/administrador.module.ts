@@ -8,10 +8,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
+import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, NavAdministradorComponent],
+  declarations: [HomeComponent, NavAdministradorComponent, GestionarCursosComponent],
   imports: [
     CommonModule,
     AdministradorRoutingModule,

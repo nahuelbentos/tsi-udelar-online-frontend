@@ -33,8 +33,7 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('tipo::', this.tipo);
-
+    
     this.getUsuarios();
   }
 

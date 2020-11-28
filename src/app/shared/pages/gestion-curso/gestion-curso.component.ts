@@ -35,12 +35,9 @@ export class GestionCursoComponent implements OnInit {
   constructor(
     private cursoService: CursoService,
     private autenticacionService: AutenticacionService
-  ) {
-    console.log('1) Tipoooo::: ', this.tipo);
-  }
+  ) {}
 
   ngOnInit(): void {
-    console.log('2) Tipoooo::: ', this.tipo);
     this.getCursos();
   }
 
@@ -55,7 +52,7 @@ export class GestionCursoComponent implements OnInit {
   }
 
   getCursos() {
-    console.log('3) Tipoooo::: ', this.tipo);
+    
 
     switch (this.tipo) {
       case TipoUsuario.Administrador:
@@ -63,8 +60,7 @@ export class GestionCursoComponent implements OnInit {
 
         break;
       case TipoUsuario.AdministradorFacultad: // By Facultad
-        console.log('facultad:: ', this.usuarioSesion.facultad.facultadId);
-
+    
         this.cursoService
           .getCursosByFacultad(this.usuarioSesion.facultad.facultadId)
           .subscribe((cursos) => {
@@ -77,20 +73,23 @@ export class GestionCursoComponent implements OnInit {
         break;
 
       default:
-        // By Usuario
-        this.cursoService
-          .getCursosByUsuario(this.usuarioSesion.id)
-          .subscribe((cursos) => {
-            this.cursos = cursos.map((curso) => ({
-              ...curso,
-              id: curso.cursoId,
-            }));
-          });
+        this.usuarioSesion.tipo === TipoUsuario.Administrador
+          ? this.getCursosAdminstrador()
+          : // By Usuario
+            this.cursoService
+              .getCursosByUsuario(this.usuarioSesion.id)
+              .subscribe((cursos) => {
+                this.cursos = cursos.map((curso) => ({
+                  ...curso,
+                  id: curso.cursoId,
+                }));
+              });
         break;
     }
   }
 
   getCursosAdminstrador() {
+    
     if (this.facultadId) {
       this.cursoService
         .getCursosByFacultad(this.facultadId)
