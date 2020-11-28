@@ -16,10 +16,10 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 export class CarrerasComponent implements OnInit {
   actions: Actions[] = [];
 
-  constructor( 
+  constructor(
     public dialog: MatDialog,
     private carreraService: CarreraService
-     ) {}
+  ) {}
 
   ngOnInit(): void {
     this.actions = [
@@ -45,7 +45,7 @@ export class CarrerasComponent implements OnInit {
         icon: 'add',
       },
       {
-        tooltip: `Eliminar carrera`,
+        tooltip: `Quitar curso`,
         callback: this.quitarCurso,
         className: 'button-eliminar',
         tooltipClassName: 'tooltip-red',
@@ -55,43 +55,52 @@ export class CarrerasComponent implements OnInit {
   }
 
   agregarCurso = (carrera: Carrera) => {
-    
     const dialogRef = this.dialog.open(SeleccionarCursoComponent, {
       height: 'auto',
       width: '700px',
       data: {
         carrera,
-      }
+      },
     });
 
     dialogRef
       .afterClosed()
       .subscribe((curso: Curso) => this.addCurso(carrera, curso));
-  }
+  };
 
-  quitarCurso = (carrera: Carrera) => { 
+  quitarCurso = (carrera: Carrera) => {
     const dialogRef = this.dialog.open(SeleccionarCursoComponent, {
       height: 'auto',
       width: '700px',
       data: {
         carrera,
-        remover: true
-      }
+        remover: true,
+      },
     });
     dialogRef
       .afterClosed()
       .subscribe((curso) => this.removeCurso(carrera, curso));
-  }
+  };
 
-  addCurso( carrera: Carrera, curso: Curso) {
+  addCurso(carrera: Carrera, curso: Curso) {
     this.carreraService
       .addCurso(carrera.carreraId, curso.cursoId)
-      .subscribe((res) => mensajeConfirmacion('Excelente!', `Se ha agregado el curso ${curso.nombre} a la carrera ${ carrera.nombre }, exitosamente!`));
+      .subscribe((res) =>
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se ha agregado el curso ${curso.nombre} a la carrera ${carrera.nombre}, exitosamente!`
+        )
+      );
   }
 
-  removeCurso( carrera: Carrera, curso: Curso) {
+  removeCurso(carrera: Carrera, curso: Curso) {
     this.carreraService
       .removeCurso(carrera.carreraId, curso.cursoId)
-      .subscribe((res) => mensajeConfirmacion('Excelente!', `Se ha quitado el curso ${curso.nombre} a la carrera ${ carrera.nombre }, exitosamente!`));
+      .subscribe((res) =>
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se ha quitado el curso ${curso.nombre} a la carrera ${carrera.nombre}, exitosamente!`
+        )
+      );
   }
 }

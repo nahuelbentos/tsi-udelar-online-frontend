@@ -183,13 +183,15 @@ export class AbmCursoComponent implements OnInit {
     curso.descripcion = this.descripcion.value;
     curso.modalidad = this.modalidadCurso.value;
     console.log(this.cursoForm.value);
-    
+
     curso.requiereMatriculacion = this.requiereMatriculacion.value
       ? this.requiereMatriculacion.value
       : false;
     curso.salaVirtual = this.salaVirtual.value;
     const templateCurso: TemplateCurso = this.templateCurso.value;
-    curso.templateCursoId = templateCurso ? templateCurso.templateCursoId : null;
+    curso.templateCursoId = templateCurso
+      ? templateCurso.templateCursoId
+      : null;
 
     this.modo === 'INS' ? this.crearCurso(curso) : this.editarCurso(curso);
   }
@@ -230,6 +232,7 @@ export class AbmCursoComponent implements OnInit {
       height: 'auto',
       width: '700px',
     });
+
     dialogRef.afterOpened().subscribe(() => trigger.closePanel());
     dialogRef.afterClosed().subscribe((templateCurso: TemplateCurso) => {
       console.log(templateCurso);
