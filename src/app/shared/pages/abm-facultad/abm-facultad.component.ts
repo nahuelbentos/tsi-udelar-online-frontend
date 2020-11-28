@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -16,6 +16,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { Color } from '@angular-material-components/color-picker';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { _MatAutocompleteBase } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-abm-facultad',
@@ -27,6 +28,7 @@ export class AbmFacultadComponent implements OnInit {
   facultadForm: FormGroup;
   facultadId: string;
   modo: string;
+
 
   get nombre() {
     return this.facultadForm.get('nombre');
@@ -109,9 +111,6 @@ export class AbmFacultadComponent implements OnInit {
     facultad.dominioMail = this.dominioMail.value;
     facultad.colorCodigo = this.colorCodigo.value.hex;
 
-    console.log('facultad:: ', facultad);
-    console.log('this.usuarioLogueado.facultad:: ', this.usuarioLogueado.facultad);
-    
     if (
       this.usuarioLogueado.facultad.facultadId === facultad.facultadId &&
       this.usuarioLogueado.facultad.colorCodigo !== facultad.colorCodigo

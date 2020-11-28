@@ -52,20 +52,13 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log('columns:: ', this.displayedColumns);
-    console.log('dataInput:: ', this.dataInput);
-    console.log('tituloPlural:: ', this.tituloPlural);
-    console.log('tipoSingular:: ', this.tipoSingular);
-
-    this.setDataSource();
+   this.setDataSource();
   }
 
   buttonClick = (fun) => this.callback.emit(fun);
 
   ngOnChanges(value: SimpleChanges) {
-    console.log('value: ', value);
-    console.log('this.actionsHeader: ', this.actionsHeader);
-
+    
     this.displayedColumns =
       value.displayedColumns && value.displayedColumns.currentValue
         ? value.displayedColumns.currentValue
@@ -107,7 +100,6 @@ export class GestionCustomComponent implements OnInit, OnChanges {
         ? value.dataInput.currentValue
         : this.dataInput;
 
-    console.log('this.actionsHeader: ', this.actionsHeader);
     this.setDataSource();
   }
 
@@ -154,7 +146,7 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   ];
 
   abm(modo: string, rowData: any) {
-    console.log('rowData:: ', rowData);
+    
 
     switch (modo) {
       case 'INS':
@@ -162,13 +154,13 @@ export class GestionCustomComponent implements OnInit, OnChanges {
         const ruta = `/${this.tipoSingular
           .toLocaleLowerCase()
           .trim()}/abm-${this.tipoSingular.toLocaleLowerCase().trim()}`;
-        console.log(ruta);
+        
         const params: { modo: string; id?: string } = { modo };
 
-        console.log('rowData:: ', rowData);
+        
         // tslint:disable-next-line: curly
         if (rowData && rowData.id) params.id = rowData.id;
-        console.log('params:: ', params);
+        
 
         this.router.navigate(
           [`abm-${this.tipoSingular.toLocaleLowerCase().trim()}`],

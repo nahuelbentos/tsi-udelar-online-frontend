@@ -90,17 +90,7 @@ export class AbmComunicadoComponent implements OnInit {
       this.descripcion.value,
       this.url.value
     );
-    console.log(
-      ' JSON usuarioSesion',
-      JSON.parse(localStorage.getItem('usuarioSesion'))
-    );
-    console.log(
-      'usuarioSesion',
-      localStorage.getItem('usuarioSesion').toString()
-    );
-    console.log('usuarioSesion variable ', usuarioSesion.toString());
-    console.log('usuarioSesion.CI ', usuarioSesion.ci);
-    console.log('usuarioSesion.userName ', usuarioSesion.userName);
+    
     comunicado.usuarioEmail = usuarioSesion.email;
     comunicado.descripcion = this.descripcion.value;
     comunicado.nombre = this.nombre.value;

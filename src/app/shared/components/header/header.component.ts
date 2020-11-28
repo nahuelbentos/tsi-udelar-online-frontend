@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
       if (usuarioSesion) {
         this.autenticacionService.setUser(usuarioSesion);
         this.autenticacionService.setToken(usuarioSesion.token);
-        console.log(usuarioSesion.tipo);
+        
         
         const tipo = ( usuarioSesion.tipo === TipoUsuario.AdministradorFacultad)
             ? 'administrador-facultad'
