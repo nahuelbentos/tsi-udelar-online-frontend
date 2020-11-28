@@ -13,6 +13,10 @@ import { SeleccionarTemplateCursoComponent } from '../../dialogs/seleccionar-tem
   styleUrls: ['./autocomplete-custom.component.scss'],
 })
 export class AutocompleteCustomComponent implements OnInit, OnChanges {
+  /*
+  Tener encuenta que: si no tiene una propiedad "nombre" el item en la fun "selectItem" no va a funcionar, hay que pasarselo a prepo.
+
+  */
   form: FormGroup;
 
   filteredData: Observable<{}[]>;
@@ -30,9 +34,10 @@ export class AutocompleteCustomComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder, public dialog: MatDialog) {
     this.buildForm();
   }
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log('changes:: ', changes);
-    
+
     if (changes.data) {
       // this.data = changes.data.currentValue;
       this.setData(changes.data.currentValue);
@@ -83,10 +88,13 @@ export class AutocompleteCustomComponent implements OnInit, OnChanges {
 
     dialogRef.afterOpened().subscribe(() => trigger.closePanel());
 
-    dialogRef.afterClosed().subscribe((item: any) => {
-      this.controlData.setValue(item);
-      this.sendItem.emit( item );
-    });
+    dialogRef.afterClosed().subscribe((item: any) => this.selectItem(item));
+  }
+
+  selectItem(item: any) {
+    const aux = { ...item, descripcionAutocomplete: item.nombre };
+    this.controlData.setValue(aux);
+    this.sendItem.emit(item);
   }
 
   displayFn(item: any): string {
