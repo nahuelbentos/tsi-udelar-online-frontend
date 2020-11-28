@@ -18,7 +18,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 export class AbmMensajetemaComponent implements OnInit {
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   mensajeTemaForm: FormGroup;
-  mensajeTemaId: string;
+  mensajeId: string;
   temasForos: TemaForo[] = [];
   primeraVez = false;
   modo: string;
@@ -59,13 +59,16 @@ export class AbmMensajetemaComponent implements OnInit {
 
   ngOnInit(): void {
     this.temaForoService.getTemasForos().subscribe((temasForos) => (this.temasForos = temasForos));
+    
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
-      this.mensajeTemaId = param.id;
-
+      this.mensajeId = param.id;
+      console.log('param ', param);
+      console.log('param.id ', param.id);
+      console.log('this.mensajeId ', this.mensajeId);
       if (param.id) {
         this.mensajeTemaService
-          .getMensajeTemaById(this.mensajeTemaId)
+          .getMensajeTemaById(this.mensajeId)
           .subscribe((mensajeTema) => this.setValuesOnForm(mensajeTema));
       }
     });
@@ -75,6 +78,9 @@ export class AbmMensajetemaComponent implements OnInit {
     this.contenido.setValue(mensajeTema.contenido);
     this.mensajeBloqueado.setValue(mensajeTema.mensajeBloqueado);
     this.temaForo.setValue(mensajeTema.temaForoId);
+    console.log('this.contenido ', this.contenido);
+    console.log('this.mensajeBloqueado ', this.mensajeBloqueado);
+    console.log('this.temaForo ', this.temaForo);
   }
 
   onNoClick(): void {
@@ -90,23 +96,20 @@ export class AbmMensajetemaComponent implements OnInit {
       return;
     }
 
-    const usuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
     const mensajeTema = new MensajeTema(this.contenido.value);
-    console.log(' JSON usuarioSesion', JSON.parse(localStorage.getItem('usuarioSesion')));
-    console.log('usuarioSesion', localStorage.getItem('usuarioSesion').toString());
-    console.log('usuarioSesion variable ', usuarioSesion.toString());
-    console.log('usuarioSesion.CI ', usuarioSesion.ci);
-    console.log('usuarioSesion.userName ', usuarioSesion.userName);
-    mensajeTema.usuarioId = this.usuarioLogueado.token;
+    mensajeTema.emisorId = this.usuarioLogueado.id;
     mensajeTema.contenido = this.contenido.value;
     mensajeTema.mensajeBloqueado = this.mensajeBloqueado.value ? this.mensajeBloqueado.value : false;
     mensajeTema.temaForoId = this.temaForo.value.temaForoId;
     mensajeTema.fechaDeEnviado = new Date();
-    console.log('mensajeTema ', mensajeTema.contenido);
-    console.log('mensajeTema ', mensajeTema.usuarioId);
-    console.log('mensajeTema ', mensajeTema.mensajeBloqueado);
-    console.log('mensajeTema ', mensajeTema.temaForoId);
-    console.log('mensajeTema ', mensajeTema.fechaDeEnviado);
+    mensajeTema.mensajeId = this.mensajeId;
+    console.log('this.usuarioLogueado ', this.usuarioLogueado);
+    console.log('mensajeTema.contenido ', mensajeTema.contenido);
+    console.log('mensajeTema.usuarioId ', mensajeTema.emisorId);
+    console.log('mensajeTema.mensajeBloqueado ', mensajeTema.mensajeBloqueado);
+    console.log('mensajeTema.temaForoId ', mensajeTema.temaForoId);
+    console.log('mensajeTema.fechaDeEnviado ', mensajeTema.fechaDeEnviado);
+    console.log('mensajeTema ' , mensajeTema);
     this.modo === 'INS' ? this.crearMensajeTema(mensajeTema) : this.editarMensajeTema(mensajeTema);
   }
 

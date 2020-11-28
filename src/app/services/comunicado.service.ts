@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Comunicado } from '../models/Comunicado';
+import { ComunicadoFacultad } from '../models/comunicado-facultad';
 
 @Injectable({
   providedIn: 'root'
@@ -28,4 +29,8 @@ export class ComunicadoService {
 
   getComunicadoById = (comunicadoId: string) =>
     this.http.get<Comunicado>(`${this.baseUrl}/${comunicadoId}`)
+
+  publicarComunicadoFacultad(comunicadoFacultad: ComunicadoFacultad) {
+    return this.http.post(`${this.baseUrl}/facultad`, comunicadoFacultad);
+  }
 }

@@ -61,6 +61,10 @@ export class NavAdministradorComponent implements OnInit {
       link: 'test',
       titulo: 'Tests',
     },
+    {
+      link: 'publicar-comunicado-facultad',
+      titulo: 'Publicar Comunicado en Facultad',
+    },
   ];
   constructor() {}
   ngOnInit(): void {}

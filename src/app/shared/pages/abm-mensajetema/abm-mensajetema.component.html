@@ -47,7 +47,7 @@
 
                     <mat-label>Tema Foro</mat-label>
                     <mat-select formControlName="temaForo" required>
-                      <mat-option *ngFor="let key of temasForos" [value]="key"> {{key.asunto}} </mat-option>
+                      <mat-option *ngFor="let tema of temasForos" [value]="tema.temaForoId"> {{tema.asunto}} </mat-option>
                     </mat-select>
 
                     <mat-error *ngIf="temaForo.hasError('required')">

@@ -36,6 +36,8 @@ import { NavAdministradorComponent } from './components/nav-administrador/nav-ad
 import { GestionMensajetemaComponent } from '../shared/pages/gestion-mensajetema/gestion-mensajetema.component';
 import { AbmMensajetemaComponent } from '../shared/pages/abm-mensajetema/abm-mensajetema.component';
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
+import { AbmPublicarcomunicadoComponent } from '../shared/pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
+import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
 
 const routes: Routes = [
   {
@@ -193,6 +195,11 @@ const routes: Routes = [
         path: 'test-components',
         component: TestComponentsComponent,
         data: { titulo: 'Test components' },
+      },
+      {
+        path: 'publicar-comunicado-facultad',
+        component: PublicarComunicadoComponent,
+        data: { titulo: 'Publicar Comunicado Facultad' },
       },
     ],
   },

@@ -30,7 +30,7 @@ export class GestionMensajetemaComponent implements OnInit {
 
   getMensajesTemas() {
     this.mensajeTemaService.getMensajesTema().subscribe((mensajesTema) => {
-      this.mensajesTema = mensajesTema.map((mensajeTema) => ({ ...mensajeTema, id: mensajeTema.mensajeTemaId }));
+      this.mensajesTema = mensajesTema.map((mensajeTema) => ({ ...mensajeTema, id: mensajeTema.mensajeId }));
       this.createComponent = true;
     });
   }

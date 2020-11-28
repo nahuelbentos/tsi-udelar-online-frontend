@@ -12,10 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { SharedModule } from '../shared/shared.module';
+import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, NavAdministradorComponent],
+  declarations: [HomeComponent, NavAdministradorComponent, PublicarComunicadoComponent],
   imports: [
     CommonModule,
     AdministradorRoutingModule,

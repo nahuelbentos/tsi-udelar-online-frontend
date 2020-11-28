@@ -16,4 +16,7 @@ export class TemaForoService {
   getTemasForos() {
     return this.http.get<TemaForo[]>(`${environment.baseUrl}/temaforo`);
   }
+
+  getTemaForoById = (temaForoId: string) =>
+  this.http.get<TemaForo>(`${environment.baseUrl}/temaforo/id/${temaForoId}`)
 }

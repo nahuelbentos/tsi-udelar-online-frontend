@@ -19,13 +19,13 @@ export class MensajetemaService {
     return this.http.get<MensajeTema[]>(this.baseUrl);
   }
 
-  deleteMensajeTema(mensajeTemaId: string) {
-    return this.http.delete(`${this.baseUrl}/${mensajeTemaId}`);
+  deleteMensajeTema(mensajeId: string) {
+    return this.http.delete(`${this.baseUrl}/${mensajeId}`);
   }
 
   updateMensajeTema = (mensajeTema: MensajeTema) =>
-  this.http.put(`${this.baseUrl}/${mensajeTema.mensajeTemaId}`, mensajeTema)
+  this.http.put(`${this.baseUrl}/${mensajeTema.mensajeId}`, mensajeTema)
 
-  getMensajeTemaById = (mensajeTemaId: string) =>
-    this.http.get<MensajeTema>(`${this.baseUrl}/${mensajeTemaId}`)
+  getMensajeTemaById = (mensajeId: string) =>
+    this.http.get<MensajeTema>(`${this.baseUrl}/${mensajeId}`)
 }

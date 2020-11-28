@@ -53,6 +53,8 @@ import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-c
 import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
 import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
+import { AbmPublicarcomunicadoComponent } from './pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
+import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
 
 
 @NgModule({
@@ -98,8 +100,15 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     PerfilUsuarioComponent,
     TableDynamicCustomComponent,
     TestComponentsComponent,
+    AbmPublicarcomunicadoComponent,
+    SeleccionarComunicadoComponent,
   ],
-  exports: [HeaderComponent, FooterComponent, NavCustomComponent],
+  exports: [
+    HeaderComponent, 
+    FooterComponent, 
+    NavCustomComponent,
+    AbmPublicarcomunicadoComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
