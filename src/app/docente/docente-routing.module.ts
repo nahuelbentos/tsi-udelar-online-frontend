@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
-import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respuesta.component';
-import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
+import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
+import { EstudiantesComponent } from './pages/estudiantes/estudiantes.component';
 
 
 const routes: Routes = [
@@ -19,13 +19,18 @@ const routes: Routes = [
     children: [
       {
         path: 'curso',
-        component: GestionCursoComponent,
-        data: { titulo: 'Gestión de Cursos' },
+        component: AdministrarCursosComponent,
+        data: { titulo: 'Administrar Cursos' },
       },
       {
         path: 'perfil',
         component: PerfilUsuarioComponent,
         data: { titulo: 'Perfil de Usuario' },
+      },
+      {
+        path: 'estudiantes',
+        component: EstudiantesComponent,
+        data: { titulo: 'Estudiantes' },
       },
     ],
   },

@@ -1,9 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlumnoService {
+  baseUrl = `${environment.baseUrl}/alumno`;
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  inscribirseACurso = (alumnoId: string, cursoId: string) => this.http.post(`${this.baseUrl}/inscribirse-a-curso`, {alumnoId, cursoId});
+
+  // tslint:disable-next-line: max-line-length
+  inscribirseAEvaluacion = (alumnoId: string, pruebaOnlineId: string) => this.http.post(`${this.baseUrl}/inscribirse-a-evaluacion`, {alumnoId, pruebaOnlineId});
 }

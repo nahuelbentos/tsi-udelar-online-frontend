@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { TipoUsuario } from '../models/tipo-usuario.enum';
 import { UsuarioSesion } from '../models/usuario-sesion.model';
 
 @Injectable({
@@ -24,5 +25,10 @@ export class AutenticacionService {
   getToken = (): string => localStorage.getItem('token');
 
   logout = () => this.router.navigate(['/home']).then( () => localStorage.clear());
+
+  getRolSesion = (): string => this.getUser() ? this.getRol() : '';
+  
+  // tslint:disable-next-line: max-line-length
+  private getRol  = (): string => this.getUser().tipo === TipoUsuario.AdministradorFacultad ? 'administrador-facultad' : this.getUser().tipo;
 
 }

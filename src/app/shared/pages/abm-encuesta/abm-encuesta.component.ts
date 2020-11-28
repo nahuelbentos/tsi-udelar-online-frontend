@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Actividad } from 'src/app/models/actividad.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-abm-encuesta',
@@ -27,6 +28,7 @@ export class AbmEncuestaComponent implements OnInit {
   constructor(
     private actividadService: ActividadService,
     private fb: FormBuilder,
+    private location: Location,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -48,7 +50,8 @@ export class AbmEncuestaComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate(['/administrador/encuesta']);
+    
+    this.location.back();
   }
 
   guardarEncuesta(event: Event) {

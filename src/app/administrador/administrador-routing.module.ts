@@ -38,6 +38,8 @@ import { AbmMensajetemaComponent } from '../shared/pages/abm-mensajetema/abm-men
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
 import { AbmPublicarcomunicadoComponent } from '../shared/pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
 import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
+import { HomeComponent } from './pages/home/home.component';
+import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
 
 const routes: Routes = [
   {
@@ -49,7 +51,7 @@ const routes: Routes = [
     children: [
       {
         path: 'curso',
-        component: GestionCursoComponent,
+        component: GestionarCursosComponent,
         data: { titulo: 'Gestión de Cursos' },
       },
 
@@ -200,6 +202,36 @@ const routes: Routes = [
         path: 'publicar-comunicado-facultad',
         component: PublicarComunicadoComponent,
         data: { titulo: 'Publicar Comunicado Facultad' },
+      },
+      {
+        path: 'reportes',
+        component: HomeComponent,
+        data: { titulo: 'Reportes' },
+      },
+      {
+        path: 'reportes/facultades',
+        component: GestionFacultadComponent,
+        data: { titulo: 'Listado de facultades' },
+      },
+      {
+        path: 'reportes/curso-facultades',
+        component: GestionCursoComponent,
+        data: { titulo: 'Listado de cursos por facultades' },
+      },
+      {
+        path: 'reportes/curso-estadisticas',
+        component: GestionCursoComponent,
+        data: { titulo: 'Información estadística de cursos' },
+      },
+      {
+        path: 'reportes/facultades-estadisticas',
+        component: GestionFacultadComponent,
+        data: { titulo: 'Información estadística de facultades' },
+      },
+      {
+        path: 'test',
+        component: TestComponentsComponent,
+        data: { titulo: 'test' },
       },
     ],
   },

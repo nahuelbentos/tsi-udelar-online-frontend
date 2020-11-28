@@ -16,7 +16,8 @@ export class Usuario {
     public facultadId?: string,
     public tipo?: TipoUsuario,
     public facultad?: Facultad,
-    public usuarioId?: string
+    public usuarioId?: string,
+    public id?: string
   ) {}
 }
 

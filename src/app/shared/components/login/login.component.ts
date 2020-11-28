@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
-import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { AutenticacionService } from 'src/app/services/autenticacion.service'; 
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
     private autenticacionService: AutenticacionService,
     public dialogRef: MatDialogRef<HeaderComponent>,
     public dialog: MatDialog,
-    private fb: FormBuilder,
+    private fb: FormBuilder, 
     private toast: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log('data:', data);
+    
 
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -48,8 +48,10 @@ export class LoginComponent implements OnInit {
       .login(this.email.value, this.password.value)
       .subscribe(
         (usuarioSesion: UsuarioSesion) => {
-          console.log('res: ', usuarioSesion);
-
+          
+          const color = usuarioSesion.facultad.colorCodigo
+            ? `#${usuarioSesion.facultad.colorCodigo}`
+            : '#00a9f4';
           this.showSppiner = false;
           this.dialogRef.close(usuarioSesion);
         },

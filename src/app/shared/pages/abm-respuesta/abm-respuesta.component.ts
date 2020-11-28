@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Respuesta } from 'src/app/models/respuesta.model';
 import { RespuestaService } from 'src/app/services/respuesta.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { Location } from '@angular/common';
 
 enum PrintMedia {
   Newspaper = 1,
@@ -15,7 +16,7 @@ enum PrintMedia {
 @Component({
   selector: 'app-abm-respuesta',
   templateUrl: './abm-respuesta.component.html',
-  styleUrls: ['./abm-respuesta.component.scss']
+  styleUrls: ['./abm-respuesta.component.scss'],
 })
 export class AbmRespuestaComponent implements OnInit {
   respuestaForm: FormGroup;
@@ -29,11 +30,11 @@ export class AbmRespuestaComponent implements OnInit {
     return this.respuestaForm.get('usuario');
   }
 
-
   constructor(
     private respuestaService: RespuestaService,
     private fb: FormBuilder,
     private router: Router,
+    private location: Location,
     private route: ActivatedRoute
   ) {
     this.buildForm();
@@ -41,11 +42,9 @@ export class AbmRespuestaComponent implements OnInit {
 
   ngOnInit(): void {
     // this.route.params.subscribe(params => {
-
     // });
     // if (id) {
     //   this.respuestaService.getById(id).suscribe(respuesta => {
-
     //     this.usuario.setValue(respuesta.usuario);
     //     this.mensaje.setValue(respuesta.mensaje);
     //   })
@@ -61,7 +60,8 @@ export class AbmRespuestaComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate(['/docente/respuesta']);
+
+    this.location.back();
   }
 
   guardarRespuesta(event: Event) {
@@ -83,5 +83,4 @@ export class AbmRespuestaComponent implements OnInit {
       this.router.navigate(['gestion-respuesta']);
     });
   }
-
 }

@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
 import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
 
@@ -55,6 +55,8 @@ import { TableDynamicCustomComponent } from './components/table-dynamic-custom/t
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
 import { AbmPublicarcomunicadoComponent } from './pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
 import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
+import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
+import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 
 
 @NgModule({
@@ -104,10 +106,17 @@ import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado
     SeleccionarComunicadoComponent,
   ],
   exports: [
-    HeaderComponent, 
-    FooterComponent, 
+    HeaderComponent,
+    FooterComponent,
     NavCustomComponent,
-    AbmPublicarcomunicadoComponent
+    GestionUsuarioComponent,
+    AbmUsuarioComponent,
+    GestionFacultadComponent,
+    GestionCarreraComponent,
+    GestionCursoComponent,
+    SeleccionarUsuarioComponent,
+    AutocompleteCustomComponent,
+    AbmPublicarcomunicadoComponent,
   ],
   imports: [
     CommonModule,
@@ -124,8 +133,6 @@ import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado
     NgxMatColorPickerModule,
     MatFileUploadModule,
   ],
-  providers: [
-    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
-   ],
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

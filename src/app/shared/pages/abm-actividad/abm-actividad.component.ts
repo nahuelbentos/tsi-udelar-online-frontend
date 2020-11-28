@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -84,13 +85,13 @@ export class AbmActividadComponent implements OnInit {
     private actividadService: ActividadService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-
     this.tiposOptions = Object.keys(this.tipos);
 
     this.route.queryParams.subscribe((param) => {
@@ -142,9 +143,7 @@ export class AbmActividadComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/actividad`,
-    ]);
+    this.location.back();
   }
 
   guardarActividad(event: Event) {
@@ -155,7 +154,7 @@ export class AbmActividadComponent implements OnInit {
     }
 
     const actividad = new Actividad(this.nombre.value);
-    
+
     actividad.actividadId = this.actividadId;
     actividad.nombre = this.nombre.value;
     actividad.descripcion = this.descripcion.value;
@@ -175,7 +174,7 @@ export class AbmActividadComponent implements OnInit {
         `Se creó el actividad ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/actividad`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/actividad`,
       ]);
     });
 
@@ -186,7 +185,7 @@ export class AbmActividadComponent implements OnInit {
         `Se modificó el actividad ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/actividad`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/actividad`,
       ]);
     });
 }

@@ -1,3 +1,10 @@
-<app-gestion-custom [dataInput]="usuarios" [columns]="columnas" tipoSingular="usuario" tipoPlural="usuarios"
-  (eliminar)="onEliminar($event)" *ngIf="createComponent">
+<app-gestion-custom 
+[dataInput]="usuarios" 
+[columns]="columnas" 
+[tipoSingular]="tipoSingular" 
+[tituloSingular]="tituloSingular" 
+[tituloPlural]="tituloPlural"
+[actions]="actions" 
+[actionsHeader]="actionsHeader" 
+  (eliminar)="onEliminar($event)" >
 </app-gestion-custom>
