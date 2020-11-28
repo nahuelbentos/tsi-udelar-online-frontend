@@ -17,19 +17,20 @@ export class GestionFacultadComponent implements OnInit {
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'urlAcceso', 'actions'];
 
-  @Input() actionsHeader  = null; //[{}];
-  @Input() actions  = null; //[{}];
+  @Input() actionsHeader: Actions[] = null; //[{}];
+  @Input() actions: Actions[] = null; //[{}];
  
-
-  constructor(private facultadService: FacultadService,
-    private autenticacionService: AutenticacionService) {
+  constructor(
+    private facultadService: FacultadService,
+    private autenticacionService: AutenticacionService
+  ) {
     this.getFacultades();
   }
 
   ngOnInit(): void {}
 
   onEliminar(data: EliminarRow) {
-    if (data.elimino) { 
+    if (data.elimino) {
       // Llamamos al backend para eliminar el registro.
       this.facultadService
         .deleteFacultad(data.id)
@@ -38,17 +39,25 @@ export class GestionFacultadComponent implements OnInit {
   }
 
   getFacultades() {
-    this.usuarioSesion.tipo === TipoUsuario.Administrador ?
-      this.facultadService.getFacultades().subscribe((facultades) => {
-        this.facultades = facultades.map((facultad) => ({
-          ...facultad,
-          id: facultad.facultadId,
-        })); 
-      })
-      : this.facultades = [this.usuarioSesion.facultad];
+    this.usuarioSesion.tipo === TipoUsuario.Administrador
+      ? this.facultadService.getFacultades().subscribe((facultades) => {
+          this.facultades = facultades.map((facultad) => ({
+            ...facultad,
+            id: facultad.facultadId,
+          }));
+        })
+      : (this.facultades = this.selfFacultad(this.usuarioSesion.facultad));
   }
 
   mensaje(param) {
     console.log('otyro mensaje', param);
+  }
+
+  selfFacultad(facu: Facultad): Facultad[] {
+    const facultad = { ...facu, id: facu.facultadId };
+    const facultades: Facultad[] = [];
+    facultades.push(facultad);
+
+    return facultades;
   }
 }

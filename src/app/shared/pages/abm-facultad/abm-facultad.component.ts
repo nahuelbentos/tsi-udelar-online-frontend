@@ -109,12 +109,14 @@ export class AbmFacultadComponent implements OnInit {
     facultad.dominioMail = this.dominioMail.value;
     facultad.colorCodigo = this.colorCodigo.value.hex;
 
-    this.usuarioLogueado.facultad.colorCodigo = facultad.colorCodigo;
-
+    console.log('facultad:: ', facultad);
+    console.log('this.usuarioLogueado.facultad:: ', this.usuarioLogueado.facultad);
+    
     if (
       this.usuarioLogueado.facultad.facultadId === facultad.facultadId &&
       this.usuarioLogueado.facultad.colorCodigo !== facultad.colorCodigo
     ) {
+      this.usuarioLogueado.facultad.colorCodigo = facultad.colorCodigo;
       this.autenticacionService.setUser(this.usuarioLogueado);
     }
 

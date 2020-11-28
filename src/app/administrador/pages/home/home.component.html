@@ -13,13 +13,20 @@
   </div>
 </div>
 
-<div class="row center-xs">
+<div class="row ">
   <div class="col-xs-12">
     <div class="box">
       <ng-container [ngSwitch]="tipo">
-        <ng-container *ngSwitchCase="'facultades'">
+        <div class="row" *ngSwitchCase="'facultades'">
+          <div class="col-xs">
+            <div class="box">
+              <app-gestion-facultad [actions]="actions" [actionsHeader]="actionsHeader"></app-gestion-facultad>
+
+            </div>
+          </div>
+        </div>
+        <ng-container >
           
-          <app-gestion-facultad [actions]="actions" [actionsHeader]="actionsHeader" ></app-gestion-facultad>
 
         </ng-container>
         <ng-container *ngSwitchCase="'curso-facultades'">
