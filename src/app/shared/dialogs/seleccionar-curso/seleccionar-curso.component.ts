@@ -25,8 +25,8 @@ export class SeleccionarCursoComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     const carrera = data && data.carrera ? data.carrera : null;
-    const remover = data && data.remover ? data.remover : null;
-    this.getCursos(carrera, remover);
+    const tipo = data && data.tipo ? data.tipo : null;
+    this.getCursos(carrera, tipo);
   }
 
   onSeleccionar(data: SeleccionarRow) {
