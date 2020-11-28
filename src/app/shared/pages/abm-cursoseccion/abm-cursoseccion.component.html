@@ -1,4 +1,4 @@
-<!-- <div class="row margin-abm">
+<div class="row margin-abm">
   <div class="col-xs-offset-1 col-xs-10">
     <div class="box">
 
@@ -9,14 +9,40 @@
           <mat-card-content>
 
             <div class="row">
+
               <div class="col-xs-6">
                 <div class="box">
 
+                  <mat-form-field class="full-width">
+                    <mat-label>Curso</mat-label>
+                    <mat-select formControlName="curso" required>
+                      <mat-option *ngFor="let curso of cursos" [value]="curso.cursoId"> {{  curso.nombre }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Seccion</mat-label>
+                    <mat-select formControlName="curso" required>
+                      <mat-option *ngFor="let seccion of secciones" [value]="seccion.seccionId"> {{  seccion.nombre }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
           </mat-card-content>
+          
           <mat-card-actions align="end">
 
             <button mat-raised-button color="primary" type="button" [disabled]="cursoSeccionForm.invalid"
-              (click)="guardarCursoSeccion($event)" (keyup.enter)="guardarCursoSeccion($event)">Guardar Curso Seccion</button>
+              (click)="guardarCursoSeccion($event)" (keyup.enter)="guardarCursoSeccion($event)">Guardar Curso
+              Seccion</button>
             <button mat-raised-button (click)="onNoClick()">Cancelar</button>
           </mat-card-actions>
 
@@ -26,4 +52,4 @@
 
     </div>
   </div>
-</div> -->
+</div>

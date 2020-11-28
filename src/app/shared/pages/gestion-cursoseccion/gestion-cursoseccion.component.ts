@@ -17,6 +17,7 @@ export class GestionCursoSeccionComponent implements OnInit {
   constructor(private cursoSeccionService: CursoSeccionService) { }
 
   ngOnInit(): void {
+    this.getsCursoSeccion();
   }
 
   onEliminar(data: EliminarRow) {
@@ -30,12 +31,16 @@ export class GestionCursoSeccionComponent implements OnInit {
   }
 
   getsCursoSeccion() {
+    console.log('1');
+    
     this.cursoSeccionService.getCursosSeccion().subscribe((cursosSeccion) => {
       this.cursosSeccion = cursosSeccion.map((cursoSeccion) => ({
         ...cursoSeccion,
         id: cursoSeccion.CursoSeccionId,
       }));
       this.createComponent = true;
+
+    console.log('2');
     });
   }
 

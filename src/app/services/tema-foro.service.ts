@@ -17,6 +17,14 @@ export class TemaForoService {
     return this.http.get<TemaForo[]>(`${environment.baseUrl}/temaforo`);
   }
 
+  getTemaForoById(temaForoId: string) {
+    return this.http.get<TemaForo>(`${environment.baseUrl}/temaforo/${temaForoId}`);
+  }
+  
+  updateTemaForo(temaForo: TemaForo) {
+    return this.http.put(`${environment.baseUrl}/temaforo/`,temaForo);
+  }
+
   deleteTemaForo(temaForoId: string) {
     return this.http.delete(`${environment.baseUrl}/temaforo/${temaForoId}`);
   }

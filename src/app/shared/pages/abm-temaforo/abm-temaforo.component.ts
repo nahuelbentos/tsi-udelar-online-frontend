@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TemaForo } from 'src/app/models/tema-foro.model';
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { TemaForoService } from 'src/app/services/tema-foro.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
@@ -19,29 +20,29 @@ enum PrintMedia {
   styleUrls: ['./abm-temaforo.component.scss']
 })
 export class AbmTemaForoComponent implements OnInit {
-  temaforoForm: FormGroup;
-  temaforoId: string;
+  usuarioLogueado: UsuarioSesion = JSON.parse(
+    localStorage.getItem('usuarioSesion')
+  );
+  temaForoForm: FormGroup;
+  temaForoId: string;
 
 
   get asunto() {
-    return this.temaforoForm.get('asunto');
+    return this.temaForoForm.get('asunto');
   }
   get mensaje() {
-    return this.temaforoForm.get('mensaje');
+    return this.temaForoForm.get('mensaje');
   }
   get file() {
-    return this.temaforoForm.get('file');
-  }
-  get emisor() {
-    return this.temaforoForm.get('emisor');
+    return this.temaForoForm.get('file');
   }
   get subrscripcionADiscusion() {
-    return this.temaforoForm.get('subrscripcionADiscusion');
+    return this.temaForoForm.get('subrscripcionADiscusion');
   }
 
 
   constructor(
-    private temaforoService: TemaForoService,
+    private temaForoService: TemaForoService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -51,42 +52,43 @@ export class AbmTemaForoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe((param) => {
+      this.temaForoId = param.id;
 
-    // });
-    // if (id) {
-    //   this.temaforoService.getById(id).suscribe(temaforo => {
+      if (param.id) {
+        this.temaForoService
+          .getTemaForoById(this.temaForoId)
+          .subscribe((usuario) => this.setValuesOnForm(usuario));
+      }
+    });
+  }
 
-    //     this.asunto.setValue(temaforo.asunto);
-    //     this.mensaje.setValue(temaforo.mensaje);
-    //     this.file.setValue(temaforo.file);
-    //     this.emisor.setValue(temaforo.emisor);
-    //     this.subrscripcionADiscusion.setValue(temaforo.subrscripcionADiscusion);
-    //     this.subrscripcionADiscusion.setValue(temaforo.subrscripcionADiscusion);
-    //   })
-    // }
+  private setValuesOnForm(temaForo: TemaForo) {
+    this.asunto.setValue(temaForo.asunto);
+    this.file.setValue(temaForo.archivoNombre);
+    this.mensaje.setValue(temaForo.mensaje);
+    this.subrscripcionADiscusion.setValue(temaForo.subscripcionADiscusion);
   }
 
   private buildForm() {
-    this.temaforoForm = this.fb.group({
+    this.temaForoForm = this.fb.group({
       asunto: ['', Validators.required],
       mensaje: ['', Validators.required],
-      file: ['', Validators.required],
-      emisor: ['', Validators.required],
-      subrscripcionADiscusion: ['', Validators.required],
+      file: ['', Validators.required], 
+      subrscripcionADiscusion: [false],
     });
   }
 
   onNoClick(): void {
-    // Hay que suplantar el rol del usuario  (que va a estar en el storage)
-    // en vez de administrador y queda pronto
-    this.router.navigate(['/docente/temaforo']);
+    this.router.navigate([
+      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/temaforo`,
+    ]);
   }
 
   guardarTemaForo(event: Event) {
     event.preventDefault();
 
-    if (this.temaforoForm.invalid) {
+    if (this.temaForoForm.invalid) {
       return;
     }
 
@@ -95,15 +97,29 @@ export class AbmTemaForoComponent implements OnInit {
     temaforo.asunto = this.asunto.value;
     temaforo.mensaje = this.mensaje.value;
     temaforo.archivoData = this.file.value;
-    temaforo.emisor = this.emisor.value;
+    temaforo.archivoExtension = this.file.value;
+    temaforo.archivoNombre = this.file.value;
+    temaforo.emisorId = this.usuarioLogueado.id;
     temaforo.subscripcionADiscusion = this.subrscripcionADiscusion.value;
 
-    this.temaforoService.createTemaForo(temaforo).subscribe(() => {
+    this.temaForoService.createTemaForo(temaforo).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el temaforo ${this.asunto.value} exitosamente.`
       ).then();
       this.router.navigate(['gestion-temaforo']);
+    });
+  }
+
+  editarTemaForo(temaForo: TemaForo) {
+    this.temaForoService.updateTemaForo(temaForo).subscribe(() => {
+      mensajeConfirmacion(
+        'Excelente!',
+        `Se creó el tema foro ${this.asunto.value} exitosamente.`
+      ).then();
+      this.router.navigate([
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/temaforo`,
+      ]);
     });
   }
 

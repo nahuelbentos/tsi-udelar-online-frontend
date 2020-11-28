@@ -17,6 +17,7 @@ export class GestionTemplateCursoSeccionComponent implements OnInit {
   constructor(private templateCursoSeccionService: TemplateCursoSeccionService) { }
 
   ngOnInit(): void {
+    this.getTemplatesCursoSeccion();
   }
 
   onEliminar(data: EliminarRow) {

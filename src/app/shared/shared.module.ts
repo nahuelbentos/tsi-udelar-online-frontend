@@ -49,7 +49,7 @@ import { GestionMensajeComponent } from './pages/gestion-mensaje/gestion-mensaje
 import { GestionTemaforoComponent } from './pages/gestion-temaforo/gestion-temaforo.component';
 import { GestionRespuestaComponent } from './pages/gestion-respuesta/gestion-respuesta.component';
 import { AbmCursoseccionComponent } from './pages/abm-cursoseccion/abm-cursoseccion.component';
-import { AbmTemplatecursoseccionComponent } from './pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
+import { AbmTemplateCursoSeccionComponent } from './pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
 import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
 import { GestionTemplateCursoSeccionComponent } from './pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
@@ -59,6 +59,7 @@ import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-c
 import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
 import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
+import { AbmPreguntaComponent } from './pages/abm-pregunta/abm-pregunta.component';
 
 
 @NgModule({
@@ -107,9 +108,10 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     GestionTemaforoComponent,
     GestionRespuestaComponent,
     AbmCursoseccionComponent,
-    AbmTemplatecursoseccionComponent,
+    AbmTemplateCursoSeccionComponent,
     GestionCursoSeccionComponent,
     GestionTemplateCursoSeccionComponent,
+    AbmPreguntaComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [

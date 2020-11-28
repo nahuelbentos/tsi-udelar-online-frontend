@@ -71,17 +71,17 @@ export class AbmRespuestaComponent implements OnInit {
       return;
     }
 
-    const respuesta = new Respuesta(this.mensaje.value,this.usuario.value);
+    // const respuesta = new Respuesta(this.mensaje.value,this.usuario.value);
 
-    respuesta.mensaje = this.mensaje.value;
+    // respuesta.mensaje = this.mensaje.value;
 
-    this.respuestaService.createRespuesta(respuesta).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se creó el respuesta ${this.mensaje.value} exitosamente.`
-      ).then();
-      this.router.navigate(['gestion-respuesta']);
-    });
+    // this.respuestaService.createRespuesta(respuesta).subscribe(() => {
+    //   mensajeConfirmacion(
+    //     'Excelente!',
+    //     `Se creó la respuesta ${this.mensaje.value} exitosamente.`
+    //   ).then();
+    //   this.router.navigate(['gestion-respuesta']);
+    // });
   }
 
 }

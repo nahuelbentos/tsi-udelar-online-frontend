@@ -12,7 +12,7 @@ export class GestionMensajeComponent implements OnInit {
 
   mensajes: Mensaje[];
   createComponent = false;
-  columnas = ['emisor', 'mensaje', 'actions'];
+  columnas = ['contenido', 'actions'];
 
   constructor(private mensajeService: MensajeService) {
     this.getMensajes();

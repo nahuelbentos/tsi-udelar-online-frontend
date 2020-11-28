@@ -21,11 +21,7 @@ export class AbmMensajeComponent implements OnInit {
   primeraVez = false;
   modo: string;
   hide = true;
-
-  get emisor() {
-    return this.mensajeForm.get('emisor');
-  }
-
+  
   get mensaje() {
     return this.mensajeForm.get('mensaje');
   }
@@ -53,13 +49,11 @@ export class AbmMensajeComponent implements OnInit {
   }
 
   private setValuesOnForm(mensaje: Mensaje) {
-    this.emisor.setValue(mensaje.emisor);
-    this.mensaje.setValue(mensaje.mensaje);
+    this.mensaje.setValue(mensaje.contenido);
   }
 
   private buildForm() {
     this.mensajeForm = this.fb.group({
-      emisor: ['', Validators.required],
       mensaje: ['', Validators.required],
     });
   }
@@ -82,8 +76,9 @@ export class AbmMensajeComponent implements OnInit {
     const mensaje = new Mensaje();
 
     mensaje.mensajeId = this.mensajeId;
-    mensaje.emisor = this.emisor.value;
-    mensaje.mensaje = this.mensaje.value;
+    mensaje.emisorId = this.usuarioLogueado.id;
+    mensaje.contenido = this.mensaje.value;
+    mensaje.fechaDeEnviado = new Date();
 
     this.modo === 'INS'
       ? this.crearMensaje(mensaje)
@@ -97,7 +92,7 @@ export class AbmMensajeComponent implements OnInit {
         `Se creó el mensaje ${this.mensaje.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/mensaje`,
       ]);
     })
 
@@ -108,7 +103,7 @@ export class AbmMensajeComponent implements OnInit {
         `Se modificó el mensaje ${this.mensaje.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/carrera`,
+        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/mensaje`,
       ]);
     })
 }

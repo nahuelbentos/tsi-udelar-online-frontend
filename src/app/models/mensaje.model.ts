@@ -1,8 +1,8 @@
 export class Mensaje {
     constructor(
         public mensajeId?: string,
-        public emisor?: string,
-        public mensaje?: string,
-        public fechaEnviado?: Date,
+        public emisorId?: string,
+        public contenido?: string,
+        public fechaDeEnviado?: Date,
     ) { }
 }
