@@ -9,5 +9,8 @@ export class Facultad {
     public usuarioLista?: Usuario[],
     public facultadId?: string,
     public colorCodigo?: string,
+    public archivoData?: string,
+    public archivoNombre?: string,
+    public archivoExtension?: string,
   ) {}
 }
