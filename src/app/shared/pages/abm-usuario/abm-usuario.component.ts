@@ -142,7 +142,7 @@ export class AbmUsuarioComponent implements OnInit {
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       cedula: ['', Validators.required],
-      fechaNacimiento: [''],
+      fechaNacimiento: ['' ],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
       emailPersonal: ['', [Validators.required, Validators.email]],

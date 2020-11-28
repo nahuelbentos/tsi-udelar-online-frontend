@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Actions } from 'src/app/models/actions.model';
 import { Columna } from 'src/app/models/columna.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
@@ -6,6 +12,7 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { Usuario } from 'src/app/models/usuario.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
 @Component({
   selector: 'app-gestion-usuario',
@@ -19,7 +26,7 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
   @Input() tituloSingular = 'usuario';
   @Input() tituloPlural = 'usuarios';
 
-  usuarios: Usuario[];
+  @Input() usuarios: Usuario[] = [];
   createComponent = false;
 
   columnas: string[] = ['nombres', 'apellidos', 'email', 'actions'];
@@ -33,8 +40,11 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    
-    this.getUsuarios();
+    if (changes.usuarios) {
+      this.usuarios = changes.usuarios.currentValue;
+    } else {
+      this.getUsuarios();
+    }
   }
 
   ngOnInit(): void {
@@ -54,17 +64,25 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
           this.createComponent = true;
         });
 
-  async onEliminar(data: EliminarRow) {
+  onEliminar(data: EliminarRow) {
     if (data.elimino) {
       this.createComponent = false;
       // Llamamos al backend para eliminar el registro.
 
-      const usuario = await this.usuarioService
-        .getUsuarioById(data.id)
-        .toPromise();
       this.usuarioService
-        .deleteUsuario(usuario.email)
-        .subscribe((res) => this.getUsuarios());
+        .getUsuarioById(data.id)
+        .subscribe((usuario) =>
+          this.usuarioService
+            .deleteUsuario(usuario.email)
+            .subscribe((res) => this.usuarioEliminado(usuario))
+        );
     }
   }
+
+  usuarioEliminado = (usuario: Usuario) => {
+    mensajeConfirmacion(
+      'Excelente',
+      `Se Elimino el usuario ${usuario.nombres} ${usuario.apellidos}, exitosamente.`
+    ).then(() => this.getUsuarios());
+  };
 }

@@ -23,6 +23,8 @@ export class UsuarioService {
   
   getUsuariosByTipo = (tipo: string) => this.http.get<Usuario[]>(`${this.baseUrl}/tipo/${tipo}`);
   
+  getAlumnosByCurso = (id: string) => this.http.get<Usuario[]>(`${this.baseUrl}/alumno/curso/${id}`);
+
   getDocentesByCurso = (id: string) => this.http.get<Usuario[]>(`${this.baseUrl}/docente/curso/${id}`);
 
   getDocentesByFacultad = (id: string) => this.http.get<Usuario[]>(`${this.baseUrl}/docente/facultad/${id}`);
