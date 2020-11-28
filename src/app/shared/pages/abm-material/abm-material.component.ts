@@ -16,7 +16,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 })
 export class AbmMaterialComponent implements OnInit {
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
-
+  
   materialForm: FormGroup;
   materialId: string;
 
@@ -143,7 +143,9 @@ export class AbmMaterialComponent implements OnInit {
         `Se creó el material ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/material`,
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/material`,
       ]);
     });
 
@@ -154,7 +156,9 @@ export class AbmMaterialComponent implements OnInit {
         `Se modificó el material ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/material`,
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/material`,
       ]);
     });
 }

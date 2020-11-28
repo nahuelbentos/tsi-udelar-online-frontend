@@ -28,6 +28,10 @@ export class NavAdministradorFacultadComponent implements OnInit {
       titulo: 'Docentes',
     },
     {
+      link: 'carrera',
+      titulo: 'Carreras',
+    },
+    {
       link: 'curso',
       titulo: 'Cursos',
     },

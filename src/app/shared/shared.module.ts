@@ -102,6 +102,7 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     GestionUsuarioComponent,
     AbmUsuarioComponent,
     GestionFacultadComponent,
+    GestionCarreraComponent,
     GestionCursoComponent,
   ],
   imports: [

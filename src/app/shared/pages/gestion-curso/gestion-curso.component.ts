@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Curso } from 'src/app/models/curso.model';
@@ -16,25 +22,27 @@ import { CursoService } from 'src/app/services/curso.service';
 export class GestionCursoComponent implements OnInit {
   usuarioSesion: UsuarioSesion = this.autenticacionService.getUser();
 
+  @Input() tipo: TipoUsuario;
+  @Input() facultadId: string = null;
+  @Input() actionsHeader = null; //[{}];
+  @Input() actions = null; //[{}];
+
   cursos: Curso[];
   createComponent = false;
   puedeAgregar = this.usuarioSesion.rol === 'Administrador';
-  columnas =
-    this.usuarioSesion.rol === 'Administrador'
-      ? ['nombre', 'descripcion', 'modalidad', 'actions']
-      : ['nombre', 'descripcion', 'modalidad'];
-
-  @Input() actionsHeader  = null //[{}];
-  @Input() actions  = null; //[{}];
+  columnas = ['nombre', 'descripcion', 'modalidad', 'actions'];
 
   constructor(
     private cursoService: CursoService,
     private autenticacionService: AutenticacionService
   ) {
-    this.getCursos();
+    console.log('1) Tipoooo::: ', this.tipo);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('2) Tipoooo::: ', this.tipo);
+    this.getCursos();
+  }
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {
@@ -47,9 +55,58 @@ export class GestionCursoComponent implements OnInit {
   }
 
   getCursos() {
-    this.cursoService.getCursos().subscribe((cursos) => {
-      this.cursos = cursos.map((curso) => ({ ...curso, id: curso.cursoId }));
-      this.createComponent = true;
-    });
+    console.log('3) Tipoooo::: ', this.tipo);
+
+    switch (this.tipo) {
+      case TipoUsuario.Administrador:
+        this.getCursosAdminstrador();
+
+        break;
+      case TipoUsuario.AdministradorFacultad: // By Facultad
+        console.log('facultad:: ', this.usuarioSesion.facultad.facultadId);
+
+        this.cursoService
+          .getCursosByFacultad(this.usuarioSesion.facultad.facultadId)
+          .subscribe((cursos) => {
+            this.cursos = cursos.map((curso) => ({
+              ...curso,
+              id: curso.cursoId,
+            }));
+            this.createComponent = true;
+          });
+        break;
+
+      default:
+        // By Usuario
+        this.cursoService
+          .getCursosByUsuario(this.usuarioSesion.id)
+          .subscribe((cursos) => {
+            this.cursos = cursos.map((curso) => ({
+              ...curso,
+              id: curso.cursoId,
+            }));
+          });
+        break;
+    }
+  }
+
+  getCursosAdminstrador() {
+    if (this.facultadId) {
+      this.cursoService
+        .getCursosByFacultad(this.facultadId)
+        .subscribe((cursos) => {
+          this.cursos = cursos.map((curso) => ({
+            ...curso,
+            id: curso.cursoId,
+          }));
+        });
+    } else {
+      this.cursoService.getCursos().subscribe((cursos) => {
+        this.cursos = cursos.map((curso) => ({
+          ...curso,
+          id: curso.cursoId,
+        }));
+      });
+    }
   }
 }

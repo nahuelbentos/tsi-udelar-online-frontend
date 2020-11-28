@@ -116,8 +116,6 @@ export class GestionCustomComponent implements OnInit, OnChanges {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    this.tooltipEditar = `Editar ${this.tipoSingular}`;
-    this.tooltipEliminar = `Eliminar ${this.tipoSingular}`;
   }
 
   applyFilter(event: Event) {

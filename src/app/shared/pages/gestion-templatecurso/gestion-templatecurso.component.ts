@@ -12,15 +12,15 @@ export class GestionTemplatecursoComponent implements OnInit {
   templateCursos: TemplateCurso[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
- 
+
+  actionsHeader = null; //[{}];
+  actions = null; //[{}];
 
   constructor(private templateCursoService: TemplatecursoService) {
     this.getTemplateCursos();
   }
 
-  ngOnInit(): void {
-     
-  }
+  ngOnInit(): void {}
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {

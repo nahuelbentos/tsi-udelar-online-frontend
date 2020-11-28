@@ -5,6 +5,7 @@ import { RoleGuard } from '../guards/role.guard';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
+import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
 import { EstudiantesComponent } from './pages/estudiantes/estudiantes.component';
 
 
@@ -18,8 +19,8 @@ const routes: Routes = [
     children: [
       {
         path: 'curso',
-        component: GestionCursoComponent,
-        data: { titulo: 'Gestión de Cursos' },
+        component: AdministrarCursosComponent,
+        data: { titulo: 'Administrar Cursos' },
       },
       {
         path: 'perfil',

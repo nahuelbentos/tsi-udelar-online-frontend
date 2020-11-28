@@ -21,6 +21,8 @@ import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatec
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorFacultadComponent } from './components/nav-administrador-facultad/nav-administrador-facultad.component';
 import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
+import { CarrerasComponent } from './pages/carreras/carreras.component';
+import { CursosComponent } from './pages/cursos/cursos.component';
 import { DocentesComponent } from './pages/docentes/docentes.component';
 
 
@@ -44,13 +46,23 @@ const routes: Routes = [
       },
       {
         path: 'carrera',
-        component: GestionCarreraComponent,
+        component: CarrerasComponent,
         data: { titulo: 'Gestión de Carreras' },
       },
       {
+        path: 'carrera/abm-carrera',
+        component: AbmCarreraComponent,
+        data: { titulo: 'ABM de Carreras' },
+      },
+      {
         path: 'curso',
-        component: GestionCursoComponent,
+        component: CursosComponent,
         data: { titulo: 'Gestión de Cursos' },
+      },
+      {
+        path: 'curso/abm-curso',
+        component: AbmCursoComponent,
+        data: { titulo: 'ABM Cursos' },
       },
       {
         path: 'templatecurso',
