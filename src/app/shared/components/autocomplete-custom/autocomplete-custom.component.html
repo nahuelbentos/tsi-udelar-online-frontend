@@ -4,7 +4,8 @@
   <mat-label> {{ label }} </mat-label>
 
   <input matInput #trigger="matAutocompleteTrigger" formControlName="controlData" [matAutocomplete]="auto">
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='sendItem.emit($event.option.value)'>
+  <!--  -->
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='sendItem.emit(  $event.option.value  )'>
     <mat-option *ngFor="let item of filteredData | async" [value]="item">
       {{ item.descripcionAutocomplete }}
     </mat-option>
