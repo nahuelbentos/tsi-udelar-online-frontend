@@ -34,7 +34,7 @@ import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
-import { HomeComponent } from '../public/pages/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
@@ -204,6 +204,11 @@ const routes: Routes = [
         path: 'reportes/facultades-estadisticas',
         component: GestionFacultadComponent,
         data: { titulo: 'Información estadística de facultades' },
+      },
+      {
+        path: 'test',
+        component: TestComponentsComponent,
+        data: { titulo: 'test' },
       },
     ],
   },

@@ -1,3 +1,4 @@
 <app-gestion-custom [dataInput]="templateCursos" [columns]="columnas" tipoSingular="TemplateCurso" tipoPlural="Template Cursos"
-  (eliminar)="onEliminar($event)" *ngIf="createComponent">
+  [actions]="actions" [actionsHeader]="actionsHeader"
+  (eliminar)="onEliminar($event)" >
 </app-gestion-custom>

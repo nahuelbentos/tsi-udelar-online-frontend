@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -37,7 +38,8 @@ export class AbmForoComponent implements OnInit {
     private foroService: ForoService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
@@ -70,9 +72,7 @@ export class AbmForoComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
-    ]);
+    this.location.back();
   }
 
   guardarForo(event: Event) {
@@ -98,7 +98,7 @@ export class AbmForoComponent implements OnInit {
         `Se creó el foro ${this.titulo.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/foro`,
       ]);
     });
 
@@ -109,7 +109,7 @@ export class AbmForoComponent implements OnInit {
         `Se modificó el foro ${this.titulo.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/foro`,
+         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/foro`,
       ]);
     });
 }

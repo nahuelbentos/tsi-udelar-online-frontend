@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Carrera } from 'src/app/models/carrera.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { CarreraService } from 'src/app/services/carrera.service';
@@ -12,6 +12,7 @@ export class GestionCarreraComponent implements OnInit {
   carreras: Carrera[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
+  @Input() actions = null;
 
   constructor(private carreraService: CarreraService) {
     this.getCarreras();

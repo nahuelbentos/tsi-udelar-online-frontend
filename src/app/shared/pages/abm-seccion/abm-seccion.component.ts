@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -48,7 +49,8 @@ export class AbmSeccionComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
@@ -86,9 +88,7 @@ export class AbmSeccionComponent implements OnInit {
 
   onNoClick(): void {
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`,
-    ]);
+    this.location.back();
   }
 
   guardarSeccion(event: Event) {
@@ -119,7 +119,7 @@ export class AbmSeccionComponent implements OnInit {
         `Se creó la sección ${seccion.nombre} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/seccion`,
       ]);
     });
 
@@ -130,7 +130,7 @@ export class AbmSeccionComponent implements OnInit {
         `Se modificó la sección ${seccion.nombre} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/seccion`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/seccion`,
       ]);
     });
 

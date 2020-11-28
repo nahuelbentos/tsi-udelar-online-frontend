@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocomplete } from '@angular/material/autocomplete';
@@ -67,12 +68,13 @@ export class AbmCursoComponent implements OnInit {
   }
 
   constructor(
-    private autenticacionService:AutenticacionService,
+    private autenticacionService: AutenticacionService,
     private cursoService: CursoService,
     private fb: FormBuilder,
     public dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
@@ -147,9 +149,7 @@ export class AbmCursoComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
-    ]);
+    this.location.back();
   }
 
   guardarCurso(event: Event) {
@@ -181,7 +181,7 @@ export class AbmCursoComponent implements OnInit {
         `Se creó el curso ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/curso`,
       ]);
     });
 
@@ -192,19 +192,21 @@ export class AbmCursoComponent implements OnInit {
         `Se modificó el curso ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/curso`,
       ]);
     });
 
   seleccionarTemplateCurso(autocomplete: MatAutocomplete) {
     console.log(autocomplete);
-    
+
     const dialogRef = this.dialog.open(SeleccionarTemplateCursoComponent, {
       height: 'auto',
       width: '700px',
     });
-    dialogRef
-      .afterClosed()
-      .subscribe((seccion) => console.log('seccion: ', seccion));
+    dialogRef.afterClosed().subscribe((templateCurso) => {
+      console.log(templateCurso);
+
+      this.templateCurso.setValue(templateCurso);
+    });
   }
 }

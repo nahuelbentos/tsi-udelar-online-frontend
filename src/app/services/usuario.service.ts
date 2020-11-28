@@ -19,6 +19,10 @@ export class UsuarioService {
 
   getUsuarios = () => this.http.get<Usuario[]>(this.baseUrl);
 
+  getUsuariosByRol = (rol: string) => this.http.get<Usuario[]>(`${this.baseUrl}/rol/${rol}`);
+  
+  getUsuariosByTipo = (tipo: string) => this.http.get<Usuario[]>(`${this.baseUrl}/tipo/${tipo}`);
+
   getUsuarioById = (usuarioId: string) => this.http.get<Usuario>(`${this.baseUrl}/id/${usuarioId}`);
 
   getUsuarioByEmail = (usuarioEmail: string) => this.http.get<Usuario>(`${this.baseUrl}/email/${usuarioEmail}`);

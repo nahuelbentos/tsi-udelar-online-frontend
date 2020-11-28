@@ -1,5 +1,12 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Facultad } from 'src/app/models/facultad.model';
 import { TemplateCurso } from 'src/app/models/template-curso.model';
@@ -7,7 +14,8 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { Color } from '@angular-material-components/color-picker';
-
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 
 @Component({
   selector: 'app-abm-facultad',
@@ -15,10 +23,9 @@ import { Color } from '@angular-material-components/color-picker';
   styleUrls: ['./abm-facultad.component.scss'],
 })
 export class AbmFacultadComponent implements OnInit {
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   facultadForm: FormGroup;
   facultadId: string;
-
-
   archivoData: string;
   archivoNombre: string;
   archivoExtension: string;
@@ -29,6 +36,7 @@ export class AbmFacultadComponent implements OnInit {
       nombres: 'Pepito Gonzalez',
     },
   ];
+  modo: string;
 
   get nombre() {
     return this.facultadForm.get('nombre');
@@ -39,30 +47,37 @@ export class AbmFacultadComponent implements OnInit {
   get urlAcceso() {
     return this.facultadForm.get('urlAcceso');
   }
-  get fechaNacimiento() {
-    return this.facultadForm.get('fechaNacimiento');
-  }
+
   get dominioMail() {
     return this.facultadForm.get('dominioMail');
   }
-  get usuarioLista() {
-    return this.facultadForm.get('usuarioLista');
-  }
-  get colorPrincipal() {
-    return this.facultadForm.get('colorCtr');
+
+  get colorCodigo() {
+    return this.facultadForm.get('colorCodigo');
   }
 
   constructor(
+    private autenticacionService: AutenticacionService,
     private facultadService: FacultadService,
     private fb: FormBuilder,
     private router: Router,
+    private location: Location,
     private route: ActivatedRoute
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((param) => {
+      this.modo = param.modo;
+      this.facultadId = param.id;
 
+      if (param.id) {
+        this.facultadService
+          .getFacultadById(this.facultadId)
+          .subscribe((facultad) => this.setValuesOnForm(facultad));
+      }
+    });
   }
 
   private buildForm() {
@@ -71,17 +86,22 @@ export class AbmFacultadComponent implements OnInit {
       descripcion: ['', Validators.required],
       urlAcceso: ['', Validators.required],
       dominioMail: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
-      usuarioLista: [''],
-      colorCtr: ['', Validators.required],
+      colorCodigo: ['', Validators.required],
     });
+  }
+
+  private setValuesOnForm(facultad: Facultad) {
+    this.nombre.setValue(facultad.nombre);
+    this.descripcion.setValue(facultad.descripcion);
+    this.urlAcceso.setValue(facultad.urlAcceso);
+    this.dominioMail.setValue(facultad.dominioMail);
+    this.colorCodigo.setValue(facultad.colorCodigo);
   }
 
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    console.log(this.facultadForm)
-    this.router.navigate(['/administrador/facultad']);
+    this.location.back();
   }
   onUploadClicked(event) {
     console.log('onUploadClicked:: ', event);
@@ -97,7 +117,7 @@ export class AbmFacultadComponent implements OnInit {
       this.archivoExtension = file.name.split('.')[
         file.name.split('.').length - 1
       ];
-      console.log('arcchivoNombre:: ', file.name.split('.')[0]);
+      console.log('archivoNombre:: ', file.name.split('.')[0]);
       console.log(
         'arcchivoExtension:: ',
         file.name.split('.')[file.name.split('.').length - 1]
@@ -126,18 +146,51 @@ export class AbmFacultadComponent implements OnInit {
 
     const facultad = new Facultad(this.nombre.value);
 
+    facultad.facultadId = this.facultadId;
     facultad.descripcion = this.descripcion.value;
     facultad.urlAcceso = this.urlAcceso.value;
     facultad.dominioMail = this.dominioMail.value;
-    facultad.usuarioLista = this.usuarioLista.value;
-    facultad.colorPrincipal = this.colorPrincipal.value.hex;
+    facultad.colorCodigo = this.colorCodigo.value.hex;
 
+    console.log('facultad:: ', facultad);
+    console.log('this.usuarioLogueado.facultad:: ', this.usuarioLogueado.facultad);
+
+    if (
+      this.usuarioLogueado.facultad.facultadId === facultad.facultadId &&
+      this.usuarioLogueado.facultad.colorCodigo !== facultad.colorCodigo
+    ) {
+      this.usuarioLogueado.facultad.colorCodigo = facultad.colorCodigo;
+      this.autenticacionService.setUser(this.usuarioLogueado);
+    }
+
+    this.modo === 'INS'
+      ? this.crearFacultad(facultad)
+      : this.editarFacultad(facultad);
+  }
+
+  private crearFacultad = (facultad: Facultad) =>
     this.facultadService.createFacultad(facultad).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se creó el curso ${this.nombre.value} exitosamente.`
+        `Se creó el facultad ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['gestion-facultad']);
+      this.router.navigate([
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/facultad`,
+      ]);
     });
-  }
+
+  private editarFacultad = (facultad: Facultad) =>
+    this.facultadService.updateFacultad(facultad).subscribe(() => {
+      mensajeConfirmacion(
+        'Excelente!',
+        `Se modificó el facultad ${this.nombre.value} exitosamente.`
+      ).then();
+      this.router.navigate([
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/facultad`,
+      ]);
+    });
 }

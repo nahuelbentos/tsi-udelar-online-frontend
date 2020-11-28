@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
 import { AbmTemaForoComponent } from './pages/abm-temaforo/abm-temaforo.component';
 import { AbmRespuestaComponent } from './pages/abm-respuesta/abm-respuesta.component';
 
@@ -95,7 +95,16 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     TableDynamicCustomComponent,
     TestComponentsComponent,
   ],
-  exports: [HeaderComponent, FooterComponent, NavCustomComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
+    NavCustomComponent,
+    GestionUsuarioComponent,
+    AbmUsuarioComponent,
+    GestionFacultadComponent,
+    GestionCarreraComponent,
+    GestionCursoComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
@@ -111,8 +120,6 @@ import { TestComponentsComponent } from './pages/test-components/test-components
     NgxMatColorPickerModule,
     MatFileUploadModule,
   ],
-  providers: [
-    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS }
-   ],
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}
