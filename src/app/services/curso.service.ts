@@ -20,6 +20,8 @@ export class CursoService {
 
   getCursos = () => this.http.get<Curso[]>(this.baseUrl);
 
+  getCursosByFilter = ( filter: string) => this.http.get<Curso[]>(`${this.baseUrl}/filter/${filter}`);
+  
   getCursosByUsuario = ( id: string) => this.http.get<Curso[]>(`${this.baseUrl}/usuario/${id}`);
   
   getCursosByFacultad = (id: string) => this.http.get<Curso[]>(`${this.baseUrl}/facultad/${id}`);

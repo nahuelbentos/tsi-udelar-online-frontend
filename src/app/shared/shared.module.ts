@@ -54,6 +54,7 @@ import { TestComponentsComponent } from './pages/test-components/test-components
 import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
 import { RespuestasComponent } from './dialogs/respuestas/respuestas.component';
+import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import { RespuestasComponent } from './dialogs/respuestas/respuestas.component';
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
     RespuestasComponent,
+    BuscarCursosComponent,
   ],
   exports: [
     HeaderComponent,

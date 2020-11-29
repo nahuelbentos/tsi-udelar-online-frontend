@@ -10,7 +10,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, of, Subscription } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { RutasNav } from 'src/app/models/rutas-nav.interface';
-import { ActivationEnd, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { FormControl } from '@angular/forms';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
@@ -43,7 +43,8 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private auth: AutenticacionService,
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.tituloSubs$ = this.getDataRuta().subscribe((data) => {
       this.titulo = data.titulo;
@@ -69,6 +70,12 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
   onKey(event: any) {
     console.log('event :: ', event);
     console.log('searchCursos :: ', this.searchCursos.value);
+
+    this.router.navigate([`explorar-cursos`], {
+      queryParams: { search: this.searchCursos.value },
+      relativeTo: this.route,
+    });
+
 
   }
   getDataRuta() {

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
+import { BuscarCursosComponent } from '../shared/pages/buscar-cursos/buscar-cursos.component';
 import { NavAlumnoComponent } from './components/nav-alumno/nav-alumno.component';
 import { CursosPublicosComponent } from './pages/cursos-publicos/cursos-publicos.component';
 import { MisCursosComponent } from './pages/mis-cursos/mis-cursos.component';
@@ -18,6 +19,11 @@ const routes: Routes = [
         path: 'mis-cursos',
         component: MisCursosComponent,
         data: { titulo: 'Mis Cursos' },
+      },
+      {
+        path: 'explorar-cursos',
+        component: BuscarCursosComponent,
+        data: { titulo: 'Explorar' },
       },
       {
         path: 'cursos-publicos',
