@@ -52,13 +52,12 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-   this.setDataSource();
+    this.setDataSource();
   }
 
   buttonClick = (fun) => this.callback.emit(fun);
 
   ngOnChanges(value: SimpleChanges) {
-    
     this.displayedColumns =
       value.displayedColumns && value.displayedColumns.currentValue
         ? value.displayedColumns.currentValue
@@ -77,21 +76,21 @@ export class GestionCustomComponent implements OnInit, OnChanges {
         ? value.tipoSingular.currentValue
         : this.tipoSingular;
 
-    if ( value.actions  ) {
+    if (value.actions) {
       this.actions =
         value.actions.currentValue && value.actions.firstChange
           ? value.actions.currentValue
           : this.getActionsDefault();
-    } else if (!this.actions ) {
+    } else if (!this.actions) {
       this.actions = this.getActionsHeaderDefault();
     }
 
-    if ( value.actionsHeader ) {
+    if (value.actionsHeader) {
       this.actionsHeader =
-         value.actionsHeader.currentValue && value.actionsHeader.firstChange
+        value.actionsHeader.currentValue && value.actionsHeader.firstChange
           ? value.actionsHeader.currentValue
           : this.getActionsHeaderDefault();
-    } else if (!this.actionsHeader ) {
+    } else if (!this.actionsHeader) {
       this.actionsHeader = this.getActionsHeaderDefault();
     }
 
@@ -107,7 +106,6 @@ export class GestionCustomComponent implements OnInit, OnChanges {
     this.dataSource = new MatTableDataSource(this.dataInput);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
   }
 
   applyFilter(event: Event) {
@@ -146,21 +144,17 @@ export class GestionCustomComponent implements OnInit, OnChanges {
   ];
 
   abm(modo: string, rowData: any) {
-    
-
     switch (modo) {
       case 'INS':
       case 'UPD':
         const ruta = `/${this.tipoSingular
           .toLocaleLowerCase()
           .trim()}/abm-${this.tipoSingular.toLocaleLowerCase().trim()}`;
-        
+
         const params: { modo: string; id?: string } = { modo };
 
-        
         // tslint:disable-next-line: curly
         if (rowData && rowData.id) params.id = rowData.id;
-        
 
         this.router.navigate(
           [`abm-${this.tipoSingular.toLocaleLowerCase().trim()}`],
@@ -190,5 +184,14 @@ export class GestionCustomComponent implements OnInit, OnChanges {
       default:
         break;
     }
+  }
+
+  styleObject(action: Actions): Object {
+    console.log('action: ', action);
+    
+    const style: { backgroundColor?, color?, borderRadius? } = { color: '#fff' };
+    style.backgroundColor = action.backgroundColor;
+    style.color = action.color;
+    return style;
   }
 }

@@ -38,6 +38,8 @@ export class GestionCursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('2) this.columnas:: ', this.columnas);
+    
     this.getCursos();
   }
 

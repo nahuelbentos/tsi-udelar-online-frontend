@@ -53,6 +53,7 @@ import { TableDynamicCustomComponent } from './components/table-dynamic-custom/t
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
 import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
+import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
 
 
 @NgModule({
@@ -98,6 +99,7 @@ import { AutocompleteCustomComponent } from './components/autocomplete-custom/au
     TestComponentsComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
+    BuscarCursosComponent,
   ],
   exports: [
     HeaderComponent,

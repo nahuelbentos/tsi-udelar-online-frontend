@@ -26,7 +26,7 @@ export class CursosPublicosComponent implements OnInit {
   tipo = TipoUsuario.AdministradorFacultad;
   actionsHeader = [{}];
   actions: Actions[] = [];
-  columnas: ['nombre', 'descripcion', 'requiereMatriculacion', 'actions'];
+  columnas =  ['nombre', 'descripcion', 'salaVirtual', 'actions'];
 
   constructor(
     private alumnoService: AlumnoService,
@@ -35,6 +35,7 @@ export class CursosPublicosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('2) this.columnas:: ', this.columnas);
     this.actions = [
       {
         tooltip: `Matricularse a un curso`,
