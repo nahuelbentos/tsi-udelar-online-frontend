@@ -11,17 +11,13 @@ export class NavAlumnoComponent implements OnInit {
   rol = 'alumno';
   routes: RutasNav[] = [
     {
-      link: 'explorar-cursos',
-      titulo: 'Explorar Cursos',
+      link: 'mis-cursos',
+      titulo: 'Mis Cursos',
     },
     {
       link: 'cursos-publicos',
       titulo: 'Todos los cursos',
-    },
-    {
-      link: 'matricularse-curso',
-      titulo: 'Matricularse a un Curso',
-    },
+    }, 
     {
       link: 'inscripcion-evaluacion',
       titulo: 'Inscribirse a evaluación',

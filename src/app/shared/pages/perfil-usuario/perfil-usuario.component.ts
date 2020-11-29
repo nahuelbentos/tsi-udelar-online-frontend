@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -81,7 +82,8 @@ export class PerfilUsuarioComponent implements OnInit {
     private facultadService: FacultadService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
@@ -93,16 +95,9 @@ export class PerfilUsuarioComponent implements OnInit {
       .getFacultades()
       .subscribe((facultades) => (this.facultades = facultades));
 
-    this.route.queryParams.subscribe((param) => {
-      this.modo = param.modo;
-      this.usuarioId = param.id;
-
-      if (param.id) {
-        this.usuarioService
-          .getUsuarioById(this.usuarioId)
-          .subscribe((usuario) => this.setValuesOnForm(usuario));
-      }
-    });
+    this.usuarioService
+      .getUsuarioById(this.usuarioLogueado.id)
+      .subscribe((usuario) => this.setValuesOnForm(usuario));
   }
 
   private setValuesOnForm(usuario: Usuario) {
@@ -120,6 +115,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
     this.userName.disable();
     this.email.disable();
+    this.facultad.disable();
+    this.tipo.disable();
   }
 
   private buildForm() {
@@ -141,9 +138,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
   onNoClick(): void {
     // Me voy a la pantalla de gestión y elimino del Servicio
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
-    ]);
+    this.location.back();
   }
 
   guardarUsuario(event: Event) {
@@ -179,7 +174,7 @@ export class PerfilUsuarioComponent implements OnInit {
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
       ]);
     });
   }
@@ -191,7 +186,7 @@ export class PerfilUsuarioComponent implements OnInit {
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
       ]);
     });
   }

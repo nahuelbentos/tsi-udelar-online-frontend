@@ -3,7 +3,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <div class="width100">
 
-      <mat-toolbar>
+      <mat-toolbar >
 
         Menu
 
@@ -24,18 +24,59 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar   [style.background-color]="getBackgroundColor() | async">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
 
-      <h1 class="title">{{titulo}}</h1>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
 
-      <button type="button"mat-button (click)="logout()">
-        Logout
-        <mat-icon aria-label="Side nav toggle icon"> exit_to_app </mat-icon>
-      </button>
+      <div class="row">
+        <div class="col-xs center-xs" [ngStyle]="{'marginTop': verBuscar ? '20px' : '0px'}" >
+          <div class="box">
+            <h1 class="title">{{titulo}}</h1>
+          </div>
+        </div>
+ 
+          <div class="col-xs-3 end-xs" *ngIf="verBuscar" style="margin-top: 10px;">
+            <div class="box">
+              
+              
+              <mat-form-field class="example-full-width">
+                <mat-label>Buscar cursos...</mat-label>
+                <input type="email" matInput [formControl]="searchCursos" placeholder="Ejemplo: TSI 1" (keyup.enter)="onKey($event)">
+                <button mat-icon-button matSuffix (click)='onKey($event)' (keyup.enter)="onKey($event)">
+                  <mat-icon> search </mat-icon>
+                </button>
+              </mat-form-field>
+ 
+              
+            </div>
+          </div>
+        
+          <div class="col-xs-1 end-xs" [ngStyle]="{'marginTop': verBuscar ? '20px' : '0px'}">
+            <div class="box">
+        
+              <button type="button" mat-button (click)="logout()" style="color: white;">
+                Logout
+                <mat-icon aria-label="Side nav toggle icon"> exit_to_app </mat-icon>
+              </button>
+        
+            </div>
+          </div>
+         
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+     
+
 
     </mat-toolbar>
 

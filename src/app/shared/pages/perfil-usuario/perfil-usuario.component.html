@@ -72,9 +72,12 @@
                 <div class="box">
 
                   <mat-form-field class="full-width">
-                    <input matInput placeholder="Dirección" formControlName="direccion" required>
-                    <mat-error *ngIf="direccion.hasError('required')">
-                      Dirección es <strong>requerido</strong>.
+                    <input matInput placeholder="Email Personal" formControlName="emailPersonal" required>
+                    <mat-error *ngIf="emailPersonal.hasError('required')">
+                      Email Personal es <strong>requerido</strong>.
+                    </mat-error>
+                    <mat-error *ngIf="emailPersonal.hasError('email')">
+                      El formato del campo Email Personal es <strong>incorrecto</strong>.
                     </mat-error>
                   </mat-form-field>
 
@@ -96,11 +99,27 @@
             </div>
 
             <div class="row">
+              <div class="col-xs">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Dirección" formControlName="direccion" required>
+                    <mat-error *ngIf="direccion.hasError('required')">
+                      Dirección es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
               <div class="col-xs-6">
                 <div class="box">
 
                   <mat-form-field class="full-width">
-                    <input matInput placeholder="UserName" formControlName="userName" required>
+                    <input matInput placeholder="UserName" formControlName="userName">
                     <mat-error *ngIf="userName.hasError('required')">
                       User Name es <strong>requerido</strong>.
                     </mat-error>
@@ -108,26 +127,8 @@
 
                 </div>
               </div>
+
               <div class="col-xs-6">
-                <div class="box">
-                  <mat-form-field class="full-width">
-
-                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password"
-                      formControlName="password">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                      [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-
-                  </mat-form-field>
-
-
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-6" *ngIf="modo !== 'INS'">
                 <div class="box">
 
                   <mat-form-field class="full-width">
@@ -143,21 +144,6 @@
                 </div>
               </div>
 
-              <div class="col-xs">
-                <div class="box">
-
-                  <mat-form-field class="full-width">
-                    <input matInput placeholder="Email Personal" formControlName="emailPersonal" required>
-                    <mat-error *ngIf="emailPersonal.hasError('required')">
-                      Email Personal es <strong>requerido</strong>.
-                    </mat-error>
-                    <mat-error *ngIf="emailPersonal.hasError('email')">
-                      El formato del campo Email Personal es <strong>incorrecto</strong>.
-                    </mat-error>
-                  </mat-form-field>
-
-                </div>
-              </div>
 
             </div>
 
@@ -171,7 +157,7 @@
 
                   <mat-form-field class="full-width">
                     <mat-label>Facultad</mat-label>
-                    <mat-select formControlName="facultad" required>
+                    <mat-select formControlName="facultad">
                       <mat-option *ngFor="let facu of facultades" [value]="facu.facultadId"> {{  facu.nombre }}
                       </mat-option>
                     </mat-select>

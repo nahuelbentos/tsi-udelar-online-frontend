@@ -43,7 +43,8 @@ import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
-import { HomeComponent } from '../public/pages/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
+import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
 import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
 import { AbmPruebaonlineComponent } from '../shared/pages/abm-pruebaonline/abm-pruebaonline.component';
 
@@ -57,7 +58,7 @@ const routes: Routes = [
     children: [
       {
         path: 'curso',
-        component: GestionCursoComponent,
+        component: GestionarCursosComponent,
         data: { titulo: 'Gestión de Cursos' },
       },
 
@@ -289,6 +290,11 @@ const routes: Routes = [
         path: 'templatecursoseccion/abm-templatecursoseccion',
         component: AbmTemplateCursoSeccionComponent,
         data: { titulo: 'ABM de templatecursoseccion' },
+      },
+      {
+        path: 'test',
+        component: TestComponentsComponent,
+        data: { titulo: 'test' },
       },
     ],
   },

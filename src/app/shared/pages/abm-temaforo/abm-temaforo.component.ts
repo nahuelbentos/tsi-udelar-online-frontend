@@ -5,11 +5,12 @@ import { TemaForo } from 'src/app/models/tema-foro.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { TemaForoService } from 'src/app/services/tema-foro.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-abm-temaforo',
   templateUrl: './abm-temaforo.component.html',
-  styleUrls: ['./abm-temaforo.component.scss']
+  styleUrls: ['./abm-temaforo.component.scss'],
 })
 export class AbmTemaForoComponent implements OnInit {
   usuarioLogueado: UsuarioSesion = JSON.parse(
@@ -17,7 +18,6 @@ export class AbmTemaForoComponent implements OnInit {
   );
   temaForoForm: FormGroup;
   temaForoId: string;
-
 
   get asunto() {
     return this.temaForoForm.get('asunto');
@@ -32,16 +32,15 @@ export class AbmTemaForoComponent implements OnInit {
     return this.temaForoForm.get('subrscripcionADiscusion');
   }
 
-
   constructor(
     private temaForoService: TemaForoService,
     private fb: FormBuilder,
     private router: Router,
+    private location: Location,
     private route: ActivatedRoute
   ) {
     this.buildForm();
   }
-
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
@@ -99,6 +98,7 @@ export class AbmTemaForoComponent implements OnInit {
         'Excelente!',
         `Se creó el temaforo ${this.asunto.value} exitosamente.`
       ).then();
+
       this.router.navigate(['gestion-temaforo']);
     });
   }

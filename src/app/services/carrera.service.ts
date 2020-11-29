@@ -20,4 +20,8 @@ export class CarreraService {
   getCarreraById = (carreraId: string) => this.http.get<Carrera>(`${this.baseUrl}/${carreraId}`);
 
   deleteCarrera = (carreraId: string) => this.http.delete(`${this.baseUrl}/${carreraId}`);
+
+  addCurso = (carreraId: string, cursoId: string) => this.http.post(`${this.baseUrl}/curso`, { carreraId, cursoId });
+
+  removeCurso = (carreraId: string, cursoId: string) => this.http.delete(`${this.baseUrl}/curso/${carreraId}/${cursoId}`);
 }

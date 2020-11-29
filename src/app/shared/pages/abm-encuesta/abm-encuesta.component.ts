@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actividad } from 'src/app/models/actividad.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { Location } from '@angular/common';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-abm-encuesta',
@@ -13,22 +15,22 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 export class AbmEncuestaComponent implements OnInit {
   encuestaForm: FormGroup;
   encuestaId: string;
-
+  preguntas: FormControl[] = [];
+  usuarioSesion = this.auth.getUser();
   get nombre() {
     return this.encuestaForm.get('nombre');
   }
   get descripcion() {
     return this.encuestaForm.get('descripcion');
   }
-  get esAdministadorFacultad() {
-    return this.encuestaForm.get('esAdministradorFacultad');
-  }
 
   constructor(
     private actividadService: ActividadService,
     private fb: FormBuilder,
+    private location: Location,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AutenticacionService,
   ) {
     this.buildForm();
   }
@@ -41,14 +43,18 @@ export class AbmEncuestaComponent implements OnInit {
     this.encuestaForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      esAdministradorFacultad: [''],
     });
   }
 
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate(['/administrador/encuesta']);
+
+    this.location.back();
+  }
+
+  agregarPregunta() {
+    this.preguntas.push(new FormControl(''));
   }
 
   guardarEncuesta(event: Event) {
@@ -59,16 +65,21 @@ export class AbmEncuestaComponent implements OnInit {
     }
 
     const encuesta = new Actividad(this.nombre.value);
-
+    encuesta.tipo = 'Encuesta';
     encuesta.descripcion = this.descripcion.value;
-    encuesta.esAdministradorFacultad = this.esAdministadorFacultad.value;
+    encuesta.preguntaLista = this.preguntas.map((control) => control.value);
+    encuesta.usuarioId = this.usuarioSesion.id;
 
-    this.actividadService.createActividad(encuesta).subscribe(() => {
+    this.actividadService.createEncuesta(encuesta).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó la encuesta ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['gestion-encuesta']);
+      this.router.navigate([
+        `/${this.auth
+          .getRolSesion()
+          .toLocaleLowerCase()}/encuesta`,
+      ]);
     });
   }
 }

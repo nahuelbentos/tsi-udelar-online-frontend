@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Facultad } from 'src/app/models/facultad.model';
@@ -16,7 +17,12 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-usuario.component.scss'],
 })
 export class AbmUsuarioComponent implements OnInit {
+  
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
+  verTipos =
+    this.autenticacionService.getUser().tipo === TipoUsuario.Administrador ||
+    this.autenticacionService.getUser().tipo ===
+      TipoUsuario.AdministradorFacultad;
   usuarioForm: FormGroup;
   usuarioId: string;
 
@@ -81,13 +87,14 @@ export class AbmUsuarioComponent implements OnInit {
     private facultadService: FacultadService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-    this.tiposOptions = Object.keys(this.tipos);
+    this.tiposOptions = this.getTiposByRol();
 
     this.facultadService
       .getFacultades()
@@ -103,6 +110,13 @@ export class AbmUsuarioComponent implements OnInit {
           .subscribe((usuario) => this.setValuesOnForm(usuario));
       }
     });
+  }
+  private getTiposByRol() {
+    const tipos = Object.keys(this.tipos);
+    return this.autenticacionService.getRolSesion() ===
+      TipoUsuario.Administrador
+      ? tipos
+      : tipos.filter((tipo) => tipo !== TipoUsuario.Administrador);
   }
 
   private setValuesOnForm(usuario: Usuario) {
@@ -128,7 +142,7 @@ export class AbmUsuarioComponent implements OnInit {
       nombres: ['', Validators.required],
       apellidos: ['', Validators.required],
       cedula: ['', Validators.required],
-      fechaNacimiento: [''],
+      fechaNacimiento: ['' ],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
       emailPersonal: ['', [Validators.required, Validators.email]],
@@ -141,10 +155,11 @@ export class AbmUsuarioComponent implements OnInit {
   }
 
   onNoClick(): void {
+    this.location.back();
     // Me voy a la pantalla de gestión y elimino del Servicio
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
-    ]);
+    // this.router.navigate([
+    //   `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/${this.returnTo}`,
+    // ]);
   }
 
   guardarUsuario(event: Event) {
@@ -180,7 +195,7 @@ export class AbmUsuarioComponent implements OnInit {
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
       ]);
     });
   }
@@ -189,10 +204,10 @@ export class AbmUsuarioComponent implements OnInit {
     this.usuarioService.updateUsuario(usuario).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
+        `Se modifico el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/usuario`,
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
       ]);
     });
   }

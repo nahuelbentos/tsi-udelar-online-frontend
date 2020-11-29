@@ -9,6 +9,7 @@ import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.
 import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.component';
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
+import { AbmTemplatecursoComponent } from '../shared/pages/abm-templatecurso/abm-templatecurso.component';
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
@@ -19,6 +20,10 @@ import { GestionMaterialComponent } from '../shared/pages/gestion-material/gesti
 import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatecurso/gestion-templatecurso.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorFacultadComponent } from './components/nav-administrador-facultad/nav-administrador-facultad.component';
+import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
+import { CarrerasComponent } from './pages/carreras/carreras.component';
+import { CursosComponent } from './pages/cursos/cursos.component';
+import { DocentesComponent } from './pages/docentes/docentes.component';
 
 
 const routes: Routes = [
@@ -35,19 +40,39 @@ const routes: Routes = [
         data: { titulo: 'Gestión de Facultades' },
       },
       {
+        path: 'facultad/abm-facultad',
+        component: AbmFacultadComponent,
+        data: { titulo: 'ABM de Facultades' },
+      },
+      {
         path: 'carrera',
-        component: GestionCarreraComponent,
+        component: CarrerasComponent,
         data: { titulo: 'Gestión de Carreras' },
       },
       {
+        path: 'carrera/abm-carrera',
+        component: AbmCarreraComponent,
+        data: { titulo: 'ABM de Carreras' },
+      },
+      {
         path: 'curso',
-        component: GestionCursoComponent,
+        component: CursosComponent,
         data: { titulo: 'Gestión de Cursos' },
       },
       {
-        path: 'template-curso',
+        path: 'curso/abm-curso',
+        component: AbmCursoComponent,
+        data: { titulo: 'ABM Cursos' },
+      },
+      {
+        path: 'templatecurso',
         component: GestionTemplatecursoComponent,
         data: { titulo: 'Gestión de Template Cursos' },
+      },
+      {
+        path: 'templatecurso/abm-templatecurso',
+        component: AbmTemplatecursoComponent,
+        data: { titulo: 'ABM de Template Cursos' },
       },
 
       {
@@ -77,6 +102,27 @@ const routes: Routes = [
         path: 'foro',
         component: GestionForoComponent,
         data: { titulo: 'Gestión de foros' },
+      },
+      {
+        path: 'usuario',
+        component: GestionUsuarioComponent,
+        data: { titulo: 'Gestión de Usuarios' },
+      },
+
+      {
+        path: 'usuario/abm-usuario',
+        component: AbmUsuarioComponent,
+        data: { titulo: 'ABM de Usuarios' },
+      },
+      {
+        path: 'docente',
+        component: DocentesComponent,
+        data: { titulo: 'Gestión de Docentes' },
+      },
+      {
+        path: 'docente/abm-docente',
+        component: AbmDocenteComponent,
+        data: { titulo: 'ABM de docentes' },
       },
     ],
   },

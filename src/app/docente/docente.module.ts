@@ -13,10 +13,13 @@ import { MatListModule } from '@angular/material/list';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
 import { MaterialModule } from '../material/material.module';
 import { SharedModule } from '../shared/shared.module';
+import { EstudiantesComponent } from './pages/estudiantes/estudiantes.component';
+import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
+import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 
 
 @NgModule({
-  declarations: [HomeComponent,  NavDocenteComponent],
+  declarations: [HomeComponent,  NavDocenteComponent, EstudiantesComponent, AdministrarCursosComponent, EncuestasComponent],
   imports: [
     CommonModule,
     DocenteRoutingModule,

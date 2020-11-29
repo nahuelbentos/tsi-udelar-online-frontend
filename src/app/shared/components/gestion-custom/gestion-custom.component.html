@@ -2,8 +2,11 @@
   <div class="col-xs-12" style="padding: 0px 30px;">
     <div class="box">
 
-      <mat-button-toggle-group *ngIf="puedeAgregar">
-        <mat-button-toggle (click)="abm('INS', null)">Agregar {{ tipoSingular }}</mat-button-toggle>
+
+      <mat-button-toggle-group *ngIf="actionsHeader && actionsHeader[0].title && actionsHeader.length > 0">
+        <mat-button-toggle *ngFor="let action of actionsHeader" [matTooltip]="action.tooltip"
+          (click)=" action.callback ? buttonClick( action.callback()  ) :  abm(action.mode, null)"
+          [class]="action.className" matTooltipClass="action.tooltipClassName"  > {{ action.title }}</mat-button-toggle>
       </mat-button-toggle-group>
 
 
@@ -20,7 +23,7 @@
         <div class="col-xs-12">
           <div class="box">
             <mat-form-field class="full-width" appearance="fill">
-              <mat-label>Buscar {{ tipoPlural }}...</mat-label>
+              <mat-label>Buscar {{ tituloPlural }}...</mat-label>
               <input matInput (keyup)="applyFilter($event)" #input>
             </mat-form-field>
           </div>
@@ -40,7 +43,18 @@
             <ng-container *ngIf="column === 'actions'; else elseTemplate">
               <th mat-header-cell *matHeaderCellDef> </th>
               <td mat-cell *matCellDef="let row">
-                <button mat-mini-fab [matTooltip]="tooltipEditar" (click)="abm('UPD', row)" class="button-editar"
+                <ng-container *ngIf="actions && actions[0].tooltip && actions.length > 0">
+<!-- [ngStyle]="{'backgroundColor': action.backgroundColor ? action.backgroundColor : '' }" -->
+                  <button *ngFor="let action of actions" mat-mini-fab style="margin-left: 5px;"
+                    [matTooltip]="action.tooltip"
+                    (click)=" action.callback ? buttonClick( action.callback(row) ) :  abm(action.mode, row)"
+                    [class]="action.className" [matTooltipClass]="action.tooltipClassName" 
+                    [ngStyle]="styleObject(action)"
+                    >
+                    <mat-icon> {{action.icon}} </mat-icon>
+                  </button>
+                </ng-container>
+                <!-- <button mat-mini-fab [matTooltip]="tooltipEditar" (click)="abm('UPD', row)" class="button-editar"
                   matTooltipClass="tooltip-blue">
                   <mat-icon>edit</mat-icon>
                 </button>
@@ -48,7 +62,7 @@
                 <button mat-mini-fab style="margin-left: 5px;" (click)="abm('DLT', row)" [matTooltip]="tooltipEliminar"
                   matTooltipClass="tooltip-red" class="button-eliminar">
                   <mat-icon>delete</mat-icon>
-                </button>
+                </button> -->
               </td>
             </ng-container>
             <ng-template #elseTemplate>

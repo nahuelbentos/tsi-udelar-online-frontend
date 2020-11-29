@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Actividad } from 'src/app/models/actividad.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { ActividadService } from 'src/app/services/actividad.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class GestionEncuestaComponent implements OnInit {
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
 
+  @Input() tipo: TipoUsuario;
   constructor(private actividadService: ActividadService) {
     this.getEncuestas();
   }

@@ -1,6 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatAutocomplete } from '@angular/material/autocomplete';
+import { Location } from '@angular/common';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import {
+  MatAutocomplete,
+  MatAutocompleteTrigger,
+  _MatAutocompleteBase,
+} from '@angular/material/autocomplete';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from, Observable, of } from 'rxjs';
@@ -44,6 +54,8 @@ export class AbmCursoComponent implements OnInit {
   filteredTemplateCursos: Observable<TemplateCurso[]>;
   templateCursos: TemplateCurso[] = [];
 
+  @ViewChild(MatAutocompleteTrigger) autocomplete: MatAutocompleteTrigger;
+
   get nombre() {
     return this.cursoForm.get('nombre');
   }
@@ -67,12 +79,13 @@ export class AbmCursoComponent implements OnInit {
   }
 
   constructor(
-    private autenticacionService:AutenticacionService,
+    private autenticacionService: AutenticacionService,
     private cursoService: CursoService,
     private fb: FormBuilder,
     public dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.buildForm();
   }
@@ -104,12 +117,21 @@ export class AbmCursoComponent implements OnInit {
 
     this.filteredTemplateCursos = this.templateCurso.valueChanges.pipe(
       startWith(''),
+      map((templateCurso) =>
+        typeof templateCurso === 'string' ? templateCurso : templateCurso.nombre
+      ),
+      map((nombre) =>
+        nombre ? this.filterTemplates(nombre) : this.templateCursos.slice()
+      )
+    );
+
+    /*
       map((templateCurso: TemplateCurso) =>
         templateCurso
           ? this.filterTemplates(templateCurso)
           : this.templateCursos.slice()
       )
-    );
+    */
 
     /* Test Autocomplete*/
   }
@@ -125,12 +147,10 @@ export class AbmCursoComponent implements OnInit {
   private setValuesOnForm(curso: Curso) {
     this.nombre.setValue(curso.nombre);
     this.descripcion.setValue(curso.descripcion);
-    this.modalidadCurso.setValue(curso.modalidadCurso);
-    this.requiereMatriculacion.setValue(
-      this.modalidadesOptions[curso.modalidadCurso]
-    );
+    this.modalidadCurso.setValue(curso.modalidad);
+    this.requiereMatriculacion.setValue(curso.requiereMatriculacion);
     this.salaVirtual.setValue(curso.salaVirtual);
-    this.templateCurso.setValue(curso.templateCurso.templateCursoId);
+    this.templateCurso.setValue(curso.templateCurso);
   }
 
   private buildForm() {
@@ -147,9 +167,7 @@ export class AbmCursoComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
-    ]);
+    this.location.back();
   }
 
   guardarCurso(event: Event) {
@@ -163,13 +181,17 @@ export class AbmCursoComponent implements OnInit {
 
     curso.cursoId = this.cursoId;
     curso.descripcion = this.descripcion.value;
-    curso.modalidadCurso = this.modalidadCurso.value;
+    curso.modalidad = this.modalidadCurso.value;
+    console.log(this.cursoForm.value);
 
     curso.requiereMatriculacion = this.requiereMatriculacion.value
       ? this.requiereMatriculacion.value
       : false;
     curso.salaVirtual = this.salaVirtual.value;
-    curso.templateCursoId = this.templateCurso.value;
+    const templateCurso: TemplateCurso = this.templateCurso.value;
+    curso.templateCursoId = templateCurso
+      ? templateCurso.templateCursoId
+      : null;
 
     this.modo === 'INS' ? this.crearCurso(curso) : this.editarCurso(curso);
   }
@@ -181,7 +203,9 @@ export class AbmCursoComponent implements OnInit {
         `Se creó el curso ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/curso`,
       ]);
     });
 
@@ -192,19 +216,32 @@ export class AbmCursoComponent implements OnInit {
         `Se modificó el curso ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/curso`,
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/curso`,
       ]);
     });
 
-  seleccionarTemplateCurso(autocomplete: MatAutocomplete) {
-    console.log(autocomplete);
-    
+  seleccionarTemplateCurso(trigger: MatAutocompleteTrigger) {
+    console.log('trigger:: ', trigger);
+    console.log('autocomplete:: ', this.autocomplete);
+
+    trigger.closePanel();
+
     const dialogRef = this.dialog.open(SeleccionarTemplateCursoComponent, {
       height: 'auto',
       width: '700px',
     });
-    dialogRef
-      .afterClosed()
-      .subscribe((seccion) => console.log('seccion: ', seccion));
+
+    dialogRef.afterOpened().subscribe(() => trigger.closePanel());
+    dialogRef.afterClosed().subscribe((templateCurso: TemplateCurso) => {
+      console.log(templateCurso);
+
+      this.templateCurso.setValue(templateCurso);
+    });
+  }
+
+  displayFn(template: TemplateCurso): string {
+    return template && template.nombre ? template.nombre : '';
   }
 }

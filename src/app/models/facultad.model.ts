@@ -8,6 +8,9 @@ export class Facultad {
     public dominioMail?: string,
     public usuarioLista?: Usuario[],
     public facultadId?: string,
-    public colorPrincipal?: string,
+    public colorCodigo?: string,
+    public archivoData?: string,
+    public archivoNombre?: string,
+    public archivoExtension?: string,
   ) {}
 }
