@@ -27,6 +27,16 @@ export class AbmFacultadComponent implements OnInit {
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   facultadForm: FormGroup;
   facultadId: string;
+  archivoData: string;
+  archivoNombre: string;
+  archivoExtension: string;
+
+  usuariosLista: Usuario[] = [
+    {
+      usuarioId: '9F4CA882-B42F-473B-85E9-BEFD1E818B7F',
+      nombres: 'Pepito Gonzalez',
+    },
+  ];
   modo: string;
   archivoData: string;
   archivoNombre: string;
