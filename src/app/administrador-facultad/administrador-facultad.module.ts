@@ -11,6 +11,7 @@ import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
 
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
+import { PublicarComunicadoCursoComponent } from './pages/publicar-comunicado-curso/publicar-comunicado-curso.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CursosComponent } from './pages/cursos/cursos.component';
     AbmDocenteComponent,
     CursosComponent,
     CarrerasComponent,
+    PublicarComunicadoCursoComponent,
   ],
   imports: [CommonModule, AdministradorFacultadRoutingModule, SharedModule],
 })

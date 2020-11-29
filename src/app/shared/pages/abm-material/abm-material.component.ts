@@ -1,13 +1,19 @@
 import { Location } from '@angular/common';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CursoSeccion } from 'src/app/models/curso-seccion';
 import { Material } from 'src/app/models/material.model';
+import { Seccion } from 'src/app/models/seccion.model';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { CursoSeccionService } from 'src/app/services/curso-seccion.service';
 import { MaterialService } from 'src/app/services/material.service';
+import { SeccionService } from 'src/app/services/seccion.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { SeleccionarSeccionComponent } from '../../dialogs/seleccionar-seccion/seleccionar-seccion.component';
 
 @Component({
   selector: 'app-abm-material',
@@ -28,6 +34,12 @@ export class AbmMaterialComponent implements OnInit {
   modo: string;
   hide = true;
 
+  secciones: Seccion[] = [];
+  seccion: Seccion;
+  seccionDialog =  SeleccionarSeccionComponent;
+
+  @Input() tipo: TipoUsuario = null;
+  
   get nombre() {
     return this.materialForm.get('nombre');
   }
@@ -39,9 +51,11 @@ export class AbmMaterialComponent implements OnInit {
   get facultad() {
     return this.materialForm.get('facultad');
   }
-
+  
   constructor(
     private autenticacionService: AutenticacionService,
+    private cursoSeccionService: CursoSeccionService,
+    private seccionService: SeccionService,
     private materialService: MaterialService,
     private fb: FormBuilder,
     private router: Router,
@@ -51,7 +65,16 @@ export class AbmMaterialComponent implements OnInit {
     this.buildForm();
   }
 
+
   ngOnInit(): void {
+    this.seccionService.getSecciones().subscribe(
+      (secciones) =>
+        (this.secciones = secciones.map((seccion) => ({
+          ...seccion,
+          descripcionAutocomplete: seccion.nombre,
+        })))
+    );
+
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
       this.materialId = param.id;
@@ -62,6 +85,12 @@ export class AbmMaterialComponent implements OnInit {
           .subscribe((material) => this.setValuesOnForm(material));
       }
     });
+  }
+
+  getSeccion(seccion: Seccion) {
+    console.log('getItem:: ', seccion);
+    this.seccion = seccion;
+    console.log('this.comunicado:: ', this.seccion);
   }
 
   private setValuesOnForm(material: Material) {
@@ -134,6 +163,13 @@ export class AbmMaterialComponent implements OnInit {
     this.modo === 'INS'
       ? this.creMaterial(material)
       : this.editMaterial(material);
+
+    if (this.tipo === TipoUsuario.Docente){
+      const cursoSeccion = new CursoSeccion();
+      // cursoSeccion.cursoId = 
+      cursoSeccion.seccionId = this.seccion.seccionId;
+      this.cursoSeccionService.altaCursoSeccion(cursoSeccion);
+    }
   }
 
   private creMaterial = (material: Material) =>
@@ -147,7 +183,7 @@ export class AbmMaterialComponent implements OnInit {
           .getRolSesion()
           .toLocaleLowerCase()}/material`,
       ]);
-    });
+    })
 
   private editMaterial = (material: Material) =>
     this.materialService.updateMaterial(material).subscribe(() => {
@@ -160,5 +196,5 @@ export class AbmMaterialComponent implements OnInit {
           .getRolSesion()
           .toLocaleLowerCase()}/material`,
       ]);
-    });
+    })
 }

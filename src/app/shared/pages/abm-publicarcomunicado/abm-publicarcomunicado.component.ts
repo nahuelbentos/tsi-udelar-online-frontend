@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Comunicado } from 'src/app/models/Comunicado';
+import { ComunicadoCurso } from 'src/app/models/comunicado-curso';
 import { ComunicadoFacultad } from 'src/app/models/comunicado-facultad';
 import { Curso } from 'src/app/models/curso.model';
 import { Facultad } from 'src/app/models/facultad.model';
@@ -33,44 +34,34 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   publicarComunicadoForm: FormGroup;
   comunicadoId: string;
+  comunicado: Comunicado;
   filteredComunicados: Observable<Comunicado[]>;
   comunicados: Comunicado[] = [];
   filteredFacultades: Observable<Facultad[]>;
   facultades: Facultad[] = [];
   cursos: Curso[] = [];
+  facultad: Facultad;
+  curso: Curso;
 
   primeraVez = false;
   modo: string;
   hide = true;
 
   @Input() tipo: TipoUsuario = null;
-
-  comunicadoDialog: SeleccionarComunicadoComponent;
-  facultadDialog: SeleccionarFacultadComponent;
-  cursoDialog: SeleccionarCursoComponent;
-
-  get comunicado() {
-    return this.publicarComunicadoForm.get('comunicado');
-  }
-
-  get facultad() {
-    return this.publicarComunicadoForm.get('facultad');
-  }
+  
+  comunicadoDialog =  SeleccionarComunicadoComponent;
+  facultadDialog = SeleccionarFacultadComponent;
+  cursoDialog = SeleccionarCursoComponent;
 
   constructor(
     private autenticacionService: AutenticacionService,
     private comunicadoService: ComunicadoService,
     private facultadService: FacultadService,
     private cursoService: CursoService,
-    private fb: FormBuilder,
     public dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
   ) {
-    //this.buildForm();
   }
-
-
 
   ngOnInit(): void {
     this.comunicadoService.getComunicados().subscribe(
@@ -88,6 +79,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
           descripcionAutocomplete: facultad.nombre,
         })))
     );
+
     this.cursoService.getCursos().subscribe(
       (cursos) => 
         (this.cursos = cursos.map((curso) => ({
@@ -99,117 +91,81 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
 
   getComunicado(comunicado: Comunicado) {
     console.log('getItem:: ', comunicado);
-    this.comunicadoService
-      .getComunicadoById(comunicado.comunicadoId).subscribe((comunicado) => {
-        return (this.comunicadoId = comunicado.comunicadoId);
-      });
-  }
-  /*setComunicados(comunicados: Comunicado[]) {
-    this.comunicados = comunicados;
-
-    this.filteredComunicados = this.comunicado.valueChanges.pipe(
-      startWith(''),
-      map((comunicado: Comunicado) =>
-        comunicado
-          ? this.filterComunicados(comunicado)
-          : this.comunicados.slice()
-      )
-    );
-  }*/
-
-  /*setFacultades(facultades: Facultad[]) {
-    this.facultades = facultades;
-
-    this.filteredFacultades = this.facultad.valueChanges.pipe(
-      startWith(''),
-      map((facultad: Facultad) =>
-        facultad ? this.filterFacultades(facultad) : this.facultades.slice()
-      )
-    );
-  }*/
-
-  /*private filterComunicados(value: any): Comunicado[] {
-    const filterValue = value.toLowerCase();
-
-    return this.comunicados.filter((comunicado) =>
-      comunicado.nombre.toLowerCase().includes(filterValue)
-    );
+    this.comunicado = comunicado;
+    console.log('this.comunicado:: ', this.comunicado);
   }
 
-  private filterFacultades(value: any): Facultad[] {
-    const filterValue = value.toLowerCase();
-
-    return this.facultades.filter((facultad) =>
-      facultad.nombre.toLowerCase().includes(filterValue)
-    );
+  getFacultad(facultad: Facultad) {
+    console.log('getItem:: ', facultad);
+    this.facultad = facultad;
+    console.log('this.facultad:: ', this.facultad);
   }
 
-  private setValuesOnForm(comunicadoFacultad: ComunicadoFacultad) {
-    this.comunicado.setValue(comunicadoFacultad.comunicadoId);
-    this.facultad.setValue(comunicadoFacultad.facultadId);
+  getCurso(curso: Curso) {
+    console.log('getItem:: ', curso);
+    this.curso = curso;
+    console.log('this.curso:: ', this.curso);
   }
-
-  private buildForm() {
-    this.publicarComunicadoForm = this.fb.group({
-      comunicado: [''],
-      facultad: [''],
-    });
-  }*/
 
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
     this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/comunicado`,
+      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/publicar-comunicado-facultad`,
     ]);
   }
 
-  /*seleccionarComunicado(trigger: MatAutocompleteTrigger) {
-    const dialogRef = this.dialog.open(SeleccionarComunicadoComponent, {
-      height: 'auto',
-      width: '700px',
-    });
-    dialogRef.afterOpened().subscribe(() => trigger.closePanel());
-    dialogRef
-      .afterClosed()
-      .subscribe((comunicado) => this.comunicado.setValue(comunicado));
-  }*/
-
-  /*seleccionarFacultad(autocomplete: MatAutocomplete) {
-    console.log(autocomplete);
-    const dialogRef = this.dialog.open(SeleccionarFacultadComponent, {
-      height: 'auto',
-      width: '700px',
-    });
-    dialogRef
-      .afterClosed()
-      .subscribe((seccion) => console.log('seccion: ', seccion));
-  }*/
-
-  publicarComunicado(event: Event) {
+  publicarGeneral(event: Event){
     event.preventDefault();
 
-    const comunicadoFacultad = new ComunicadoFacultad();
-    comunicadoFacultad.comunicadoId = this.comunicado.value.comunicadoId;
-    comunicadoFacultad.facultadId = this.facultad.value.facultadId;
-    comunicadoFacultad.facultad = this.facultad.value;
-    comunicadoFacultad.comunicado = this.comunicado.value;
-    console.log('comunicadoFacultad ', comunicadoFacultad);
+    const comunicado = new Comunicado(this.comunicado.nombre, this.comunicado.descripcion, this.comunicado.url);
+    comunicado.comunicadoId = this.comunicado.comunicadoId;
     this.comunicadoService
-      .publicarComunicadoFacultad(comunicadoFacultad)
+      .publicarComunicadoGeneral(comunicado)
       .subscribe(() => {
         mensajeConfirmacion(
           'Excelente!',
           `Se publicó comunicado exitosamente.`
         ).then();
         this.router.navigate([
-          `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/comunicado`,
+          `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/publicar-comunicado-facultad`,
         ]);
       });
   }
 
-  
- /* displayFn(comunicado: Comunicado): string {
-    return comunicado && comunicado.nombre ? comunicado.nombre : '';
-  }*/
+  publicarComunicado(event: Event) {
+    event.preventDefault();
+    if (this.tipo === 'Administrador'){
+      const comunicadoFacultad = new ComunicadoFacultad();
+      comunicadoFacultad.comunicadoId = this.comunicado.comunicadoId;
+      comunicadoFacultad.facultadId = this.facultad.facultadId;
+      console.log('comunicadoFacultad ', comunicadoFacultad);
+      this.comunicadoService
+        .publicarComunicadoFacultad(comunicadoFacultad)
+        .subscribe(() => {
+          mensajeConfirmacion(
+            'Excelente!',
+            `Se publicó comunicado exitosamente.`
+          ).then();
+          this.router.navigate([
+            `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/publicar-comunicado-facultad`,
+          ]);
+        });
+    }else{
+      const comunicadoCurso = new ComunicadoCurso();
+      comunicadoCurso.comunicadoId = this.comunicado.comunicadoId;
+      comunicadoCurso.cursoId = this.curso.cursoId;
+      this.comunicadoService
+      .publicarComunicadoCurso(comunicadoCurso)
+      .subscribe(() => {
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se publicó comunicado exitosamente.`
+        ).then();
+        this.router.navigate([
+          `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/publicar-comunicado-curso`,
+        ]);
+      });
+    }
+  }
 }

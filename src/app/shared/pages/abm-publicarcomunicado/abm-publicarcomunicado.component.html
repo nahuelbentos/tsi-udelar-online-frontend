@@ -14,7 +14,7 @@
                     </div>
                 </div> 
                 
-               <!-- <ng-container *ngIf="tipo === 'Administrador'" ; else elseTemplate> 
+               <ng-container *ngIf="tipo === 'Administrador' ; else elseTemplate"> 
 
                     <div class="row">
                         <div class="col-xs">
@@ -39,17 +39,20 @@
                             </div>
                         </div>
                     </div>
-                </ng-template> -->
-                
-               
+                </ng-template>
 
                     <mat-card-actions align="end">
-
+                        
+                        <button mat-raised-button color="primary" type="button"
+                            *ngIf="tipo === 'Administrador'"
+                            (click)="publicarGeneral($event)"
+                            (keyup.enter)="publicarGeneral($event)" >Publicar General</button>
 
                         <button mat-raised-button color="primary" type="button"
                             (click)="publicarComunicado($event)"
                             (keyup.enter)="publicarComunicado($event)">Publicar Comunicado</button>
                         <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+
                     </mat-card-actions>
                 </mat-card>
                 

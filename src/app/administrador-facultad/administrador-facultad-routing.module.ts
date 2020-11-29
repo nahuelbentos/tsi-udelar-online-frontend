@@ -21,9 +21,11 @@ import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatec
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorFacultadComponent } from './components/nav-administrador-facultad/nav-administrador-facultad.component';
 import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
+import { AdministrarMaterialesComponent } from './pages/administrar-materiales/administrar-materiales.component';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { DocentesComponent } from './pages/docentes/docentes.component';
+import { PublicarComunicadoCursoComponent } from './pages/publicar-comunicado-curso/publicar-comunicado-curso.component';
 
 
 const routes: Routes = [
@@ -92,10 +94,21 @@ const routes: Routes = [
         data: { titulo: 'Gestión de Usuarios' },
       },
 
+      // {
+      //   path: 'material',
+      //   component: GestionMaterialComponent,
+      //   data: { titulo: 'Gestión de materiales' },
+      // },
       {
-        path: 'material',
-        component: GestionMaterialComponent,
-        data: { titulo: 'Gestión de materiales' },
+        path: 'administrar-materiales',
+        component: AdministrarMaterialesComponent,
+        data: { titulo: 'Administrar materiales' },
+      },
+
+      {
+        path: 'administrar-materiales/abm-material',
+        component: AbmMaterialComponent,
+        data: { titulo: 'ABM de materiales' },
       },
 
       {
@@ -123,6 +136,11 @@ const routes: Routes = [
         path: 'docente/abm-docente',
         component: AbmDocenteComponent,
         data: { titulo: 'ABM de docentes' },
+      },
+      {
+        path: 'publicar-comunicado-curso',
+        component: PublicarComunicadoCursoComponent,
+        data: { titulo: 'Publicar Comunicado Facultad' },
       },
     ],
   },

@@ -40,6 +40,17 @@
 
             </div>
 
+            <div class="row" *ngIf="tipo === 'Docente'">
+              <div class="col-xs">
+                  <div class="box">
+
+                      <app-autocomplete-custom  [data]="secciones" [refDialog]="seccionDialog" label="Seccion" (sendItem)="getSeccion($event)">
+                      </app-autocomplete-custom>    
+
+                  </div>
+              </div>
+          </div>
+
             <div class="row">
               <div class="col-xs">
                 <div class="box">
