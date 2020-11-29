@@ -15,6 +15,15 @@ import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.com
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
 import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.component';
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
+import { AbmMensajeComponent } from '../shared/pages/abm-mensaje/abm-mensaje.component';
+import { AbmCursoseccionComponent } from '../shared/pages/abm-cursoseccion/abm-cursoseccion.component';
+import { AbmTemplateCursoSeccionComponent } from '../shared/pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
+import { GestionCursoSeccionComponent} from '../shared/pages/gestion-cursoseccion/gestion-cursoseccion.component';
+import { GestionMensajeComponent } from '../shared/pages/gestion-mensaje/gestion-mensaje.component';
+import { GestionRespuestaComponent } from '../shared/pages/gestion-respuesta/gestion-respuesta.component';
+import { GestionTemaforoComponent } from '../shared/pages/gestion-temaforo/gestion-temaforo.component';
+import { GestionTemplateCursoSeccionComponent } from '../shared/pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
+
 
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
 import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respuesta.component';
@@ -36,6 +45,8 @@ import { NavAdministradorComponent } from './components/nav-administrador/nav-ad
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
+import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
+import { AbmPruebaonlineComponent } from '../shared/pages/abm-pruebaonline/abm-pruebaonline.component';
 
 const routes: Routes = [
   {
@@ -164,11 +175,18 @@ const routes: Routes = [
         path: 'seccion/abm-seccion',
         component: AbmSeccionComponent,
         data: { titulo: 'ABM de secciones' },
-      },
+      },      
+
       {
         path: 'temaforo/abm-temaforo',
         component: AbmTemaForoComponent,
-        data: { titulo: 'ABM de TemaForo' },
+        data: { titulo: 'ABM de tema foro' },
+      },
+
+      {
+        path: 'respuesta',
+        component: GestionRespuestaComponent,
+        data: { titulo: 'Gestion de Respuesta' },
       },
       {
         path: 'respuesta/abm-respuesta',
@@ -204,7 +222,74 @@ const routes: Routes = [
       {
         path: 'reportes/facultades-estadisticas',
         component: GestionFacultadComponent,
-        data: { titulo: 'Información estadística de facultades' },
+        data: { titulo: 'Información estadística de facultades' },        
+      },
+      
+      {
+        path: 'cursoseccion',
+        component: GestionCursoSeccionComponent,
+        data: { titulo: 'Gestión de secciones de un curso' },
+      },
+
+      {
+        path: 'cursoseccion/abm-cursoseccion',
+        component: AbmCursoseccionComponent,
+        data: { titulo: 'ABM de  curso secciones' },
+      },
+
+      {
+        path: 'mensaje',
+        component: GestionMensajeComponent,
+        data: { titulo: 'Gestión de mensajes' },
+      },
+
+      {
+        path: 'mensaje/abm-mensaje',
+        component: AbmMensajeComponent,
+        data: { titulo: 'ABM de mensajes' },
+      },
+      
+      {
+        path: 'respuesta',
+        component: GestionRespuestaComponent,
+        data: { titulo: 'Gestión de respuesta' },
+      },
+
+      {
+        path: 'respuesta/abm-respuesta',
+        component: AbmRespuestaComponent,
+        data: { titulo: 'ABM de respuesta' },
+      },
+
+      {
+        path: 'temaforo',
+        component: GestionTemaforoComponent,
+        data: { titulo: 'Gestión de temas de un foro' },
+      },
+
+
+      {
+        path: 'templatecurso',
+        component: GestionTemplatecursoComponent,
+        data: { titulo: 'Gestión de template de un curso' },
+      },
+
+      {
+        path: 'templatecurso/abm-templatecurso',
+        component: AbmTemplatecursoComponent,
+        data: { titulo: 'ABM de template curso' },
+      },
+
+      {
+        path: 'templatecursoseccion',
+        component: GestionTemplateCursoSeccionComponent,
+        data: { titulo: 'Gestión de seccion template de un curso' },
+      },
+
+      {
+        path: 'templatecursoseccion/abm-templatecursoseccion',
+        component: AbmTemplateCursoSeccionComponent,
+        data: { titulo: 'ABM de templatecursoseccion' },
       },
       {
         path: 'test',

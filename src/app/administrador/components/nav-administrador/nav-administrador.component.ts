@@ -61,6 +61,26 @@ export class NavAdministradorComponent implements OnInit {
       link: 'reportes',
       titulo: 'Reportes',
     },
+    {
+      link: 'mensaje',
+      titulo: 'Mensaje'
+    },
+    {
+      link: 'cursoseccion',
+      titulo: 'Curso seccion'
+    },
+    {
+      link: 'respuesta',
+      titulo: 'Respuesta'
+    },
+    {
+      link: 'temaforo',
+      titulo: 'Tema Foro'
+    },
+    {
+      link: 'templatecursoseccion',
+      titulo: 'Template Curso seccion'
+    }
   ];
   constructor() {}
   ngOnInit(): void {}
