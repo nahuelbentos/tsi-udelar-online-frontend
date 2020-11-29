@@ -39,7 +39,7 @@ const routes: Routes = [
         data: { titulo: 'Encuestas' },
       },
       {
-        path: 'encuesta/abm-encuesta',
+        path: 'encuestas/abm-encuesta',
         component: AbmEncuestaComponent,
         data: { titulo: 'ABM de Encuestas' },
       },
