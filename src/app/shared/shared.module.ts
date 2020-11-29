@@ -139,6 +139,7 @@ import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
     GestionEncuestaComponent,
+    GestionAlumnocursoComponent
   ],
   imports: [
     CommonModule,

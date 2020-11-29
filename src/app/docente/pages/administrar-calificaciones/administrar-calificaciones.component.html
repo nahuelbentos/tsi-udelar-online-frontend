@@ -1,0 +1,26 @@
+<div class="row " style="margin-top: 20px;">
+
+    <div class="col-xs-offset-4 col-xs-4">
+      <div class="box">
+        <h1> Selecciona un curso para ver sus estudiantes</h1>
+      </div>
+    </div>
+    
+    <div class="col-xs-offset-3 col-xs-6">
+      <div class="box">
+        <app-autocomplete-custom [data]="cursos" [refDialog]="cursoDialog" label="Cursos" (sendItem)="getItem($event)">
+      </app-autocomplete-custom>
+  
+  
+      </div>
+    </div>
+  </div>
+  
+  <div class="row ">
+    <div class="col-xs-offset-1 col-xs-10">
+      <div class="box">
+        <app-gestion-alumnocurso tipoSingular="alumnocurso" tipoPlural="alumnos" [alumnosCurso]="alumnos">
+        </app-gestion-alumnocurso>
+      </div>
+    </div>
+  </div>

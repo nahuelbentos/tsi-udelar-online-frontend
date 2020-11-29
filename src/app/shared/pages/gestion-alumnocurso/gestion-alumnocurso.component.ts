@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AlumnoCurso } from 'src/app/models/alumno-curso.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { AlumnoCursoService } from 'src/app/services/alumno-curso.service';
@@ -10,9 +10,12 @@ import { AlumnoCursoService } from 'src/app/services/alumno-curso.service';
 })
 export class GestionAlumnocursoComponent implements OnInit {
 
-  alumnosCurso: AlumnoCurso[];
+  @Input() tipoSingular = 'alumnocurso';
+  @Input() tituloPlural = 'alumnoscurso';
+
+  @Input() alumnosCurso: AlumnoCurso[];
   createComponent = false;
-  columnas = ['inscripto','calificacion','actions'];
+  columnas = ['calificacion','actions'];
 
   constructor(private alumnoCursoService : AlumnoCursoService) { 
     this.getAlumnosCurso();

@@ -16,10 +16,11 @@ import { SharedModule } from '../shared/shared.module';
 import { EstudiantesComponent } from './pages/estudiantes/estudiantes.component';
 import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
+import { AdministrarCalificacionesComponent } from './pages/administrar-calificaciones/administrar-calificaciones.component';
 
 
 @NgModule({
-  declarations: [HomeComponent,  NavDocenteComponent, EstudiantesComponent, AdministrarCursosComponent, EncuestasComponent],
+  declarations: [HomeComponent,  NavDocenteComponent, EstudiantesComponent, AdministrarCursosComponent, EncuestasComponent, AdministrarCalificacionesComponent],
   imports: [
     CommonModule,
     DocenteRoutingModule,

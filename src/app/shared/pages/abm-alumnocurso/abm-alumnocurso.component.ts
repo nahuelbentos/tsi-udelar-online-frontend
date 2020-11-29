@@ -72,7 +72,7 @@ export class AbmAlumnocursoComponent implements OnInit {
     .getCursos()
     .subscribe((cursos) => (this.cursos = cursos));
     this.alumnoService
-    .getUsuarios()
+    .getUsuariosByTipo("Alumno")
     .subscribe((alumnos) => (this.alumnos = alumnos));
     
     this.route.queryParams.subscribe((param) => {
@@ -99,8 +99,10 @@ export class AbmAlumnocursoComponent implements OnInit {
 
   private buildForm() {
     this.alumnoCursoForm = this.fb.group({
-      calificacion: ['',Validators.required],
-      feedback: ['',Validators.required],
+      curso: ['',Validators.required],
+      alumno: ['',Validators.required],
+      calificacion: [''],
+      feedback: [''],
       inscripto: [false],
       fechaActCerrada: ['']
     });
@@ -122,9 +124,11 @@ export class AbmAlumnocursoComponent implements OnInit {
     }
 
     const alumnoCurso = new AlumnoCurso();
+    console.log('alumno:: ', this.alumno);
+    
     const alumno: Usuario = this.alumno.value;
-    alumnoCurso.alumnoId = alumno.usuarioId;
-    alumnoCurso.cursoId = this.cursoId.value;
+    alumnoCurso.alumnoId = alumno.id;
+    alumnoCurso.cursoId = this.curso.value;
     alumnoCurso.calificacion = this.calificacion.value;
     alumnoCurso.inscripto = this.inscripto.value;
     alumnoCurso.feedback = this.feedback.value;

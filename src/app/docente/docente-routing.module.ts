@@ -12,6 +12,7 @@ import { EstudiantesComponent } from './pages/estudiantes/estudiantes.component'
 import { GestionAlumnocursoComponent } from '../shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { AbmPruebaonlineComponent } from '../shared/pages/abm-pruebaonline/abm-pruebaonline.component';
 import { AbmAlumnocursoComponent } from '../shared/pages/abm-alumnocurso/abm-alumnocurso.component';
+import { AdministrarCalificacionesComponent } from './pages/administrar-calificaciones/administrar-calificaciones.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,11 @@ const routes: Routes = [
         data: { titulo: 'Abm Alumno Curso' },
       },
       {
+        path: 'administrar-calificaciones',
+        component: AdministrarCalificacionesComponent,
+        data: { titulo: 'Administrar calificaciones' },
+      },
+      {
         path: 'estudiantes',
         component: EstudiantesComponent,
         data: { titulo: 'Estudiantes' },
@@ -66,7 +72,7 @@ const routes: Routes = [
         path: 'encuestas/abm-encuesta',
         component: AbmEncuestaComponent,
         data: { titulo: 'ABM de Encuestas' },
-      },
+      },      
     ],
   },
 ];

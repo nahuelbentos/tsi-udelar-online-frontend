@@ -43,10 +43,7 @@
                   <div class="box">
   
                     <mat-form-field class="full-width">
-                      <input matInput placeholder="Feedback" formControlName="feedback" required>
-                      <mat-error *ngIf="feedback.hasError('required')">
-                        Feedback es <strong>requerido</strong>.
-                      </mat-error>
+                      <input matInput placeholder="Feedback" formControlName="feedback">
                     </mat-form-field>
   
                   </div>
@@ -59,12 +56,9 @@
 
                   <mat-form-field class="full-width">
                     <mat-label>Fecha Acta Cerrada</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="fechaActCerrada" required>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaActCerrada">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="fechaActCerrada.hasError('required')">
-                      Fecha Acta Cerrada es <strong>requerido</strong>.
-                    </mat-error>
                   </mat-form-field>
 
 
@@ -76,10 +70,7 @@
                   <div class="box">
   
                     <mat-form-field class="full-width">
-                      <input matInput placeholder="Calificación" formControlName="calificacion" required>
-                      <mat-error *ngIf="calificacion.hasError('required')">
-                        La Calificación es<strong>requerida</strong>.
-                      </mat-error>
+                      <input matInput placeholder="Calificación" formControlName="calificacion">
                     </mat-form-field>
   
                   </div>

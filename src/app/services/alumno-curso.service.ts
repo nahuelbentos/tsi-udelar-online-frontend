@@ -22,7 +22,7 @@ export class AlumnoCursoService {
 
   getAlumnoCursoByAlumnoId = (alumnoId: string) => this.http.get<AlumnoCurso>(`${this.baseUrl}/byalumno/${alumnoId}`);
 
-  getAlumnoCursoByCursoId = (cursoId: string) => this.http.get<AlumnoCurso>(`${this.baseUrl}/bycurso/${cursoId}`);
+  getAlumnoCursoByCursoId = (cursoId: string) => this.http.get<AlumnoCurso[]>(`${this.baseUrl}/bycurso/${cursoId}`);
 
   deleteAlumnoCurso = (alumnoCursoId: string) => this.http.delete(`${this.baseUrl}/${alumnoCursoId}`);
 }
