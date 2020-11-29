@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Comunicado } from '../models/Comunicado';
+import { ComunicadoCurso } from '../models/comunicado-curso';
 import { ComunicadoFacultad } from '../models/comunicado-facultad';
 
 @Injectable({
@@ -32,5 +33,13 @@ export class ComunicadoService {
 
   publicarComunicadoFacultad(comunicadoFacultad: ComunicadoFacultad) {
     return this.http.post(`${this.baseUrl}/facultad`, comunicadoFacultad);
+  }
+
+  publicarComunicadoCurso(comunicadoCurso: ComunicadoCurso) {
+    return this.http.post(`${this.baseUrl}/curso`, comunicadoCurso);
+  }
+
+  publicarComunicadoGeneral(comunicado: Comunicado) {
+    return this.http.post(`${this.baseUrl}/general`, comunicado);
   }
 }
