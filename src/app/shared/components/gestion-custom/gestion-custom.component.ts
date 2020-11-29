@@ -186,8 +186,7 @@ export class GestionCustomComponent implements OnInit, OnChanges {
     }
   }
 
-  styleObject(action: Actions): Object {
-    console.log('action: ', action);
+  styleObject(action: Actions): Object { 
     
     const style: { backgroundColor?, color?, borderRadius? } = { color: '#fff' };
     style.backgroundColor = action.backgroundColor;
