@@ -4,8 +4,6 @@ import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { TemplateCurso } from 'src/app/models/template-curso.model';
-import { SeleccionarTemplateCursoComponent } from '../../dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
 
 @Component({
   selector: 'app-autocomplete-custom',
