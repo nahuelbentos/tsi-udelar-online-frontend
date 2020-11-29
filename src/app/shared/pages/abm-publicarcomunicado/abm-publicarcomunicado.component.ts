@@ -21,6 +21,7 @@ import { CursoService } from 'src/app/services/curso.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { SeleccionarComunicadoComponent } from '../../dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
+import { SeleccionarCursoComponent } from '../../dialogs/seleccionar-curso/seleccionar-curso.component';
 import { SeleccionarFacultadComponent } from '../../dialogs/seleccionar-facultad/seleccionar-facultad.component';
 
 @Component({
@@ -45,6 +46,8 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
   @Input() tipo: TipoUsuario = null;
 
   comunicadoDialog: SeleccionarComunicadoComponent;
+  facultadDialog: SeleccionarFacultadComponent;
+  cursoDialog: SeleccionarCursoComponent;
 
   get comunicado() {
     return this.publicarComunicadoForm.get('comunicado');
@@ -77,6 +80,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
           descripcionAutocomplete: comunicado.nombre,
         })))
     );
+    
     this.facultadService.getFacultades().subscribe(
       (facultades) => 
         (this.facultades = facultades.map((facultad) => ({
@@ -93,7 +97,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
     );
   }
 
-  getItem(comunicado: Comunicado) {
+  getComunicado(comunicado: Comunicado) {
     console.log('getItem:: ', comunicado);
     this.comunicadoService
       .getComunicadoById(comunicado.comunicadoId).subscribe((comunicado) => {

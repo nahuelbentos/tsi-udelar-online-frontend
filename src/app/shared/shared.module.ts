@@ -104,6 +104,8 @@ import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/selec
     TestComponentsComponent,
     AbmPublicarcomunicadoComponent,
     SeleccionarComunicadoComponent,
+    SeleccionarUsuarioComponent,
+    AutocompleteCustomComponent,
   ],
   exports: [
     HeaderComponent,
@@ -129,7 +131,6 @@ import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/selec
     MatIconModule,
     MatListModule,
     RouterModule,
-
     NgxMatColorPickerModule,
     MatFileUploadModule,
   ],
