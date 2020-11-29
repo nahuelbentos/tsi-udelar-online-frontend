@@ -110,6 +110,7 @@ import { AutocompleteCustomComponent } from './components/autocomplete-custom/au
     GestionCursoComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
+    GestionEncuestaComponent,
   ],
   imports: [
     CommonModule,

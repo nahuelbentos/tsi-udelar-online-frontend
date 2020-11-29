@@ -63,7 +63,7 @@ export class AbmEncuestaComponent implements OnInit {
     }
 
     const encuesta = new Actividad(this.nombre.value);
-
+    encuesta.tipo = 'Encuesta';
     encuesta.descripcion = this.descripcion.value;
     encuesta.preguntas = this.preguntas.map((control) => control.value);
 
