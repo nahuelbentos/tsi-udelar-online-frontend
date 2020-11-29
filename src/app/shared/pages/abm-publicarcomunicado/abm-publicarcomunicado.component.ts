@@ -10,12 +10,14 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Comunicado } from 'src/app/models/Comunicado';
 import { ComunicadoFacultad } from 'src/app/models/comunicado-facultad';
+import { Curso } from 'src/app/models/curso.model';
 import { Facultad } from 'src/app/models/facultad.model';
 import { TemplateCurso } from 'src/app/models/template-curso.model';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { ComunicadoService } from 'src/app/services/comunicado.service';
+import { CursoService } from 'src/app/services/curso.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { SeleccionarComunicadoComponent } from '../../dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
@@ -34,12 +36,15 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
   comunicados: Comunicado[] = [];
   filteredFacultades: Observable<Facultad[]>;
   facultades: Facultad[] = [];
+  cursos: Curso[] = [];
 
   primeraVez = false;
   modo: string;
   hide = true;
 
   @Input() tipo: TipoUsuario = null;
+
+  comunicadoDialog: SeleccionarComunicadoComponent;
 
   get comunicado() {
     return this.publicarComunicadoForm.get('comunicado');
@@ -53,34 +58,49 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
     private autenticacionService: AutenticacionService,
     private comunicadoService: ComunicadoService,
     private facultadService: FacultadService,
+    private cursoService: CursoService,
     private fb: FormBuilder,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.buildForm();
+    //this.buildForm();
   }
+
+
 
   ngOnInit(): void {
-    this.comunicadoService
-      .getComunicados()
-      .subscribe((comunicados) => this.setComunicados(comunicados));
-    this.facultadService
-      .getFacultades()
-      .subscribe((facultades) => this.setFacultades(facultades));
-
-    this.route.queryParams.subscribe((param) => {
-      this.modo = param.modo;
-      this.comunicadoId = param.id;
-      if (param.id) {
-        this.comunicadoService
-          .getComunicadoById(this.comunicadoId)
-          .subscribe((comunicado) => this.setValuesOnForm(comunicado));
-      }
-    });
+    this.comunicadoService.getComunicados().subscribe(
+      (comunicados) => 
+        (this.comunicados = comunicados.map((comunicado) => ({
+          ...comunicado,
+          descripcionAutocomplete: comunicado.nombre,
+        })))
+    );
+    this.facultadService.getFacultades().subscribe(
+      (facultades) => 
+        (this.facultades = facultades.map((facultad) => ({
+          ...facultad,
+          descripcionAutocomplete: facultad.nombre,
+        })))
+    );
+    this.cursoService.getCursos().subscribe(
+      (cursos) => 
+        (this.cursos = cursos.map((curso) => ({
+          ...curso,
+          descripcionAutocomplete: curso.nombre,
+        })))
+    );
   }
 
-  setComunicados(comunicados: Comunicado[]) {
+  getItem(comunicado: Comunicado) {
+    console.log('getItem:: ', comunicado);
+    this.comunicadoService
+      .getComunicadoById(comunicado.comunicadoId).subscribe((comunicado) => {
+        return (this.comunicadoId = comunicado.comunicadoId);
+      });
+  }
+  /*setComunicados(comunicados: Comunicado[]) {
     this.comunicados = comunicados;
 
     this.filteredComunicados = this.comunicado.valueChanges.pipe(
@@ -91,9 +111,9 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
           : this.comunicados.slice()
       )
     );
-  }
+  }*/
 
-  setFacultades(facultades: Facultad[]) {
+  /*setFacultades(facultades: Facultad[]) {
     this.facultades = facultades;
 
     this.filteredFacultades = this.facultad.valueChanges.pipe(
@@ -102,9 +122,9 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
         facultad ? this.filterFacultades(facultad) : this.facultades.slice()
       )
     );
-  }
+  }*/
 
-  private filterComunicados(value: any): Comunicado[] {
+  /*private filterComunicados(value: any): Comunicado[] {
     const filterValue = value.toLowerCase();
 
     return this.comunicados.filter((comunicado) =>
@@ -130,7 +150,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
       comunicado: [''],
       facultad: [''],
     });
-  }
+  }*/
 
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
@@ -140,7 +160,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
     ]);
   }
 
-  seleccionarComunicado(trigger: MatAutocompleteTrigger) {
+  /*seleccionarComunicado(trigger: MatAutocompleteTrigger) {
     const dialogRef = this.dialog.open(SeleccionarComunicadoComponent, {
       height: 'auto',
       width: '700px',
@@ -149,9 +169,9 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
     dialogRef
       .afterClosed()
       .subscribe((comunicado) => this.comunicado.setValue(comunicado));
-  }
+  }*/
 
-  seleccionarFacultad(autocomplete: MatAutocomplete) {
+  /*seleccionarFacultad(autocomplete: MatAutocomplete) {
     console.log(autocomplete);
     const dialogRef = this.dialog.open(SeleccionarFacultadComponent, {
       height: 'auto',
@@ -160,7 +180,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
     dialogRef
       .afterClosed()
       .subscribe((seccion) => console.log('seccion: ', seccion));
-  }
+  }*/
 
   publicarComunicado(event: Event) {
     event.preventDefault();
@@ -185,7 +205,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
   }
 
   
-  displayFn(comunicado: Comunicado): string {
+ /* displayFn(comunicado: Comunicado): string {
     return comunicado && comunicado.nombre ? comunicado.nombre : '';
-  }
+  }*/
 }

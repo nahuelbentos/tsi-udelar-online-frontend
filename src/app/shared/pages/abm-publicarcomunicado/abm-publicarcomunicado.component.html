@@ -3,8 +3,44 @@
         <div class="box">
 
             <mat-card>
+                <div class="row">
+                    <div class="col-xs">
+                        <div class="box">
 
-                <form [formGroup]="publicarComunicadoForm">
+                            <app-autocomplete-custom [data]="comunicados" [refDialog]="comunicadoDialog" label="Comunicados" (sendItem)="getItem($event)">
+                            </app-autocomplete-custom>                   
+
+                        </div>
+                    </div>
+                </div> 
+                
+               <!-- <ng-container *ngIf="tipo === 'Administrador'" ; else elseTemplate>
+
+                    <div class="row">
+                        <div class="col-xs">
+                            <div class="box">
+
+                                <app-autocomplete-custom [data]="comunicados" [refDialog]="comunicadoDialog" label="Comunicados" (sendItem)="getItem($event)">
+                                </app-autocomplete-custom>    
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-template #elseTemplate>
+
+                    <div class="row">
+                        <div class="col-xs">
+                            <div class="box">
+
+                                <app-autocomplete-custom [data]="comunicados" [refDialog]="comunicadoDialog" label="Comunicados" (sendItem)="getItem($event)">
+                                </app-autocomplete-custom>    
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>-->
+                <!--<form [formGroup]="publicarComunicadoForm">
 
 
                     <mat-card-content>
@@ -33,7 +69,7 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <ng-container *ngIf="tipo === 'Administrador'" ; else elseTemplate>
 
                             <div class="row">
@@ -100,7 +136,7 @@
                             (keyup.enter)="publicarComunicado($event)">Publicar Comunicado</button>
                         <button mat-raised-button (click)="onNoClick()">Cancelar</button>
                     </mat-card-actions>
-                </form>
+                </form>-->
             </mat-card>
 
 
