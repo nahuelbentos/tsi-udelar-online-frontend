@@ -12,12 +12,14 @@ export class ActividadService {
   constructor(private http: HttpClient) {}
 
   createActividad = (actividad: Actividad)  => this.http.post(this.baseUrl, actividad);
-
+  
   updateActividad = (actividad: Actividad)  => this.http.put(`${this.baseUrl}/${actividad.actividadId}`, actividad);
-
+  
   getActividades = () => this.http.get<Actividad[]>(this.baseUrl);
-
+  
   getActividadById = (actividadId: string) => this.http.get<Actividad>(`${this.baseUrl}/${actividadId}`);
-
+  
   deleteActividad = (actividadId: string)  => this.http.delete(`${this.baseUrl}/${actividadId}`);
+  
+  createEncuesta = (actividad: Actividad)  => this.http.post(`${this.baseUrl}/encuesta`, actividad);
 }

@@ -70,7 +70,7 @@ export class AbmEncuestaComponent implements OnInit {
     encuesta.preguntaLista = this.preguntas.map((control) => control.value);
     encuesta.usuarioId = this.usuarioSesion.id;
 
-    this.actividadService.createActividad(encuesta).subscribe(() => {
+    this.actividadService.createEncuesta(encuesta).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó la encuesta ${this.nombre.value} exitosamente.`

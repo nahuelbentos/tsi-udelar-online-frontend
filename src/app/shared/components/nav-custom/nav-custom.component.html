@@ -43,11 +43,17 @@
  
           <div class="col-xs-3 end-xs" *ngIf="verBuscar" style="margin-top: 10px;">
             <div class="box">
+              
+              
               <mat-form-field class="example-full-width">
                 <mat-label>Buscar cursos...</mat-label>
-                <input type="email" matInput [formControl]="searchCursos" placeholder="Ejemplo: TSI 1"><mat-icon matSuffix>search</mat-icon>
-        
+                <input type="email" matInput [formControl]="searchCursos" placeholder="Ejemplo: TSI 1" (keyup.enter)="onKey($event)">
+                <button mat-icon-button matSuffix (click)='onKey($event)' (keyup.enter)="onKey($event)">
+                  <mat-icon> search </mat-icon>
+                </button>
               </mat-form-field>
+ 
+              
             </div>
           </div>
         

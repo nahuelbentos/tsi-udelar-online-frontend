@@ -25,10 +25,11 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
   @Input() rol: string;
   @Input() color: string;
 
-  @Input() verBuscar = true;
+  @Input() verBuscar = false;
 
   public titulo: string;
   public tituloSubs$: Subscription;
+  values = '';
 
   searchCursos = new FormControl('');
 
@@ -65,6 +66,11 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
     this.tituloSubs$.unsubscribe();
   }
 
+  onKey(event: any) {
+    console.log('event :: ', event);
+    console.log('searchCursos :: ', this.searchCursos.value);
+
+  }
   getDataRuta() {
     return this.router.events.pipe(
       filter((event) => event instanceof ActivationEnd),
