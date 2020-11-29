@@ -21,6 +21,7 @@ export class Actividad {
     public actividadId?: string,
     public cursoId?: string,
     public curso?: Curso,
-    public preguntas?: any[],
+    public preguntaLista?: any[],
+    public usuarioId?: string,
   ) {}
 }

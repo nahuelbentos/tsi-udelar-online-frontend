@@ -1,0 +1,34 @@
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+      
+      <mat-accordion class="headers-align"> 
+
+      <mat-expansion-panel [expanded]="step === i && !primeraVez " (opened)="setStep(i)" hideToggle *ngFor="let curso of cursos; let i = index" >
+        
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ curso.nombre }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ curso.descripcion }}
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+  
+        <mat-panel-description *ngFor="let docente of curso.docentes">
+         Profesor:  {{ docente.nombres }} {{ docente.apellidos}}
+        </mat-panel-description>
+    
+        <mat-action-row>          
+          <button mat-button color="warn" (click)="prevStep()"*ngIf="i !== 0">Anterior</button>
+          <button mat-button color="primary" (click)="nextStep()"  >{{ i === cursos.length -1 ? 'Fin' : 'Siguiente' }}</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    
+    </mat-accordion>
+
+
+    </div>
+  </div>
+</div>

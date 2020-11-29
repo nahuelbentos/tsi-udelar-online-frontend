@@ -5,6 +5,7 @@ import { Actividad } from 'src/app/models/actividad.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { Location } from '@angular/common';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-abm-encuesta',
@@ -15,7 +16,7 @@ export class AbmEncuestaComponent implements OnInit {
   encuestaForm: FormGroup;
   encuestaId: string;
   preguntas: FormControl[] = [];
-
+  usuarioSesion = this.auth.getUser();
   get nombre() {
     return this.encuestaForm.get('nombre');
   }
@@ -28,7 +29,8 @@ export class AbmEncuestaComponent implements OnInit {
     private fb: FormBuilder,
     private location: Location,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AutenticacionService,
   ) {
     this.buildForm();
   }
@@ -65,14 +67,19 @@ export class AbmEncuestaComponent implements OnInit {
     const encuesta = new Actividad(this.nombre.value);
     encuesta.tipo = 'Encuesta';
     encuesta.descripcion = this.descripcion.value;
-    encuesta.preguntas = this.preguntas.map((control) => control.value);
+    encuesta.preguntaLista = this.preguntas.map((control) => control.value);
+    encuesta.usuarioId = this.usuarioSesion.id;
 
-    this.actividadService.createActividad(encuesta).subscribe(() => {
+    this.actividadService.createEncuesta(encuesta).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó la encuesta ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['gestion-encuesta']);
+      this.router.navigate([
+        `/${this.auth
+          .getRolSesion()
+          .toLocaleLowerCase()}/encuesta`,
+      ]);
     });
   }
 }

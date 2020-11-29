@@ -57,6 +57,7 @@ import { AbmPublicarcomunicadoComponent } from './pages/abm-publicarcomunicado/a
 import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
 import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
 import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
+import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/selec
     SeleccionarComunicadoComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
+    BuscarCursosComponent,
   ],
   exports: [
     HeaderComponent,
