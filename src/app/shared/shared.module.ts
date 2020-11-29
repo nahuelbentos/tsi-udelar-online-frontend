@@ -56,6 +56,7 @@ import { AutocompleteCustomComponent } from './components/autocomplete-custom/au
 import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,

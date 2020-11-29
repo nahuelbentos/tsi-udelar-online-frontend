@@ -1,6 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Facultad } from 'src/app/models/facultad.model';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
@@ -9,6 +14,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { MustMatch } from 'src/app/utils/custom-validators';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
 @Component({
@@ -17,12 +23,13 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-usuario.component.scss'],
 })
 export class AbmUsuarioComponent implements OnInit {
-  
+  @Input() isRegister = false;
+
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   verTipos =
-    this.autenticacionService.getUser().tipo === TipoUsuario.Administrador ||
-    this.autenticacionService.getUser().tipo ===
-      TipoUsuario.AdministradorFacultad;
+    this.autenticacionService.getUser() &&
+    ( this.autenticacionService.getUser().tipo === TipoUsuario.Administrador ||
+      this.autenticacionService.getUser().tipo === TipoUsuario.AdministradorFacultad);
   usuarioForm: FormGroup;
   usuarioId: string;
 
@@ -32,6 +39,7 @@ export class AbmUsuarioComponent implements OnInit {
   primeraVez = false;
   modo: string;
   hide = true;
+  titleButton: string;
 
   facultades: Facultad[] = [];
 
@@ -73,6 +81,10 @@ export class AbmUsuarioComponent implements OnInit {
     return this.usuarioForm.get('password');
   }
 
+  get passwordConfirm() {
+    return this.usuarioForm.get('passwordConfirm');
+  }
+
   get facultad() {
     return this.usuarioForm.get('facultad');
   }
@@ -110,6 +122,12 @@ export class AbmUsuarioComponent implements OnInit {
           .subscribe((usuario) => this.setValuesOnForm(usuario));
       }
     });
+
+    this.titleButton = 'Guardar usuario';
+    if (this.isRegister) {
+      this.titleButton = 'Registrarse!';
+      this.tipo.setValue(TipoUsuario.Alumno);
+    }
   }
   private getTiposByRol() {
     const tipos = Object.keys(this.tipos);
@@ -138,20 +156,26 @@ export class AbmUsuarioComponent implements OnInit {
   }
 
   private buildForm() {
-    this.usuarioForm = this.fb.group({
-      nombres: ['', Validators.required],
-      apellidos: ['', Validators.required],
-      cedula: ['', Validators.required],
-      fechaNacimiento: ['' ],
-      direccion: ['', Validators.required],
-      telefono: ['', Validators.required],
-      emailPersonal: ['', [Validators.required, Validators.email]],
-      email: [''],
-      userName: ['', Validators.required],
-      password: [''],
-      facultad: ['', [Validators.required]],
-      tipo: [''],
-    });
+    this.usuarioForm = this.fb.group(
+      {
+        nombres: ['', Validators.required],
+        apellidos: ['', Validators.required],
+        cedula: ['', Validators.required],
+        fechaNacimiento: ['', Validators.required],
+        direccion: [''],
+        telefono: [''],
+        emailPersonal: ['', [Validators.required, Validators.email]],
+        email: [''],
+        userName: ['', Validators.required],
+        password: [''],
+        passwordConfirm: [''],
+        facultad: ['', [Validators.required]],
+        tipo: [''],
+      },
+      {
+        validators: [MustMatch('password', 'passwordConfirm')],
+      }
+    );
   }
 
   onNoClick(): void {
@@ -165,7 +189,25 @@ export class AbmUsuarioComponent implements OnInit {
   guardarUsuario(event: Event) {
     event.preventDefault();
 
-    if (this.usuarioForm.invalid) {
+    let formInvalid = this.usuarioForm.invalid;
+
+    Object.keys(this.usuarioForm.controls).forEach((key) => {
+      const controlErrors: ValidationErrors = this.usuarioForm.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach((keyError) => {
+          if (keyError === 'mustMatch' && this.modo !== 'INS') {
+            formInvalid = false;
+          } else {
+            formInvalid = true;
+          }
+          console.log(
+            'Key control: ' + key + ', keyError: ' + keyError + ', err value: ',
+            controlErrors[keyError]
+          );
+        });
+      }
+    });
+    if (formInvalid) {
       return;
     }
 
@@ -189,26 +231,46 @@ export class AbmUsuarioComponent implements OnInit {
   }
 
   crearUsuario(usuario: Usuario) {
-    this.usuarioService.createUsuario(usuario).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
-      ]);
-    });
+    if (this.isRegister) {
+      this.autenticacionService
+        .register(usuario)
+        .subscribe((usuarioSesion: UsuarioSesion) => {
+          this.autenticacionService.setUser(usuarioSesion);
+          this.autenticacionService.setToken(usuarioSesion.token);
+
+          this.redirectWithMessage(
+            `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/`
+          );
+        });
+    } else {
+      this.usuarioService.createUsuario(usuario).subscribe(() => {
+        this.redirectWithMessage(
+          `/${this.autenticacionService
+            .getRolSesion()
+            .toLocaleLowerCase()}/usuario`
+        );
+      });
+    }
   }
 
   editarUsuario(usuario: Usuario) {
     this.usuarioService.updateUsuario(usuario).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se modifico el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
-      ]);
+      this.redirectWithMessage(
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/usuario`
+      );
     });
+  }
+
+  redirectWithMessage(ruta: string) {
+    mensajeConfirmacion(
+      'Excelente!',
+      `Se ${this.modo === 'INS' ? 'creó' : 'modificó'} el usuario ${
+        this.nombres.value
+      } ${this.apellidos.value} exitosamente.`
+    ).then();
+
+    this.router.navigate([ruta]);
   }
 }
