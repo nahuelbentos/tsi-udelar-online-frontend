@@ -54,6 +54,14 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Encuestas',
     },
     {
+      link: 'pruebaonline',
+      titulo: 'Prueba Online',
+    },
+    {
+      link: 'alumnocurso',
+      titulo: 'Alumno Curso',
+    },
+    {
       link: 'informes',
       titulo: 'Informes',
     },

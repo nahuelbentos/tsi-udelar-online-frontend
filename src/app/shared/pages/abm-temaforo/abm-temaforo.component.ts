@@ -6,14 +6,6 @@ import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { TemaForoService } from 'src/app/services/tema-foro.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 
-
-enum PrintMedia {
-  Newspaper = 1,
-  Newsletter = 5,
-  Magazine = 5,
-  Book = 10,
-}
-
 @Component({
   selector: 'app-abm-temaforo',
   templateUrl: './abm-temaforo.component.html',
@@ -58,7 +50,7 @@ export class AbmTemaForoComponent implements OnInit {
       if (param.id) {
         this.temaForoService
           .getTemaForoById(this.temaForoId)
-          .subscribe((usuario) => this.setValuesOnForm(usuario));
+          .subscribe((temaForo) => this.setValuesOnForm(temaForo));
       }
     });
   }
@@ -115,7 +107,7 @@ export class AbmTemaForoComponent implements OnInit {
     this.temaForoService.updateTemaForo(temaForo).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se creó el tema foro ${this.asunto.value} exitosamente.`
+        `Se editó el tema foro ${this.asunto.value} exitosamente.`
       ).then();
       this.router.navigate([
         `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/temaforo`,

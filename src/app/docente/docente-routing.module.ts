@@ -6,7 +6,11 @@ import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respues
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
+import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
+import { GestionAlumnocursoComponent } from '../shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
+import { AbmPruebaonlineComponent } from '../shared/pages/abm-pruebaonline/abm-pruebaonline.component';
+import { AbmAlumnocursoComponent } from '../shared/pages/abm-alumnocurso/abm-alumnocurso.component';
 
 
 const routes: Routes = [
@@ -26,6 +30,26 @@ const routes: Routes = [
         path: 'perfil',
         component: PerfilUsuarioComponent,
         data: { titulo: 'Perfil de Usuario' },
+      },
+      {
+        path: 'pruebaonline',
+        component: GestionPruebaonlineComponent,
+        data: { titulo: 'Prueba Online' },
+      },
+      {
+        path: 'pruebaonline/abm-pruebaonline',
+        component: AbmPruebaonlineComponent,
+        data: { titulo: 'Abm Prueba Online' },
+      },
+      {
+        path: 'alumnocurso',
+        component: GestionAlumnocursoComponent,
+        data: { titulo: 'Alumno Curso' },
+      },
+      {
+        path: 'alumnocurso/abm-alumnocurso',
+        component: AbmAlumnocursoComponent,
+        data: { titulo: 'Abm Alumno Curso' },
       },
     ],
   },

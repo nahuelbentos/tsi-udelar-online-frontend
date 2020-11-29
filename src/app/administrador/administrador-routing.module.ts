@@ -44,6 +44,8 @@ import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
 import { HomeComponent } from '../public/pages/home/home.component';
+import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
+import { AbmPruebaonlineComponent } from '../shared/pages/abm-pruebaonline/abm-pruebaonline.component';
 
 const routes: Routes = [
   {
@@ -288,7 +290,6 @@ const routes: Routes = [
         component: AbmTemplateCursoSeccionComponent,
         data: { titulo: 'ABM de templatecursoseccion' },
       },
-
     ],
   },
 ];

@@ -60,6 +60,10 @@ import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/ges
 import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
 import { AbmPreguntaComponent } from './pages/abm-pregunta/abm-pregunta.component';
+import { GestionPruebaonlineComponent } from './pages/gestion-pruebaonline/gestion-pruebaonline.component';
+import { AbmPruebaonlineComponent } from './pages/abm-pruebaonline/abm-pruebaonline.component';
+import { AbmAlumnocursoComponent } from './pages/abm-alumnocurso/abm-alumnocurso.component';
+import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion-alumnocurso.component';
 
 
 @NgModule({
@@ -112,6 +116,10 @@ import { AbmPreguntaComponent } from './pages/abm-pregunta/abm-pregunta.componen
     GestionCursoSeccionComponent,
     GestionTemplateCursoSeccionComponent,
     AbmPreguntaComponent,
+    GestionPruebaonlineComponent,
+    AbmPruebaonlineComponent,
+    AbmAlumnocursoComponent,
+    GestionAlumnocursoComponent,
   ],
   exports: [HeaderComponent, FooterComponent, NavCustomComponent],
   imports: [
