@@ -108,7 +108,7 @@ export class AbmFacultadComponent implements OnInit {
     console.log('onUploadClicked:: ', event);
   }
 
-  async onSelectedFilesChanged(fileList: FileList) {
+   onSelectedFilesChanged(fileList: FileList) {
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < fileList.length; i++) {
       const file: File = fileList.item(i);
