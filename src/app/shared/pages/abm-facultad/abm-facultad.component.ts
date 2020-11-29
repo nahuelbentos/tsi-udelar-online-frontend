@@ -38,9 +38,6 @@ export class AbmFacultadComponent implements OnInit {
     },
   ];
   modo: string;
-  archivoData: string;
-  archivoNombre: string;
-  archivoExtension: string;
 
   get nombre() {
     return this.facultadForm.get('nombre');
