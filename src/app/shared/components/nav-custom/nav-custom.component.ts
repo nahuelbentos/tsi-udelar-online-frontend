@@ -1,10 +1,19 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, of, Subscription } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
 import { RutasNav } from 'src/app/models/rutas-nav.interface';
 import { ActivationEnd, Router } from '@angular/router';
-import { AutenticacionService } from 'src/app/services/autenticacion.service'; 
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { FormControl } from '@angular/forms';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 
 @Component({
   selector: 'app-nav-custom',
@@ -16,9 +25,12 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
   @Input() rol: string;
   @Input() color: string;
 
+  @Input() verBuscar = true;
+
   public titulo: string;
   public tituloSubs$: Subscription;
- 
+
+  searchCursos = new FormControl('');
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
@@ -29,7 +41,7 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(
     private auth: AutenticacionService,
-    private breakpointObserver: BreakpointObserver, 
+    private breakpointObserver: BreakpointObserver,
     private router: Router
   ) {
     this.tituloSubs$ = this.getDataRuta().subscribe((data) => {
@@ -39,13 +51,15 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
-    this.color = changes.color.currentValue;
+    if (changes.color) {
+      this.color = changes.color.currentValue;
+    }
+    if (changes.verBuscar) {
+      this.verBuscar = changes.verBuscar.currentValue;
+    }
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.tituloSubs$.unsubscribe();
@@ -61,9 +75,11 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
 
   logout = () => this.auth.logout();
 
-  getBackgroundColor() { 
-    const color = this.auth.getUser().facultad.colorCodigo ? `#${this.auth.getUser().facultad.colorCodigo}` : `#00a9f4`
-    
+  getBackgroundColor() {
+    const color = this.auth.getUser().facultad.colorCodigo
+      ? `#${this.auth.getUser().facultad.colorCodigo}`
+      : `#00a9f4`;
+
     return of(color);
   }
 }

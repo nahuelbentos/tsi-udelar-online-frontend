@@ -30,12 +30,47 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
 
-      <h1 class="title">{{titulo}}</h1>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
 
-      <button type="button" mat-button (click)="logout()" style="color: white;">
-        Logout
-        <mat-icon aria-label="Side nav toggle icon"> exit_to_app </mat-icon>
-      </button>
+      <div class="row">
+        <div class="col-xs center-xs" [ngStyle]="{'marginTop': verBuscar ? '20px' : '0px'}" >
+          <div class="box">
+            <h1 class="title">{{titulo}}</h1>
+          </div>
+        </div>
+ 
+          <div class="col-xs-3 end-xs" *ngIf="verBuscar" style="margin-top: 10px;">
+            <div class="box">
+              <mat-form-field class="example-full-width">
+                <mat-label>Buscar cursos...</mat-label>
+                <input type="email" matInput [formControl]="searchCursos" placeholder="Ejemplo: TSI 1"><mat-icon matSuffix>search</mat-icon>
+        
+              </mat-form-field>
+            </div>
+          </div>
+        
+          <div class="col-xs-1 end-xs" [ngStyle]="{'marginTop': verBuscar ? '20px' : '0px'}">
+            <div class="box">
+        
+              <button type="button" mat-button (click)="logout()" style="color: white;">
+                Logout
+                <mat-icon aria-label="Side nav toggle icon"> exit_to_app </mat-icon>
+              </button>
+        
+            </div>
+          </div>
+         
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+     
+
 
     </mat-toolbar>
 

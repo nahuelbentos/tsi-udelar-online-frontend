@@ -30,7 +30,7 @@ export class GestionCursoComponent implements OnInit {
   cursos: Curso[];
   createComponent = false;
   puedeAgregar = this.usuarioSesion.rol === 'Administrador';
-  columnas = ['nombre', 'descripcion', 'modalidad', 'actions'];
+  @Input() columnas = ['nombre', 'descripcion', 'modalidad', 'actions'];
 
   constructor(
     private cursoService: CursoService,
@@ -52,15 +52,12 @@ export class GestionCursoComponent implements OnInit {
   }
 
   getCursos() {
-    
-
     switch (this.tipo) {
       case TipoUsuario.Administrador:
         this.getCursosAdminstrador();
 
         break;
       case TipoUsuario.AdministradorFacultad: // By Facultad
-    
         this.cursoService
           .getCursosByFacultad(this.usuarioSesion.facultad.facultadId)
           .subscribe((cursos) => {
@@ -89,7 +86,6 @@ export class GestionCursoComponent implements OnInit {
   }
 
   getCursosAdminstrador() {
-    
     if (this.facultadId) {
       this.cursoService
         .getCursosByFacultad(this.facultadId)

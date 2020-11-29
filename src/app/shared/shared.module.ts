@@ -119,6 +119,7 @@ import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/selec
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
     AbmPublicarcomunicadoComponent,
+    GestionEncuestaComponent,
   ],
   imports: [
     CommonModule,
