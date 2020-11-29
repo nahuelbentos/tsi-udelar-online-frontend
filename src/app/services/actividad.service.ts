@@ -23,5 +23,9 @@ export class ActividadService {
 
   createEncuesta = (actividad: Actividad)  => this.http.post(`${this.baseUrl}/encuesta`, actividad);
 
+  editEncuesta = (actividad: Actividad) => this.http.put(`${this.baseUrl}/encuesta`, actividad);
+
+  getEncuestaById = (actividadId: string) => this.http.get<Actividad>(`${this.baseUrl}/encuesta/${actividadId}`);
+
   getActividadesByTipo = (Tipo: string) => this.http.get<Actividad[]>(`${this.baseUrl}/tipo/${Tipo}`);
 }
