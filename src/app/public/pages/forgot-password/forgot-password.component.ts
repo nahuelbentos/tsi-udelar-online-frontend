@@ -18,6 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
 
   fromEmail = false;
+  tokenPassword = null;
 
   form: FormGroup;
 
@@ -48,7 +49,10 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
+      console.log('params:: ', param);
+      
       this.fromEmail = param.fromEmail;
+      this.tokenPassword = param.token;
       if (param.email) {
         this.email.setValue(param.email);
       }
@@ -60,14 +64,13 @@ export class ForgotPasswordComponent implements OnInit {
       .mailForgotPassword(this.email.value)
       .subscribe((res) => console.log(res));
 
-  changePassword = () => {
-    console.log('change pass');
-
+  changePassword = () => { 
+    
     this.autenticacionService.forgotPassword({
       email: this.email.value,
       passwordNew: this.password.value,
-      passwordConfirm: this.passwordConfirm.value,
+      token: this.tokenPassword,
     }).subscribe( res => console.log('res:: ', res));
-    
+
   };
 }

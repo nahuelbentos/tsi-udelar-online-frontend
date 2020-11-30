@@ -4,9 +4,9 @@ import { Seccion } from './seccion.model'
 export class CursoSeccion {
     constructor(
         public CursoSeccionId ?: string,
-        public CursoId ?: string,
-        public Curso ?: Curso,
-        public SeccionId ?: string,
-        public Seccion ?: Seccion
+        public cursoId ?: string,
+        public curso ?: Curso,
+        public seccionId ?: string,
+        public seccion ?: Seccion
     ) { }
 }

@@ -16,7 +16,7 @@
                   <mat-form-field class="full-width">
                     <mat-label>Curso</mat-label>
                     <mat-select formControlName="curso" required>
-                      <mat-option *ngFor="let curso of cursos" [value]="curso.cursoId"> {{  curso.nombre }}
+                      <mat-option *ngFor="let curso of cursos" [value]="curso"> {{  curso.nombre }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -28,8 +28,8 @@
 
                   <mat-form-field class="full-width">
                     <mat-label>Seccion</mat-label>
-                    <mat-select formControlName="curso" required>
-                      <mat-option *ngFor="let seccion of secciones" [value]="seccion.seccionId"> {{  seccion.nombre }}
+                    <mat-select formControlName="seccion" required>
+                      <mat-option *ngFor="let seccion of secciones" [value]="seccion"> {{  seccion.nombre }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

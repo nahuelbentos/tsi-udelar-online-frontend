@@ -9,24 +9,25 @@ import { CursoService } from 'src/app/services/curso.service';
 import { CursoSeccionService } from '../../../services/curso-seccion.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { SeccionService } from 'src/app/services/seccion.service';
+import { Curso } from 'src/app/models/curso.model';
+import { Seccion } from 'src/app/models/seccion.model';
 
 @Component({
   selector: 'app-abm-cursoseccion',
   templateUrl: './abm-cursoseccion.component.html',
-  styleUrls: ['./abm-cursoseccion.component.scss']
+  styleUrls: ['./abm-cursoseccion.component.scss'],
 })
 export class AbmCursoseccionComponent implements OnInit {
-
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   cursoSeccionForm: FormGroup;
   cursoSeccionId: string;
   secciones: any;
-  cursos : any;
+  cursos: any;
   primeraVez = false;
   modo: string;
   hide = true;
 
-  get secccion() {
+  get seccion() {
     return this.cursoSeccionForm.get('seccion');
   }
 
@@ -41,20 +42,18 @@ export class AbmCursoseccionComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private cursoService : CursoService,
-    private seccionService : SeccionService
+    private cursoService: CursoService,
+    private seccionService: SeccionService
   ) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-    this.cursoService
-    .getCursos()
-    .subscribe((cursos) => (this.cursos = cursos));
+    this.cursoService.getCursos().subscribe((cursos) => (this.cursos = cursos));
     this.seccionService
-    .getSecciones()
-    .subscribe((secciones) => (this.secciones = secciones));
-    
+      .getSecciones()
+      .subscribe((secciones) => (this.secciones = secciones));
+
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
       this.cursoSeccionId = param.id;
@@ -68,12 +67,14 @@ export class AbmCursoseccionComponent implements OnInit {
   }
 
   private setValuesOnForm(cursoSeccion: CursoSeccion) {
-    this.curso.setValue(cursoSeccion.CursoId);
-    this.secccion.setValue(cursoSeccion.SeccionId);
+    this.curso.setValue(cursoSeccion.curso);
+    this.seccion.setValue(cursoSeccion.seccion);
   }
 
   private buildForm() {
     this.cursoSeccionForm = this.fb.group({
+      curso: ['', Validators.required],
+      seccion: ['', Validators.required],
     });
   }
 
@@ -93,9 +94,17 @@ export class AbmCursoseccionComponent implements OnInit {
     }
 
     const cursoSeccion = new CursoSeccion();
-    cursoSeccion.CursoId = this.curso.value;
-    cursoSeccion.SeccionId = this.secccion.value;
-
+    const curso: Curso = this.curso.value;
+    const seccion: Seccion = this.seccion.value;
+    cursoSeccion.curso = curso;
+    cursoSeccion.cursoId = curso.cursoId;
+    cursoSeccion.seccion = seccion;
+    cursoSeccion.seccionId = seccion.seccionId;
+    console.log(cursoSeccion);
+    console.log(cursoSeccion.curso);
+    console.log(cursoSeccion.cursoId);
+    console.log(cursoSeccion.seccionId);
+    
     this.modo === 'INS'
       ? this.crearCursoSeccion(cursoSeccion)
       : this.editarCursoSeccion(cursoSeccion);
@@ -124,5 +133,4 @@ export class AbmCursoseccionComponent implements OnInit {
       ]);
     });
   }
-
 }

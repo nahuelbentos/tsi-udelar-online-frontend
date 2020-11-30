@@ -147,7 +147,7 @@ export class AbmCursoComponent implements OnInit {
   private setValuesOnForm(curso: Curso) {
     this.nombre.setValue(curso.nombre);
     this.descripcion.setValue(curso.descripcion);
-    this.modalidadCurso.setValue(curso.modalidad);
+    this.modalidadCurso.setValue(curso.modalidadId);
     this.requiereMatriculacion.setValue(curso.requiereMatriculacion);
     this.salaVirtual.setValue(curso.salaVirtual);
     this.templateCurso.setValue(curso.templateCurso);
@@ -181,7 +181,7 @@ export class AbmCursoComponent implements OnInit {
 
     curso.cursoId = this.cursoId;
     curso.descripcion = this.descripcion.value;
-    curso.modalidad = this.modalidadCurso.value;
+    curso.modalidadId = this.modalidadCurso.value;
     console.log(this.cursoForm.value);
 
     curso.requiereMatriculacion = this.requiereMatriculacion.value

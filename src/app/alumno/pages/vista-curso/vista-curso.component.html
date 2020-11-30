@@ -1,0 +1,111 @@
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+
+      <mat-accordion class="headers-align">
+
+        <mat-expansion-panel hideToggle>
+
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Comunicados, Calificaciones y Calendario de Actividades
+            </mat-panel-title>
+            <mat-panel-description>
+              Aquí podrás ver tus calificaciones, los comunicados que tengamos para vos, y el calendario de las
+              actividades!
+              <mat-icon>notifications</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="row" *ngIf="curso && curso.docentes">
+            <div class="col-xs">
+              <div class="box">
+                <h2>Docentes del curso</h2>
+
+              </div>
+            </div>
+            <div class="col-xs-12" *ngFor="let docente of curso.docentes">
+              <div class="box">
+                <h4> {{ docente.nombres }} {{ docente.apellidos}} </h4>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs">
+              <div class="box">
+                <a mat-flat-button (click)="calificaciones()" color="primary" class="a-margin">
+                  Ver Calificaciones
+                  <mat-icon> school</mat-icon>
+                </a>
+
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="curso && curso.comunicados">
+            <div class="col-xs-12" *ngFor="let comunicado of curso.comunicados">
+              <div class="box">
+                {{ curso.comunicados | json }}
+
+              </div>
+            </div>
+          </div>
+
+
+        </mat-expansion-panel>
+
+        <section *ngIf="curso && curso.cursoSecciones">
+          <mat-expansion-panel hideToggle *ngFor="let cs of curso.cursoSecciones ">
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ cs.seccion.nombre }}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{ cs.seccion.descripcion }}
+                <mat-icon>account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <section *ngIf="cs.foroLista">
+              <div class="row" *ngFor="let foro of cs.foroLista">
+                <div class="col-xs">
+                  <div class="box">
+
+                    {{ foro | json}}
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section *ngIf="cs.materialLista">
+              
+              <div class="row" *ngFor="let material of cs.materialLista">
+              <div class="col-xs">
+                <div class="box">
+                  {{ material | json}}
+            
+                </div>
+              </div>
+            </div></section>
+            <section *ngIf="cs.actividadLista">
+              <div class="row" *ngFor="let actividad of cs.actividadLista">
+                <div class="col-xs">
+                  <div class="box">
+                    {{ actividad | json}}
+                  </div>
+                </div>
+              </div>
+            </section> 
+            <!-- <mat-panel-description *ngFor="let docente of curso.docentes">
+              Profesor: {{ docente.nombres }} {{ docente.apellidos}}
+            </mat-panel-description> -->
+
+          </mat-expansion-panel>
+        </section>
+      </mat-accordion>
+
+
+    </div>
+  </div>
+</div>
