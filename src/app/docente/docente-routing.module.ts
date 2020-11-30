@@ -8,7 +8,6 @@ import { GestionMaterialComponent } from '../shared/pages/gestion-material/gesti
 import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
 import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
-import { AdministrarMaterialesComponent } from '../administrador-facultad/pages/administrar-materiales/administrar-materiales.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 import { EstudiantesComponent } from './pages/estudiantes/estudiantes.component';
 
@@ -52,11 +51,11 @@ const routes: Routes = [
       //   data: { titulo: 'Administrar materiales' },
       // },
 
-      // {
-      //   path: 'administrar-materiales/abm-material',
-      //   component: AbmMaterialComponent,
-      //   data: { titulo: 'ABM de materiales' },
-      // },
+      {
+        path: 'abm-material',
+        component: AbmMaterialComponent,
+        data: { titulo: 'ABM de materiales' },
+      },
     ],
   },
 ];

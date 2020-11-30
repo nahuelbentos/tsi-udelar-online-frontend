@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { FnParam } from '@angular/compiler/src/output/output_ast';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -37,9 +38,10 @@ export class AbmMaterialComponent implements OnInit {
   secciones: Seccion[] = [];
   seccion: Seccion;
   seccionDialog =  SeleccionarSeccionComponent;
-
-  @Input() tipo: TipoUsuario = null;
+  cursoId: string;
+  tipo: TipoUsuario = null;
   
+
   get nombre() {
     return this.materialForm.get('nombre');
   }
@@ -78,6 +80,8 @@ export class AbmMaterialComponent implements OnInit {
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
       this.materialId = param.id;
+      this.tipo = param.tipo;
+      this.cursoId = param.cursoId;
 
       if (param.id) {
         this.materialService
@@ -159,31 +163,49 @@ export class AbmMaterialComponent implements OnInit {
     material.archivoData = this.archivoData.split(',')[1];
     material.archivoNombre = this.archivoNombre;
     material.archivoExtension = this.archivoExtension;
-
+    material.cursoId = this.cursoId;
+    material.seccionId = this.seccion.seccionId;
+    console.log("material ", material);
+    
     this.modo === 'INS'
       ? this.creMaterial(material)
       : this.editMaterial(material);
 
-    if (this.tipo === TipoUsuario.Docente){
-      const cursoSeccion = new CursoSeccion();
-      // cursoSeccion.cursoId = 
-      cursoSeccion.seccionId = this.seccion.seccionId;
-      this.cursoSeccionService.altaCursoSeccion(cursoSeccion);
-    }
+    // if (this.tipo === TipoUsuario.Docente){
+    //   const cursoSeccion = new CursoSeccion();
+    //   cursoSeccion.cursoId = this.cursoId;
+    //   cursoSeccion.seccionId = this.seccion.seccionId;
+    //   console.log("cursoSeccion ", cursoSeccion);
+    //   //this.cursoSeccionService.altaCursoSeccion(cursoSeccion);
+    // }
   }
 
   private creMaterial = (material: Material) =>
-    this.materialService.createMaterial(material).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se creó el material ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.autenticacionService
-          .getRolSesion()
-          .toLocaleLowerCase()}/material`,
-      ]);
-    })
+    {if (this.tipo === TipoUsuario.Docente){
+      this.materialService.altaMaterialCursoSeccion(material).subscribe(() => {
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se creó el material ${this.nombre.value} exitosamente.`
+        ).then();
+        this.router.navigate([
+          `/${this.autenticacionService
+            .getRolSesion()
+            .toLocaleLowerCase()}/curso`,
+        ]);
+      });
+    }else{
+      this.materialService.createMaterial(material).subscribe(() => {
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se creó el material ${this.nombre.value} exitosamente.`
+        ).then();
+        this.router.navigate([
+          `/${this.autenticacionService
+            .getRolSesion()
+            .toLocaleLowerCase()}/curso`,
+        ]);
+      });
+    }}
 
   private editMaterial = (material: Material) =>
     this.materialService.updateMaterial(material).subscribe(() => {
@@ -194,7 +216,7 @@ export class AbmMaterialComponent implements OnInit {
       this.router.navigate([
         `/${this.autenticacionService
           .getRolSesion()
-          .toLocaleLowerCase()}/material`,
+          .toLocaleLowerCase()}/curso`,
       ]);
     })
 }
