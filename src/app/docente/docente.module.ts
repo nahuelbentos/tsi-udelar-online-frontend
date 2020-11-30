@@ -18,9 +18,18 @@ import { AdministrarCursosComponent } from './pages/administrar-cursos/administr
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 import { AdministrarCalificacionesComponent } from './pages/administrar-calificaciones/administrar-calificaciones.component';
 
+import { AdministrarMaterialesComponent } from '../administrador-facultad/pages/administrar-materiales/administrar-materiales.component';
 
 @NgModule({
-  declarations: [HomeComponent,  NavDocenteComponent, EstudiantesComponent, AdministrarCursosComponent, EncuestasComponent, AdministrarCalificacionesComponent],
+  declarations: [
+    HomeComponent,
+    NavDocenteComponent,
+    EstudiantesComponent,
+    AdministrarCursosComponent,
+    EncuestasComponent,
+    AdministrarMaterialesComponent,
+    AdministrarCalificacionesComponent,
+  ],
   imports: [
     CommonModule,
     DocenteRoutingModule,
@@ -28,7 +37,7 @@ import { AdministrarCalificacionesComponent } from './pages/administrar-califica
     ReactiveFormsModule,
     LayoutModule,
     MaterialModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class DocenteModule { }
+export class DocenteModule {}

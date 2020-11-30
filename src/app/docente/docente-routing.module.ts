@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
+import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
+import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
 import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
@@ -72,7 +74,18 @@ const routes: Routes = [
         path: 'encuestas/abm-encuesta',
         component: AbmEncuestaComponent,
         data: { titulo: 'ABM de Encuestas' },
-      },      
+      },
+      // {
+      //   path: 'administrar-materiales',
+      //   component: AdministrarMaterialesComponent,
+      //   data: { titulo: 'Administrar materiales' },
+      // },
+
+      {
+        path: 'abm-material',
+        component: AbmMaterialComponent,
+        data: { titulo: 'ABM de materiales' },
+      },
     ],
   },
 ];

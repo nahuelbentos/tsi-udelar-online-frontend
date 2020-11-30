@@ -15,15 +15,11 @@ import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.com
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
 import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.component';
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
-import { AbmMensajeComponent } from '../shared/pages/abm-mensaje/abm-mensaje.component';
-import { AbmCursoseccionComponent } from '../shared/pages/abm-cursoseccion/abm-cursoseccion.component';
-import { AbmTemplateCursoSeccionComponent } from '../shared/pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
-import { GestionCursoSeccionComponent} from '../shared/pages/gestion-cursoseccion/gestion-cursoseccion.component';
+
 import { GestionMensajeComponent } from '../shared/pages/gestion-mensaje/gestion-mensaje.component';
 import { GestionRespuestaComponent } from '../shared/pages/gestion-respuesta/gestion-respuesta.component';
 import { GestionTemaforoComponent } from '../shared/pages/gestion-temaforo/gestion-temaforo.component';
 import { GestionTemplateCursoSeccionComponent } from '../shared/pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
-
 
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
 import { AbmRespuestaComponent } from '../shared/pages/abm-respuesta/abm-respuesta.component';
@@ -42,11 +38,17 @@ import { GestionMaterialComponent } from '../shared/pages/gestion-material/gesti
 import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion-seccion.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
+import { GestionMensajetemaComponent } from '../shared/pages/gestion-mensajetema/gestion-mensajetema.component';
+import { AbmMensajetemaComponent } from '../shared/pages/abm-mensajetema/abm-mensajetema.component';
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
+import { AbmPublicarcomunicadoComponent } from '../shared/pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
+import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
-import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
-import { AbmPruebaonlineComponent } from '../shared/pages/abm-pruebaonline/abm-pruebaonline.component';
+import { AbmCursoseccionComponent } from '../shared/pages/abm-cursoseccion/abm-cursoseccion.component';
+import { AbmMensajeComponent } from '../shared/pages/abm-mensaje/abm-mensaje.component';
+import { AbmTemplateCursoSeccionComponent } from '../shared/pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
+import { GestionCursoSeccionComponent } from '../shared/pages/gestion-cursoseccion/gestion-cursoseccion.component';
 
 const routes: Routes = [
   {
@@ -175,7 +177,19 @@ const routes: Routes = [
         path: 'seccion/abm-seccion',
         component: AbmSeccionComponent,
         data: { titulo: 'ABM de secciones' },
-      },      
+      },
+
+      {
+        path: 'mensajetema',
+        component: GestionMensajetemaComponent,
+        data: { titulo: 'Mensaje Tema' },
+      },
+
+      {
+        path: 'mensajetema/abm-mensajetema',
+        component: AbmMensajetemaComponent,
+        data: { titulo: 'ABM de mensaje tema' },
+      },
 
       {
         path: 'temaforo/abm-temaforo',
@@ -200,6 +214,11 @@ const routes: Routes = [
         data: { titulo: 'Test components' },
       },
       {
+        path: 'publicar-comunicado-facultad',
+        component: PublicarComunicadoComponent,
+        data: { titulo: 'Publicar Comunicado Facultad' },
+      },
+      {
         path: 'reportes',
         component: HomeComponent,
         data: { titulo: 'Reportes' },
@@ -222,9 +241,9 @@ const routes: Routes = [
       {
         path: 'reportes/facultades-estadisticas',
         component: GestionFacultadComponent,
-        data: { titulo: 'Información estadística de facultades' },        
+        data: { titulo: 'Información estadística de facultades' },
       },
-      
+
       {
         path: 'cursoseccion',
         component: GestionCursoSeccionComponent,
@@ -248,7 +267,7 @@ const routes: Routes = [
         component: AbmMensajeComponent,
         data: { titulo: 'ABM de mensajes' },
       },
-      
+
       {
         path: 'respuesta',
         component: GestionRespuestaComponent,
@@ -266,7 +285,6 @@ const routes: Routes = [
         component: GestionTemaforoComponent,
         data: { titulo: 'Gestión de temas de un foro' },
       },
-
 
       {
         path: 'templatecurso',
@@ -304,4 +322,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdministradorRoutingModule { }
+export class AdministradorRoutingModule {}

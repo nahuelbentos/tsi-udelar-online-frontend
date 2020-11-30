@@ -36,21 +36,19 @@ import { GestionForoComponent } from './pages/gestion-foro/gestion-foro.componen
 import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
 import { AbmSeccionComponent } from './pages/abm-seccion/abm-seccion.component';
 import { GestionSeccionComponent } from './pages/gestion-seccion/gestion-seccion.component';
+import { AbmMensajetemaComponent } from './pages/abm-mensajetema/abm-mensajetema.component';
+import { GestionMensajetemaComponent } from './pages/gestion-mensajetema/gestion-mensajetema.component';
 import { SeleccionarCustomComponent } from './components/seleccionar-custom/seleccionar-custom.component';
-import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/seleccionar-seccion.component';
-import { SeleccionarFacultadComponent } from './dialogs/seleccionar-facultad/seleccionar-facultad.component';
-import { SeleccionarCursoComponent } from './dialogs/seleccionar-curso/seleccionar-curso.component';
 import { SeleccionarCarreraComponent } from './dialogs/seleccionar-carrera/seleccionar-carrera.component';
+import { SeleccionarCursoComponent } from './dialogs/seleccionar-curso/seleccionar-curso.component';
+import { SeleccionarFacultadComponent } from './dialogs/seleccionar-facultad/seleccionar-facultad.component';
+import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/seleccionar-seccion.component';
 import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
 import { AbmActividadComponent } from './pages/abm-actividad/abm-actividad.component';
-import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component';
-import { AbmMensajeComponent } from './pages/abm-mensaje/abm-mensaje.component';
+import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component'; 
 import { GestionMensajeComponent } from './pages/gestion-mensaje/gestion-mensaje.component';
 import { GestionTemaforoComponent } from './pages/gestion-temaforo/gestion-temaforo.component';
-import { GestionRespuestaComponent } from './pages/gestion-respuesta/gestion-respuesta.component';
-import { AbmCursoseccionComponent } from './pages/abm-cursoseccion/abm-cursoseccion.component';
-import { AbmTemplateCursoSeccionComponent } from './pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
-import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
+import { GestionRespuestaComponent } from './pages/gestion-respuesta/gestion-respuesta.component'; 
 import { GestionTemplateCursoSeccionComponent } from './pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.component';
@@ -59,14 +57,22 @@ import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-c
 import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
 import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
-import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
+import { AbmPublicarcomunicadoComponent } from './pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
+import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
 import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
+import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
-import { AbmPreguntaComponent } from './pages/abm-pregunta/abm-pregunta.component';
 import { GestionPruebaonlineComponent } from './pages/gestion-pruebaonline/gestion-pruebaonline.component';
-import { AbmPruebaonlineComponent } from './pages/abm-pruebaonline/abm-pruebaonline.component';
 import { AbmAlumnocursoComponent } from './pages/abm-alumnocurso/abm-alumnocurso.component';
+import { AbmCursoseccionComponent } from './pages/abm-cursoseccion/abm-cursoseccion.component';
+import { AbmMensajeComponent } from './pages/abm-mensaje/abm-mensaje.component';
+import { AbmPreguntaComponent } from './pages/abm-pregunta/abm-pregunta.component';
+import { AbmPruebaonlineComponent } from './pages/abm-pruebaonline/abm-pruebaonline.component';
+import { AbmTemplateCursoSeccionComponent } from './pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
 import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion-alumnocurso.component';
+import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
+
+
 
 
 
@@ -100,6 +106,8 @@ import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion
     AbmTemaForoComponent,
     AbmSeccionComponent,
     GestionSeccionComponent,
+    AbmMensajetemaComponent,
+    GestionMensajetemaComponent,
     SeleccionarCustomComponent,
     SeleccionarSeccionComponent,
     SeleccionarFacultadComponent,
@@ -124,6 +132,8 @@ import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion
     AbmPruebaonlineComponent,
     AbmAlumnocursoComponent,
     GestionAlumnocursoComponent,
+    AbmPublicarcomunicadoComponent,
+    SeleccionarComunicadoComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
     BuscarCursosComponent,
@@ -139,8 +149,10 @@ import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion
     GestionCursoComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
+    AbmPublicarcomunicadoComponent,
     GestionEncuestaComponent,
-    GestionAlumnocursoComponent
+    GestionAlumnocursoComponent,
+    GestionMaterialComponent,
   ],
   imports: [
     CommonModule,
@@ -153,7 +165,6 @@ import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion
     MatIconModule,
     MatListModule,
     RouterModule,
-
     NgxMatColorPickerModule,
     MatFileUploadModule,
   ],

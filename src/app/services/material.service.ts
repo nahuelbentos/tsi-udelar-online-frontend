@@ -22,4 +22,8 @@ export class MaterialService {
 
   deleteMaterial = (materialId: string) => this.http.delete(`${this.baseUrl}/${materialId}`);
 
+  altaMaterialCursoSeccion(material: Material) {
+    return this.http.post(`${this.baseUrl}/curso-seccion`, material);
+  }
+
 }

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: 'http://localhost:5000/api',
+  //baseUrl: 'http://node789-api-udelaronline.web.elasticloud.uy:11015/api',
 };
 
 /*

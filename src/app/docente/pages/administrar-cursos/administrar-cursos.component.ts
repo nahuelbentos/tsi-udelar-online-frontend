@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Actions } from 'src/app/models/actions.model';
+import { Curso } from 'src/app/models/curso.model';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-administrar-cursos',
@@ -10,7 +13,11 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 export class AdministrarCursosComponent implements OnInit {
   actions: Actions[];
   actionsHeader = [{}];
-  constructor() {}
+  constructor(
+    private router: Router,
+    private autenticacionService: AutenticacionService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.actions = [
@@ -42,7 +49,26 @@ export class AdministrarCursosComponent implements OnInit {
     ];
   }
 
-  administrarMateriales = () => console.log('Not implemented');
+  administrarMateriales = (curso: Curso) => {
+    const params: { cursoId: string; tipo: TipoUsuario; modo: string } = {
+      cursoId: curso.cursoId,
+      tipo: TipoUsuario.Docente,
+      modo: 'INS'
+    };
+    this.router.navigate(
+      [
+        `/${this.autenticacionService
+          .getRolSesion()
+          .toLocaleLowerCase()}/abm-material`,
+      ],
+      {
+        queryParams: params,
+        relativeTo: this.route,
+      }
+    );
+  };
+
+  //console.log('Not implemented');
 
   administrarCalificaciones = () => console.log('Not implemented');
 

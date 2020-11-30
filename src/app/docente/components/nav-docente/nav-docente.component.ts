@@ -21,10 +21,10 @@ export class NavDocenteComponent implements OnInit {
       link: 'administrar-foros',
       titulo: 'Administrar foros',
     },
-    {
-      link: 'administrar-materiales',
-      titulo: 'Administrar materiales',
-    },
+    // {
+    //   link: 'administrar-materiales',
+    //   titulo: 'Administrar materiales',
+    // },
     {
       link: 'calendario',
       titulo: 'Calendario de Actividades',
