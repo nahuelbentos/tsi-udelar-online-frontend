@@ -50,12 +50,20 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Secciones',
     },
     {
+      link: 'mensajetema',
+      titulo: 'MensajeTema',
+    },
+    {
       link: 'actividad',
       titulo: 'Actividades',
     },
     {
       link: 'test',
       titulo: 'Tests',
+    },
+    {
+      link: 'publicar-comunicado-facultad',
+      titulo: 'Publicar Comunicado en Facultad',
     },
     {
       link: 'reportes',

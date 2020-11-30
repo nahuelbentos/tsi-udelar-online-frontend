@@ -78,11 +78,14 @@ export class AutocompleteCustomComponent implements OnInit, OnChanges {
   }
 
   seleccionarItem(trigger: MatAutocompleteTrigger) {
+    console.log('222222');
     trigger.closePanel();
+    console.log('1111  ', this.refDialog);
     const dialogRef = this.dialog.open(this.refDialog, {
       height: 'auto',
       width: '700px',
     });
+    console.log('966');
 
     dialogRef.afterOpened().subscribe(() => trigger.closePanel());
 
@@ -90,6 +93,8 @@ export class AutocompleteCustomComponent implements OnInit, OnChanges {
   }
 
   selectItem(item: any) {
+    console.log('gggggg');
+    
     const aux = { ...item, descripcionAutocomplete: item.nombre };
     this.controlData.setValue(aux);
     this.sendItem.emit(item);

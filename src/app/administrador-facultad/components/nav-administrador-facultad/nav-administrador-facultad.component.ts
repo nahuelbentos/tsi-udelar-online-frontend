@@ -36,12 +36,16 @@ export class NavAdministradorFacultadComponent implements OnInit {
       titulo: 'Cursos',
     },
     {
+      link: 'administrar-materiales',
+      titulo: 'Administrar materiales',
+    },
+    {
       link: 'encuesta',
       titulo: 'Encuestas',
     },
     {
-      link: 'publicar-comunicado',
-      titulo: 'Publicar Comunicado',
+      link: 'publicar-comunicado-curso',
+      titulo: 'Publicar Comunicado Curso',
     },
     {
       link: 'reportes',

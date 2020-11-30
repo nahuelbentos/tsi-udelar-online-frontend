@@ -33,7 +33,11 @@ import { GestionMaterialComponent } from '../shared/pages/gestion-material/gesti
 import { GestionSeccionComponent } from '../shared/pages/gestion-seccion/gestion-seccion.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
+import { GestionMensajetemaComponent } from '../shared/pages/gestion-mensajetema/gestion-mensajetema.component';
+import { AbmMensajetemaComponent } from '../shared/pages/abm-mensajetema/abm-mensajetema.component';
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
+import { AbmPublicarcomunicadoComponent } from '../shared/pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
+import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
@@ -166,6 +170,19 @@ const routes: Routes = [
         component: AbmSeccionComponent,
         data: { titulo: 'ABM de secciones' },
       },
+
+      {
+        path: 'mensajetema',
+        component: GestionMensajetemaComponent,
+        data: { titulo: 'Mensaje Tema' },
+      },
+
+      {
+        path: 'mensajetema/abm-mensajetema',
+        component: AbmMensajetemaComponent,
+        data: { titulo: 'ABM de mensaje tema' },
+      },
+
       {
         path: 'temaforo/abm-temaforo',
         component: AbmTemaForoComponent,
@@ -181,6 +198,11 @@ const routes: Routes = [
         path: 'test-components',
         component: TestComponentsComponent,
         data: { titulo: 'Test components' },
+      },
+      {
+        path: 'publicar-comunicado-facultad',
+        component: PublicarComunicadoComponent,
+        data: { titulo: 'Publicar Comunicado Facultad' },
       },
       {
         path: 'reportes',

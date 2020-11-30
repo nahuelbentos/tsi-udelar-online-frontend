@@ -12,4 +12,11 @@ export class TemaForoService {
   createTemaForo(temaforo: TemaForo) {
     return this.http.post(`${environment.baseUrl}/temaforo`, temaforo);
   }
+
+  getTemasForos() {
+    return this.http.get<TemaForo[]>(`${environment.baseUrl}/temaforo`);
+  }
+
+  getTemaForoById = (temaForoId: string) =>
+  this.http.get<TemaForo>(`${environment.baseUrl}/temaforo/id/${temaForoId}`)
 }

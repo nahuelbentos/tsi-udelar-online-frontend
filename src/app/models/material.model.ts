@@ -6,5 +6,7 @@ export class Material {
     public archivoNombre?: string,
     public archivoExtension?: string,
     public materialId?: string,
+    public cursoId?: string,
+    public seccionId?: string,
   ) {}
 }

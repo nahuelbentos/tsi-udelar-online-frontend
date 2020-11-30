@@ -36,11 +36,13 @@ import { GestionForoComponent } from './pages/gestion-foro/gestion-foro.componen
 import { AbmForoComponent } from './pages/abm-foro/abm-foro.component';
 import { AbmSeccionComponent } from './pages/abm-seccion/abm-seccion.component';
 import { GestionSeccionComponent } from './pages/gestion-seccion/gestion-seccion.component';
+import { AbmMensajetemaComponent } from './pages/abm-mensajetema/abm-mensajetema.component';
+import { GestionMensajetemaComponent } from './pages/gestion-mensajetema/gestion-mensajetema.component';
 import { SeleccionarCustomComponent } from './components/seleccionar-custom/seleccionar-custom.component';
-import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/seleccionar-seccion.component';
-import { SeleccionarFacultadComponent } from './dialogs/seleccionar-facultad/seleccionar-facultad.component';
-import { SeleccionarCursoComponent } from './dialogs/seleccionar-curso/seleccionar-curso.component';
 import { SeleccionarCarreraComponent } from './dialogs/seleccionar-carrera/seleccionar-carrera.component';
+import { SeleccionarCursoComponent } from './dialogs/seleccionar-curso/seleccionar-curso.component';
+import { SeleccionarFacultadComponent } from './dialogs/seleccionar-facultad/seleccionar-facultad.component';
+import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/seleccionar-seccion.component';
 import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
 import { AbmActividadComponent } from './pages/abm-actividad/abm-actividad.component';
 import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component';
@@ -51,9 +53,11 @@ import { GestionComunicadoComponent } from './pages/gestion-comunicado/gestion-c
 import { GestionTemplatecursoComponent } from './pages/gestion-templatecurso/gestion-templatecurso.component';
 import { TableDynamicCustomComponent } from './components/table-dynamic-custom/table-dynamic-custom.component';
 import { TestComponentsComponent } from './pages/test-components/test-components.component';
-import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
+import { AbmPublicarcomunicadoComponent } from './pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
+import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
 import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
 import { RespuestasComponent } from './dialogs/respuestas/respuestas.component';
+import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
 
 
@@ -87,6 +91,8 @@ import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.compo
     AbmTemaForoComponent,
     AbmSeccionComponent,
     GestionSeccionComponent,
+    AbmMensajetemaComponent,
+    GestionMensajetemaComponent,
     SeleccionarCustomComponent,
     SeleccionarSeccionComponent,
     SeleccionarFacultadComponent,
@@ -98,6 +104,8 @@ import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.compo
     PerfilUsuarioComponent,
     TableDynamicCustomComponent,
     TestComponentsComponent,
+    AbmPublicarcomunicadoComponent,
+    SeleccionarComunicadoComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
     RespuestasComponent,
@@ -114,7 +122,9 @@ import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.compo
     GestionCursoComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
+    AbmPublicarcomunicadoComponent,
     GestionEncuestaComponent,
+    GestionMaterialComponent,
   ],
   imports: [
     CommonModule,
@@ -127,7 +137,6 @@ import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.compo
     MatIconModule,
     MatListModule,
     RouterModule,
-
     NgxMatColorPickerModule,
     MatFileUploadModule,
   ],

@@ -7,9 +7,10 @@ import { NavAlumnoComponent } from './components/nav-alumno/nav-alumno.component
 import { SharedModule } from '../shared/shared.module';
 import { MisCursosComponent } from './pages/mis-cursos/mis-cursos.component';
 import { CursosPublicosComponent } from './pages/cursos-publicos/cursos-publicos.component';
+import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 
 @NgModule({
-  declarations: [HomeComponent, NavAlumnoComponent, MisCursosComponent, CursosPublicosComponent],
+  declarations: [HomeComponent, NavAlumnoComponent, MisCursosComponent, CursosPublicosComponent, SubirLaboratorioComponent],
   imports: [CommonModule, AlumnoRoutingModule, SharedModule],
 })
 export class AlumnoModule {}
