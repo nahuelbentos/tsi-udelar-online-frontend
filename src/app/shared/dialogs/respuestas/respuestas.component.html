@@ -1,1 +1,33 @@
-<p>respuestas works!</p>
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+
+      <mat-accordion class="headers-align">
+        <section *ngIf="encuesta && encuesta.preguntaLista">
+          <mat-expansion-panel [expanded]="step === i && !primeraVez " (opened)="setStep(i)" hideToggle *ngFor="let pregunta of encuesta.preguntaLista; let i = index" >
+
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ pregunta.texto }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-panel-description *ngFor="let respuesta of pregunta.respuestaLista" >
+              {{respuesta.texto}}
+            </mat-panel-description>
+            <p *ngIf="pregunta.respuestaLista < 1">No hay respuestas</p>
+
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()"*ngIf="i !== 0">Anterior</button>
+              <button mat-button color="primary" (click)="nextStep()"  >{{ i === encuesta.preguntaLista.length -1 ? 'Fin' : 'Siguiente' }}</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+
+        </section>
+
+    </mat-accordion>
+
+
+    </div>
+  </div>
+</div>

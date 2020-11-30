@@ -14,6 +14,7 @@ export class GestionEncuestaComponent implements OnInit {
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
   @Input() tipo: TipoUsuario;
+  @Input() actions = null; //[{}];
   constructor(private actividadService: ActividadService) {
     this.getEncuestas();
   }

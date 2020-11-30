@@ -9,10 +9,11 @@ import { NavAdministradorComponent } from './components/nav-administrador/nav-ad
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
+import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, NavAdministradorComponent, GestionarCursosComponent],
+  declarations: [HomeComponent, NavAdministradorComponent, GestionarCursosComponent, EncuestasComponent],
   imports: [
     CommonModule,
     AdministradorRoutingModule,

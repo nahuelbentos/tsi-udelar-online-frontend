@@ -84,6 +84,7 @@ export class AbmEncuestaComponent implements OnInit {
     encuesta.descripcion = this.descripcion.value;
     encuesta.preguntaLista = this.preguntas.map((control) => control.value);
     encuesta.usuarioId = this.usuarioSesion.id;
+    encuesta.actividadId = this.encuestaId;
     this.modo === 'INS'
       ? this.crearEncuesta(encuesta)
       : this.editarEncuesta(encuesta);

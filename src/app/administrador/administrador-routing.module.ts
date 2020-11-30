@@ -36,6 +36,7 @@ import { NavAdministradorComponent } from './components/nav-administrador/nav-ad
 import { TestComponentsComponent } from '../shared/pages/test-components/test-components.component';
 import { HomeComponent } from './pages/home/home.component';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
+import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 
 const routes: Routes = [
   {
@@ -89,7 +90,7 @@ const routes: Routes = [
       },
       {
         path: 'encuesta',
-        component: GestionEncuestaComponent,
+        component: EncuestasComponent,
         data: { titulo: 'Gestión de Encuestas' },
       },
       {
