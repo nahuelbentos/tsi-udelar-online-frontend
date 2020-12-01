@@ -7,6 +7,7 @@ import { NavAlumnoComponent } from './components/nav-alumno/nav-alumno.component
 import { CursosPublicosComponent } from './pages/cursos-publicos/cursos-publicos.component';
 import { MisCursosComponent } from './pages/mis-cursos/mis-cursos.component';
 import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder-encuesta.component';
+import { VistaCursoComponent } from './pages/vista-curso/vista-curso.component';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 
 const routes: Routes = [
@@ -31,6 +32,11 @@ const routes: Routes = [
         path: 'cursos-publicos',
         component: CursosPublicosComponent,
         data: { titulo: 'Todos los Cursos' },
+      },
+      {
+        path: 'curso',
+        component: VistaCursoComponent,
+        data: { titulo: 'Ver Curso' },
       },
       {
         path: 'subir-laboratorio',

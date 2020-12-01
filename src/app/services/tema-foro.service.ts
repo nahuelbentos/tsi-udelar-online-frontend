@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { TemaForo } from '../models/temaforo.model';
+import { TemaForo } from '../models/tema-foro.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,20 @@ export class TemaForoService {
     return this.http.post(`${environment.baseUrl}/temaforo`, temaforo);
   }
 
-  getTemasForos() {
+  getTemasForo() {
     return this.http.get<TemaForo[]>(`${environment.baseUrl}/temaforo`);
   }
 
-  getTemaForoById = (temaForoId: string) =>
-  this.http.get<TemaForo>(`${environment.baseUrl}/temaforo/id/${temaForoId}`)
+  getTemaForoById(temaForoId: string) {
+    return this.http.get<TemaForo>(`${environment.baseUrl}/temaforo/${temaForoId}`);
+  }
+  
+  updateTemaForo(temaForo: TemaForo) {
+    return this.http.put(`${environment.baseUrl}/temaforo/`,temaForo);
+  }
+
+  deleteTemaForo(temaForoId: string) {
+    return this.http.delete(`${environment.baseUrl}/temaforo/${temaForoId}`);
+  }
+
 }

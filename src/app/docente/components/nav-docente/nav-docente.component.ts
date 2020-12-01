@@ -18,10 +18,6 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Perfil',
     },
     {
-      link: 'administrar-calificaciones',
-      titulo: 'Administrar calificaciones',
-    },
-    {
       link: 'administrar-foros',
       titulo: 'Administrar foros',
     },
@@ -38,10 +34,6 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Estudiantes por curso',
     },
     {
-      link: 'administrar-pruebas-online',
-      titulo: 'Administrar pruebas online',
-    },
-    {
       link: 'administrar-entregas',
       titulo: 'Administrar entregas',
     },
@@ -52,6 +44,14 @@ export class NavDocenteComponent implements OnInit {
     {
       link: 'encuestas',
       titulo: 'Encuestas',
+    },
+    {
+      link: 'pruebaonline',
+      titulo: 'Administrar pruebas online',
+    },
+    {
+      link: 'administrar-calificaciones',
+      titulo: 'Administrar calificaciones',
     },
     {
       link: 'informes',

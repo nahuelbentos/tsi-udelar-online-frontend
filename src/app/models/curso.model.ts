@@ -1,3 +1,5 @@
+import { Comunicado } from './Comunicado';
+import { CursoSeccion } from './curso-seccion.model';
 import { ModalidadCurso } from './modalidad-curso.enum';
 import { Seccion } from './seccion.model';
 import { TemplateCurso } from './template-curso.model';
@@ -7,8 +9,8 @@ export class Curso {
   constructor(
     public nombre: string,
     public descripcion?: string,
-    public modalidad?: ModalidadCurso,
-    public modalidadTexto?: string,
+    public modalidadId?: ModalidadCurso,
+    public modalidad?: string,
     public requiereMatriculacion?: boolean,
     public salaVirtual?: string,
     public templateCursoId?: string,
@@ -18,6 +20,8 @@ export class Curso {
     public secciones?: Seccion[],
     public alumnos?: Usuario[],
     public docentes?: Usuario[],
+    public comunicados?: Comunicado[],
+    public cursoSecciones?: CursoSeccion[],
     public cursoId?: string
   ) {}
 }
