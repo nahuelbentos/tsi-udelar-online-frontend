@@ -16,11 +16,20 @@ import { SharedModule } from '../shared/shared.module';
 import { EstudiantesComponent } from './pages/estudiantes/estudiantes.component';
 import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
+import { AdministrarCalificacionesComponent } from './pages/administrar-calificaciones/administrar-calificaciones.component';
+
 import { AdministrarMaterialesComponent } from '../administrador-facultad/pages/administrar-materiales/administrar-materiales.component';
 
-
 @NgModule({
-  declarations: [HomeComponent,  NavDocenteComponent, EstudiantesComponent, AdministrarCursosComponent, EncuestasComponent, AdministrarMaterialesComponent],
+  declarations: [
+    HomeComponent,
+    NavDocenteComponent,
+    EstudiantesComponent,
+    AdministrarCursosComponent,
+    EncuestasComponent,
+    AdministrarMaterialesComponent,
+    AdministrarCalificacionesComponent,
+  ],
   imports: [
     CommonModule,
     DocenteRoutingModule,
@@ -28,7 +37,7 @@ import { AdministrarMaterialesComponent } from '../administrador-facultad/pages/
     ReactiveFormsModule,
     LayoutModule,
     MaterialModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class DocenteModule { }
+export class DocenteModule {}
