@@ -11,6 +11,7 @@ import { VistaCursoComponent } from './pages/vista-curso/vista-curso.component';
 import { MaterialModule } from '../material/material.module';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder-encuesta.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,6 @@ import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder
     SubirLaboratorioComponent,
     ResponderEncuestaComponent
   ],
-  imports: [CommonModule, AlumnoRoutingModule, SharedModule, MaterialModule],
+  imports: [CommonModule, AlumnoRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule],
 })
 export class AlumnoModule {}

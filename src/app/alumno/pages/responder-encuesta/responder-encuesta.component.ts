@@ -38,7 +38,6 @@ export class ResponderEncuestaComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      this.modo = param.modo;
       this.encuestaId = param.id;
 
       if (param.id) {
@@ -50,10 +49,14 @@ export class ResponderEncuestaComponent implements OnInit {
   }
 
   private setValuesOnForm(actividad: Actividad) {
-    actividad.preguntaLista.forEach((pregunta) => this.preguntas.push(new FormControl(pregunta.texto)));
+    this.nombre.setValue(actividad.nombre);
+    this.descripcion.setValue(actividad.descripcion);
+    actividad.preguntaLista.forEach((pregunta) => this.preguntas.push(new FormControl(pregunta)));
   }
   private buildForm() {
     this.encuestaForm = this.fb.group({
+      nombre: [''],
+      descripcion: [''],
       respuestas: ['', Validators.required],
     });
   }
@@ -63,10 +66,6 @@ export class ResponderEncuestaComponent implements OnInit {
     // en vez de administrador y queda pronto
 
     this.location.back();
-  }
-
-  agregarPregunta() {
-    this.preguntas.push(new FormControl(''));
   }
 
   guardarEncuesta(event: Event) {
@@ -79,8 +78,7 @@ export class ResponderEncuestaComponent implements OnInit {
     const encuesta = new Actividad(this.nombre.value);
     encuesta.tipo = 'Encuesta';
     encuesta.descripcion = this.descripcion.value;
-    encuesta.preguntaLista = this.preguntas.map((control) => control.value);
-    encuesta.preguntaLista.res
+    encuesta.preguntaLista = this.preguntas.map((preguntaControl) => preguntaControl.value.respuestaLista.push(this.encuestaForm.value.map((respuesta) => respuesta)) );
     encuesta.usuarioId = this.usuarioSesion.id;
     encuesta.actividadId = this.encuestaId;
     }
@@ -89,7 +87,7 @@ export class ResponderEncuestaComponent implements OnInit {
     this.actividadService.editEncuesta(encuesta).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se modificó la encuesta ${this.nombre.value} exitosamente.`
+        `Se envió la encuesta ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
         `/${this.auth
