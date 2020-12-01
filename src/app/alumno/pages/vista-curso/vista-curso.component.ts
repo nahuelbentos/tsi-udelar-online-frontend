@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Actividad } from 'src/app/models/actividad.model';
 import { Curso } from 'src/app/models/curso.model';
+import { Material } from 'src/app/models/material.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
 
@@ -15,6 +17,7 @@ import { CursoService } from 'src/app/services/curso.service';
 export class VistaCursoComponent implements OnInit {
   cursoId: string;
   curso: Curso;
+
   constructor(
     private autenticacionService: AutenticacionService,
     private cursoService: CursoService,
@@ -41,7 +44,36 @@ export class VistaCursoComponent implements OnInit {
     });
   }
 
-  calificaciones = () => console.log('not implemented yet');
+  accionActividad(actividad: Actividad){
+    console.log('actividad: ', actividad);
+    switch (actividad.tipo) {
+      case 'Encuesta':
+        console.log('not implemented yet');
+        break;
+      case 'ClaseDictada':
+        console.log('not implemented yet');
+        break;
+      case 'Trabajo':
+        console.log('not implemented yet');
+        break;
+      case 'PruebaOnline':
+        console.log('not implemented yet');
+        break;
 
-  
+      default:
+        break;
+    }
+  }
+
+  descargarMaterial = (material: Material) => {
+    console.log(material);
+
+    const linkSource = `data:application/pdf;base64,${material.archivoData}`;
+    const downloadLink = document.createElement('a');
+    downloadLink.href = linkSource;
+    downloadLink.download = material.archivoNombre;
+    downloadLink.click();
+    
+  };
+  calificaciones = () => console.log('not implemented yet');
 }

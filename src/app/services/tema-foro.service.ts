@@ -13,7 +13,6 @@ export class TemaForoService {
     return this.http.post(`${environment.baseUrl}/temaforo`, temaforo);
   }
 
-<<<<<<< HEAD
   getTemasForo() {
     return this.http.get<TemaForo[]>(`${environment.baseUrl}/temaforo`);
   }
@@ -30,12 +29,4 @@ export class TemaForoService {
     return this.http.delete(`${environment.baseUrl}/temaforo/${temaForoId}`);
   }
 
-=======
-  getTemasForos() {
-    return this.http.get<TemaForo[]>(`${environment.baseUrl}/temaforo`);
-  }
-
-  getTemaForoById = (temaForoId: string) =>
-  this.http.get<TemaForo>(`${environment.baseUrl}/temaforo/id/${temaForoId}`)
->>>>>>> master
 }

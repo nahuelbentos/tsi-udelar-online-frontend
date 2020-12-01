@@ -78,28 +78,37 @@
                 </div>
               </div>
             </section>
+ 
+
             <section *ngIf="cs.materialLista">
-              
-              <div class="row" *ngFor="let material of cs.materialLista">
-              <div class="col-xs">
-                <div class="box">
-                  {{ material | json}}
-            
-                </div>
-              </div>
-            </div></section>
+              <mat-selection-list [multiple]="false">
+                <mat-list-option *ngFor="let material of cs.materialLista" [value]="material"
+                  (click)="descargarMaterial(material)">
+                  <mat-icon mat-list-icon>download</mat-icon>
+                  Material: {{material.nombre}} - {{material.descripcion}}
+                </mat-list-option>
+              </mat-selection-list>
+
+            </section>
+ 
+
             <section *ngIf="cs.actividadLista">
-              <div class="row" *ngFor="let actividad of cs.actividadLista">
-                <div class="col-xs">
-                  <div class="box">
-                    {{ actividad | json}}
-                  </div>
-                </div>
-              </div>
-            </section> 
-            <!-- <mat-panel-description *ngFor="let docente of curso.docentes">
-              Profesor: {{ docente.nombres }} {{ docente.apellidos}}
-            </mat-panel-description> -->
+               
+                    <mat-selection-list [multiple]="false"> 
+                      <mat-list-option *ngFor="let actividad of cs.actividadLista" [value]="actividad"
+                        (click)="accionActividad(actividad)" [ngSwitch]="actividad.tipo">
+
+                            <mat-icon mat-list-icon *ngSwitchCase="'Encuesta'">ballot</mat-icon>                          
+                            <mat-icon mat-list-icon *ngSwitchCase="'ClaseDictada'">cast_for_education</mat-icon>
+                            <mat-icon mat-list-icon *ngSwitchCase="'Trabajo'">work</mat-icon>
+                            <mat-icon mat-list-icon *ngSwitchCase="'PruebaOnline'">next_week</mat-icon>
+
+                         {{ actividad.tipo }}:   {{actividad.actividad.nombre}} - {{actividad.actividad.descripcion}}
+
+                      </mat-list-option>
+                    </mat-selection-list>
+             
+            </section>
 
           </mat-expansion-panel>
         </section>
