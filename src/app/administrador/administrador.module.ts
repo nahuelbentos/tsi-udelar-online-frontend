@@ -7,9 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { NavAdministradorComponent } from './components/nav-administrador/nav-administrador.component';
 import { SharedModule } from '../shared/shared.module';
-import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
 import { MaterialModule } from '../material/material.module';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
+import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
 
 @NgModule({
   declarations: [HomeComponent, NavAdministradorComponent, GestionarCursosComponent, PublicarComunicadoComponent],

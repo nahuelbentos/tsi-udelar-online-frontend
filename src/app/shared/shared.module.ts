@@ -58,6 +58,7 @@ import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado
 import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
 import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
+import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.compo
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
     BuscarCursosComponent,
+    AbmLaboratorioComponent,
   ],
   exports: [
     HeaderComponent,
@@ -123,6 +125,7 @@ import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.compo
     AbmPublicarcomunicadoComponent,
     GestionEncuestaComponent,
     GestionMaterialComponent,
+    AbmLaboratorioComponent,
   ],
   imports: [
     CommonModule,

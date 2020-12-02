@@ -25,6 +25,7 @@ import { AdministrarMaterialesComponent } from './pages/administrar-materiales/a
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { DocentesComponent } from './pages/docentes/docentes.component';
+import { HomeComponent } from './pages/home/home.component';
 import { PublicarComunicadoCursoComponent } from './pages/publicar-comunicado-curso/publicar-comunicado-curso.component';
 
 
@@ -93,12 +94,11 @@ const routes: Routes = [
         component: GestionUsuarioComponent,
         data: { titulo: 'Gestión de Usuarios' },
       },
-
-      // {
-      //   path: 'material',
-      //   component: GestionMaterialComponent,
-      //   data: { titulo: 'Gestión de materiales' },
-      // },
+      {
+        path: 'reportes',
+        component: HomeComponent,
+        data: { titulo: 'Reportes' },
+      },
       {
         path: 'administrar-materiales',
         component: AdministrarMaterialesComponent,

@@ -12,6 +12,7 @@ import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { PublicarComunicadoCursoComponent } from './pages/publicar-comunicado-curso/publicar-comunicado-curso.component';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,11 @@ import { PublicarComunicadoCursoComponent } from './pages/publicar-comunicado-cu
     CarrerasComponent,
     PublicarComunicadoCursoComponent,
   ],
-  imports: [CommonModule, AdministradorFacultadRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    AdministradorFacultadRoutingModule, 
+    SharedModule,
+    MaterialModule,
+  ],
 })
 export class AdministradorFacultadModule {}
