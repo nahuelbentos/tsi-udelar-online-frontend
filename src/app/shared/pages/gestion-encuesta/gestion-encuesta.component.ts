@@ -13,8 +13,8 @@ export class GestionEncuestaComponent implements OnInit {
   encuestas: Actividad[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
-
   @Input() tipo: TipoUsuario;
+  @Input() actions = null; //[{}];
   constructor(private actividadService: ActividadService) {
     this.getEncuestas();
   }
@@ -32,12 +32,11 @@ export class GestionEncuestaComponent implements OnInit {
   }
 
   getEncuestas() {
-    this.actividadService.getActividades().subscribe((actividades) => {
-      actividades.forEach((actividad) => {
-        if (actividad.tipo === 'encuesta') {
-          this.encuestas.push(actividad);
-        }
-      });
+    this.actividadService.getActividadesByTipo('Encuesta').subscribe((actividades) => {
+      this.encuestas = actividades.map((encuesta) => ({
+        ...encuesta,
+        id: encuesta.actividadId,
+      }));
       this.createComponent = true;
     });
   }

@@ -16,6 +16,7 @@ export class AbmEncuestaComponent implements OnInit {
   encuestaForm: FormGroup;
   encuestaId: string;
   preguntas: FormControl[] = [];
+  modo: string;
   usuarioSesion = this.auth.getUser();
   get nombre() {
     return this.encuestaForm.get('nombre');
@@ -36,9 +37,23 @@ export class AbmEncuestaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((param) => {
+      this.modo = param.modo;
+      this.encuestaId = param.id;
 
+      if (param.id) {
+        this.actividadService
+          .getEncuestaById(this.encuestaId)
+          .subscribe((encuesta) => this.setValuesOnForm(encuesta));
+      }
+    });
   }
 
+  private setValuesOnForm(actividad: Actividad) {
+    this.nombre.setValue(actividad.nombre);
+    this.descripcion.setValue(actividad.descripcion);
+    actividad.preguntaLista.forEach((pregunta) => this.preguntas.push(new FormControl(pregunta.texto)));
+  }
   private buildForm() {
     this.encuestaForm = this.fb.group({
       nombre: ['', Validators.required],
@@ -69,11 +84,31 @@ export class AbmEncuestaComponent implements OnInit {
     encuesta.descripcion = this.descripcion.value;
     encuesta.preguntaLista = this.preguntas.map((control) => control.value);
     encuesta.usuarioId = this.usuarioSesion.id;
+    encuesta.actividadId = this.encuestaId;
+    this.modo === 'INS'
+      ? this.crearEncuesta(encuesta)
+      : this.editarEncuesta(encuesta);
+    }
 
-    this.actividadService.createEncuesta(encuesta).subscribe(() => {
+    crearEncuesta(encuesta) {
+      this.actividadService.createEncuesta(encuesta).subscribe(() => {
+        mensajeConfirmacion(
+          'Excelente!',
+          `Se creó la encuesta ${this.nombre.value} exitosamente.`
+        ).then();
+        this.router.navigate([
+          `/${this.auth
+            .getRolSesion()
+            .toLocaleLowerCase()}/encuesta`,
+        ]);
+      });
+    };
+
+  editarEncuesta(encuesta) {
+    this.actividadService.editEncuesta(encuesta).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se creó la encuesta ${this.nombre.value} exitosamente.`
+        `Se modificó la encuesta ${this.nombre.value} exitosamente.`
       ).then();
       this.router.navigate([
         `/${this.auth
@@ -81,5 +116,5 @@ export class AbmEncuestaComponent implements OnInit {
           .toLocaleLowerCase()}/encuesta`,
       ]);
     });
-  }
+  };
 }

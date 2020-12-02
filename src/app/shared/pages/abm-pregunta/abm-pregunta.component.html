@@ -1,0 +1,15 @@
+<p>abm-pregunta works!</p>
+<!-- 
+Campos de pregunta
+
+ -->
+
+ <app-table-dynamic-custom 
+ [dataInput]="respuestas" 
+ [dataOutput]="respuestasOutput" 
+ [columns]="columnas" 
+ tipoSingular="respuesta" 
+ tipoPlural="respuestas" 
+ (setDataOutput)="onGetDataOutput($event)" *ngIf="createComponent"></app-table-dynamic-custom>
+
+

@@ -46,6 +46,10 @@ import { SeleccionarSeccionComponent } from './dialogs/seleccionar-seccion/selec
 import { SeleccionarTemplateCursoComponent } from './dialogs/seleccionar-template-curso/seleccionar-template-curso.component';
 import { AbmActividadComponent } from './pages/abm-actividad/abm-actividad.component';
 import { GestionActividadComponent } from './pages/gestion-actividad/gestion-actividad.component';
+import { GestionMensajeComponent } from './pages/gestion-mensaje/gestion-mensaje.component';
+import { GestionTemaforoComponent } from './pages/gestion-temaforo/gestion-temaforo.component';
+import { GestionRespuestaComponent } from './pages/gestion-respuesta/gestion-respuesta.component';
+import { GestionTemplateCursoSeccionComponent } from './pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
 import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
 import { AbmComunicadoComponent } from './pages/abm-comunicado/abm-comunicado.component';
 import { AbmTemplatecursoComponent } from './pages/abm-templatecurso/abm-templatecurso.component';
@@ -56,9 +60,22 @@ import { TestComponentsComponent } from './pages/test-components/test-components
 import { AbmPublicarcomunicadoComponent } from './pages/abm-publicarcomunicado/abm-publicarcomunicado.component';
 import { SeleccionarComunicadoComponent } from './dialogs/seleccionar-comunicado/seleccionar-comunicado.component';
 import { AutocompleteCustomComponent } from './components/autocomplete-custom/autocomplete-custom.component';
+import { RespuestasComponent } from './dialogs/respuestas/respuestas.component';
 import { SeleccionarUsuarioComponent } from './dialogs/seleccionar-usuario/seleccionar-usuario.component';
 import { BuscarCursosComponent } from './pages/buscar-cursos/buscar-cursos.component';
+import { GestionPruebaonlineComponent } from './pages/gestion-pruebaonline/gestion-pruebaonline.component';
+import { AbmAlumnocursoComponent } from './pages/abm-alumnocurso/abm-alumnocurso.component';
+import { AbmCursoseccionComponent } from './pages/abm-cursoseccion/abm-cursoseccion.component';
+import { AbmMensajeComponent } from './pages/abm-mensaje/abm-mensaje.component';
+import { AbmPreguntaComponent } from './pages/abm-pregunta/abm-pregunta.component';
+import { AbmPruebaonlineComponent } from './pages/abm-pruebaonline/abm-pruebaonline.component';
+import { AbmTemplateCursoSeccionComponent } from './pages/abm-templatecursoseccion/abm-templatecursoseccion.component';
+import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion-alumnocurso.component';
+import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
 import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio.component';
+
+
+
 
 
 @NgModule({
@@ -104,10 +121,24 @@ import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio
     PerfilUsuarioComponent,
     TableDynamicCustomComponent,
     TestComponentsComponent,
+    AbmMensajeComponent,
+    GestionMensajeComponent,
+    GestionTemaforoComponent,
+    GestionRespuestaComponent,
+    AbmCursoseccionComponent,
+    AbmTemplateCursoSeccionComponent,
+    GestionCursoSeccionComponent,
+    GestionTemplateCursoSeccionComponent,
+    AbmPreguntaComponent,
+    GestionPruebaonlineComponent,
+    AbmPruebaonlineComponent,
+    AbmAlumnocursoComponent,
+    GestionAlumnocursoComponent,
     AbmPublicarcomunicadoComponent,
     SeleccionarComunicadoComponent,
     SeleccionarUsuarioComponent,
     AutocompleteCustomComponent,
+    RespuestasComponent,
     BuscarCursosComponent,
     AbmLaboratorioComponent,
   ],
@@ -124,6 +155,7 @@ import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio
     AutocompleteCustomComponent,
     AbmPublicarcomunicadoComponent,
     GestionEncuestaComponent,
+    GestionAlumnocursoComponent,
     GestionMaterialComponent,
     AbmLaboratorioComponent,
   ],

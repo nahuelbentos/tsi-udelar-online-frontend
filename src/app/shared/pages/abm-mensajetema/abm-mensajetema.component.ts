@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MensajeTema } from 'src/app/models/mensajeTema';
-import { TemaForo } from 'src/app/models/temaforo.model';
+import { TemaForo } from 'src/app/models/tema-foro.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { MensajetemaService } from 'src/app/services/mensajetema.service';
@@ -58,7 +58,9 @@ export class AbmMensajetemaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.temaForoService.getTemasForos().subscribe((temasForos) => (this.temasForos = temasForos));
+    this.temaForoService
+      .getTemasForo()
+      .subscribe((temasForos) => (this.temasForos = temasForos));
     
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;

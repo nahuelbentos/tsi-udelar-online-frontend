@@ -11,6 +11,7 @@ import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
 
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
+import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 import { PublicarComunicadoCursoComponent } from './pages/publicar-comunicado-curso/publicar-comunicado-curso.component';
 import { MaterialModule } from '../material/material.module';
 
@@ -22,6 +23,7 @@ import { MaterialModule } from '../material/material.module';
     AbmDocenteComponent,
     CursosComponent,
     CarrerasComponent,
+    EncuestasComponent,
     PublicarComunicadoCursoComponent,
   ],
   imports: [

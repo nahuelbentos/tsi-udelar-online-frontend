@@ -10,9 +10,10 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
 import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
+import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 
 @NgModule({
-  declarations: [HomeComponent, NavAdministradorComponent, GestionarCursosComponent, PublicarComunicadoComponent],
+  declarations: [HomeComponent, NavAdministradorComponent, GestionarCursosComponent, EncuestasComponent, PublicarComunicadoComponent],
   imports: [
     CommonModule,
     AdministradorRoutingModule,

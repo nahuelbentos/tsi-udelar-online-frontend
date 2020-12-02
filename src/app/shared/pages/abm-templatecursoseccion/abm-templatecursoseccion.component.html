@@ -1,0 +1,55 @@
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+
+      <mat-card>
+
+        <form [formGroup]="templateCursoSeccionForm">
+
+          <mat-card-content>
+
+            <div class="row">
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label> Template Curso</mat-label>
+                    <mat-select formControlName="templateCurso" required>
+                      <mat-option *ngFor="let templatecurso of templatesCursos" [value]="templateCurso.templateCursoId"> {{  templateCurso.nombre }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-xs-6">
+                <div class="box">
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Seccion</mat-label>
+                    <mat-select formControlName="curso" required>
+                      <mat-option *ngFor="let seccion of secciones" [value]="seccion.seccionId"> {{  seccion.nombre }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+          
+          <mat-card-actions align="end">
+
+            <button mat-raised-button color="primary" type="button" [disabled]="templateCursoSeccionForm.invalid"
+              (click)="guardarTemplateCursoSeccion($event)" (keyup.enter)="guardarTemplateCursoSeccion($event)">Guardar Template Curso
+              Seccion</button>
+            <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+          </mat-card-actions>
+
+        </form>
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>

@@ -26,7 +26,7 @@ export class CursosPublicosComponent implements OnInit {
   tipo = TipoUsuario.AdministradorFacultad;
   actionsHeader = [{}];
   actions: Actions[] = [];
-  columnas =  ['nombre', 'descripcion', 'salaVirtual', 'actions'];
+  columnas =  ['nombre', 'descripcion','modalidad',  'salaVirtual', 'actions'];
 
   constructor(
     private alumnoService: AlumnoService,

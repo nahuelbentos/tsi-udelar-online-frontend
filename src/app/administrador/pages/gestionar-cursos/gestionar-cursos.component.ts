@@ -22,7 +22,7 @@ export class GestionarCursosComponent implements OnInit {
   actions: Actions[];
 
   constructor(
-    public dialog: MatDialog, 
+    public dialog: MatDialog,
     private cursoService: CursoService,
     private auth: AutenticacionService,
      ) {}
