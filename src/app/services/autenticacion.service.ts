@@ -17,7 +17,8 @@ export class AutenticacionService {
 
   mailForgotPassword = (email: string) => this.http.post(`${this.baseUrl}/mail-forgot-password`, { email });
 
-  forgotPassword = ( data: any) => this.http.post(`${this.baseUrl}/forgot-password`, data, { headers: { 'X-XSRF-TOKEN': data.token}});
+  // tslint:disable-next-line: max-line-length
+  forgotPassword = ( data: any) => this.http.post<UsuarioSesion>(`${this.baseUrl}/forgot-password`, data, { headers: { 'X-XSRF-TOKEN': data.token}});
 
   register = (usuario: Usuario) => this.http.post<UsuarioSesion>(`${this.baseUrl}/register`, usuario);
 

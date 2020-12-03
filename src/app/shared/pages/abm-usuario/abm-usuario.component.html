@@ -144,10 +144,10 @@
                 <div class="box">
                   <mat-form-field class="full-width">
               
-                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirme Password" formControlName="passwordConfirm">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                      [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirme Password" formControlName="passwordConfirm">
+                    <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hideConfirm">
+                      <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
 
                     <mat-error *ngIf="passwordConfirm.hasError('mustMatch')  && passwordConfirm.dirty && passwordConfirm.errors">

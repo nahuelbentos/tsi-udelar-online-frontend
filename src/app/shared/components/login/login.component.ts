@@ -20,6 +20,9 @@ import { HeaderComponent } from '../header/header.component';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   showSppiner = false;
+
+  hide = true;
+  
   constructor(
     private autenticacionService: AutenticacionService,
     public dialogRef: MatDialogRef<HeaderComponent>,
@@ -60,7 +63,7 @@ export class LoginComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  forgotPassword(){
+  forgotPassword() {
     this.router.navigate([`home/forgot-password`]);
     this.dialogRef.close();
   }
