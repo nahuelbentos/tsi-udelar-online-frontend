@@ -37,12 +37,14 @@ export class VistaCursoComponent implements OnInit {
       this.cursoId = param.id;
 
       if (param.id) {
-        this.cursoService.getCursoById(this.cursoId).subscribe((curso) =>  this.curso = curso);
+        this.cursoService
+          .getCursoById(this.cursoId)
+          .subscribe((curso) => (this.curso = curso));
       }
     });
   }
 
-  accionActividad(activdadTipo: ActivdadTipo){
+  accionActividad(activdadTipo: ActivdadTipo) {
     console.log('actividad: ', activdadTipo);
     switch (activdadTipo.tipo) {
       case 'Encuesta':
@@ -52,12 +54,19 @@ export class VistaCursoComponent implements OnInit {
         console.log('not implemented yet');
         break;
       case 'Trabajo':
-        console.log("case actividad.tipo ", activdadTipo.tipo);
-        console.log("case actividad.actividad ", activdadTipo.actividad.actividadId);
-        const params: { actividadId: string; tipo: TipoUsuario; modo: string } = {
+        console.log('case actividad.tipo ', activdadTipo.tipo);
+        console.log(
+          'case actividad.actividad ',
+          activdadTipo.actividad.actividadId
+        );
+        const params: {
+          actividadId: string;
+          tipo: TipoUsuario;
+          modo: string;
+        } = {
           actividadId: activdadTipo.actividad.actividadId,
           tipo: TipoUsuario.Alumno,
-          modo: 'INS'
+          modo: 'INS',
         };
         this.router.navigate(
           [
@@ -89,7 +98,21 @@ export class VistaCursoComponent implements OnInit {
     downloadLink.href = linkSource;
     downloadLink.download = material.archivoNombre;
     downloadLink.click();
-    
   };
+
   calificaciones = () => console.log('not implemented yet');
+
+  claseVirtual = () => {
+    const linkSource =
+      this.curso.salaVirtual.includes('http') ||
+      this.curso.salaVirtual.includes('https')
+        ? this.curso.salaVirtual
+        : `http://${this.curso.salaVirtual}`;
+
+    const link = document.createElement('a');
+    link.href = linkSource;
+    link.target = '_blank';
+ 
+    link.click();
+  };
 }
