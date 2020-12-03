@@ -4,6 +4,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { RoleGuard } from '../guards/role.guard';
 
 import { AbmCarreraComponent } from '../shared/pages/abm-carrera/abm-carrera.component';
+import { AbmComunicadoComponent } from '../shared/pages/abm-comunicado/abm-comunicado.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
 import { AbmFacultadComponent } from '../shared/pages/abm-facultad/abm-facultad.component';
@@ -12,6 +13,7 @@ import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.
 import { AbmTemplatecursoComponent } from '../shared/pages/abm-templatecurso/abm-templatecurso.component';
 import { AbmUsuarioComponent } from '../shared/pages/abm-usuario/abm-usuario.component';
 import { GestionCarreraComponent } from '../shared/pages/gestion-carrera/gestion-carrera.component';
+import { GestionComunicadoComponent } from '../shared/pages/gestion-comunicado/gestion-comunicado.component';
 import { GestionCursoComponent } from '../shared/pages/gestion-curso/gestion-curso.component';
 import { GestionEncuestaComponent } from '../shared/pages/gestion-encuesta/gestion-encuesta.component';
 import { GestionFacultadComponent } from '../shared/pages/gestion-facultad/gestion-facultad.component';
@@ -138,9 +140,14 @@ const routes: Routes = [
         data: { titulo: 'ABM de docentes' },
       },
       {
-        path: 'publicar-comunicado-curso',
-        component: PublicarComunicadoCursoComponent,
-        data: { titulo: 'Publicar Comunicado Facultad' },
+        path: 'comunicado',
+        component: GestionComunicadoComponent,
+        data: { titulo: 'Gestión de Comunicados' },
+      },
+      {
+        path: 'comunicado/abm-comunicado',
+        component: AbmComunicadoComponent,
+        data: { titulo: 'ABM de Comunicados' },
       },
     ],
   },

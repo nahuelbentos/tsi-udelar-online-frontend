@@ -104,6 +104,11 @@ export class AbmActividadComponent implements OnInit {
           .subscribe((actividad) => this.setValuesOnForm(actividad));
       }
     });
+    if(this.usuarioLogueado.rol === 'Docente'){
+      console.log("usuarioLogueado ", this.usuarioLogueado.rol);
+    }
+    
+    
   }
 
   private setValuesOnForm(actividad: Actividad) {
@@ -123,21 +128,39 @@ export class AbmActividadComponent implements OnInit {
   }
 
   private buildForm() {
-    this.actividadForm = this.fb.group({
-      nombre: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      fechaRealizada: ['', Validators.required],
-      fechaFinalizada: ['', Validators.required],
-      tipo: ['', Validators.required],
-      esAdministradorFacultad: [false],
-      esIndividual: [false],
-      calificacion: [''],
-      nota: [''],
-      fecha: [''],
-      url: [''],
-      minutosExpiracion: [''],
-      activa: [''],
-    });
+    if (this.usuarioLogueado.rol === 'Docente'){
+      this.actividadForm = this.fb.group({
+        nombre: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        fechaRealizada: ['', Validators.required],
+        fechaFinalizada: ['', Validators.required],
+        tipo: [''],
+        esAdministradorFacultad: [false],
+        esIndividual: [false],
+        calificacion: [''],
+        nota: [''],
+        fecha: [''],
+        url: [''],
+        minutosExpiracion: [''],
+        activa: [''],
+      });
+    }else{
+      this.actividadForm = this.fb.group({
+        nombre: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        fechaRealizada: ['', Validators.required],
+        fechaFinalizada: ['', Validators.required],
+        tipo: ['', Validators.required],
+        esAdministradorFacultad: [false],
+        esIndividual: [false],
+        calificacion: [''],
+        nota: [''],
+        fecha: [''],
+        url: [''],
+        minutosExpiracion: [''],
+        activa: [''],
+      });
+    }
   }
 
   onNoClick(): void {
@@ -160,8 +183,16 @@ export class AbmActividadComponent implements OnInit {
     actividad.descripcion = this.descripcion.value;
     actividad.fechaRealizada = this.fechaRealizada.value;
     actividad.fechaFinalizada = this.fechaFinalizada.value;
-    actividad.tipo = this.tipo.value;
-
+    if (this.usuarioLogueado.rol === 'Docente'){
+      actividad.tipo = 'Trabajo';
+    }else{
+      actividad.tipo = this.tipo.value;
+    }
+    actividad.usuarioId = this.usuarioLogueado.id;
+    actividad.esIndividual = this.esIndividual.value ? true : false;
+    actividad.nota = this.nota.value;
+    actividad.calificacion = this.calificacion.value;
+    console.log("actividad", actividad);
     this.modo === 'INS'
       ? this.crearActividad(actividad)
       : this.editarActividad(actividad);
@@ -176,7 +207,7 @@ export class AbmActividadComponent implements OnInit {
       this.router.navigate([
          `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/actividad`,
       ]);
-    });
+    })
 
   private editarActividad = (actividad: Actividad) =>
     this.actividadService.updateActividad(actividad).subscribe(() => {
@@ -187,5 +218,5 @@ export class AbmActividadComponent implements OnInit {
       this.router.navigate([
          `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/actividad`,
       ]);
-    });
+    })
 }

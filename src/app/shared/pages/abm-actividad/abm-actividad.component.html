@@ -72,7 +72,52 @@
                 </div>
               </div>
 
-            </div>
+            </div> 
+            <ng-container *ngIf="this.usuarioLogueado.rol === 'Docente'; else elseTemplate">
+
+              <div class="row">
+                <div class="col-xs">
+                  <div class="box">
+
+                    <div class="row">
+
+                      <div class="col-xs-12">
+                        <div class="box">
+
+                          <mat-checkbox formControlName="esIndividual">
+                            Es Individual?
+                          </mat-checkbox>
+
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="box">
+
+                          <mat-form-field class="full-width">
+                            <input matInput placeholder="Calificación" formControlName="calificacion">
+                          </mat-form-field>
+
+                        </div>
+                      </div>
+
+                      <div class="col-xs-12">
+                        <div class="box">
+                          <mat-form-field class="full-width">
+                            <input matInput placeholder="Nota" formControlName="nota">
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+            </ng-container>
+            <ng-template #elseTemplate>
 
             <div class="row center-xs">
 
@@ -98,6 +143,9 @@
             </div>
 
 
+              
+            
+            
             <mat-card class="example-card" *ngIf="tipo.value">
               <mat-card-header>
                 <mat-card-title>{{ tipo.value }}</mat-card-title>
@@ -229,7 +277,8 @@
               </mat-card-content>
             </mat-card>
 
-
+          </ng-template>
+ 
           </mat-card-content>
           <mat-card-actions align="end">
 

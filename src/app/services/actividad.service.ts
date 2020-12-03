@@ -28,4 +28,6 @@ export class ActividadService {
   getEncuestaById = (actividadId: string) => this.http.get<Actividad>(`${this.baseUrl}/encuesta/${actividadId}`);
 
   getActividadesByTipo = (Tipo: string) => this.http.get<Actividad[]>(`${this.baseUrl}/tipo/${Tipo}`);
+
+  altaTrabajo = (actividad: Actividad) => this.http.put(`${this.baseUrl}/trabajo/${actividad.actividadId}`, actividad);
 }

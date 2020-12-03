@@ -39,7 +39,6 @@ export class GestionCursoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('2) this.columnas:: ', this.columnas);
-    
     this.getCursos();
   }
 
@@ -54,7 +53,7 @@ export class GestionCursoComponent implements OnInit {
   }
 
   getCursos() {
-    switch (this.tipo) {
+    switch (this.usuarioSesion.rol) {
       case TipoUsuario.Administrador:
         this.getCursosAdminstrador();
 

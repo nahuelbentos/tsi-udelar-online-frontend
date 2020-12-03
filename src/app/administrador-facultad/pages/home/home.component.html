@@ -1,46 +1,51 @@
-<div class="row center-xs margin-abm">
-    <div class="col-xs-12">
-      <div class="box">
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle (click)="tipo = 'cursos'">Listados de cursos</mat-button-toggle>
-          <mat-button-toggle (click)="tipo = 'asistencia-usuarios-cursos'">Asistencia de usuarios a cursos</mat-button-toggle>
-          <mat-button-toggle (click)="tipo = 'curso-estadisticas'">Información estadística de cursos</mat-button-toggle>
-          <mat-button-toggle (click)="tipo = 'resultados-cursos'">Resultados de cursos</mat-button-toggle>
-          <mat-button-toggle (click)="tipo = 'informe-asistencia-virtual'">Informe de asistencia virtual</mat-button-toggle>
-        </mat-button-toggle-group>
-  
-      </div>
-    </div>
-  </div>
-  
-  <div class="row ">
-    <div class="col-xs-12">
-      <div class="box">
-        <ng-container [ngSwitch]="tipo">
-          <div class="row" *ngSwitchCase="'cursos'">
-            <div class="col-xs">
-              <div class="box">
-                Aca Va Listados de cursos
-              </div>
+<div class="row margin-abm">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
+      <div class="row center-xs margin-abm">
+          <div class="col-xs-12">
+            <div class="box">
+              <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle (click)="tipo = 'cursos'">Listados de cursos</mat-button-toggle>
+                <mat-button-toggle (click)="tipo = 'asistencia-usuarios-cursos'">Asistencia de usuarios a cursos</mat-button-toggle>
+                <mat-button-toggle (click)="tipo = 'curso-estadisticas'">Información estadística de cursos</mat-button-toggle>
+                <mat-button-toggle (click)="tipo = 'resultados-cursos'">Resultados de cursos</mat-button-toggle>
+                <mat-button-toggle (click)="tipo = 'informe-asistencia-virtual'">Informe de asistencia virtual</mat-button-toggle>
+              </mat-button-toggle-group>
+        
             </div>
           </div>
-          <ng-container >
-          </ng-container>
-          <ng-container *ngSwitchCase="'asistencia-usuarios-cursos'">
-            Aca va Asistencia de usuarios a cursos
-          </ng-container>
-          <ng-container *ngSwitchCase="'curso-estadisticas'">
-            Aca Va Información estadística de cursos
-          </ng-container>
-          <ng-container *ngSwitchCase="'resultados-cursos'">
-            Aca va Resultados de cursos
-          </ng-container>
-          <ng-container *ngSwitchCase="'informe-asistencia-virtual'">
-            Informe de asistencia virtual
-          </ng-container>
-          <ng-container *ngSwitchDefault></ng-container>
-        </ng-container>
-      </div>
+        </div>
+        
+        <div class="row ">
+          <div class="col-xs-12">
+            <div class="box">
+              <ng-container [ngSwitch]="tipo">
+                <div class="row" *ngSwitchCase="'cursos'">
+                  <div class="col-xs">
+                    <div class="box">
+                      <app-gestion-curso [actions]="actions" [actionsHeader]="actionsHeader" ></app-gestion-curso>
+                    </div>
+                  </div>
+                </div>
+                <ng-container >
+                </ng-container>
+                <ng-container *ngSwitchCase="'asistencia-usuarios-cursos'">
+                  Aca va Asistencia de usuarios a cursos
+                </ng-container>
+                <ng-container *ngSwitchCase="'curso-estadisticas'">
+                  Aca Va Información estadística de cursos
+                </ng-container>
+                <ng-container *ngSwitchCase="'resultados-cursos'">
+                  Aca va Resultados de cursos
+                </ng-container>
+                <ng-container *ngSwitchCase="'informe-asistencia-virtual'">
+                  Informe de asistencia virtual
+                </ng-container>
+                <ng-container *ngSwitchDefault></ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
-  
+</div>

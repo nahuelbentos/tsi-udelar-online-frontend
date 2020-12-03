@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 
 @Component({
   selector: 'app-home',

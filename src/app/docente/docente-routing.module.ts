@@ -15,6 +15,8 @@ import { GestionAlumnocursoComponent } from '../shared/pages/gestion-alumnocurso
 import { AbmPruebaonlineComponent } from '../shared/pages/abm-pruebaonline/abm-pruebaonline.component';
 import { AbmAlumnocursoComponent } from '../shared/pages/abm-alumnocurso/abm-alumnocurso.component';
 import { AdministrarCalificacionesComponent } from './pages/administrar-calificaciones/administrar-calificaciones.component';
+import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
+import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
 
 
 const routes: Routes = [
@@ -75,12 +77,17 @@ const routes: Routes = [
         component: AbmEncuestaComponent,
         data: { titulo: 'ABM de Encuestas' },
       },
-      // {
-      //   path: 'administrar-materiales',
-      //   component: AdministrarMaterialesComponent,
-      //   data: { titulo: 'Administrar materiales' },
-      // },
+      {
+        path: 'administrar-entregas',
+        component: GestionActividadComponent,
+        data: { titulo: 'Administrar entregas' },
+      },
 
+      {
+        path: 'administrar-entregas/abm-actividad',
+        component: AbmActividadComponent,
+        data: { titulo: 'ABM de entregas' },
+      },
       {
         path: 'abm-material',
         component: AbmMaterialComponent,
