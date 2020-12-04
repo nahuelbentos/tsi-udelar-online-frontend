@@ -7,7 +7,7 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  tipo: string;
+  tipo: TipoUsuario = TipoUsuario.AdministradorFacultad;
   actionsHeader = [{}];
   actions = [{}];
   constructor() { }

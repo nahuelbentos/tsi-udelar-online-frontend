@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Actions } from 'src/app/models/actions.model';
 import { AlumnoCurso } from 'src/app/models/alumno-curso.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { AlumnoCursoService } from 'src/app/services/alumno-curso.service';
@@ -6,27 +7,48 @@ import { AlumnoCursoService } from 'src/app/services/alumno-curso.service';
 @Component({
   selector: 'app-gestion-alumnocurso',
   templateUrl: './gestion-alumnocurso.component.html',
-  styleUrls: ['./gestion-alumnocurso.component.scss']
+  styleUrls: ['./gestion-alumnocurso.component.scss'],
 })
-export class GestionAlumnocursoComponent implements OnInit {
-
+export class GestionAlumnocursoComponent implements OnInit, OnChanges {
   @Input() tipoSingular = 'alumnocurso';
   @Input() tituloPlural = 'alumnoscurso';
 
   @Input() alumnosCurso: AlumnoCurso[];
-  createComponent = false;
-  columnas = ['calificacion','actions'];
+  @Input() actions: Actions[] = [];
+  @Input() actionsHeader: Actions[] = [];
+  @Input() columnas = ['calificacion', 'actions'];
 
-  constructor(private alumnoCursoService : AlumnoCursoService) { 
-    this.getAlumnosCurso();
+  constructor(private alumnoCursoService: AlumnoCursoService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.alumnosCurso && changes.alumnosCurso.currentValue) {
+      this.alumnosCurso = changes.alumnosCurso.currentValue.map(
+        (alumnoCurso) => ({
+          ...alumnoCurso,
+          id: alumnoCurso.alumnoCursoId,
+        })
+      );
+    }
+
+    if (changes.columnas && changes.columnas.currentValue) {
+      this.columnas = changes.columnas.currentValue;
+    }
+    
+    if (changes.actions && changes.actions.currentValue) {
+      this.actions = changes.actions.currentValue;
+    }
+
+    if (changes.actionsHeader && changes.actionsHeader.currentValue) {
+      this.actionsHeader = changes.actionsHeader.currentValue;
+    }
   }
 
   ngOnInit(): void {
+    this.getAlumnosCurso();
   }
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {
-      this.createComponent = false;
       // Llamamos al backend para eliminar el registro.
       this.alumnoCursoService
         .deleteAlumnoCurso(data.id)
@@ -35,13 +57,10 @@ export class GestionAlumnocursoComponent implements OnInit {
   }
 
   getAlumnosCurso() {
-    this.alumnoCursoService.getAlumnosCurso().subscribe((alumnosCurso) => {
-      this.alumnosCurso = alumnosCurso.map((alumnoCurso) => ({
-        ...alumnoCurso,
-        id: alumnoCurso.alumnoCursoId,
-      }));
-      this.createComponent = true;
-    });
+    if (!this.alumnosCurso) {
+      this.alumnoCursoService.getAlumnosCurso().subscribe((alumnosCurso) => {
+        this.alumnosCurso = alumnosCurso;
+      });
+    }
   }
-
 }

@@ -7,6 +7,7 @@ import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { CursoService } from 'src/app/services/curso.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { SeleccionarCursoComponent } from 'src/app/shared/dialogs/seleccionar-curso/seleccionar-curso.component';
 import {
@@ -26,7 +27,7 @@ export class CursosPublicosComponent implements OnInit {
   tipo = TipoUsuario.AdministradorFacultad;
   actionsHeader = [{}];
   actions: Actions[] = [];
-  columnas =  ['nombre', 'descripcion','modalidad',  'salaVirtual', 'actions'];
+  columnas = ['nombre', 'descripcion', 'modalidad', 'salaVirtual', 'actions']; 
 
   constructor(
     private alumnoService: AlumnoService,
@@ -45,6 +46,7 @@ export class CursosPublicosComponent implements OnInit {
         icon: 'add',
       },
     ];
+ 
   }
 
   matricularse = (curso: Curso) => {

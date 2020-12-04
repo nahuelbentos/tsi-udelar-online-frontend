@@ -89,7 +89,7 @@ export class NavCustomComponent implements OnInit, OnDestroy, OnChanges {
   logout = () => this.auth.logout();
 
   getBackgroundColor() {
-    const color = this.auth.getUser().facultad.colorCodigo
+    const color = this.auth.getUser() && this.auth.getUser().facultad && this.auth.getUser().facultad.colorCodigo
       ? `#${this.auth.getUser().facultad.colorCodigo}`
       : `#00a9f4`;
 
