@@ -27,8 +27,9 @@ export class SeleccionarCarreraComponent {
       this.carreraService
         .getCarreraById(data.id)
         .subscribe((carrera) => this.dialogRef.close(carrera));
+    } else {
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 
   getCarreras() {

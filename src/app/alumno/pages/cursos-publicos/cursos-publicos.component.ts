@@ -36,7 +36,6 @@ export class CursosPublicosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('2) this.columnas:: ', this.columnas);
     this.actions = [
       {
         tooltip: `Matricularse a un curso`,

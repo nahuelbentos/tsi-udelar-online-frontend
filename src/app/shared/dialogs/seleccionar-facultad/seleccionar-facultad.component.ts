@@ -24,9 +24,12 @@ export class SeleccionarFacultadComponent {
 
   onSeleccionar(data: SeleccionarRow) {
     if (data.selected) {
-      this.facultadService.getFacultadById(data.id).subscribe((facultad) => this.dialogRef.close(facultad));
+      this.facultadService
+        .getFacultadById(data.id)
+        .subscribe((facultad) => this.dialogRef.close(facultad));
+    } else {
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 
   getFacultades() {
