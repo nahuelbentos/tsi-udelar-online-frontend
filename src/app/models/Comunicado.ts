@@ -6,6 +6,7 @@ export class Comunicado {
       public descripcion: string,
       public url: string,
       public usuarioEmail?: string,
-      public comunicadoId?: string
+      public comunicadoId?: string,
+      public facultadId?: string,
     ) {}
 }

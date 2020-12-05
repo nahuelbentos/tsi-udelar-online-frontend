@@ -158,6 +158,7 @@ import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio
     GestionAlumnocursoComponent,
     GestionMaterialComponent,
     AbmLaboratorioComponent,
+    GestionComunicadoComponent
   ],
   imports: [
     CommonModule,

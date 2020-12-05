@@ -18,7 +18,9 @@ export class GestionCarreraComponent implements OnInit {
     this.getCarreras();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("actions 22 ", this.actions);
+  }
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {

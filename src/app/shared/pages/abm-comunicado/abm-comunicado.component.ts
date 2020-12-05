@@ -7,6 +7,8 @@ import { ComunicadoService } from 'src/app/services/comunicado.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { Location } from '@angular/common';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { ComunicadoFacultad } from 'src/app/models/comunicado-facultad';
 
 @Component({
   selector: 'app-abm-comunicado',
@@ -14,6 +16,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./abm-comunicado.component.scss'],
 })
 export class AbmComunicadoComponent implements OnInit {
+  usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   comunicadoForm: FormGroup;
   comunicadoId: string;
 
@@ -34,7 +37,7 @@ export class AbmComunicadoComponent implements OnInit {
   }
 
   constructor(
-    private usuarioService: UsuarioService,
+    private autenticacionService: AutenticacionService,
     private comunicadoService: ComunicadoService,
     private fb: FormBuilder,
     private router: Router,
@@ -84,22 +87,28 @@ export class AbmComunicadoComponent implements OnInit {
     if (this.comunicadoForm.invalid) {
       return;
     }
-    const usuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+    // const usuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
     const comunicado = new Comunicado(
       this.nombre.value,
       this.descripcion.value,
       this.url.value
     );
     
-    comunicado.usuarioEmail = usuarioSesion.email;
+    comunicado.usuarioEmail = this.usuarioLogueado.email;
     comunicado.descripcion = this.descripcion.value;
     comunicado.nombre = this.nombre.value;
     comunicado.url = this.url.value;
     comunicado.comunicadoId = this.comunicadoId;
-
+    
+    if (this.usuarioLogueado.rol === 'AdministradorFacultad'){
+      comunicado.facultadId = this.usuarioLogueado.facultad.facultadId;
+    }
+    console.log("comunicado ", comunicado);
+    
     this.modo === 'INS'
       ? this.crearComunicado(comunicado)
       : this.editarComunicado(comunicado);
+
   }
 
   private crearComunicado = (comunicado: Comunicado) =>
@@ -108,8 +117,23 @@ export class AbmComunicadoComponent implements OnInit {
         'Excelente!',
         `Se creó el comunicado ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['/administrador/comunicado']);
-    });
+      this.router.navigate([
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/comunicado`,
+      ]);
+      // if (this.usuarioLogueado.rol === 'AdministradorFacultad'){
+      //   const comunicadoFacultad = new ComunicadoFacultad();
+      //   comunicadoFacultad.comunicadoId = comunicado.comunicadoId;
+      //   comunicadoFacultad.facultadId = this.usuarioLogueado.facultad.facultadId;
+      //   this.publicarComunicadoFacultad(comunicadoFacultad);
+      // }
+    })
+
+    publicarComunicadoFacultad(comunicadoFacultad: ComunicadoFacultad) {
+    console.log('comunicadoFacultad ', comunicadoFacultad);
+    this.comunicadoService
+      .publicarComunicadoFacultad(comunicadoFacultad)
+      .subscribe();
+    }
 
   private editarComunicado = (comunicado: Comunicado) =>
     this.comunicadoService.updateComunicado(comunicado).subscribe(() => {
@@ -117,6 +141,8 @@ export class AbmComunicadoComponent implements OnInit {
         'Excelente!',
         `Se modificó el curso ${this.nombre.value} exitosamente.`
       ).then();
-      this.router.navigate(['/administrador/comunicado']);
-    });
+      this.router.navigate([
+        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/comunicado`,
+      ]);
+    })
 }
