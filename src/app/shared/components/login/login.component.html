@@ -18,11 +18,13 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput type="password" placeholder="Contraseña" formControlName="password">
-          <mat-error *ngIf="password.hasError('required')">
-            Password es <strong>requerido</strong>.
-          </mat-error>
+        <mat-form-field class="example-full-width"> 
+          
+            <input matInput type="password" placeholder="Contraseña" formControlName="password">
+            <mat-error *ngIf="password.hasError('required')">
+              Password es <strong>requerido</strong>.
+            </mat-error>
+           
         </mat-form-field>
       </mat-card-content>
 

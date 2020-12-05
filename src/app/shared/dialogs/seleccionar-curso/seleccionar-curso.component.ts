@@ -34,8 +34,10 @@ export class SeleccionarCursoComponent {
       this.cursoService
         .getCursoById(data.id)
         .subscribe((curso) => this.dialogRef.close(curso));
+    } else {
+      this.dialogRef.close();
+
     }
-    this.dialogRef.close();
   }
 
   getCursos(carrera?: Carrera, remover?: boolean) {

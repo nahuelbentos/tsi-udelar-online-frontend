@@ -54,13 +54,10 @@
 
                   <mat-form-field class="full-width">
                     <mat-label>Fecha de nacimiento</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
+                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-
-                    <mat-error *ngIf="fechaNacimiento.hasError('required')">
-                      Fecha de nacimiento es <strong>requerido</strong>.
-                    </mat-error>
+ 
 
                   </mat-form-field>
 
@@ -144,10 +141,10 @@
                 <div class="box">
                   <mat-form-field class="full-width">
               
-                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Confirme Password" formControlName="passwordConfirm">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                      [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <input matInput [type]="hideConfirm ? 'password' : 'text'" placeholder="Confirme Password" formControlName="passwordConfirm">
+                    <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hideConfirm">
+                      <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
 
                     <mat-error *ngIf="passwordConfirm.hasError('mustMatch')  && passwordConfirm.dirty && passwordConfirm.errors">
@@ -189,7 +186,7 @@
                   <mat-form-field class="full-width">
                     <mat-label>Facultad</mat-label>
                     <mat-select formControlName="facultad" required>
-                      <mat-option *ngFor="let facu of facultades" [value]="facu.facultadId"> {{  facu.nombre }}
+                      <mat-option *ngFor="let facu of facultades" [value]="facu.facultadId"> {{  facu.nombre }} - {{ facu.descripcion }}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>

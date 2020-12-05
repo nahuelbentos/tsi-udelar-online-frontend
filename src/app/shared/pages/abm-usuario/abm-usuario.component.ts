@@ -28,8 +28,9 @@ export class AbmUsuarioComponent implements OnInit {
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   verTipos =
     this.autenticacionService.getUser() &&
-    ( this.autenticacionService.getUser().tipo === TipoUsuario.Administrador ||
-      this.autenticacionService.getUser().tipo === TipoUsuario.AdministradorFacultad);
+    (this.autenticacionService.getUser().tipo === TipoUsuario.Administrador ||
+      this.autenticacionService.getUser().tipo ===
+        TipoUsuario.AdministradorFacultad);
   usuarioForm: FormGroup;
   usuarioId: string;
 
@@ -39,6 +40,7 @@ export class AbmUsuarioComponent implements OnInit {
   primeraVez = false;
   modo: string;
   hide = true;
+  hideConfirm = true;
   titleButton: string;
 
   facultades: Facultad[] = [];

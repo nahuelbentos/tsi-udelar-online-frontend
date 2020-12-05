@@ -7,6 +7,7 @@ export class TemplateCursoSeccion {
         public TemplateCursoId?: string,
         public TemplateCurso?: TemplateCurso,
         public SeccionId?: string,
-        public Seccion?: Seccion
+        public Seccion?: Seccion,
+        public Secciones?: Seccion[]
     ) { }
 }

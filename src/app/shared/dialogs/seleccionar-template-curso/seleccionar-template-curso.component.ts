@@ -29,8 +29,9 @@ export class SeleccionarTemplateCursoComponent  {
       this.templateCursoService
         .getTemplateCursoById(data.id)
         .subscribe((curso) => this.dialogRef.close(curso));
+    } else {
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 
   getTemplateCursos() {

@@ -8,17 +8,18 @@ import { AlumnoCurso } from '../models/alumno-curso.model';
 })
 export class AlumnoCursoService {
 
-  baseUrl = `${environment.baseUrl}/alumnocurso/`;
+  baseUrl = `${environment.baseUrl}/alumnocurso`;
 
   constructor(private http: HttpClient) { }
 
   createAlumnoCurso = (alumnoCurso: AlumnoCurso) => this.http.post(this.baseUrl, alumnoCurso);
 
-  updateAlumnoCurso = (alumnoCurso: AlumnoCurso) => this.http.put(`${this.baseUrl}/${alumnoCurso.alumnoId}/${alumnoCurso.cursoId}`, alumnoCurso);
+  // tslint:disable-next-line: max-line-length
+  updateAlumnoCurso = (alumnoCurso: AlumnoCurso) => this.http.put(`${this.baseUrl}`, alumnoCurso);
 
   getAlumnosCurso = () => this.http.get<AlumnoCurso[]>(this.baseUrl);
 
-  getAlumnoCursoById = (alumnoCursoId: string) => this.http.get<AlumnoCurso>(`${this.baseUrl}/${alumnoCursoId}`);
+  getAlumnoCursoById = (alumnoId: string, cursoId: string) => this.http.get<AlumnoCurso>(`${this.baseUrl}/id/${alumnoId}/${cursoId}`);
 
   getAlumnoCursoByAlumnoId = (alumnoId: string) => this.http.get<AlumnoCurso>(`${this.baseUrl}/byalumno/${alumnoId}`);
 

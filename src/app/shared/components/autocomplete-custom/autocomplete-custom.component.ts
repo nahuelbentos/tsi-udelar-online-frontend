@@ -34,16 +34,16 @@ export class AutocompleteCustomComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes:: ', changes);
 
     if (changes.data) {
       // this.data = changes.data.currentValue;
       this.setData(changes.data.currentValue);
     }
-    console.log('this.data:: ', this.data);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   private buildForm() {
     this.form = this.fb.group({
@@ -78,22 +78,18 @@ export class AutocompleteCustomComponent implements OnInit, OnChanges {
   }
 
   seleccionarItem(trigger: MatAutocompleteTrigger) {
-    console.log('222222');
     trigger.closePanel();
-    console.log('1111  ', this.refDialog);
     const dialogRef = this.dialog.open(this.refDialog, {
       height: 'auto',
       width: '700px',
     });
-    console.log('966');
 
     dialogRef.afterOpened().subscribe(() => trigger.closePanel());
 
-    dialogRef.afterClosed().subscribe((item: any) => this.selectItem(item));
+    dialogRef.afterClosed().subscribe((item: any) =>  this.selectItem(item));
   }
 
   selectItem(item: any) {
-    console.log('gggggg');
     
     const aux = { ...item, descripcionAutocomplete: item.nombre };
     this.controlData.setValue(aux);

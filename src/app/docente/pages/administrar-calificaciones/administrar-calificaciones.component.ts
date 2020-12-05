@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Actions } from 'src/app/models/actions.model';
 import { AlumnoCurso } from 'src/app/models/alumno-curso.model';
 import { Curso } from 'src/app/models/curso.model';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
@@ -12,38 +14,73 @@ import { SeleccionarCursoComponent } from 'src/app/shared/dialogs/seleccionar-cu
 @Component({
   selector: 'app-administrar-calificaciones',
   templateUrl: './administrar-calificaciones.component.html',
-  styleUrls: ['./administrar-calificaciones.component.scss']
+  styleUrls: ['./administrar-calificaciones.component.scss'],
 })
 export class AdministrarCalificacionesComponent implements OnInit {
-
+  usuarioLogueado = this.auth.getUser();
   tipo = TipoUsuario.Alumno;
   cursos: Curso[] = [];
 
   cursoDialog = SeleccionarCursoComponent;
+  verAlumnos = false;
 
   alumnos: AlumnoCurso[];
+
+  actions: Actions[] = [];
+  actionsHeader: Actions[] = [{}];
+  columnas = ['alumno', 'curso', 'feedback', 'calificacion', 'actions'];
 
   constructor(
     private cursoService: CursoService,
     private auth: AutenticacionService,
-    private alumnoCursoService: AlumnoCursoService
+    private alumnoCursoService: AlumnoCursoService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.cursoService.getCursos().subscribe(
-      (cursos) =>
-        (this.cursos = cursos.map((curso) => ({
+    this.cursoService
+      .getCursosByUsuario(this.usuarioLogueado.id)
+      .subscribe((cursos) => {
+        this.cursos = cursos.map((curso) => ({
           ...curso,
           descripcionAutocomplete: curso.nombre,
-        })))
-    );
+        }));
+      });
+
+      
+    this.actions = [
+      {
+        tooltip: `Editar calificación`,
+        className: 'button-editar',
+        tooltipClassName: 'tooltip-blue',
+        icon: 'edit',
+        callback: this.editarCalificacion
+      }
+    ];
   }
 
   getItem(curso: Curso) {
-    console.log('getItem:: ', curso);
+    console.log('getIsssstem:: ', curso);
     this.alumnoCursoService
       .getAlumnoCursoByCursoId(curso.cursoId)
-      .subscribe((alumnos) => (this.alumnos = alumnos));
+      .subscribe((alumnos) => {
+        console.log('alumnos:: ', alumnos);
+        this.verAlumnos = true;
+        this.alumnos = alumnos;
+      });
   }
 
+  editarCalificacion = (calificacion:  AlumnoCurso) => {
+    
+        const params = { alumnoId: calificacion.alumnoId, cursoId: calificacion.cursoId };
+
+
+        this.router.navigate([`abm-alumnocurso`],
+          {
+            queryParams: params,
+            relativeTo: this.route,
+          }
+        );
+  }
 }

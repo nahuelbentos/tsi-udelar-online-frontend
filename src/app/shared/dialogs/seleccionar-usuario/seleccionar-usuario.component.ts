@@ -35,8 +35,9 @@ export class SeleccionarUsuarioComponent {
       this.usuarioService
         .getUsuarioById(data.id)
         .subscribe((curso) => this.dialogRef.close(curso));
+    } else {
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 
   getUsuarios(refId?, tipo?: string) {
