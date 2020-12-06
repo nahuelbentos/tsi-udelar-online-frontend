@@ -18,26 +18,6 @@ export class NavAlumnoComponent implements OnInit {
       link: 'cursos-publicos',
       titulo: 'Todos los cursos',
     },
-    {
-      link: 'mis-calificaciones',
-      titulo: 'Mis calificaciones',
-    },
-    {
-      link: 'encuesta',
-      titulo: 'Encuestas',
-    },
-    {
-      link: 'publicar-comunicado',
-      titulo: 'Publicar Comunicado',
-    },
-    {
-      link: 'reportes',
-      titulo: 'Reportes',
-    },
-    {
-      link: 'subir-laboratorio',
-      titulo: 'Subir Laboratorio',
-    }
   ]
   constructor() {}
 

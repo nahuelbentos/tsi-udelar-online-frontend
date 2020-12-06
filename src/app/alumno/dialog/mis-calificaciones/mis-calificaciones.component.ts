@@ -18,10 +18,13 @@ export class MisCalificacionesComponent implements OnInit {
   cursoId: string;
   actions: Actions[] = [];
   actionsHeader: Actions[] = [{}];
+  actionsActividades: Actions[] = [];
+  actionsHeaderActividades: Actions[] = [{}];
   alumnoCurso: AlumnoCurso[] = [];
   alumnoEvaluacion: AlumnoPruebaOnline[] = [];
-
-  columnas = ['curso', 'feedback', 'calificacion', 'actions'];
+  
+  columnas = ['curso', 'feedback', 'calificacion'];
+  columnasActividades = ['evaluacion', 'nota'];
 
   constructor(
     private autenticacionService: AutenticacionService,
@@ -44,6 +47,6 @@ export class MisCalificacionesComponent implements OnInit {
         const aux: AlumnoCurso[] = [];
         aux.push(cursos);
         this.alumnoCurso = aux;
-       });
+      });
   }
 }

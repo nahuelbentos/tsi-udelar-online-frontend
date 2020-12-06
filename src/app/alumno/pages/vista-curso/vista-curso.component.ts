@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ActivdadTipo } from 'src/app/models/actividad-tipo';
@@ -26,6 +27,8 @@ export class VistaCursoComponent implements OnInit {
   curso: Curso;
   usuarioLogueado = this.autenticacionService.getUser();
 
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+
   constructor(
     private autenticacionService: AutenticacionService,
     private alumnoService: AlumnoService,
@@ -39,6 +42,7 @@ export class VistaCursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.route.queryParams.subscribe((param) => {
       console.log('parm:: ', param);
 
@@ -60,18 +64,16 @@ export class VistaCursoComponent implements OnInit {
         params = {
           id: activdadTipo.actividad.actividadId,
         };
-        this.router.navigate([`/alumno/responder-encuesta`],
-          {
-            queryParams: params,
-            relativeTo: this.route,
-          }
-        );
+        this.router.navigate([`/alumno/responder-encuesta`], {
+          queryParams: params,
+          relativeTo: this.route,
+        });
         break;
       case 'ClaseDictada':
         console.log('not implemented yet');
         break;
       case 'Trabajo':
-        params= {
+        params = {
           actividadId: activdadTipo.actividad.actividadId,
           tipo: TipoUsuario.Alumno,
           modo: 'INS',
@@ -160,8 +162,10 @@ export class VistaCursoComponent implements OnInit {
   };
 
   calificaciones = () => {
-    const dialogRef = this.dialog.open(MisCalificacionesComponent, { data: { cursoId: this.cursoId}});
-    
+
+    const dialogRef = this.dialog.open(MisCalificacionesComponent, {
+      data: { cursoId: this.cursoId },
+    });
   };
 
   claseVirtual = () => {

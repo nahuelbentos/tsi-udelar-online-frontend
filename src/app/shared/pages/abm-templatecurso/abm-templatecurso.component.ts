@@ -103,7 +103,8 @@ export class AbmTemplatecursoComponent implements OnInit {
     const templateCursoSeccion = new TemplateCursoSeccion(
       templateCurso,
     );
-    templateCursoSeccion.seccion = this.secciones;
+
+    templateCursoSeccion.secciones = this.secciones;
 
     this.modo === 'INS'
       ? this.crearTemplateCursoSeccion(templateCursoSeccion)

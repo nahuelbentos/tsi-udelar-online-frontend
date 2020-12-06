@@ -29,8 +29,7 @@ export class AbmUsuarioComponent implements OnInit {
   verTipos =
     this.autenticacionService.getUser() &&
     (this.autenticacionService.getUser().tipo === TipoUsuario.Administrador ||
-      this.autenticacionService.getUser().tipo ===
-        TipoUsuario.AdministradorFacultad);
+      this.autenticacionService.getUser().tipo === TipoUsuario.AdministradorFacultad);
   usuarioForm: FormGroup;
   usuarioId: string;
 
@@ -155,6 +154,7 @@ export class AbmUsuarioComponent implements OnInit {
 
     this.email.disable();
     this.password.disable();
+    this.tipo.disable();
   }
 
   private buildForm() {
@@ -178,6 +178,13 @@ export class AbmUsuarioComponent implements OnInit {
         validators: [MustMatch('password', 'passwordConfirm')],
       }
     );
+
+    if(this.usuarioLogueado.tipo === TipoUsuario.AdministradorFacultad){
+        this.facultad.setValue(this.usuarioLogueado.facultad.facultadId);
+        this.facultad.disable();
+    }
+
+
   }
 
   onNoClick(): void {

@@ -1,8 +1,20 @@
 <div class="row margin-abm">
   <div class="col-xs-offset-1 col-xs-10">
     <div class="box">
+      
+      <div class="row center-xs margin-abm">
+        <div class="col-xs-12 ">
+          <div class="box">
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+              <mat-button-toggle (click)="accordion.openAll()">Expandir Todo</mat-button-toggle>
+              <mat-button-toggle (click)="accordion.closeAll()">Cerrar Todo</mat-button-toggle> 
+            </mat-button-toggle-group>
+          </div>
+        </div>
+      </div>
 
-      <mat-accordion class="headers-align">
+
+      <mat-accordion class="headers-align" multi>
 
         <mat-expansion-panel hideToggle>
 

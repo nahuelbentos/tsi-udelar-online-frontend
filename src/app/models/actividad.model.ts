@@ -2,7 +2,7 @@ import { Curso } from './curso.model';
 
 export class Actividad {
   constructor(
-    public nombre: string,
+    public nombre?: string,
     public tipo?: string,
     public fechaRealizada?: Date,
     public fechaFinalizada?: Date,
