@@ -3,11 +3,11 @@ import { Seccion } from './seccion.model'
 
 export class TemplateCursoSeccion {
     constructor(
+        public TemplateCurso?: TemplateCurso,
         public TemplateCursoSeccionId?: string,
         public TemplateCursoId?: string,
-        public TemplateCurso?: TemplateCurso,
         public SeccionId?: string,
-        public Seccion?: Seccion,
-        public Secciones?: Seccion[]
+        public seccion?: Seccion,
+        public secciones?: Seccion[]
     ) { }
 }
