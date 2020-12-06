@@ -41,6 +41,10 @@ export class NavAlumnoComponent implements OnInit {
     {
       link: 'subir-laboratorio',
       titulo: 'Subir Laboratorio',
+    },
+    {
+      link: 'vista-calendario',
+      titulo: 'Calendario',
     }
   ]
   constructor() {}

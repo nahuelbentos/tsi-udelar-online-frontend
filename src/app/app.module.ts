@@ -11,6 +11,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BlockUIModule } from 'ng-block-ui';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -29,7 +31,7 @@ import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } fro
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }), // ToastrModule added
-    NgxMatColorPickerModule,
+    NgxMatColorPickerModule, 
   ],
 
   providers: [

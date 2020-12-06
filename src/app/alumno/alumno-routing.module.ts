@@ -9,6 +9,7 @@ import { MisCursosComponent } from './pages/mis-cursos/mis-cursos.component';
 import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder-encuesta.component';
 import { VistaCursoComponent } from './pages/vista-curso/vista-curso.component';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
+import { CalendarioComponent } from '../shared/components/calendario/calendario.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,11 @@ const routes: Routes = [
         path: 'responder-encuesta',
         component: ResponderEncuestaComponent,
         data: { titulo: 'Responder Encuesta' },
+      },
+      {
+        path: 'vista-calendario',
+        component: CalendarioComponent,
+        data: { titulo: 'Calendario' },
       },
     ],
   },

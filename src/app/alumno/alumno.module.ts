@@ -12,6 +12,8 @@ import { MaterialModule } from '../material/material.module';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder-encuesta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VistaCalendarioComponent } from './pages/vista-calendario/vista-calendario.component';
+import { CalendarioComponent } from '../shared/components/calendario/calendario.component';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     VistaCursoComponent,
     SubirLaboratorioComponent,
     ResponderEncuestaComponent,
+    VistaCalendarioComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
-  ], 
+    ReactiveFormsModule
+  ],
 })
 export class AlumnoModule {}
