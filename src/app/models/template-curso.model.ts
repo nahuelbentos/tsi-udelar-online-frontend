@@ -5,6 +5,5 @@ export class TemplateCurso {
     public nombre: string,
     public descripcion?: string,
     public templateCursoId?: string,
-    public secciones?: Seccion[]
   ) {}
 }
