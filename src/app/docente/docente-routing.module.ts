@@ -5,8 +5,7 @@ import { RoleGuard } from '../guards/role.guard';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
 import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
-import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
-import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
+import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component'; 
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
 import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
@@ -17,6 +16,7 @@ import { AbmAlumnocursoComponent } from '../shared/pages/abm-alumnocurso/abm-alu
 import { AdministrarCalificacionesComponent } from './pages/administrar-calificaciones/administrar-calificaciones.component';
 import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
 import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
+import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
 
 
 const routes: Routes = [
@@ -53,9 +53,9 @@ const routes: Routes = [
         data: { titulo: 'Alumno Curso' },
       },
       {
-        path: 'alumnocurso/abm-alumnocurso',
+        path: 'administrar-calificaciones/abm-alumnocurso',
         component: AbmAlumnocursoComponent,
-        data: { titulo: 'Abm Alumno Curso' },
+        data: { titulo: 'Modificar calificación' },
       },
       {
         path: 'administrar-calificaciones',

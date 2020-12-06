@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
 
 import { AlumnoRoutingModule } from './alumno-routing.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -13,6 +13,7 @@ import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-labor
 import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder-encuesta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -21,8 +22,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CursosPublicosComponent,
     VistaCursoComponent,
     SubirLaboratorioComponent,
-    ResponderEncuestaComponent
+    ResponderEncuestaComponent,
   ],
-  imports: [CommonModule, AlumnoRoutingModule, SharedModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AlumnoRoutingModule,
+    SharedModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ], 
 })
 export class AlumnoModule {}

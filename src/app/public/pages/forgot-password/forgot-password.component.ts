@@ -56,16 +56,17 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      console.log('params:: ', param);
 
       this.fromEmail = param.fromEmail;
-      this.token = param.token;
-      this.autenticacionService.setToken(this.token);
-      console.log('token decoded :: ', jwt_decode(this.token));
-      const tokenDecoded: { email: string } = jwt_decode(this.token);
+      if(param.token){
+        this.token = param.token;
+        this.autenticacionService.setToken(this.token);
+        const tokenDecoded: { email: string } = jwt_decode(this.token);
 
-      if (tokenDecoded.email) {
-        this.email.setValue(tokenDecoded.email);
+        if (tokenDecoded.email) {
+          this.email.setValue(tokenDecoded.email);
+        }
+
       }
     });
   }

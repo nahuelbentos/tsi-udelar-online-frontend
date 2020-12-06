@@ -27,8 +27,9 @@ export class SeleccionarComunicadoComponent{
       this.comunicadoService
         .getComunicadoById(data.id)
         .subscribe((comunicado) => this.dialogRef.close(comunicado));
+    }else{
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 
   getCarreras() {

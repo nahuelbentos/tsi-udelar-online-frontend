@@ -17,6 +17,8 @@ export class CursoService {
   createCurso = (curso: Curso) => this.http.post(this.baseUrl, curso);
 
   updateCurso = (curso: Curso) => this.http.put(`${this.baseUrl}/${curso.cursoId}`, curso);
+  
+  cerrarActa = (cursoId: string) => this.http.put(`${this.baseUrl}/cerrar-actas`, { cursoId });
 
   getCursos = () => this.http.get<Curso[]>(this.baseUrl);
 

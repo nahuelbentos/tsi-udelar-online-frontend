@@ -38,7 +38,6 @@ export class EstudiantesComponent implements OnInit {
   }
 
   getItem(curso: Curso) {
-    console.log('getItem:: ', curso);
     this.usuarioService
       .getAlumnosByCurso(curso.cursoId)
       .subscribe((alumnos) => (this.alumnos = alumnos));

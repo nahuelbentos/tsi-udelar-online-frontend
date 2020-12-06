@@ -24,9 +24,12 @@ export class SeleccionarSeccionComponent {
 
   onSeleccionar(data: SeleccionarRow) {
     if (data.selected) {
-      this.seccionService.getSeccionById(data.id).subscribe( seccion => this.dialogRef.close(seccion));
+      this.seccionService
+        .getSeccionById(data.id)
+        .subscribe((seccion) => this.dialogRef.close(seccion));
+    } else {
+      this.dialogRef.close();
     }
-    this.dialogRef.close();
   }
 
   getSecciones() {

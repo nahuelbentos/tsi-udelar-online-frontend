@@ -14,4 +14,12 @@ export class AlumnoService {
 
   // tslint:disable-next-line: max-line-length
   inscribirseAEvaluacion = (alumnoId: string, pruebaOnlineId: string) => this.http.post(`${this.baseUrl}/inscribirse-a-evaluacion`, {alumnoId, pruebaOnlineId});
+  
+  // tslint:disable-next-line: max-line-length
+  estaInscriptoCurso = (alumnoId: string, cursoId: string) => this.http.post<boolean>(`${this.baseUrl}/esta-inscripto-curso`, {alumnoId, cursoId});
+
+  // tslint:disable-next-line: max-line-length
+  estaInscriptoEvaluacion = (alumnoId: string, pruebaOnlineId: string) => this.http.post<boolean>(`${this.baseUrl}/esta-inscripto-evaluacion`, {alumnoId, pruebaOnlineId});
+
+
 }
