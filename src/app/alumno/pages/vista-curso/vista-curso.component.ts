@@ -12,7 +12,9 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
+import { GestionAlumnocursoComponent } from 'src/app/shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
+import { MisCalificacionesComponent } from '../../dialog/mis-calificaciones/mis-calificaciones.component';
 
 @Component({
   selector: 'app-vista-curso',
@@ -98,7 +100,6 @@ export class VistaCursoComponent implements OnInit {
               // ir a la pantalla de evaluación
               this.accederAPruebaOnline(activdadTipo.actividad);
             } else {
-              
               confirmacionUsuario(
                 'Confirmacion de usuario',
                 `Está por inscribirase a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
@@ -158,7 +159,10 @@ export class VistaCursoComponent implements OnInit {
     downloadLink.click();
   };
 
-  calificaciones = () => console.log('not implemented yet');
+  calificaciones = () => {
+    const dialogRef = this.dialog.open(MisCalificacionesComponent, { data: { cursoId: this.cursoId}});
+    
+  };
 
   claseVirtual = () => {
     const linkSource =

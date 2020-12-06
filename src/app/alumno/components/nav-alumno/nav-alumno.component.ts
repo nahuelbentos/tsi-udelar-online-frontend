@@ -17,10 +17,6 @@ export class NavAlumnoComponent implements OnInit {
     {
       link: 'cursos-publicos',
       titulo: 'Todos los cursos',
-    }, 
-    {
-      link: 'inscripcion-evaluacion',
-      titulo: 'Inscribirse a evaluación',
     },
     {
       link: 'mis-calificaciones',

@@ -12,6 +12,7 @@ import { MaterialModule } from '../material/material.module';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder-encuesta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-calificaciones.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     VistaCursoComponent,
     SubirLaboratorioComponent,
     ResponderEncuestaComponent,
+    MisCalificacionesComponent,
   ],
   imports: [
     CommonModule,
