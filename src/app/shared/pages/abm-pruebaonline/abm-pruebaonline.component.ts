@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PruebaOnline } from 'src/app/models/prueba-online.model';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
@@ -13,13 +13,16 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./abm-pruebaonline.component.scss']
 })
 export class AbmPruebaonlineComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion =  this.autenticacionService.getUser();
   pruebaOnlineForm: FormGroup;
   pruebaOnlineId: string;
+  preguntasForm: FormGroup[] = [];
   modo: string;
-
-  get url() {
-    return this.pruebaOnlineForm.get('url');
+  usuarioSesion = this.auth.getUser();
+  get nombre() {
+    return this.pruebaOnlineForm.get('nombre');
+  }
+  get descripcion() {
+    return this.pruebaOnlineForm.get('descripcion');
   }
   get minutosExpiracion() {
     return this.pruebaOnlineForm.get('minutosExpiracion');
@@ -31,14 +34,15 @@ export class AbmPruebaonlineComponent implements OnInit {
     return this.pruebaOnlineForm.get('activa');
   }
 
-  constructor( 
+  constructor(
     private autenticacionService: AutenticacionService,
     private pruebaOnlineService: PruebaOnlineService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AutenticacionService,
   ) {
-    this.buildForm(); 
+    this.buildForm();
   }
 
   ngOnInit(): void {
@@ -59,17 +63,33 @@ export class AbmPruebaonlineComponent implements OnInit {
   private setValuesOnForm(pruebaOnline: PruebaOnline) {
     this.activa.setValue(pruebaOnline.activa);
     this.minutosExpiracion.setValue(pruebaOnline.minutosExpiracion);
-    this.url.setValue(pruebaOnline.url);
+    this.nombre.setValue(pruebaOnline.nombre);
+    this.descripcion.setValue(pruebaOnline.descripcion)
     this.fecha.setValue(pruebaOnline.fecha);
   }
 
   private buildForm() {
     this.pruebaOnlineForm = this.fb.group({
       minutosExpiracion: ['', Validators.required],
-      url: ['', Validators.required],
       activa: [false],
-      fecha:[""]
+      fecha: [''],
+      nombre: ['', Validators.required],
+      descripcion: ['', Validators.required],
     });
+  }
+
+  agregarPregunta() {
+    const group = this.fb.group({
+      pregunta: ['', Validators.required],
+      respuesta1: ['', Validators.required],
+      respuesta2: ['', Validators.required],
+      respuesta3: ['', Validators.required],
+      respuesta4: ['', Validators.required],
+    });
+    console.log('group', group);
+
+    // this.preguntas.push(new FormControl(''));
+    this.preguntasForm.push(group);
   }
 
   onNoClick(): void {
@@ -85,28 +105,29 @@ export class AbmPruebaonlineComponent implements OnInit {
       return;
     }
 
-    const pruebaOnline = new PruebaOnline();
+    const pruebaOnline = new PruebaOnline(this.nombre.value);
 
     pruebaOnline.activa = this.activa.value;
     pruebaOnline.minutosExpiracion = this.minutosExpiracion.value;
-    pruebaOnline.url = this.url.value;
     pruebaOnline.fecha = this.fecha.value;
-    pruebaOnline.usuarioId = this.usuarioLogueado.id;
+    pruebaOnline.usuarioId = this.usuarioSesion.id;
+    pruebaOnline.pruebaOnlineId = this.pruebaOnlineId;
+    pruebaOnline.listaPreguntaRespuesta = this.pruebaOnlineForm.value;
 
     this.modo === 'INS'
     ? this.crearPruebaOnline(pruebaOnline)
     : this.editarPruebaOnline(pruebaOnline);
-    
+
   }
 
-  crearPruebaOnline(pruebaOnline : PruebaOnline) {
+  crearPruebaOnline(pruebaOnline: PruebaOnline) {
     this.pruebaOnlineService.createPruebaOnline(pruebaOnline).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
-        `Se creó la preuba online exitosamente.`
+        `Se creó la prueba online exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/pruebaonline`,
+        `/${this.usuarioSesion.tipo.toLocaleLowerCase()}/pruebaonline`,
       ]);
     });
   }
@@ -118,7 +139,7 @@ export class AbmPruebaonlineComponent implements OnInit {
         `Se editó la Prueba Online exitosamente.`
       ).then();
       this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/pruebaonline`,
+        `/${this.usuarioSesion.tipo.toLocaleLowerCase()}/pruebaonline`,
       ]);
     });
   }
