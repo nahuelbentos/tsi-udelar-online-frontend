@@ -60,9 +60,9 @@ export class AbmTemplateCursoSeccionComponent implements OnInit {
       this.templateCursoSeccionId = param.id;
 
       if (param.id) {
-        this.templateCursoSeccionService
-          .getTemplateCursoSeccionById(this.templateCursoSeccionId)
-          .subscribe((cursoSeccion) => this.setValuesOnForm(cursoSeccion));
+        // this.templateCursoService
+        //   .getTemplateCursoById(this.templateCursoSeccionId)
+        //   .subscribe((cursoSeccion) => this.setValuesOnForm(cursoSeccion));
       }
     });
 

@@ -73,6 +73,7 @@ import { AbmTemplateCursoSeccionComponent } from './pages/abm-templatecursosecci
 import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
 import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio.component';
+import { VerForoComponent } from './ver-foro/ver-foro.component';
 
 
 
@@ -141,6 +142,7 @@ import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio
     RespuestasComponent,
     BuscarCursosComponent,
     AbmLaboratorioComponent,
+    VerForoComponent,
   ],
   exports: [
     HeaderComponent,

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Seccion } from '../models/seccion.model';
 import { TemplateCursoSeccion } from '../models/template-curso-seccion.model';
 
 @Injectable({
@@ -18,7 +19,11 @@ export class TemplateCursoSeccionService {
 
   getCTemplatesCursoSeccion = () => this.http.get<TemplateCursoSeccion[]>(this.baseUrl);
 
-  getTemplateCursoSeccionById = (templatecursoseccionId: string) => this.http.get<TemplateCursoSeccion>(`${this.baseUrl}/${templatecursoseccionId}`);
+  getTemplateCursoSeccionById = (templateCursoId: string, seccionId: string) => this.http.get<TemplateCursoSeccion>(`${this.baseUrl}/${templateCursoId}/${seccionId}`);
+
+  getTemplateCursoSeccionByTemplate = (templateCursoId: string) => this.http.get<TemplateCursoSeccion>(`${this.baseUrl}/templateCursoId/${templateCursoId}`);
 
   deleteTemplateCursoSeccion = (templatecursoseccionId: string) => this.http.delete(`${this.baseUrl}/${templatecursoseccionId}`);
+
+  getSeccionesByTempalete = (templateCursoId: string) =>  this.http.get<Seccion[]>(`${this.baseUrl}/secciones-by-template/${templateCursoId}`);
 }

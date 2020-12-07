@@ -5,7 +5,7 @@ import { RoleGuard } from '../guards/role.guard';
 import { AbmEncuestaComponent } from '../shared/pages/abm-encuesta/abm-encuesta.component';
 import { AbmMaterialComponent } from '../shared/pages/abm-material/abm-material.component';
 import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
-import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component'; 
+import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 import { NavDocenteComponent } from './components/nav-docente/nav-docente.component';
 import { AdministrarCursosComponent } from './pages/administrar-cursos/administrar-cursos.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
@@ -17,6 +17,8 @@ import { AdministrarCalificacionesComponent } from './pages/administrar-califica
 import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
 import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
 import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
+import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
+import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 
 
 const routes: Routes = [
@@ -92,6 +94,16 @@ const routes: Routes = [
         path: 'abm-material',
         component: AbmMaterialComponent,
         data: { titulo: 'ABM de materiales' },
+      },
+      {
+        path: 'ver-foro',
+        component: VerForoComponent,
+        data: { titulo: 'Ver Foro' },
+      },
+      {
+        path: 'abm-temaForo',
+        component: AbmTemaForoComponent,
+        data: { titulo: 'Añadir un nuevo tema de debate' },
       },
     ],
   },

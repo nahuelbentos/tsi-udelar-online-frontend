@@ -1,0 +1,6 @@
+<h1>  {{foro.titulo}}</h1>
+<h2>  {{foro.descripcion}}</h2>
+<app-gestion-custom [dataInput]="foro.temaForoLista" [columns]="columnas" tipoSingular="TemaForo" tipoPlural="Tema Foros"
+  [actions]="actions" [actionsHeader]="actionsHeader"
+  >
+</app-gestion-custom>
