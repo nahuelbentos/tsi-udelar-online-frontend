@@ -78,11 +78,31 @@ export class AbmPruebaonlineComponent implements OnInit {
   }
 
   private setValuesOnForm(pruebaOnline: PruebaOnline) {
-    this.activa.setValue(pruebaOnline.activa);
-    this.minutosExpiracion.setValue(pruebaOnline.minutosExpiracion);
     this.nombre.setValue(pruebaOnline.nombre);
     this.descripcion.setValue(pruebaOnline.descripcion);
+    this.fechaFinalizada.setValue(pruebaOnline.fechaFinalizada);
+    this.fechaRealizada.setValue(pruebaOnline.fechaRealizada);
     this.fecha.setValue(pruebaOnline.fecha);
+    this.activa.setValue(pruebaOnline.activa);
+    this.url.setValue(pruebaOnline.url);
+    this.minutosExpiracion.setValue(pruebaOnline.minutosExpiracion);
+
+    pruebaOnline.listaPreguntaRespuesta.forEach( preguntaRespuesta => {
+      
+        const group = this.fb.group({
+          pregunta: [preguntaRespuesta.pregunta ],
+          respuesta1: [preguntaRespuesta.respuesta1 ],
+          respuesta2: [preguntaRespuesta.respuesta2 ],
+          respuesta3: [preguntaRespuesta.respuesta3 ],
+          respuesta4: [preguntaRespuesta.respuesta4 ],
+          respuestaCorrecta: [preguntaRespuesta.respuestaCorrecta ],
+          puntos: [preguntaRespuesta.puntos ],
+          resta: [preguntaRespuesta.resta],
+        }); 
+ 
+        this.preguntasForm.push(group);
+    });
+
   }
 
   private buildForm() {
@@ -107,7 +127,7 @@ export class AbmPruebaonlineComponent implements OnInit {
       respuesta4: [''],
       respuestaCorrecta: [''],
       puntos: [''],
-      resta: [''],
+      resta: [false],
     });
     console.log('gssroup', group);
 
@@ -129,14 +149,21 @@ export class AbmPruebaonlineComponent implements OnInit {
       return;
     }
 
-    const pruebaOnline = new PruebaOnline(this.nombre.value);
+    const pruebaOnline = new PruebaOnline();
+
+    pruebaOnline.nombre = this.nombre.value;
+    pruebaOnline.descripcion = this.descripcion.value;
+    pruebaOnline.fechaFinalizada = this.fechaFinalizada.value;
+    pruebaOnline.fechaRealizada = this.fechaRealizada.value;
 
     pruebaOnline.activa = this.activa.value;
     pruebaOnline.minutosExpiracion = this.minutosExpiracion.value;
     pruebaOnline.fecha = this.fecha.value;
     pruebaOnline.usuarioId = this.usuarioSesion.id;
     pruebaOnline.pruebaOnlineId = this.pruebaOnlineId;
-    pruebaOnline.listaPreguntaRespuesta = this.pruebaOnlineForm.value;
+    
+    pruebaOnline.listaPreguntaRespuesta = this.preguntasForm.map( form => form.value);
+    console.log('preguntas: ', pruebaOnline.listaPreguntaRespuesta);
 
     this.modo === 'INS'
       ? this.crearPruebaOnline(pruebaOnline)

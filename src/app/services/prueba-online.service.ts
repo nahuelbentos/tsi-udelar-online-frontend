@@ -8,7 +8,7 @@ import { PruebaOnline } from '../models/prueba-online.model';
 })
 export class PruebaOnlineService {
 
-  baseUrl = `${environment.baseUrl}/actividad/pruebaonline/`;
+  baseUrl = `${environment.baseUrl}/actividad/pruebaonline`;
 
   constructor(private http: HttpClient) { }
 

@@ -12,7 +12,6 @@
             <div class="row">
               <div class="col-xs-6">
                 <div class="box">
-
                   <mat-form-field class="full-width">
                     <input matInput placeholder="Nombre" formControlName="nombre" required>
                     <mat-error *ngIf="nombre.hasError('required')">
@@ -76,7 +75,7 @@
 
             <div class="row">
             
-              <div class="col-xs-12">
+              <div class="col-xs-6">
                 <div class="box">
             
                   <mat-form-field class="full-width">
@@ -93,15 +92,15 @@
                 </div>
               </div>
             
-              <div class="col-xs-12">
-                <div class="box">
+              <div class="col-xs-6">
+                <div class="box" style="margin-top: 25px;">
                   <mat-checkbox formControlName="activa">
                     Activa?
                   </mat-checkbox>
                 </div>
               </div>
             
-              <div class="col-xs-12">
+              <div class="col-xs-6">
                 <div class="box">
                   <mat-form-field class="full-width">
                     <input matInput placeholder="URL de la prueba" formControlName="url">
@@ -110,7 +109,7 @@
                 </div>
               </div>
             
-              <div class="col-xs-12">
+              <div class="col-xs-6">
                 <div class="box">
                   <mat-form-field class="full-width">
                     <input matInput placeholder="Minutos de Expiración de URL" formControlName="minutosExpiracion">

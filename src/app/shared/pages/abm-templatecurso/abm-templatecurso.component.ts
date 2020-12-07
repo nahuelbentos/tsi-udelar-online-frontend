@@ -25,7 +25,7 @@ export class AbmTemplatecursoComponent implements OnInit {
   modo: string;
   hide = true;
 
-  secciones: Seccion[] = [];
+  seccionesData: Seccion[] = [];
 
   get nombre() {
     return this.templateCursoForm.get('nombre');
@@ -33,6 +33,10 @@ export class AbmTemplatecursoComponent implements OnInit {
 
   get descripcion() {
     return this.templateCursoForm.get('descripcion');
+  }
+
+  get secciones() {
+    return this.templateCursoForm.get('secciones');
   }
 
 
@@ -68,10 +72,14 @@ export class AbmTemplatecursoComponent implements OnInit {
           .subscribe((templateCurso) => this.setValuesOnForm(templateCurso));
       }
     });
-    this.seccionService.getSecciones().subscribe((secciones) => this.secciones = secciones);
+    this.seccionService.getSecciones().subscribe((secciones) => this.seccionesData = secciones);
   }
 
   private setValuesOnForm(templateCurso: TemplateCurso) {
+    
+    this.templateCursoSeccionService
+        .getSeccionesByTemplate(templateCurso.templateCursoId)
+        .subscribe( secciones => this.secciones.setValue( secciones.map( seccion => seccion.seccionId) ));
     this.nombre.setValue(templateCurso.nombre);
     this.descripcion.setValue(templateCurso.descripcion);
     // this.secciones.setValue(templateCurso.secciones);
@@ -89,22 +97,22 @@ export class AbmTemplatecursoComponent implements OnInit {
 
     if (this.templateCursoForm.invalid) {
       return;
-    }
-    const usuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+    } 
     const templateCurso = new TemplateCurso(
       this.nombre.value,
       this.descripcion.value,
     );
+    templateCurso.templateCursoId = this.templateCursoId;
     console.log(
       ' JSON usuarioSesion',
       JSON.parse(localStorage.getItem('usuarioSesion'))
     );
 
-    const templateCursoSeccion = new TemplateCursoSeccion(
-      templateCurso,
-    );
-
-    templateCursoSeccion.secciones = this.secciones;
+    const templateCursoSeccion = new TemplateCursoSeccion();
+    
+    templateCursoSeccion.templateCurso = templateCurso;
+    templateCursoSeccion.templateCursoId = this.templateCursoId;
+    templateCursoSeccion.secciones = this.secciones.value;
 
     this.modo === 'INS'
       ? this.crearTemplateCursoSeccion(templateCursoSeccion)

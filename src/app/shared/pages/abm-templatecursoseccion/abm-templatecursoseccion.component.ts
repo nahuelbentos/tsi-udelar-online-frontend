@@ -69,8 +69,10 @@ export class AbmTemplateCursoSeccionComponent implements OnInit {
   }
 
   private setValuesOnForm(templateCursoSeccion: TemplateCursoSeccion) {
-    this.templateCurso.setValue(templateCursoSeccion.TemplateCursoId);
-    this.secccion.setValue(templateCursoSeccion.SeccionId);
+    console.log('hola:: ', templateCursoSeccion);
+    
+    this.templateCurso.setValue(templateCursoSeccion.templateCursoId);
+    this.secccion.setValue(templateCursoSeccion.secciones);
   }
 
   private buildForm() {
@@ -94,8 +96,8 @@ export class AbmTemplateCursoSeccionComponent implements OnInit {
     }
 
     const templateCursoSeccion = new TemplateCursoSeccion();
-    templateCursoSeccion.TemplateCursoId = this.templateCurso.value;
-    templateCursoSeccion.SeccionId = this.secccion.value;
+    templateCursoSeccion.templateCursoId = this.templateCurso.value;
+    templateCursoSeccion.seccionId = this.secccion.value;
 
     this.modo === 'INS'
       ? this.crearTemplateCursoSeccion(templateCursoSeccion)

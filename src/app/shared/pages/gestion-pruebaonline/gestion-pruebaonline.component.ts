@@ -7,20 +7,18 @@ import { PruebaOnlineService } from 'src/app/services/prueba-online.service';
 @Component({
   selector: 'app-gestion-pruebaonline',
   templateUrl: './gestion-pruebaonline.component.html',
-  styleUrls: ['./gestion-pruebaonline.component.scss']
+  styleUrls: ['./gestion-pruebaonline.component.scss'],
 })
 export class GestionPruebaonlineComponent implements OnInit {
-
   pruebasOnline: PruebaOnline[];
   createComponent = false;
-  columnas = ['url','actions'];
+  columnas = ['nombre', 'descripcion', 'url', 'actions'];
 
-  constructor(private pruebaOnlineService: PruebaOnlineService ) {    
+  constructor(private pruebaOnlineService: PruebaOnlineService) {
     this.getPruebasOnline();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {
@@ -36,10 +34,9 @@ export class GestionPruebaonlineComponent implements OnInit {
     this.pruebaOnlineService.getPruebasOnline().subscribe((pruebasOnline) => {
       this.pruebasOnline = pruebasOnline.map((pruebaOnline) => ({
         ...pruebaOnline,
-        id: pruebaOnline.pruebaOnlineId,
+        id: pruebaOnline.actividadId,
       }));
       this.createComponent = true;
     });
   }
-
 }
