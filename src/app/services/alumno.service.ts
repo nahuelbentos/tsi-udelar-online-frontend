@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AlumnoPruebaOnline } from '../models/alumno-prueba-online.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,8 @@ export class AlumnoService {
 
   // tslint:disable-next-line: max-line-length
   estaInscriptoEvaluacion = (alumnoId: string, pruebaOnlineId: string) => this.http.post<boolean>(`${this.baseUrl}/esta-inscripto-evaluacion`, {alumnoId, pruebaOnlineId});
+
+  getEvaluaciones = (alumnoId: string) => this.http.get<AlumnoPruebaOnline[]>(`${this.baseUrl}/prueba-online/${alumnoId}`);
 
 
 }

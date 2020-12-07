@@ -17,6 +17,7 @@ import { AdministrarCalificacionesComponent } from './pages/administrar-califica
 import { GestionActividadComponent } from '../shared/pages/gestion-actividad/gestion-actividad.component';
 import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-actividad.component';
 import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
+import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,11 @@ const routes: Routes = [
         path: 'curso',
         component: AdministrarCursosComponent,
         data: { titulo: 'Administrar Cursos' },
+      },
+      {
+        path: 'curso/abm-curso',
+        component: AbmCursoComponent,
+        data: { titulo: 'Editar Curso' },
       },
       {
         path: 'perfil',

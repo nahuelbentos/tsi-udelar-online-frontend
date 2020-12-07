@@ -12,7 +12,14 @@
           </mat-panel-title>
           <mat-panel-description>
             {{ curso.descripcion }}
-            <mat-icon>account_circle</mat-icon>
+
+            <button mat-icon-button (click)="matricularse(curso)"  matTooltip="Matricularse en el curso" *ngIf="!estaMatriculado(curso)">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button (click)="ingresar(curso)" matTooltip="Ingresar al curso" *ngIf="estaMatriculado(curso)">
+              <mat-icon>login</mat-icon>
+            </button>
+            <!-- <mat-icon>account_circle</mat-icon> -->
           </mat-panel-description>
         </mat-expansion-panel-header>
   

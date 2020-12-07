@@ -95,12 +95,8 @@ export class AbmEncuestaComponent implements OnInit {
         mensajeConfirmacion(
           'Excelente!',
           `Se creó la encuesta ${this.nombre.value} exitosamente.`
-        ).then();
-        this.router.navigate([
-          `/${this.auth
-            .getRolSesion()
-            .toLocaleLowerCase()}/encuesta`,
-        ]);
+        ).then( res =>  this.location.back());
+         
       });
     };
 
@@ -109,12 +105,8 @@ export class AbmEncuestaComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se modificó la encuesta ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.auth
-          .getRolSesion()
-          .toLocaleLowerCase()}/encuesta`,
-      ]);
+      ).then( res =>     this.location.back());
+     
     });
   };
 }

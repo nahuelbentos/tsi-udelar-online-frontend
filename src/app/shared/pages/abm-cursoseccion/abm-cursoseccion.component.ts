@@ -96,9 +96,9 @@ export class AbmCursoseccionComponent implements OnInit {
     const cursoSeccion = new CursoSeccion();
     const curso: Curso = this.curso.value;
     const seccion: Seccion = this.seccion.value;
-    cursoSeccion.curso = curso;
+    cursoSeccion.cursoData = curso;
     cursoSeccion.cursoId = curso.cursoId;
-    cursoSeccion.seccion = seccion;
+    cursoSeccion.seccionData = seccion;
     cursoSeccion.seccionId = seccion.seccionId;
     console.log(cursoSeccion);
     console.log(cursoSeccion.curso);

@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ActivdadTipo } from 'src/app/models/actividad-tipo';
@@ -12,7 +13,9 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
+import { GestionAlumnocursoComponent } from 'src/app/shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
+import { MisCalificacionesComponent } from '../../dialog/mis-calificaciones/mis-calificaciones.component';
 
 @Component({
   selector: 'app-vista-curso',
@@ -23,6 +26,8 @@ export class VistaCursoComponent implements OnInit {
   cursoId: string;
   curso: Curso;
   usuarioLogueado = this.autenticacionService.getUser();
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   constructor(
     private autenticacionService: AutenticacionService,
@@ -37,6 +42,7 @@ export class VistaCursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.route.queryParams.subscribe((param) => {
       console.log('parm:: ', param);
 
@@ -58,18 +64,16 @@ export class VistaCursoComponent implements OnInit {
         params = {
           id: activdadTipo.actividad.actividadId,
         };
-        this.router.navigate([`/alumno/responder-encuesta`],
-          {
-            queryParams: params,
-            relativeTo: this.route,
-          }
-        );
+        this.router.navigate([`/alumno/responder-encuesta`], {
+          queryParams: params,
+          relativeTo: this.route,
+        });
         break;
       case 'ClaseDictada':
         console.log('not implemented yet');
         break;
       case 'Trabajo':
-        params= {
+        params = {
           actividadId: activdadTipo.actividad.actividadId,
           tipo: TipoUsuario.Alumno,
           modo: 'INS',
@@ -98,7 +102,6 @@ export class VistaCursoComponent implements OnInit {
               // ir a la pantalla de evaluación
               this.accederAPruebaOnline(activdadTipo.actividad);
             } else {
-              
               confirmacionUsuario(
                 'Confirmacion de usuario',
                 `Está por inscribirase a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
@@ -158,7 +161,12 @@ export class VistaCursoComponent implements OnInit {
     downloadLink.click();
   };
 
-  calificaciones = () => console.log('not implemented yet');
+  calificaciones = () => {
+
+    const dialogRef = this.dialog.open(MisCalificacionesComponent, {
+      data: { cursoId: this.cursoId },
+    });
+  };
 
   claseVirtual = () => {
     const linkSource =

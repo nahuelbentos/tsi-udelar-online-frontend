@@ -20,7 +20,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
   styleUrls: ['./gestion-usuario.component.scss'],
 })
 export class GestionUsuarioComponent implements OnInit, OnChanges {
-  rol: string = this.auth.getUser().rol;
+  usuarioId: string = this.auth.getUser().id;
   @Input() tipo: TipoUsuario = null; //this.auth.getUser().tipo;
   @Input() tipoSingular = 'usuario';
   @Input() tituloSingular = 'usuario';
@@ -59,10 +59,12 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
             this.usuarios = usuarios;
             this.createComponent = true;
           })
-      : this.usuarioService.getUsuariosByRol(this.rol).subscribe((usuarios) => {
-          this.usuarios = usuarios;
-          this.createComponent = true;
-        });
+      : this.usuarioService
+          .getUsuariosByRol(this.usuarioId)
+          .subscribe((usuarios) => {
+            this.usuarios = usuarios;
+            this.createComponent = true;
+          });
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {

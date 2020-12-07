@@ -43,7 +43,7 @@
             <ng-container *ngIf="column === 'actions'; else elseTemplate">
               <th mat-header-cell *matHeaderCellDef> </th>
               <td mat-cell *matCellDef="let row">
-                <ng-container *ngIf="actions && actions[0].tooltip && actions.length > 0"> 
+                <ng-container *ngIf="actions && actions[0] && actions[0].tooltip && actions.length > 0"> 
                   <button *ngFor="let action of actions" mat-mini-fab style="margin-left: 5px;"
                     [matTooltip]="action.tooltip"
                     (click)=" action.callback ? buttonClick( action.callback(row) ) :  abm(action.mode, row)"
