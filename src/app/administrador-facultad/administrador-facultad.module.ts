@@ -14,6 +14,8 @@ import { CursosComponent } from './pages/cursos/cursos.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 import { PublicarComunicadoCursoComponent } from './pages/publicar-comunicado-curso/publicar-comunicado-curso.component';
 import { MaterialModule } from '../material/material.module';
+import { AdministrarFacultadComponent } from './pages/administrar-facultad/administrar-facultad.component';
+import { AdministrarUsuariosComponent } from './pages/administrar-usuarios/administrar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MaterialModule } from '../material/material.module';
     CarrerasComponent,
     EncuestasComponent,
     PublicarComunicadoCursoComponent,
+    AdministrarFacultadComponent,
+    AdministrarUsuariosComponent,
   ],
   imports: [
     CommonModule,

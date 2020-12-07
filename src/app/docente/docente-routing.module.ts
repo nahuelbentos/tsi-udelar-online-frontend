@@ -19,6 +19,7 @@ import { AbmActividadComponent } from '../shared/pages/abm-actividad/abm-activid
 import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonline/gestion-pruebaonline.component';
 import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
+import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,11 @@ const routes: Routes = [
         path: 'curso',
         component: AdministrarCursosComponent,
         data: { titulo: 'Administrar Cursos' },
+      },
+      {
+        path: 'curso/abm-curso',
+        component: AbmCursoComponent,
+        data: { titulo: 'Editar Curso' },
       },
       {
         path: 'perfil',

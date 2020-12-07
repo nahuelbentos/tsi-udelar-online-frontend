@@ -14,6 +14,10 @@ export class NavAdministradorComponent implements OnInit {
       titulo: 'Facultades',
     },
     {
+      link: 'carrera',
+      titulo: 'Carreras',
+    },
+    {
       link: 'curso',
       titulo: 'Cursos',
     },
@@ -23,7 +27,7 @@ export class NavAdministradorComponent implements OnInit {
     },
     {
       link: 'templatecurso',
-      titulo: 'TemplateCurso',
+      titulo: 'Template de Cursos',
     },
     {
       link: 'encuesta',
@@ -32,10 +36,6 @@ export class NavAdministradorComponent implements OnInit {
     {
       link: 'usuario',
       titulo: 'Usuarios',
-    },
-    {
-      link: 'carrera',
-      titulo: 'Carreras',
     },
     {
       link: 'foro',
@@ -51,44 +51,24 @@ export class NavAdministradorComponent implements OnInit {
     },
     {
       link: 'mensajetema',
-      titulo: 'MensajeTema',
+      titulo: 'Mensaje Tema',
     },
     {
       link: 'actividad',
       titulo: 'Actividades',
     },
     {
-      link: 'test',
-      titulo: 'Tests',
-    },
-    {
       link: 'publicar-comunicado-facultad',
       titulo: 'Publicar Comunicado en Facultad',
     },
     {
+      link: 'cursoseccion',
+      titulo: 'Curso seccion',
+    }, 
+    {
       link: 'reportes',
       titulo: 'Reportes',
     },
-    {
-      link: 'mensaje',
-      titulo: 'Mensaje'
-    },
-    {
-      link: 'cursoseccion',
-      titulo: 'Curso seccion'
-    },
-    {
-      link: 'respuesta',
-      titulo: 'Respuesta'
-    },
-    {
-      link: 'temaforo',
-      titulo: 'Tema Foro'
-    },
-    {
-      link: 'templatecursoseccion',
-      titulo: 'Template Curso seccion'
-    }
   ];
   constructor() {}
   ngOnInit(): void {}

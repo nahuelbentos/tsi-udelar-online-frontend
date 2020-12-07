@@ -74,6 +74,9 @@ import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion
 import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
 import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio.component';
 import { VerForoComponent } from './ver-foro/ver-foro.component';
+import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
+import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
+import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/seleccionar-actividad.component';
 
 
 
@@ -143,6 +146,9 @@ import { VerForoComponent } from './ver-foro/ver-foro.component';
     BuscarCursosComponent,
     AbmLaboratorioComponent,
     VerForoComponent,
+    VerCursoSeccionesComponent,
+    SeleccionarTrabajoComponent,
+    SeleccionarActividadComponent,
   ],
   exports: [
     HeaderComponent,
@@ -160,6 +166,7 @@ import { VerForoComponent } from './ver-foro/ver-foro.component';
     GestionAlumnocursoComponent,
     GestionMaterialComponent,
     AbmLaboratorioComponent,
+    GestionCustomComponent
   ],
   imports: [
     CommonModule,

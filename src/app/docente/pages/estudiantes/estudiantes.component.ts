@@ -15,6 +15,7 @@ import { SeleccionarCursoComponent } from 'src/app/shared/dialogs/seleccionar-cu
 export class EstudiantesComponent implements OnInit {
   tipo = TipoUsuario.Alumno;
   cursos: Curso[] = [];
+  verAlumnos = false;
 
   cursoDialog = SeleccionarCursoComponent;
 
@@ -40,6 +41,9 @@ export class EstudiantesComponent implements OnInit {
   getItem(curso: Curso) {
     this.usuarioService
       .getAlumnosByCurso(curso.cursoId)
-      .subscribe((alumnos) => (this.alumnos = alumnos));
+      .subscribe((alumnos) => {
+        this.verAlumnos = true;
+        this.alumnos = alumnos;
+      });
   }
 }

@@ -121,6 +121,8 @@ export class AbmTemplatecursoComponent implements OnInit {
     const auxSecciones = this.secciones.value;
     templateCursoSeccion.secciones = auxSecciones.map((seccion) => seccion.seccionId);
 
+    // templateCursoSeccion.secciones = this.secciones;
+
     this.modo === 'INS'
       ? this.crearTemplateCursoSeccion(templateCursoSeccion)
       : this.editarTemplateCurso(templateCursoSeccion);
