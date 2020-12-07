@@ -34,7 +34,7 @@ export class GestionTemplateCursoSeccionComponent implements OnInit {
     this.templateCursoSeccionService.getCTemplatesCursoSeccion().subscribe((templatesCursoSeccion) => {
       this.templatesCursoSeccion = templatesCursoSeccion.map((templateCursoSeccion) => ({
         ...templateCursoSeccion,
-        id: templateCursoSeccion.TemplateCursoSeccionId,
+        id: templateCursoSeccion.templateCursoSeccionId,
       }));
       this.createComponent = true;
     });
