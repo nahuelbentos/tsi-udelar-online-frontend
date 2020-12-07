@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {
@@ -48,8 +49,8 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
   hide = true;
 
   @Input() tipo: TipoUsuario = null;
-  
-  comunicadoDialog =  SeleccionarComunicadoComponent;
+
+  comunicadoDialog = SeleccionarComunicadoComponent;
   facultadDialog = SeleccionarFacultadComponent;
   cursoDialog = SeleccionarCursoComponent;
 
@@ -60,20 +61,20 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
     private cursoService: CursoService,
     public dialog: MatDialog,
     private router: Router,
-  ) {
-  }
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.comunicadoService.getComunicados().subscribe(
-      (comunicados) => 
+      (comunicados) =>
         (this.comunicados = comunicados.map((comunicado) => ({
           ...comunicado,
           descripcionAutocomplete: comunicado.nombre,
         })))
     );
-    
+
     this.facultadService.getFacultades().subscribe(
-      (facultades) => 
+      (facultades) =>
         (this.facultades = facultades.map((facultad) => ({
           ...facultad,
           descripcionAutocomplete: facultad.nombre,
@@ -81,7 +82,7 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
     );
 
     this.cursoService.getCursos().subscribe(
-      (cursos) => 
+      (cursos) =>
         (this.cursos = cursos.map((curso) => ({
           ...curso,
           descripcionAutocomplete: curso.nombre,
@@ -110,15 +111,18 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
   onNoClick(): void {
     // Hay que suplantar el rol del usuario  (que va a estar en el storage)
     // en vez de administrador y queda pronto
-    this.router.navigate([
-      `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/publicar-comunicado-facultad`,
-    ]);
+    this.location.back();
+
   }
 
-  publicarGeneral(event: Event){
+  publicarGeneral(event: Event) {
     event.preventDefault();
 
-    const comunicado = new Comunicado(this.comunicado.nombre, this.comunicado.descripcion, this.comunicado.url);
+    const comunicado = new Comunicado(
+      this.comunicado.nombre,
+      this.comunicado.descripcion,
+      this.comunicado.url
+    );
     comunicado.comunicadoId = this.comunicado.comunicadoId;
     this.comunicadoService
       .publicarComunicadoGeneral(comunicado)
@@ -126,16 +130,14 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
         mensajeConfirmacion(
           'Excelente!',
           `Se publicó comunicado exitosamente.`
-        ).then();
-        this.router.navigate([
-          `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/publicar-comunicado-facultad`,
-        ]);
+        ).then( res =>  this.location.back());
+
       });
   }
 
   publicarComunicado(event: Event) {
     event.preventDefault();
-    if (this.tipo === 'Administrador'){
+    if (this.tipo === 'Administrador') {
       const comunicadoFacultad = new ComunicadoFacultad();
       comunicadoFacultad.comunicadoId = this.comunicado.comunicadoId;
       comunicadoFacultad.facultadId = this.facultad.facultadId;
@@ -146,26 +148,22 @@ export class AbmPublicarcomunicadoComponent implements OnInit {
           mensajeConfirmacion(
             'Excelente!',
             `Se publicó comunicado exitosamente.`
-          ).then();
-          this.router.navigate([
-            `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/publicar-comunicado-facultad`,
-          ]);
+          ).then(res => this.location.back());
+          
         });
-    }else{
+    } else {
       const comunicadoCurso = new ComunicadoCurso();
       comunicadoCurso.comunicadoId = this.comunicado.comunicadoId;
       comunicadoCurso.cursoId = this.curso.cursoId;
       this.comunicadoService
-      .publicarComunicadoCurso(comunicadoCurso)
-      .subscribe(() => {
-        mensajeConfirmacion(
-          'Excelente!',
-          `Se publicó comunicado exitosamente.`
-        ).then();
-        this.router.navigate([
-          `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/publicar-comunicado-curso`,
-        ]);
-      });
+        .publicarComunicadoCurso(comunicadoCurso)
+        .subscribe(() => {
+          mensajeConfirmacion(
+            'Excelente!',
+            `Se publicó comunicado exitosamente.`
+          ).then( res => this.location.back());
+          
+        });
     }
   }
 }

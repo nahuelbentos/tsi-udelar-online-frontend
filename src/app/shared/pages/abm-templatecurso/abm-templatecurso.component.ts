@@ -76,19 +76,14 @@ export class AbmTemplatecursoComponent implements OnInit {
   }
 
   private setValuesOnForm(templateCurso: TemplateCurso) {
+    
+    this.templateCursoSeccionService
+        .getSeccionesByTemplate(templateCurso.templateCursoId)
+        .subscribe( secciones => this.secciones.setValue( secciones.map( seccion => seccion.seccionId) ));
+
     this.nombre.setValue(templateCurso.nombre);
     this.descripcion.setValue(templateCurso.descripcion);
-    this.templateCursoSeccionService
-    .getSeccionesByTempalete( templateCurso.templateCursoId )
-    .subscribe( secciones => {
-      console.log(secciones);
-
-
-      if (secciones){
-        this.secciones.setValue(secciones);
-      }
-
-      })
+   
 
   }
 
@@ -104,24 +99,22 @@ export class AbmTemplatecursoComponent implements OnInit {
 
     if (this.templateCursoForm.invalid) {
       return;
-    }
-    const usuarioSesion = JSON.parse(localStorage.getItem('usuarioSesion'));
+    } 
     const templateCurso = new TemplateCurso(
       this.nombre.value,
       this.descripcion.value,
     );
+    templateCurso.templateCursoId = this.templateCursoId;
     console.log(
       ' JSON usuarioSesion',
       JSON.parse(localStorage.getItem('usuarioSesion'))
     );
 
-    const templateCursoSeccion = new TemplateCursoSeccion(
-      templateCurso,
-    );
-    const auxSecciones = this.secciones.value;
-    templateCursoSeccion.secciones = auxSecciones.map((seccion) => seccion.seccionId);
-
-    // templateCursoSeccion.secciones = this.secciones;
+    const templateCursoSeccion = new TemplateCursoSeccion();
+    
+    templateCursoSeccion.templateCurso = templateCurso;
+    templateCursoSeccion.templateCursoId = this.templateCursoId;
+    templateCursoSeccion.secciones = this.secciones.value;
 
     this.modo === 'INS'
       ? this.crearTemplateCursoSeccion(templateCursoSeccion)

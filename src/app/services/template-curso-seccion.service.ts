@@ -15,7 +15,7 @@ export class TemplateCursoSeccionService {
 
   createTemplateCursoSeccion = (templatecursoseccion: TemplateCursoSeccion) => this.http.post(this.baseUrl, templatecursoseccion);
 
-  updateTemplateCursoSeccion = (templatecursoseccion: TemplateCursoSeccion) => this.http.put(`${this.baseUrl}/${templatecursoseccion.TemplateCursoId}`, templatecursoseccion);
+  updateTemplateCursoSeccion = (templatecursoseccion: TemplateCursoSeccion) => this.http.put(`${this.baseUrl}/${templatecursoseccion.templateCursoId}`, templatecursoseccion);
 
   getCTemplatesCursoSeccion = () => this.http.get<TemplateCursoSeccion[]>(this.baseUrl);
 
@@ -24,6 +24,7 @@ export class TemplateCursoSeccionService {
   getTemplateCursoSeccionByTemplate = (templateCursoId: string) => this.http.get<TemplateCursoSeccion>(`${this.baseUrl}/templateCursoId/${templateCursoId}`);
 
   deleteTemplateCursoSeccion = (templatecursoseccionId: string) => this.http.delete(`${this.baseUrl}/${templatecursoseccionId}`);
-
-  getSeccionesByTempalete = (templateCursoId: string) =>  this.http.get<Seccion[]>(`${this.baseUrl}/secciones-by-template/${templateCursoId}`);
+ 
+  getSeccionesByTemplate = (templateCursoId: string) => this.http.get<Seccion[]>(`${this.baseUrl}/secciones-by-template/${templateCursoId}`);
+ 
 }

@@ -107,8 +107,7 @@ export class AbmComunicadoComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el comunicado ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate(['/administrador/comunicado']);
+      ).then( () => this.location.back());
     });
 
   private editarComunicado = (comunicado: Comunicado) =>
@@ -116,7 +115,6 @@ export class AbmComunicadoComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se modificó el curso ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate(['/administrador/comunicado']);
+      ).then(() => this.location.back());
     });
 }
