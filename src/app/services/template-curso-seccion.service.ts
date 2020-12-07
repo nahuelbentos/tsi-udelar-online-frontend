@@ -14,7 +14,7 @@ export class TemplateCursoSeccionService {
 
   createTemplateCursoSeccion = (templatecursoseccion: TemplateCursoSeccion) => this.http.post(this.baseUrl, templatecursoseccion);
 
-  updateTemplateCursoSeccion = (templatecursoseccion: TemplateCursoSeccion) => this.http.put(`${this.baseUrl}/${templatecursoseccion.TemplateCursoSeccionId}`, templatecursoseccion);
+  updateTemplateCursoSeccion = (templatecursoseccion: TemplateCursoSeccion) => this.http.put(`${this.baseUrl}/${templatecursoseccion.TemplateCursoId}`, templatecursoseccion);
 
   getCTemplatesCursoSeccion = () => this.http.get<TemplateCursoSeccion[]>(this.baseUrl);
 

@@ -10,7 +10,7 @@ import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 @Component({
   selector: 'app-abm-pruebaonline',
   templateUrl: './abm-pruebaonline.component.html',
-  styleUrls: ['./abm-pruebaonline.component.scss']
+  styleUrls: ['./abm-pruebaonline.component.scss'],
 })
 export class AbmPruebaonlineComponent implements OnInit {
   pruebaOnlineForm: FormGroup;
@@ -18,18 +18,35 @@ export class AbmPruebaonlineComponent implements OnInit {
   preguntasForm: FormGroup[] = [];
   modo: string;
   usuarioSesion = this.auth.getUser();
+
   get nombre() {
     return this.pruebaOnlineForm.get('nombre');
   }
+
   get descripcion() {
     return this.pruebaOnlineForm.get('descripcion');
   }
+
+  get fechaRealizada() {
+    return this.pruebaOnlineForm.get('fechaRealizada');
+  }
+
+  get fechaFinalizada() {
+    return this.pruebaOnlineForm.get('fechaFinalizada');
+  }
+
   get minutosExpiracion() {
     return this.pruebaOnlineForm.get('minutosExpiracion');
   }
+
   get fecha() {
     return this.pruebaOnlineForm.get('fecha');
   }
+
+  get url() {
+    return this.pruebaOnlineForm.get('url');
+  }
+
   get activa() {
     return this.pruebaOnlineForm.get('activa');
   }
@@ -40,7 +57,7 @@ export class AbmPruebaonlineComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private auth: AutenticacionService,
+    private auth: AutenticacionService
   ) {
     this.buildForm();
   }
@@ -64,32 +81,39 @@ export class AbmPruebaonlineComponent implements OnInit {
     this.activa.setValue(pruebaOnline.activa);
     this.minutosExpiracion.setValue(pruebaOnline.minutosExpiracion);
     this.nombre.setValue(pruebaOnline.nombre);
-    this.descripcion.setValue(pruebaOnline.descripcion)
+    this.descripcion.setValue(pruebaOnline.descripcion);
     this.fecha.setValue(pruebaOnline.fecha);
   }
 
   private buildForm() {
     this.pruebaOnlineForm = this.fb.group({
-      minutosExpiracion: ['', Validators.required],
-      activa: [false],
-      fecha: [''],
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
+      fechaRealizada: [''],
+      fechaFinalizada: [''],
+      fecha: [''],
+      url: [''],
+      minutosExpiracion: ['', Validators.required],
+      activa: [false],
     });
   }
 
   agregarPregunta() {
     const group = this.fb.group({
-      pregunta: ['', Validators.required],
-      respuesta1: ['', Validators.required],
-      respuesta2: ['', Validators.required],
-      respuesta3: ['', Validators.required],
-      respuesta4: ['', Validators.required],
+      pregunta: [''],
+      respuesta1: [''],
+      respuesta2: [''],
+      respuesta3: [''],
+      respuesta4: [''],
+      respuestaCorrecta: [''],
+      puntos: [''],
+      resta: [''],
     });
-    console.log('group', group);
+    console.log('gssroup', group);
 
     // this.preguntas.push(new FormControl(''));
     this.preguntasForm.push(group);
+    console.log('preguntasForm ', this.preguntasForm);
   }
 
   onNoClick(): void {
@@ -115,9 +139,8 @@ export class AbmPruebaonlineComponent implements OnInit {
     pruebaOnline.listaPreguntaRespuesta = this.pruebaOnlineForm.value;
 
     this.modo === 'INS'
-    ? this.crearPruebaOnline(pruebaOnline)
-    : this.editarPruebaOnline(pruebaOnline);
-
+      ? this.crearPruebaOnline(pruebaOnline)
+      : this.editarPruebaOnline(pruebaOnline);
   }
 
   crearPruebaOnline(pruebaOnline: PruebaOnline) {
@@ -143,5 +166,4 @@ export class AbmPruebaonlineComponent implements OnInit {
       ]);
     });
   }
-
 }

@@ -1,113 +1,259 @@
 <div class="row margin-abm">
-    <div class="col-xs-offset-1 col-xs-10">
-      <div class="box">
+  <div class="col-xs-offset-1 col-xs-10">
+    <div class="box">
 
-        <mat-card>
+      <mat-card>
 
-          <form [formGroup]="pruebaOnlineForm">
+        <form [formGroup]="pruebaOnlineForm">
 
 
-            <mat-card-content>
+          <mat-card-content>
 
-              <div class="row">
-                <div class="col-xs-6">
-                  <div class="box">
+            <div class="row">
+              <div class="col-xs-6">
+                <div class="box">
 
-                    <mat-form-field class="full-width">
-                      <input matInput placeholder="Nombre" formControlName="nombre" required>
-                      <mat-error *ngIf="nombre.hasError('required')">
-                        Nombre es <strong>requerido</strong>.
-                      </mat-error>
-                    </mat-form-field>
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Nombre" formControlName="nombre" required>
+                    <mat-error *ngIf="nombre.hasError('required')">
+                      Nombre es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
 
-                  </div>
-                </div>
-                <div class="col-xs-6">
-                  <div class="box">
-
-                    <mat-form-field class="full-width">
-                      <input matInput placeholder="Descripcion" formControlName="descripcion" required>
-                      <mat-error *ngIf="descripcion.hasError('required')">
-                        Descripcion es <strong>requerido</strong>.
-                      </mat-error>
-                    </mat-form-field>
-
-                  </div>
                 </div>
               </div>
 
-              <button mat-raised-button (click)="agregarPregunta()">Agregar pregunta</button>
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="box">
+              <div class="col-xs-6">
+                <div class="box">
 
-                    <div *ngFor="let preguntaRespuesta of preguntasForm; let i=index">
-                      <form  [formGroup]="preguntaRespuesta" >
-                        <mat-form-field class="full-width" >
-                          <mat-label>Pregunta {{i+1}} </mat-label>
-                          <input matInput [formControl]="preguntaRespuesta.pregunta">
-                        </mat-form-field>
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Descripcion" formControlName="descripcion" required>
+                    <mat-error *ngIf="descripcion.hasError('required')">
+                      Descripcion es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-6">
+              <div class="box">
+            
+                <mat-form-field class="full-width">
+                  <mat-label>Fecha de Realizada</mat-label>
+                  <input matInput [matDatepicker]="pickerRealizada" formControlName="fechaRealizada" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerRealizada"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerRealizada></mat-datepicker>
+                  <mat-error *ngIf="fechaRealizada.hasError('required')">
+                    Fecha de Realizada es <strong>requerido</strong>.
+                  </mat-error>
+                </mat-form-field>
+            
+            
+              </div>
+            </div>
+            
+            <div class="col-xs-6">
+              <div class="box">
+            
+                <mat-form-field class="full-width">
+                  <mat-label>Fecha de Finalizada</mat-label>
+                  <input matInput [matDatepicker]="pickerFinalizada" formControlName="fechaFinalizada" required>
+                  <mat-datepicker-toggle matSuffix [for]="pickerFinalizada"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerFinalizada></mat-datepicker>
+                  <mat-error *ngIf="fechaFinalizada.hasError('required')">
+                    Fecha de Finalizada es <strong>requerido</strong>.
+                  </mat-error>
+                </mat-form-field>
+            
+            
+              </div>
+            </div>
+
+            </div>  
+
+            <div class="row">
+            
+              <div class="col-xs-12">
+                <div class="box">
+            
+                  <mat-form-field class="full-width">
+                    <mat-label>Fecha de Prueba</mat-label>
+                    <input matInput [matDatepicker]="pickerPrueba" formControlName="fecha" required>
+                    <mat-datepicker-toggle matSuffix [for]="pickerPrueba"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerPrueba></mat-datepicker>
+                    <mat-error *ngIf="fecha.hasError('required')">
+                      Fecha de Prueba es <strong>requerido</strong>.
+                    </mat-error>
+                  </mat-form-field>
+            
+            
+                </div>
+              </div>
+            
+              <div class="col-xs-12">
+                <div class="box">
+                  <mat-checkbox formControlName="activa">
+                    Activa?
+                  </mat-checkbox>
+                </div>
+              </div>
+            
+              <div class="col-xs-12">
+                <div class="box">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="URL de la prueba" formControlName="url">
+                  </mat-form-field>
+            
+                </div>
+              </div>
+            
+              <div class="col-xs-12">
+                <div class="box">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Minutos de Expiración de URL" formControlName="minutosExpiracion">
+                  </mat-form-field>
+            
+                </div>
+              </div>
+            
+            </div>
+
+            <button mat-raised-button (click)="agregarPregunta()">Agregar pregunta</button>
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="box">
+ 
+                    <mat-accordion class=" headers-align" multi >
+                      <mat-expansion-panel   style="margin-top: 10px;" *ngFor="let preguntaRespuesta of preguntasForm; let i=index" >
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Pregunta {{i+1}}
+                          </mat-panel-title>
+                          <mat-panel-description>
+                            Pregunta {{i+1}}
+                            <mat-icon>help</mat-icon>
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+
+                        <form [formGroup]="preguntaRespuesta">
 
                           <div class="row">
                             <div class="col-xs-12">
+                              <div class="box">
+                                
+                                <mat-form-field class="full-width">
+                                <mat-label>Pregunta {{i+1}} </mat-label>
+                                <input matInput formControlName="pregunta">
+                              </mat-form-field>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-xs-offset-1 col-xs-11">
+                              <div class="box">
+
+                                <div class="row">
+                                  <div class="col-xs-12">
+                                    <div class="box">
+                                      <mat-form-field class="full-width">
+                                        <mat-label>Respuesta 1 </mat-label>
+                                        <input matInput formControlName="respuesta1">
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-xs-12">
+                                    <div class="box">
+                                      <mat-form-field class="full-width">
+                                        <mat-label>Respuesta 2 </mat-label>
+                                        <input matInput formControlName="respuesta2">
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-xs-12">
+                                    <div class="box">
+                                      <mat-form-field class="full-width">
+                                        <mat-label>Respuesta 3 </mat-label>
+                                        <input matInput formControlName="respuesta3">
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-xs-12">
+                                    <div class="box">
+                                      <mat-form-field class="full-width">
+                                        <mat-label>Respuesta 4 </mat-label>
+                                        <input matInput formControlName="respuesta4">
+                                      </mat-form-field>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+
+                          <div class="row">
+                            <div class="col-xs-4">
+                              <div class="box">
+                                  <mat-form-field class="full-width">
+                                    <mat-label>Respuesta correcta de pregunta {{i+1}} </mat-label>
+                                    <input matInput formControlName="respuestaCorrecta">
+                                  </mat-form-field>
+                              </div>
+                            </div>
+                            <div class="col-xs-4">
                               <div class="box">
                                 <mat-form-field class="full-width">
-                                  <mat-label>Respuesta {{i+1}} </mat-label>
-                                  <input matInput [formControl]="preguntaRespuesta.respuesta1">
+                                  <mat-label>Puntos de pregunta {{i+1}} </mat-label>
+                                  <input matInput formControlName="puntos">
                                 </mat-form-field>
                               </div>
                             </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="box">
-                                <mat-form-field class="full-width" >
-                                  <mat-label>Respuesta {{i+1}} </mat-label>
-                                  <input matInput [formControl]="preguntaRespuesta.respuesta2">
-                                </mat-form-field>
+                            <div class="col-xs-4">
+                              <div class="box"> 
+                                  <div style="margin-top: 20px;">
+                                    <mat-checkbox formControlName="resta" >
+                                    Resta la pregunta {{i+1}} ?
+                                  </mat-checkbox>
+
+                                  </div>
                               </div>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="box">
-                                <mat-form-field class="full-width" >
-                                  <mat-label>Respuesta {{i+1}} </mat-label>
-                                  <input matInput [formControl]="preguntaRespuesta.respuesta3">
-                                </mat-form-field>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-xs-12">
-                              <div class="box">
-                                <mat-form-field class="full-width" >
-                                  <mat-label>Respuesta {{i+1}} </mat-label>
-                                  <input matInput [formControl]="preguntaRespuesta.respuesta4">
-                                </mat-form-field>
-                              </div>
-                            </div>
-                          </div>
-                      </form>
+
+                        </form>
 
 
+                      </mat-expansion-panel>
+                    </mat-accordion>
 
-                    </div>
-                  </div>
+ 
                 </div>
               </div>
+            </div>
 
-            </mat-card-content>
-            <mat-card-actions align="end">
+          </mat-card-content>
+          <mat-card-actions align="end">
 
-              <button mat-raised-button color="primary" type="button" [disabled]="pruebaOnlineForm.invalid"
-                (click)="guardarPruebaOnline($event)" (keyup.enter)="guardarPruebaOnline($event)">Guardar Prueba Online</button>
-              <button mat-raised-button (click)="onNoClick()">Cancelar</button>
-            </mat-card-actions>
-          </form>
-        </mat-card>
+            <button mat-raised-button color="primary" type="button" [disabled]="pruebaOnlineForm.invalid"
+              (click)="guardarPruebaOnline($event)" (keyup.enter)="guardarPruebaOnline($event)">Guardar Prueba
+              Online</button>
+            <button mat-raised-button (click)="onNoClick()">Cancelar</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
 
 
-      </div>
     </div>
   </div>
+</div>
