@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-calificaciones.component';
 
 
+
 @NgModule({
   declarations: [
     HomeComponent,

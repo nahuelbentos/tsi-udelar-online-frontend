@@ -54,12 +54,7 @@ export class AdministrarCursosComponent implements OnInit {
         backgroundColor: '#fb8c00',
         icon: 'assignment',
       },
-      {
-        tooltip: `Manejo de calendario de actividades `,
-        callback: this.manejoCalendarioActividades,
-        backgroundColor: '#d50000',
-        icon: 'event_available',
-      },
+    
       {
         tooltip: `Agregar seccion `,
         callback: this.addSeccion,

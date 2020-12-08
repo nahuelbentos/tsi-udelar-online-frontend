@@ -77,6 +77,7 @@ import { VerForoComponent } from './ver-foro/ver-foro.component';
 import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
 import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
 import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/seleccionar-actividad.component';
+import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
 
 
 
@@ -149,6 +150,7 @@ import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/s
     VerCursoSeccionesComponent,
     SeleccionarTrabajoComponent,
     SeleccionarActividadComponent,
+    SeleccionarCursoByUsuarioComponent,
   ],
   exports: [
     HeaderComponent,

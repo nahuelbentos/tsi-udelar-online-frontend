@@ -18,6 +18,10 @@ export class NavAlumnoComponent implements OnInit {
       link: 'cursos-publicos',
       titulo: 'Todos los cursos',
     },
+    {
+      link: 'perfil',
+      titulo: 'Perfil',
+    },
   ]
   constructor() {}
 

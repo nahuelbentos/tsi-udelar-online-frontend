@@ -203,10 +203,8 @@ export class AbmActividadComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el actividad ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/actividad`,
-      ]);
+      ).then(() => this.location.back() );
+   
     })
 
   private editarActividad = (actividad: Actividad) =>
@@ -214,9 +212,6 @@ export class AbmActividadComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se modificó el actividad ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-         `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/actividad`,
-      ]);
+      ).then(() => this.location.back());
     })
 }

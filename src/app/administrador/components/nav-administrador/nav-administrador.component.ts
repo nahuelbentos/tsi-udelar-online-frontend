@@ -61,10 +61,7 @@ export class NavAdministradorComponent implements OnInit {
       link: 'publicar-comunicado-facultad',
       titulo: 'Publicar Comunicado en Facultad',
     },
-    {
-      link: 'cursoseccion',
-      titulo: 'Curso seccion',
-    }, 
+
     {
       link: 'reportes',
       titulo: 'Reportes',

@@ -11,6 +11,7 @@ import { VistaCursoComponent } from './pages/vista-curso/vista-curso.component';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
+import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,11 @@ const routes: Routes = [
         path: 'abm-temaForo',
         component: AbmTemaForoComponent,
         data: { titulo: 'Añadir un nuevo tema de debate' },
+      },
+      {
+        path: 'perfil',
+        component: PerfilUsuarioComponent,
+        data: { titulo: 'Perfil' },
       },
     ],
   },

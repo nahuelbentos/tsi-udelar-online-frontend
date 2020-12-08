@@ -12,6 +12,7 @@ export class GestionComunicadoComponent implements OnInit {
   comunicados: Comunicado[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'url', 'actions'];
+  
 
   constructor(private comunicadoService: ComunicadoService) {
     this.getComunicados();

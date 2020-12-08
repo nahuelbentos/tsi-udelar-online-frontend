@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { PruebaOnline } from 'src/app/models/prueba-online.model'  
+import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { PruebaOnlineService } from 'src/app/services/prueba-online.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 
 @Component({
@@ -10,11 +13,12 @@ import { PruebaOnlineService } from 'src/app/services/prueba-online.service';
   styleUrls: ['./gestion-pruebaonline.component.scss'],
 })
 export class GestionPruebaonlineComponent implements OnInit {
+  usuario: UsuarioSesion = this.auth.getUser();
   pruebasOnline: PruebaOnline[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'url', 'actions'];
 
-  constructor(private pruebaOnlineService: PruebaOnlineService) {
+  constructor(private pruebaOnlineService: PruebaOnlineService, private auth: AutenticacionService) {
     this.getPruebasOnline();
   }
 
@@ -31,7 +35,7 @@ export class GestionPruebaonlineComponent implements OnInit {
   }
 
   getPruebasOnline() {
-    this.pruebaOnlineService.getPruebasOnline().subscribe((pruebasOnline) => {
+    this.pruebaOnlineService.getPruebasOnline(this.usuario.id).subscribe((pruebasOnline) => {
       this.pruebasOnline = pruebasOnline.map((pruebaOnline) => ({
         ...pruebaOnline,
         id: pruebaOnline.actividadId,
