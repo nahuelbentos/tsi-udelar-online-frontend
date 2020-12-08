@@ -13,6 +13,7 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
+import { FacultadService } from 'src/app/services/facultad.service';
 
 @Component({
   selector: 'app-gestion-curso',
@@ -36,6 +37,7 @@ export class GestionCursoComponent implements OnInit, OnChanges {
     private cursoService: CursoService,
     private autenticacionService: AutenticacionService
   ) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log('changes:: ', changes); 
  

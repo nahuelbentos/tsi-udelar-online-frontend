@@ -5,10 +5,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Actividad } from 'src/app/models/actividad.model';
 import { Facultad } from 'src/app/models/facultad.model';
 import { TipoActividad } from 'src/app/models/tipo-actividad.enum';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
-import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { errorMensaje, mensajeConfirmacion } from 'src/app/utils/sweet-alert';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-abm-actividad',
@@ -27,6 +29,12 @@ export class AbmActividadComponent implements OnInit {
   tiposOptions = [];
 
   facultades: Facultad[] = [];
+
+  archivoData: string;
+  archivoNombre: string;
+  archivoExtension: string;
+
+  file: File;
 
   get nombre() {
     return this.actividadForm.get('nombre');
@@ -98,17 +106,23 @@ export class AbmActividadComponent implements OnInit {
       this.modo = param.modo;
       this.actividadId = param.id;
 
+      if (param.tipo) {
+        this.tipo.setValue(param.tipo);
+      }
+
+      if (this.usuarioLogueado.tipo === TipoUsuario.Docente) {
+        this.tipo.disable();
+      }
+
       if (param.id) {
         this.actividadService
           .getActividadById(this.actividadId)
           .subscribe((actividad) => this.setValuesOnForm(actividad));
       }
     });
-    if(this.usuarioLogueado.rol === 'Docente'){
-      console.log("usuarioLogueado ", this.usuarioLogueado.rol);
+    if (this.usuarioLogueado.rol === 'Docente') {
+      console.log('usuarioLogueado ', this.usuarioLogueado.rol);
     }
-    
-    
   }
 
   private setValuesOnForm(actividad: Actividad) {
@@ -128,7 +142,7 @@ export class AbmActividadComponent implements OnInit {
   }
 
   private buildForm() {
-    if (this.usuarioLogueado.rol === 'Docente'){
+    if (this.usuarioLogueado.rol === 'Docente') {
       this.actividadForm = this.fb.group({
         nombre: ['', Validators.required],
         descripcion: ['', Validators.required],
@@ -137,14 +151,14 @@ export class AbmActividadComponent implements OnInit {
         tipo: [''],
         esAdministradorFacultad: [false],
         esIndividual: [false],
-        calificacion: [''],
+        calificacion: [0],
         nota: [''],
         fecha: [''],
         url: [''],
         minutosExpiracion: [''],
         activa: [''],
       });
-    }else{
+    } else {
       this.actividadForm = this.fb.group({
         nombre: ['', Validators.required],
         descripcion: ['', Validators.required],
@@ -169,13 +183,53 @@ export class AbmActividadComponent implements OnInit {
     this.location.back();
   }
 
+  async onSelectedFilesChanged(fileList: FileList) {
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < fileList.length; i++) {
+      const file: File = fileList.item(i);
+      console.log(file);
+      this.file = file;
+      if (file.size > environment.limitMB) {
+        errorMensaje(
+          'Error',
+          'El limite de tamaño por archivo es de 10MB, por favor, elija otro.'
+        );
+      }
+      this.archivoNombre = file.name.split('.')[0];
+      this.archivoExtension = file.name.split('.')[
+        file.name.split('.').length - 1
+      ];
+      console.log('arcchivoNombre:: ', file.name.split('.')[0]);
+      console.log(
+        'arcchivoExtension:: ',
+        file.name.split('.')[file.name.split('.').length - 1]
+      );
+
+      this.getBase64(file.slice());
+    }
+  }
+
+  getBase64(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    // reader.onload = () => (this.archivoData = reader.result.toString());
+    reader.onload = () => {
+      this.archivoData = reader.result.toString();
+    };
+    reader.onerror = (error) => console.log('Error: ', error);
+  }
+
   guardarActividad(event: Event) {
     event.preventDefault();
 
     if (this.actividadForm.invalid) {
       return;
     }
-
+    
+    if (this.file.size > environment.limitMB) {
+      errorMensaje('Error', 'El limite de tamaño por archivo es de 10MB, por favor, elija otro.');
+      return
+    }
     const actividad = new Actividad(this.nombre.value);
 
     actividad.actividadId = this.actividadId;
@@ -183,16 +237,20 @@ export class AbmActividadComponent implements OnInit {
     actividad.descripcion = this.descripcion.value;
     actividad.fechaRealizada = this.fechaRealizada.value;
     actividad.fechaFinalizada = this.fechaFinalizada.value;
-    if (this.usuarioLogueado.rol === 'Docente'){
+    if (this.usuarioLogueado.rol === 'Docente' && this.tipo.value !== 'ClaseDictada') {
       actividad.tipo = 'Trabajo';
-    }else{
+    } else {
       actividad.tipo = this.tipo.value;
     }
     actividad.usuarioId = this.usuarioLogueado.id;
     actividad.esIndividual = this.esIndividual.value ? true : false;
     actividad.nota = this.nota.value;
     actividad.calificacion = this.calificacion.value;
-    console.log("actividad", actividad);
+    
+    actividad.archivoData = this.archivoData.split(',')[1];
+    actividad.archivoNombre = this.archivoNombre;
+    actividad.archivoExtension = this.archivoExtension;
+    console.log('actividad', actividad);
     this.modo === 'INS'
       ? this.crearActividad(actividad)
       : this.editarActividad(actividad);
@@ -203,9 +261,8 @@ export class AbmActividadComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el actividad ${this.nombre.value} exitosamente.`
-      ).then(() => this.location.back() );
-   
-    })
+      ).then(() => this.location.back());
+    });
 
   private editarActividad = (actividad: Actividad) =>
     this.actividadService.updateActividad(actividad).subscribe(() => {
@@ -213,5 +270,5 @@ export class AbmActividadComponent implements OnInit {
         'Excelente!',
         `Se modificó el actividad ${this.nombre.value} exitosamente.`
       ).then(() => this.location.back());
-    })
+    });
 }

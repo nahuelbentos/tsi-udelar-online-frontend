@@ -20,6 +20,7 @@ import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonli
 import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
+import { GestionCalsesDictadasComponent } from '../shared/pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
 
 
 const routes: Routes = [
@@ -110,6 +111,18 @@ const routes: Routes = [
         path: 'abm-temaForo',
         component: AbmTemaForoComponent,
         data: { titulo: 'Añadir un nuevo tema de debate' },
+      },
+
+      {
+        path: 'administrar-clasesdictadas',
+        component: GestionCalsesDictadasComponent,
+        data: { titulo: 'Administrar Clases Dictadas' },
+      },
+
+      {
+        path: 'administrar-clasesdictadas/abm-clasedictada',
+        component: AbmActividadComponent,
+        data: { titulo: 'Clase Dictada' },
       },
     ],
   },

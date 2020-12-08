@@ -18,18 +18,48 @@
     <div class="box">
       <ng-container [ngSwitch]="tipo">
         <div class="row" *ngSwitchCase="'facultades'">
-          <div class="col-xs">
+          <div class="col-xs-offset-1 col-xs-10">
             <div class="box">
               <app-gestion-facultad [actions]="actions" [actionsHeader]="actionsHeader"></app-gestion-facultad>
             </div>
           </div>
         </div>
-        <ng-container >
+        <ng-container>
 
 
         </ng-container>
         <ng-container *ngSwitchCase="'curso-facultades'">
-          <app-gestion-curso [actions]="actions" [actionsHeader]="actionsHeader" ></app-gestion-curso>
+
+          <div class="row " style="margin-top: 20px;">
+
+            <div class="col-xs-offset-4 col-xs-4">
+              <div class="box">
+                <h1> Selecciona una facultad para ver sus cursos</h1>
+              </div>
+            </div>
+
+            <div class="col-xs-offset-3 col-xs-6">
+              <div class="box">
+                <app-autocomplete-custom [data]="facultades" [refDialog]="facultadDialog" label="Facultades"
+                  (sendItem)="getFacultadItem($event)">
+                </app-autocomplete-custom>
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="verCursos">
+            <div class="col-xs-offset-1 col-xs-10">
+              <div class="box">
+                <app-gestion-curso [tipo]="tipo" [actions]="actions" [actionsHeader]="actionsHeader"
+                  tipoSingular="curso" tituloSingular="curso" tipoPlural="cursos" [cursos]="cursos"></app-gestion-curso>
+
+              </div>
+            </div>
+          </div>
+
+
         </ng-container>
         <ng-container *ngSwitchCase="'curso-estadisticas'">
           Aca Va Información estadística de cursos
