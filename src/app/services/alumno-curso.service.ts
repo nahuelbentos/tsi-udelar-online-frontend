@@ -21,7 +21,7 @@ export class AlumnoCursoService {
 
   getAlumnoCursoById = (alumnoId: string, cursoId: string) => this.http.get<AlumnoCurso>(`${this.baseUrl}/id/${alumnoId}/${cursoId}`);
 
-  getAlumnoCursoByAlumnoId = (alumnoId: string) => this.http.get<AlumnoCurso>(`${this.baseUrl}/byalumno/${alumnoId}`);
+  getAlumnoCursoByAlumnoId = (alumnoId: string) => this.http.get<AlumnoCurso[]>(`${this.baseUrl}/byalumno/${alumnoId}`);
 
   getAlumnoCursoByCursoId = (cursoId: string) => this.http.get<AlumnoCurso[]>(`${this.baseUrl}/bycurso/${cursoId}`);
 

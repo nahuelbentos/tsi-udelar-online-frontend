@@ -116,33 +116,14 @@ export class AbmComunicadoComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el comunicado ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/comunicado`,
-      ]);
-      // if (this.usuarioLogueado.rol === 'AdministradorFacultad'){
-      //   const comunicadoFacultad = new ComunicadoFacultad();
-      //   comunicadoFacultad.comunicadoId = comunicado.comunicadoId;
-      //   comunicadoFacultad.facultadId = this.usuarioLogueado.facultad.facultadId;
-      //   this.publicarComunicadoFacultad(comunicadoFacultad);
-      // }
-    })
-
-    publicarComunicadoFacultad(comunicadoFacultad: ComunicadoFacultad) {
-    console.log('comunicadoFacultad ', comunicadoFacultad);
-    this.comunicadoService
-      .publicarComunicadoFacultad(comunicadoFacultad)
-      .subscribe();
-    }
+      ).then( () => this.location.back());
+    });
 
   private editarComunicado = (comunicado: Comunicado) =>
     this.comunicadoService.updateComunicado(comunicado).subscribe(() => {
       mensajeConfirmacion(
         'Excelente!',
         `Se modificó el curso ${this.nombre.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/comunicado`,
-      ]);
-    })
+      ).then(() => this.location.back());
+    });
 }

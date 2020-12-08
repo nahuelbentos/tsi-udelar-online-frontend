@@ -10,6 +10,8 @@ import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder
 import { VistaCursoComponent } from './pages/vista-curso/vista-curso.component';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 import { CalendarioComponent } from '../shared/components/calendario/calendario.component';
+import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
+import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 
 const routes: Routes = [
   {
@@ -53,6 +55,16 @@ const routes: Routes = [
         path: 'vista-calendario',
         component: CalendarioComponent,
         data: { titulo: 'Calendario' },
+      },
+      {
+        path: 'ver-foro',
+        component: VerForoComponent,
+        data: { titulo: 'Ver Foro' },
+      },
+      {
+        path: 'abm-temaForo',
+        component: AbmTemaForoComponent,
+        data: { titulo: 'Añadir un nuevo tema de debate' },
       },
     ],
   },

@@ -14,6 +14,7 @@ import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VistaCalendarioComponent } from './pages/vista-calendario/vista-calendario.component';
 import { CalendarioComponent } from '../shared/components/calendario/calendario.component';
+import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-calificaciones.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { CalendarioComponent } from '../shared/components/calendario/calendario.
     SubirLaboratorioComponent,
     ResponderEncuestaComponent,
     VistaCalendarioComponent,
+    MisCalificacionesComponent,
   ],
   imports: [
     CommonModule,

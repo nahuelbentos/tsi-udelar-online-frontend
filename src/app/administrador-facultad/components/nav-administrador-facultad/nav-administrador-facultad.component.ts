@@ -16,18 +16,6 @@ export class NavAdministradorFacultadComponent implements OnInit {
       titulo: 'Facultad',
     },
     {
-      link: 'usuario',
-      titulo: 'Usuarios',
-    },
-    {
-      link: 'templatecurso',
-      titulo: 'Templates de Cursos',
-    },
-    {
-      link: 'docente',
-      titulo: 'Docentes',
-    },
-    {
       link: 'carrera',
       titulo: 'Carreras',
     },
@@ -36,16 +24,28 @@ export class NavAdministradorFacultadComponent implements OnInit {
       titulo: 'Cursos',
     },
     {
-      link: 'administrar-materiales',
-      titulo: 'Administrar materiales',
+      link: 'comunicado',
+      titulo: 'Comunicados',
+    },
+    {
+      link: 'templatecurso',
+      titulo: 'Templates de Cursos',
     },
     {
       link: 'encuesta',
       titulo: 'Encuestas',
     },
     {
-      link: 'comunicado',
-      titulo: 'Comunicados',
+      link: 'usuario',
+      titulo: 'Usuarios',
+    },
+    {
+      link: 'docente',
+      titulo: 'Docentes',
+    },
+    {
+      link: 'administrar-materiales',
+      titulo: 'Administrar materiales',
     },
     {
       link: 'reportes',

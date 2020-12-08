@@ -14,20 +14,16 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Cursos',
     },
     {
-      link: 'perfil',
-      titulo: 'Perfil',
+      link: 'encuestas',
+      titulo: 'Encuestas',
     },
     {
-      link: 'administrar-foros',
-      titulo: 'Administrar foros',
+      link: 'pruebaonline',
+      titulo: 'Administrar pruebas online',
     },
-    // {
-    //   link: 'administrar-materiales',
-    //   titulo: 'Administrar materiales',
-    // },
     {
-      link: 'calendario',
-      titulo: 'Calendario de Actividades',
+      link: 'administrar-calificaciones',
+      titulo: 'Administrar calificaciones',
     },
     {
       link: 'estudiantes',
@@ -42,16 +38,20 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Manejo de notas de cursos y evaluaciones',
     },
     {
-      link: 'encuestas',
-      titulo: 'Encuestas',
+      link: 'perfil',
+      titulo: 'Perfil',
     },
     {
-      link: 'pruebaonline',
-      titulo: 'Administrar pruebas online',
+      link: 'administrar-foros',
+      titulo: 'Administrar foros',
     },
+    // {
+    //   link: 'administrar-materiales',
+    //   titulo: 'Administrar materiales',
+    // },
     {
-      link: 'administrar-calificaciones',
-      titulo: 'Administrar calificaciones',
+      link: 'calendario',
+      titulo: 'Calendario de Actividades',
     },
     {
       link: 'informes',

@@ -8,9 +8,11 @@ export class CursoSeccion {
     constructor(
         public CursoSeccionId?: string,
         public cursoId?: string,
-        public curso?: Curso,
+        public curso?: string,
+        public cursoData?: Curso,
         public seccionId?: string,
-        public seccion?: Seccion,
+        public seccionData?: Seccion,
+        public seccion?: string,
 
         public actividadLista?: Actividad[],
         public foroLista?: Foro[],

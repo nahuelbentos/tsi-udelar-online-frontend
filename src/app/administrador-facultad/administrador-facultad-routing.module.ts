@@ -23,7 +23,9 @@ import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatec
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
 import { NavAdministradorFacultadComponent } from './components/nav-administrador-facultad/nav-administrador-facultad.component';
 import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
+import { AdministrarFacultadComponent } from './pages/administrar-facultad/administrar-facultad.component';
 import { AdministrarMaterialesComponent } from './pages/administrar-materiales/administrar-materiales.component';
+import { AdministrarUsuariosComponent } from './pages/administrar-usuarios/administrar-usuarios.component';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { CursosComponent } from './pages/cursos/cursos.component';
 import { DocentesComponent } from './pages/docentes/docentes.component';
@@ -41,7 +43,7 @@ const routes: Routes = [
     children: [
       {
         path: 'facultad',
-        component: GestionFacultadComponent,
+        component: AdministrarFacultadComponent,
         data: { titulo: 'Gestión de Facultades' },
       },
       {
@@ -87,13 +89,14 @@ const routes: Routes = [
       },
 
       {
-        path: 'usuario',
-        component: GestionUsuarioComponent,
-        data: { titulo: 'Gestión de Usuarios' },
+        path: 'encuesta/abm-encuesta',
+        component: AbmEncuestaComponent,
+        data: { titulo: 'ABM de Encuestas' },
       },
+
       {
         path: 'usuario',
-        component: GestionUsuarioComponent,
+        component: AdministrarUsuariosComponent,
         data: { titulo: 'Gestión de Usuarios' },
       },
       {
@@ -118,12 +121,6 @@ const routes: Routes = [
         component: GestionForoComponent,
         data: { titulo: 'Gestión de foros' },
       },
-      {
-        path: 'usuario',
-        component: GestionUsuarioComponent,
-        data: { titulo: 'Gestión de Usuarios' },
-      },
-
       {
         path: 'usuario/abm-usuario',
         component: AbmUsuarioComponent,

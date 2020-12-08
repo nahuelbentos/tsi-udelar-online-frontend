@@ -40,12 +40,12 @@
               <div class="col-xs-6">
                 <div class="box">
 
-                  <mat-form-field class="full-width">
-                    <input matInput placeholder="Archivo" formControlName="file" required>
-                    <mat-error *ngIf="file.hasError('required')">
-                      Archivo es <strong>requerido</strong>.
-                    </mat-error>
-                  </mat-form-field>
+                  <mat-file-upload [labelText]="'Seleccionar Archivo:'" [selectButtonText]="'Elegir Archivo'"
+                  [allowMultipleFiles]="false"
+                   [showUploadButton]="false"
+                   [acceptedTypes]="'.pdf'"
+                   (uploadClicked)="onUploadClicked($event)" (selectedFilesChanged)="onSelectedFilesChanged($event)">
+                 </mat-file-upload>
 
                 </div>
               </div>

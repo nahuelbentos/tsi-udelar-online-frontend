@@ -78,6 +78,10 @@ import { CalendarioComponent } from './components/calendario/calendario.componen
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { VerForoComponent } from './ver-foro/ver-foro.component';
+import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/seleccionar-actividad.component';
+import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
+import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -149,7 +153,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     BuscarCursosComponent,
     AbmLaboratorioComponent,
     GestionCalificacionesComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    VerForoComponent,
+    VerCursoSeccionesComponent,
+    SeleccionarTrabajoComponent,
+    SeleccionarActividadComponent,
   ],
   exports: [
     HeaderComponent,
@@ -169,7 +177,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AbmLaboratorioComponent,
     GestionComunicadoComponent,
     GestionCalificacionesComponent,
-    CalendarioComponent
+    CalendarioComponent,
+    GestionCustomComponent
   ],
   imports: [
     CommonModule,

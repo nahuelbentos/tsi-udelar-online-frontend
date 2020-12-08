@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Actions } from 'src/app/models/actions.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { Seccion } from 'src/app/models/seccion.model';
 
@@ -9,22 +10,31 @@ import { SeccionService } from 'src/app/services/seccion.service';
   templateUrl: './gestion-seccion.component.html',
   styleUrls: ['./gestion-seccion.component.scss'],
 })
-export class GestionSeccionComponent implements OnInit {
-  secciones: Seccion[];
-  createComponent = false;
+export class GestionSeccionComponent implements OnInit, OnChanges {
+  @Input() secciones: Seccion[];
   columnas = ['nombre', 'descripcion', 'actions'];
+  @Input() actions: Actions[];
+  @Input() actionsHeader: Actions[];
 
-  constructor(
-    private seccionService: SeccionService
-  ) {
-    this.getSecciones();
+  constructor( private seccionService: SeccionService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    
+    if(changes.secciones && changes.secciones.currentValue){
+      this.secciones = changes.secciones.currentValue;
+    } else {
+     this.getSecciones();
+    }
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { 
+     this.getSecciones();
+    }
 
   onEliminar(data: EliminarRow) {
-    if (data.elimino) {
-      this.createComponent = false;
+    if (data.elimino) { 
       // Llamamos al backend para eliminar el registro.
       this.seccionService
         .deleteSeccion(data.id)
@@ -37,8 +47,7 @@ export class GestionSeccionComponent implements OnInit {
       this.secciones = secciones.map((seccion) => ({
         ...seccion,
         id: seccion.seccionId,
-      }));
-      this.createComponent = true;
+      })); 
     });
   }
 

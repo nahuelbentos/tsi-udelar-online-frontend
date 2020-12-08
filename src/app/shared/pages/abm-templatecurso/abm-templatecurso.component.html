@@ -44,7 +44,7 @@
                         <mat-form-field class="full-width">
                           <mat-label>Secciones</mat-label>
                           <mat-select formControlName="secciones" multiple>
-                            <mat-option *ngFor="let seccion of secciones" [value]="seccion.seccionId"> {{  seccion.nombre }}
+                            <mat-option *ngFor="let seccion of seccionesData" [value]="seccion.seccionId"> {{  seccion.nombre }}
                             </mat-option>
                           </mat-select>
                         </mat-form-field>

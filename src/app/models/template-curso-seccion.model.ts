@@ -1,13 +1,13 @@
-import { TemplateCurso } from './template-curso.model'
-import { Seccion } from './seccion.model'
+import { TemplateCurso } from './template-curso.model';
+import { Seccion } from './seccion.model';
 
 export class TemplateCursoSeccion {
     constructor(
-        public TemplateCurso?: TemplateCurso,
-        public TemplateCursoSeccionId?: string,
-        public TemplateCursoId?: string,
-        public SeccionId?: string,
+        public templateCurso?: TemplateCurso,
+        public templateCursoSeccionId?: string,
+        public templateCursoId?: string,
+        public seccionId?: string,
         public seccion?: Seccion,
-        public secciones?: Seccion[]
+        public secciones?: string[]
     ) { }
 }

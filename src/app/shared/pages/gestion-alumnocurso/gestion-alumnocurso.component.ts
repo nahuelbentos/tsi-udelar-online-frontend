@@ -21,6 +21,8 @@ export class GestionAlumnocursoComponent implements OnInit, OnChanges {
   constructor(private alumnoCursoService: AlumnoCursoService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('gestionalumno curso:: ', changes);
+    
     if (changes.alumnosCurso && changes.alumnosCurso.currentValue) {
       this.alumnosCurso = changes.alumnosCurso.currentValue.map(
         (alumnoCurso) => ({
