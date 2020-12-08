@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MaterialModule } from '../material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { AbmUsuarioComponent } from './pages/abm-usuario/abm-usuario.component';
 import { AbmCursoComponent } from './pages/abm-curso/abm-curso.component';
@@ -73,15 +73,22 @@ import { AbmTemplateCursoSeccionComponent } from './pages/abm-templatecursosecci
 import { GestionAlumnocursoComponent } from './pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { GestionCursoSeccionComponent } from './pages/gestion-cursoseccion/gestion-cursoseccion.component';
 import { AbmLaboratorioComponent } from './pages/abm-laboratorio/abm-laboratorio.component';
+import { GestionCalificacionesComponent } from './pages/gestion-calificaciones/gestion-calificaciones.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import { VerForoComponent } from './ver-foro/ver-foro.component';
-import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
-import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
 import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/seleccionar-actividad.component';
 import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
+import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
+import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
 
 
-
-
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -146,6 +153,8 @@ import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-
     RespuestasComponent,
     BuscarCursosComponent,
     AbmLaboratorioComponent,
+    GestionCalificacionesComponent,
+    CalendarioComponent,
     VerForoComponent,
     VerCursoSeccionesComponent,
     SeleccionarTrabajoComponent,
@@ -168,6 +177,9 @@ import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-
     GestionAlumnocursoComponent,
     GestionMaterialComponent,
     AbmLaboratorioComponent,
+    GestionComunicadoComponent,
+    GestionCalificacionesComponent,
+    CalendarioComponent,
     GestionCustomComponent
   ],
   imports: [
@@ -183,6 +195,8 @@ import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-
     RouterModule,
     NgxMatColorPickerModule,
     MatFileUploadModule,
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [],
 })

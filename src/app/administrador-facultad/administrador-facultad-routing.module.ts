@@ -138,7 +138,7 @@ const routes: Routes = [
       },
       {
         path: 'comunicado',
-        component: GestionComunicadoComponent,
+        component: PublicarComunicadoCursoComponent,
         data: { titulo: 'Gestión de Comunicados' },
       },
       {

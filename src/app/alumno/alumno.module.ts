@@ -12,6 +12,8 @@ import { MaterialModule } from '../material/material.module';
 import { SubirLaboratorioComponent } from './pages/subir-laboratorio/subir-laboratorio.component';
 import { ResponderEncuestaComponent } from './pages/responder-encuesta/responder-encuesta.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VistaCalendarioComponent } from './pages/vista-calendario/vista-calendario.component';
+import { CalendarioComponent } from '../shared/components/calendario/calendario.component';
 import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-calificaciones.component';
 
 
@@ -25,6 +27,7 @@ import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-cali
     VistaCursoComponent,
     SubirLaboratorioComponent,
     ResponderEncuestaComponent,
+    VistaCalendarioComponent,
     MisCalificacionesComponent,
   ],
   imports: [
@@ -33,7 +36,7 @@ import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-cali
     SharedModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
-  ], 
+    ReactiveFormsModule
+  ],
 })
 export class AlumnoModule {}

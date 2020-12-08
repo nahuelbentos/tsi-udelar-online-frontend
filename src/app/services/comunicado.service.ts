@@ -42,4 +42,8 @@ export class ComunicadoService {
   publicarComunicadoGeneral(comunicado: Comunicado) {
     return this.http.post(`${this.baseUrl}/general`, comunicado);
   }
+
+  GetComunicadosByFacultadId(facultadId: string) {
+    return this.http.get<Comunicado[]>(`${this.baseUrl}/facultad/${facultadId}`);
+  }
 }

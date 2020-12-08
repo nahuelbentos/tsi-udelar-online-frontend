@@ -16,6 +16,7 @@ import { CursoService } from 'src/app/services/curso.service';
 import { GestionAlumnocursoComponent } from 'src/app/shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
 import { MisCalificacionesComponent } from '../../dialog/mis-calificaciones/mis-calificaciones.component';
+import { VistaCalendarioComponent } from '../vista-calendario/vista-calendario.component';
 
 @Component({
   selector: 'app-vista-curso',
@@ -42,7 +43,6 @@ export class VistaCursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.route.queryParams.subscribe((param) => {
       console.log('parm:: ', param);
 
@@ -161,12 +161,12 @@ export class VistaCursoComponent implements OnInit {
     downloadLink.click();
   };
 
-  calificaciones = () => {
-
-    const dialogRef = this.dialog.open(MisCalificacionesComponent, {
+  calificaciones = () =>
+    this.dialog.open(MisCalificacionesComponent, {
+      height: 'auto',
+      width: '100%',
       data: { cursoId: this.cursoId },
     });
-  };
 
   claseVirtual = () => {
     const linkSource =
@@ -181,4 +181,11 @@ export class VistaCursoComponent implements OnInit {
 
     link.click();
   };
+
+  verCalendarioActividades = () =>
+    this.dialog.open(VistaCalendarioComponent, {
+      height: 'auto',
+      width: '100%',
+      data: { cursoId: this.cursoId },
+    });
 }
