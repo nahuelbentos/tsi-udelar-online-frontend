@@ -21,6 +21,7 @@ import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { GestionCalsesDictadasComponent } from '../shared/pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
+import { CalendarioActividadesComponent } from './pages/calendario-actividades/calendario-actividades.component';
 
 
 const routes: Routes = [
@@ -123,6 +124,11 @@ const routes: Routes = [
         path: 'administrar-clasesdictadas/abm-clasedictada',
         component: AbmActividadComponent,
         data: { titulo: 'Clase Dictada' },
+      },
+      {
+        path: 'calendario',
+        component: CalendarioActividadesComponent,
+        data: { titulo: 'Calendario de Actividades' },
       },
     ],
   },
