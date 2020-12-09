@@ -76,12 +76,11 @@ export class SalaChatComponent implements OnInit {
           tipo: user.tipo,
           facultad: user.facultad,
         }; 
-
+       
         this.chatService
           .getChatPorUsuario(this.currentUser, usuario)
           .subscribe((respChat) => {
-            // chat = respChat.algo;
-
+    
             if (respChat.length === 0) {
               this.obtenerChatEmisor(usuario);
               return;
@@ -90,23 +89,20 @@ export class SalaChatComponent implements OnInit {
             const idChatArray: string[] = respChat.map((e) =>  e.payload.doc.id);
             // Me devuelve un array de un unico elemento, así que me quedo con el elemento.
             const idChat: string = idChatArray.find((e) => e);
-            console.log('1) idChat: ', idChat);
 
             this.chatService
               .getConversacionPorChat(idChat)
               .subscribe((conversacionChanges) => {
-                console.log('conversacionChanges:: ', conversacionChanges);
                 if (conversacionChanges.length !== 0) {
                   // tslint:disable-next-line: no-shadowed-variable
                   const temp: any = conversacionChanges.map((e) => e.payload.doc.data());
-                  console.log('temp:: ', temp);
+
                   this.evaluarConversacion(temp, usuario);
                 }
               });
           });
 
         this.usuarios.push(usuario);
-        console.log('usuarios: ', this.usuarios);
       }
     });
   }
@@ -115,6 +111,8 @@ export class SalaChatComponent implements OnInit {
     this.chatService
       .getChatPorUsuarioEmisor(this.currentUser, usuario)
       .subscribe((respChatEmisor) => {
+        
+ 
         if (respChatEmisor.length === 0) {
           return;
         }
@@ -136,6 +134,7 @@ export class SalaChatComponent implements OnInit {
   }
 
   evaluarConversacion(temp, usuario) {
+    
     const element = temp.find((e) => e);
 
     if (element) {
@@ -149,23 +148,18 @@ export class SalaChatComponent implements OnInit {
         const index = conversacion.mensajes.length - 1;
         if (!conversacion.mensajes[index].mensajeReceptorVisto) {
           this.usuarios = this.usuarios.map((u) => {
-            console.log('revisar mensaje visto:: ' );
-            console.log('     u.userNamee:: ', u.userName );
-            console.log('     usuario.userNamee:: ', usuario.userName );
-            console.log('     conversacion.mensajes[index].usuarioEmisor:: ', conversacion.mensajes[index].usuarioEmisor);
-            
+
             if (
               u.userName === usuario.userName &&
               conversacion.mensajes[index].usuarioEmisor === u.userName
             ) {
-              
-               console.log('seto mensaje visto:: ');
-               console.log('    al receptor:: ', conversacion.mensajes[index].usuarioReceptor);
+      
               u.mensajeVisto = conversacion.mensajes[index].mensajeReceptorVisto;
               u.mensajeTimestamp = conversacion.mensajes[index].timestamp; 
             }
             return u;
           });
+
 
         }
       }
@@ -182,8 +176,6 @@ export class SalaChatComponent implements OnInit {
 
     this.usuarios = this.usuarios.map((u) => {
       if (u.userName === usuario.userName) {
-        console.log('tambien seteo visto, username seleccionado es: ', usuario.userName  );
-        
         u.mensajeVisto = true;
       }
       return u;
@@ -239,8 +231,7 @@ export class SalaChatComponent implements OnInit {
             this.chatService.setCurrentConversacion(conv);
 
             this.chatService.cargarMensajes().subscribe((data) => {
-              // console.log('data>? ', data);
-              // console.log('mensajes>? ', data.mensajes);
+
               this.mensajes = data.mensajes;
               // scroll to bottom
               setTimeout(() => this.triggerScrollTo(), 1000);
@@ -263,8 +254,7 @@ export class SalaChatComponent implements OnInit {
               this.chatService.setCurrentConversacion(convCurrent);
 
               this.chatService.cargarMensajes().subscribe((data) => {
-                // console.log('data>? ', data);
-                // console.log('mensajes>? ', data.mensajes);
+
                 this.mensajes = data.mensajes;
                 // scroll to bottom
                 setTimeout(() => this.triggerScrollTo(), 1000);
