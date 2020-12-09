@@ -22,6 +22,7 @@ import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
 import { GestionCalsesDictadasComponent } from '../shared/pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
 import { CalendarioActividadesComponent } from './pages/calendario-actividades/calendario-actividades.component';
+import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
 
 
 const routes: Routes = [
@@ -130,6 +131,11 @@ const routes: Routes = [
         component: CalendarioActividadesComponent,
         data: { titulo: 'Calendario de Actividades' },
       },
+      {
+        path: 'chat',
+        component: SalaChatComponent,
+        data: { titulo: 'Chat' },
+      }, 
     ],
   },
 ];

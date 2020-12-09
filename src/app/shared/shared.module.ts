@@ -85,6 +85,9 @@ import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/selec
 import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
 import { GestionCalsesDictadasComponent } from './pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
 import { SeleccionarCursoByFacultadComponent } from './dialogs/seleccionar-curso-by-facultad/seleccionar-curso-by-facultad.component';
+import { SalaChatComponent } from './pages/sala-chat/sala-chat.component';
+ 
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -164,6 +167,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SeleccionarCursoByUsuarioComponent,
     GestionCalsesDictadasComponent,
     SeleccionarCursoByFacultadComponent,
+    SalaChatComponent,
   ],
   exports: [
     HeaderComponent,
@@ -184,7 +188,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     GestionComunicadoComponent,
     GestionCalificacionesComponent,
     CalendarioComponent,
-    GestionCustomComponent
+    GestionCustomComponent,
+    SalaChatComponent,
   ],
   imports: [
     CommonModule,
@@ -200,7 +205,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     NgxMatColorPickerModule,
     MatFileUploadModule,
     FormsModule,
-    FullCalendarModule
+    FullCalendarModule,
+    FilterPipeModule,
   ],
   providers: [],
 })

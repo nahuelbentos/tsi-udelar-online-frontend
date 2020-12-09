@@ -22,6 +22,10 @@ export class NavAlumnoComponent implements OnInit {
       link: 'perfil',
       titulo: 'Perfil',
     },
+    {
+      link: 'chat',
+      titulo: 'Chat',
+    },
   ]
   constructor() {}
 

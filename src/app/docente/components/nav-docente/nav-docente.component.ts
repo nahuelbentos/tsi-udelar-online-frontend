@@ -58,6 +58,10 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Perfil',
     },
     {
+      link: 'chat',
+      titulo: 'Chat',
+    },
+    {
       link: 'informes',
       titulo: 'Informes',
     },

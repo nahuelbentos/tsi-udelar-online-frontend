@@ -13,6 +13,7 @@ import { CalendarioComponent } from '../shared/components/calendario/calendario.
 import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
+import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,11 @@ const routes: Routes = [
         path: 'perfil',
         component: PerfilUsuarioComponent,
         data: { titulo: 'Perfil' },
+      }, 
+      {
+        path: 'chat',
+        component: SalaChatComponent,
+        data: { titulo: 'Chat' },
       },
     ],
   },

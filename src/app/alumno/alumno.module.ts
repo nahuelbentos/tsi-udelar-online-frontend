@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VistaCalendarioComponent } from './pages/vista-calendario/vista-calendario.component';
 import { CalendarioComponent } from '../shared/components/calendario/calendario.component';
 import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-calificaciones.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 
 
@@ -36,7 +37,8 @@ import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-cali
     SharedModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FilterPipeModule,
   ],
 })
 export class AlumnoModule {}
