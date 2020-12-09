@@ -100,7 +100,7 @@ export class VistaCursoComponent implements OnInit {
           .subscribe((estaInscripto) => {
             if (estaInscripto) {
               // ir a la pantalla de evaluación
-              this.accederAPruebaOnline(activdadTipo.actividad);
+             // this.accederAPruebaOnline(activdadTipo.actividad);
             } else {
               confirmacionUsuario(
                 'Confirmacion de usuario',
@@ -114,9 +114,9 @@ export class VistaCursoComponent implements OnInit {
                     )
                     .subscribe((res) => {
                       this.toast.success(
-                        'Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .'
+                        `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
                       );
-                      this.accederAPruebaOnline(activdadTipo.actividad);
+                    //  this.accederAPruebaOnline(activdadTipo.actividad);
                     });
                 }
               });

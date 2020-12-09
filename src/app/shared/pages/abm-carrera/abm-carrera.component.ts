@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Facultad } from 'src/app/models/facultad.model';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CarreraService } from 'src/app/services/carrera.service';
@@ -55,6 +56,11 @@ export class AbmCarreraComponent implements OnInit {
       .getFacultades()
       .subscribe((facultades) => (this.facultades = facultades));
 
+    if(this.usuarioLogueado.tipo === TipoUsuario.AdministradorFacultad){
+      this.facultad.setValue(this.usuarioLogueado.facultad.facultadId);
+      this.facultad.disable();
+    }
+    
     this.route.queryParams.subscribe((param) => {
       this.modo = param.modo;
       this.carreraId = param.id;

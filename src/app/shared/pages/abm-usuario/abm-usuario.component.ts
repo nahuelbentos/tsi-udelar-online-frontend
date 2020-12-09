@@ -179,9 +179,12 @@ export class AbmUsuarioComponent implements OnInit {
       }
     );
 
-    if(this.usuarioLogueado.tipo === TipoUsuario.AdministradorFacultad){
-        this.facultad.setValue(this.usuarioLogueado.facultad.facultadId);
-        this.facultad.disable();
+    if (
+      this.usuarioLogueado && this.usuarioLogueado.tipo ===
+      TipoUsuario.AdministradorFacultad
+    ) {
+      this.facultad.setValue(this.usuarioLogueado.facultad.facultadId);
+      this.facultad.disable();
     }
 
 

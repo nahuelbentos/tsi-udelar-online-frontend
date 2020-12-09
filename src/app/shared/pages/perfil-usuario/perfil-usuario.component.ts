@@ -147,7 +147,9 @@ export class PerfilUsuarioComponent implements OnInit {
     if (this.usuarioForm.invalid) {
       return;
     }
-
+    console.log('formulario:: ', this.usuarioForm.value);
+    
+    
     const usuario = new Usuario(this.nombres.value);
 
     usuario.apellidos = this.apellidos.value;
@@ -162,6 +164,10 @@ export class PerfilUsuarioComponent implements OnInit {
     usuario.facultadId = this.facultad.value;
     usuario.tipo = this.tipo.value;
 
+    console.log('cedula:: ', this.cedula.value);
+    console.log('ci:: ', usuario.ci);
+    
+
     this.modo === 'INS'
       ? this.crearUsuario(usuario)
       : this.editarUsuario(usuario);
@@ -172,10 +178,8 @@ export class PerfilUsuarioComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
-      ]);
+      ).then( () => this.location.back());
+    
     });
   }
 
@@ -184,10 +188,7 @@ export class PerfilUsuarioComponent implements OnInit {
       mensajeConfirmacion(
         'Excelente!',
         `Se creó el usuario ${this.nombres.value} ${this.apellidos.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.autenticacionService.getRolSesion().toLocaleLowerCase()}/usuario`,
-      ]);
+      ).then( () => this.location.back());
     });
   }
 }
