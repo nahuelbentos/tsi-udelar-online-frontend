@@ -1,4 +1,5 @@
 import { PruebaOnline } from "./prueba-online.model";
+import { RespuestaPrueba } from "./respuesta-prueba.model";
 import { Usuario } from "./usuario.model";
 
 export class AlumnoPruebaOnline {
@@ -12,6 +13,10 @@ export class AlumnoPruebaOnline {
     public fechaFin?: Date,
     public fechaExpiracion?: Date,
     public nota?: number,
-    public inscripto?: boolean
+    public calificacionPorcentaje?: number,
+    public inscripto?: boolean,
+    public respuestasAlumno?: RespuestaPrueba[],
   ) {}
 }
+
+
