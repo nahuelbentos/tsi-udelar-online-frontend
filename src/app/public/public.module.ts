@@ -10,6 +10,7 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 
+
 @NgModule({
   declarations: [HomeComponent, LayoutComponent, RegisterComponent, ForgotPasswordComponent],
   imports: [CommonModule, PublicRoutingModule, SharedModule, FormsModule, ReactiveFormsModule, MaterialModule],

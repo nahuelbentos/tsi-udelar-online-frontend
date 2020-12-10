@@ -1,0 +1,51 @@
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 100;}
+}
+
+@keyframes slideUdelar {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 100;
+  }
+}
+
+@keyframes slideOnline {
+  from {top: -180px;}
+  to {top: 0px}
+}
+.homeContainer {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.udelarLogo {
+  width: 300px;
+  animation-name: fadeIn;
+  animation-iteration-count: initial;
+  animation-timing-function: linear;
+  animation-duration: 0.8s;
+
+}
+.udelarText {
+  width: 220px;
+  position: relative;
+  animation-name: slideUdelar;
+  animation-delay: 1s;
+  animation-duration: 2s;
+}
+.onlineText {
+  width: 220px;
+  position: relative;
+  animation-name: slideOnline;
+  animation-delay: 2s;
+  animation-duration: 2s;
+
+}
+
