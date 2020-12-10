@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
+import { ZoomComponent } from './shared/components/zoom/zoom.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,11 @@ const routes: Routes = [
         path: 'docente',
         loadChildren: () =>
           import('./docente/docente.module').then((m) => m.DocenteModule),
+      },
+      {
+        path: 'zoom',
+        component: ZoomComponent
+
       },
     ],
   },

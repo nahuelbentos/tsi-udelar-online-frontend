@@ -18,10 +18,7 @@ export class NavAlumnoComponent implements OnInit {
       link: 'cursos-publicos',
       titulo: 'Todos los cursos',
     },
-    {
-      link: 'vista-calendario',
-      titulo: 'Calendario',
-    }
+  
   ]
   constructor() {}
 

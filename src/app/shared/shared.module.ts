@@ -82,6 +82,8 @@ import { VerForoComponent } from './ver-foro/ver-foro.component';
 import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/seleccionar-actividad.component';
 import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
 import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
+import { ZoomComponent } from './components/zoom/zoom.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -158,6 +160,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     VerCursoSeccionesComponent,
     SeleccionarTrabajoComponent,
     SeleccionarActividadComponent,
+    ZoomComponent,
   ],
   exports: [
     HeaderComponent,
