@@ -32,6 +32,30 @@ export const errorMensaje = (title, text) =>
     onClose: () => {},
   });
 
+export const infoMensaje = (title, text) =>
+  Swal.fire({
+    title,
+    text,
+    icon: 'info', 
+    showConfirmButton: true,
+    showCancelButton: false,
+    onClose: () => {
+      console.log('Cieerro antes de timer');
+    },
+  });
+
+export const warningMensaje = (title, text) =>
+  Swal.fire({
+    title,
+    text,
+    icon: 'warning', 
+    showConfirmButton: true,
+    showCancelButton: false,
+    onClose: () => {
+      console.log('Cieerro antes de timer');
+    },
+  });
+
 export const customMensaje = (
   title: string,
   text: string,

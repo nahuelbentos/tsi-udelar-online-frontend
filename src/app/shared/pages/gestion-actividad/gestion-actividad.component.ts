@@ -14,9 +14,10 @@ import { AutenticacionService } from 'src/app/services/autenticacion.service';
 export class GestionActividadComponent implements OnInit, OnChanges {
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   actividades: Actividad[];
-  createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
   @Input() actionsHeader: Actions[] = [];
+  @Input() tipoSingular = 'actividad';
+  actions: Actions[] = null;
 
   constructor(
     private actividadService: ActividadService,
@@ -29,7 +30,6 @@ export class GestionActividadComponent implements OnInit, OnChanges {
     }
   }
   ngOnChanges(changes: SimpleChanges): void {
-    
     if (changes.actionsHeader && changes.actionsHeader.currentValue) {
       this.actionsHeader = changes.actionsHeader.currentValue;
     }
@@ -39,7 +39,6 @@ export class GestionActividadComponent implements OnInit, OnChanges {
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {
-      this.createComponent = false;
       // Llamamos al backend para eliminar el registro.
 
       this.actividadService
@@ -54,7 +53,6 @@ export class GestionActividadComponent implements OnInit, OnChanges {
         ...actividad,
         id: actividad.actividadId,
       }));
-      this.createComponent = true;
     });
   }
 
@@ -66,7 +64,6 @@ export class GestionActividadComponent implements OnInit, OnChanges {
           ...actividad,
           id: actividad.actividadId,
         }));
-        this.createComponent = true;
       });
   }
 }

@@ -21,8 +21,12 @@ export class AlumnoService {
 
   // tslint:disable-next-line: max-line-length
   estaInscriptoEvaluacion = (alumnoId: string, pruebaOnlineId: string) => this.http.post<boolean>(`${this.baseUrl}/esta-inscripto-evaluacion`, {alumnoId, pruebaOnlineId});
+  
+  realizoEvaluacion = (alumnoId: string, pruebaOnlineId: string) => this.http.post<boolean>(`${this.baseUrl}/realizo-evaluacion`, {alumnoId, pruebaOnlineId});
 
   getEvaluaciones = (alumnoId: string) => this.http.get<AlumnoPruebaOnline[]>(`${this.baseUrl}/prueba-online/${alumnoId}`);
+
+  
 
 
 }

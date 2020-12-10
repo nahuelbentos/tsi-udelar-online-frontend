@@ -55,6 +55,8 @@ export class TokenInterceptor implements HttpInterceptor {
         return event;
       }),
       catchError((err: HttpErrorResponse) => {
+        console.log('err:: ', err);
+        
         if (err.status === 401) {
           this.router.navigate(['/home']);
         }

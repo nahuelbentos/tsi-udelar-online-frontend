@@ -61,6 +61,10 @@ export class NavAdministradorComponent implements OnInit {
       link: 'publicar-comunicado-facultad',
       titulo: 'Publicar Comunicado en Facultad',
     },
+    {
+      link: 'chat',
+      titulo: 'Chat',
+    },
 
     {
       link: 'reportes',

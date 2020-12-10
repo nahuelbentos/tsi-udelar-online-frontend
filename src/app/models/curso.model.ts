@@ -13,6 +13,8 @@ export class Curso {
     public modalidad?: string,
     public requiereMatriculacion?: boolean,
     public salaVirtual?: string,
+    public zoomId?: string,
+    public zoomPassword?: string,
     public templateCursoId?: string,
     public templateCurso?: TemplateCurso,
     public actaCerrada?: boolean,

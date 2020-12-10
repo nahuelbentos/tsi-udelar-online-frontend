@@ -13,8 +13,9 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
+import { ZoomComponent } from 'src/app/shared/components/zoom/zoom.component';
 import { GestionAlumnocursoComponent } from 'src/app/shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
-import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
+import { confirmacionUsuario, errorMensaje } from 'src/app/utils/sweet-alert';
 import { MisCalificacionesComponent } from '../../dialog/mis-calificaciones/mis-calificaciones.component';
 import { VistaCalendarioComponent } from '../vista-calendario/vista-calendario.component';
 
@@ -93,36 +94,13 @@ export class VistaCursoComponent implements OnInit {
       case 'PruebaOnline':
         console.log('actividad:: ', activdadTipo);
         this.alumnoService
-          .estaInscriptoEvaluacion(
+          .realizoEvaluacion(
             this.usuarioLogueado.id,
             activdadTipo.actividad.actividadId
           )
-          .subscribe((estaInscripto) => {
-            if (estaInscripto) {
-              // ir a la pantalla de evaluación
-             // this.accederAPruebaOnline(activdadTipo.actividad);
-            } else {
-              confirmacionUsuario(
-                'Confirmacion de usuario',
-                `Está por inscribirase a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
-              ).then((response) => {
-                if (response.isConfirmed) {
-                  this.alumnoService
-                    .inscribirseAEvaluacion(
-                      this.usuarioLogueado.id,
-                      activdadTipo.actividad.actividadId
-                    )
-                    .subscribe((res) => {
-                      this.toast.success(
-                        `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
-                      );
-                    //  this.accederAPruebaOnline(activdadTipo.actividad);
-                    });
-                }
-              });
-            }
-          });
-        console.log('not implemented yet');
+          .subscribe((realizoEvaluacion) =>
+            this.evaluarInscripcion(realizoEvaluacion, activdadTipo)
+          );
         break;
 
       default:
@@ -130,10 +108,46 @@ export class VistaCursoComponent implements OnInit {
     }
   }
 
+  evaluarInscripcion(realizoEvaluacion: boolean, activdadTipo: ActivdadTipo) {
+    realizoEvaluacion 
+    ? errorMensaje(  'Evaluación realizada', 'Ya realizaste esta evaluación, verifica tus calificaciones.').then() 
+    : this.alumnoService
+      .estaInscriptoEvaluacion(
+        this.usuarioLogueado.id,
+        activdadTipo.actividad.actividadId
+      )
+      .subscribe((estaInscripto) => {
+        if (estaInscripto) {
+          // ir a la pantalla de evaluación
+          this.accederAPruebaOnline(activdadTipo.actividad);
+        } else {
+          confirmacionUsuario(
+            'Confirmacion de usuario',
+            `Está por inscribirse a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
+          ).then((response) => {
+            if (response.isConfirmed) {
+              this.alumnoService
+                .inscribirseAEvaluacion(
+                  this.usuarioLogueado.id,
+                  activdadTipo.actividad.actividadId
+                )
+                .subscribe((res) => {
+                  this.toast.success(
+                    `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
+                  );
+                  this.accederAPruebaOnline(activdadTipo.actividad);
+                });
+            }
+          });
+        }
+      });
+  }
+
   accederAPruebaOnline = (pruebaOnline: Actividad) => {
     const today = new Date();
     const fecha = new Date(pruebaOnline.fecha);
     const fechaFinalizada = new Date(pruebaOnline.fechaFinalizada);
+    console.log('prueba online:: ', pruebaOnline);
 
     if (today >= fecha && today <= fechaFinalizada) {
       confirmacionUsuario(
@@ -142,6 +156,18 @@ export class VistaCursoComponent implements OnInit {
       ).then((response) => {
         if (response.isConfirmed) {
           // ir a prueba online
+
+          this.router.navigate(
+            [
+              `/${this.autenticacionService
+                .getRolSesion()
+                .toLocaleLowerCase()}/evaluacion-individual`,
+            ],
+            {
+              queryParams: { id: pruebaOnline.actividadId },
+              relativeTo: this.route,
+            }
+          );
         }
       });
     } else if (today > fechaFinalizada) {
@@ -182,6 +208,19 @@ export class VistaCursoComponent implements OnInit {
     link.click();
   };
 
+  abrirZoom = () => {
+    localStorage.setItem(
+      'queryParams',
+      JSON.stringify({
+        meetingNumber: this.curso.zoomId, //'99644515024',
+        passWord: this.curso.zoomPassword, //'MEg5M3NoMWcrYXFFYkk1WEk2RGVIQT09',
+        // es el nombre del alumno o el email
+        userName: this.usuarioLogueado.email, //'Angular',
+      })
+    );
+
+    this.router.navigate(['/zoom']);
+  };
   verCalendarioActividades = () =>
     this.dialog.open(VistaCalendarioComponent, {
       height: 'auto',

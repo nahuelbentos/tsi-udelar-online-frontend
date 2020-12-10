@@ -17,7 +17,10 @@ export class Usuario {
     public tipo?: TipoUsuario,
     public facultad?: Facultad,
     public usuarioId?: string,
-    public id?: string
+    public id?: string,
+    public mensajeVisto?: boolean,
+    public mensajeTimestamp?: Date,
+    public urlFotoPerfil?: Date,
   ) {}
 }
 

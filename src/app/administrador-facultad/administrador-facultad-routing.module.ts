@@ -21,6 +21,7 @@ import { GestionForoComponent } from '../shared/pages/gestion-foro/gestion-foro.
 import { GestionMaterialComponent } from '../shared/pages/gestion-material/gestion-material.component';
 import { GestionTemplatecursoComponent } from '../shared/pages/gestion-templatecurso/gestion-templatecurso.component';
 import { GestionUsuarioComponent } from '../shared/pages/gestion-usuario/gestion-usuario.component';
+import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
 import { NavAdministradorFacultadComponent } from './components/nav-administrador-facultad/nav-administrador-facultad.component';
 import { AbmDocenteComponent } from './pages/abm-docente/abm-docente.component';
 import { AdministrarFacultadComponent } from './pages/administrar-facultad/administrar-facultad.component';
@@ -145,6 +146,11 @@ const routes: Routes = [
         path: 'comunicado/abm-comunicado',
         component: AbmComunicadoComponent,
         data: { titulo: 'ABM de Comunicados' },
+      },
+      {
+        path: 'chat',
+        component: SalaChatComponent,
+        data: { titulo: 'Chat' },
       },
     ],
   },

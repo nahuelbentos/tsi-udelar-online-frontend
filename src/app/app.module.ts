@@ -12,6 +12,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { BlockUIModule } from 'ng-block-ui';
 import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } from '@angular-material-components/color-picker';
 
+//firebase
+
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireModule } from '@angular/fire'; 
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,7 +41,13 @@ import { MAT_COLOR_FORMATS, NgxMatColorPickerModule, NGX_MAT_COLOR_FORMATS } fro
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,
     }), // ToastrModule added
-    NgxMatColorPickerModule, 
+    NgxMatColorPickerModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    ScrollToModule.forRoot(),
+
+    ChartsModule,
   ],
 
   providers: [

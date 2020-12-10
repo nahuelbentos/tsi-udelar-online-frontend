@@ -48,6 +48,10 @@ export class NavAdministradorFacultadComponent implements OnInit {
       titulo: 'Administrar materiales',
     },
     {
+      link: 'chat',
+      titulo: 'Chat',
+    },
+    {
       link: 'reportes',
       titulo: 'Reportes',
     },
