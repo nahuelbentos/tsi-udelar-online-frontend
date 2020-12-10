@@ -15,6 +15,7 @@ export class GestionComunicadoComponent implements OnInit, OnChanges {
   comunicados: Comunicado[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'url', 'actions'];
+  
 
   @Input() actions = null;
 

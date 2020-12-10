@@ -17,6 +17,8 @@ export class CarreraService {
 
   getCarreras = () => this.http.get<Carrera[]>(this.baseUrl);
 
+  getCarreraByfacultad = (facultadId: string) => this.http.get<Carrera[]>(`${this.baseUrl}/facultad/${facultadId}`);
+
   getCarreraById = (carreraId: string) => this.http.get<Carrera>(`${this.baseUrl}/${carreraId}`);
 
   deleteCarrera = (carreraId: string) => this.http.delete(`${this.baseUrl}/${carreraId}`);

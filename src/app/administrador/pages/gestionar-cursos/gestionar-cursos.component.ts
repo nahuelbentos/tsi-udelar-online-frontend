@@ -59,7 +59,7 @@ export class GestionarCursosComponent implements OnInit {
       width: '700px',
       data: {
         refId: this.usuarioSesion.facultad.facultadId,
-        tipo: 'docenteByFacultad',
+        tipo: 'docente',
       },
     });
 

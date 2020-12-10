@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import {
   Calendar,
   CalendarOptions,
@@ -18,9 +18,10 @@ import esLocale from '@fullcalendar/core/locales/es';
   templateUrl: './calendario.component.html',
   styleUrls: ['./calendario.component.scss'],
 })
-export class CalendarioComponent implements OnInit {
+export class CalendarioComponent implements OnInit, OnChanges {
   eventGuid = 0;
 
+  @Input() cursoId = null;
 
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
 
@@ -35,10 +36,28 @@ export class CalendarioComponent implements OnInit {
     private autenticacionService: AutenticacionService
   ) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.cursoId && changes.cursoId.currentValue) {
+        this.cursoId = changes.cursoId.currentValue;
+        this.getActividades();
+    }
+  }
+
   ngOnInit(): void {
-    this.actividadService
-      .getActividadesByAlumno(this.usuarioLogueado.id)
-      .subscribe((actividades) => this.setCalendario(actividades));
+    this.getActividades();
+  }
+
+  getActividades(){
+    
+    if (this.cursoId) {
+      this.actividadService
+        .getActividadesByCurso(this.cursoId)
+        .subscribe((actividades) => this.setCalendario(actividades));
+    } else {
+      this.actividadService
+        .getActividadesByAlumno(this.usuarioLogueado.id)
+        .subscribe((actividades) => this.setCalendario(actividades));
+    }
   }
 
   setCalendario(actividades: Actividad[]) {
@@ -50,6 +69,7 @@ export class CalendarioComponent implements OnInit {
 
     this.calendarOptions = {
       initialView: 'dayGridMonth',
+      
       locales: [esLocale],
       events: this.events,
     };

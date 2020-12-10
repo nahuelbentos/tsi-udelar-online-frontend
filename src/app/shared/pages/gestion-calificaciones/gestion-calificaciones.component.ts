@@ -7,6 +7,8 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { AlumnoCursoService } from 'src/app/services/alumno-curso.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
+import { SeleccionarCursoByFacultadComponent } from '../../dialogs/seleccionar-curso-by-facultad/seleccionar-curso-by-facultad.component';
+import { SeleccionarCursoByUsuarioComponent } from '../../dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
 import { SeleccionarCursoComponent } from '../../dialogs/seleccionar-curso/seleccionar-curso.component';
 
 @Component({
@@ -19,7 +21,7 @@ export class GestionCalificacionesComponent implements OnInit {
   tipo = TipoUsuario.Alumno;
   cursos: Curso[] = [];
 
-  cursoDialog = SeleccionarCursoComponent;
+  cursoDialog = this.usuarioLogueado.tipo === TipoUsuario.Docente ? SeleccionarCursoComponent : SeleccionarCursoByFacultadComponent;
   verAlumnos = false;
   calificacionPromedio: number;
   alumnos: AlumnoCurso[];
@@ -37,6 +39,7 @@ export class GestionCalificacionesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if(this.usuarioLogueado.tipo === TipoUsuario.Docente){
     this.cursoService
       .getCursosByUsuario(this.usuarioLogueado.id)
       .subscribe((cursos) => {
@@ -46,16 +49,17 @@ export class GestionCalificacionesComponent implements OnInit {
         }));
       });
 
-      
-    // this.actions = [
-    //   {
-    //     tooltip: `Editar calificación`,
-    //     className: 'button-editar',
-    //     tooltipClassName: 'tooltip-blue',
-    //     icon: 'edit',
-    //     callback: this.editarCalificacion
-    //   }
-    // ];
+    } else {
+      this.cursoService
+        .getCursosByFacultad(this.usuarioLogueado.facultad.facultadId)
+        .subscribe((cursos) => {
+          this.cursos = cursos.map((curso) => ({
+            ...curso,
+            descripcionAutocomplete: curso.nombre,
+          }));
+        });
+    }
+
   }
 
   getItem(curso: Curso) {
@@ -69,16 +73,4 @@ export class GestionCalificacionesComponent implements OnInit {
       });
   }
 
-  // editarCalificacion = (calificacion:  AlumnoCurso) => {
-    
-  //       const params = { alumnoId: calificacion.alumnoId, cursoId: calificacion.cursoId };
-
-
-  //       this.router.navigate([`abm-alumnocurso`],
-  //         {
-  //           queryParams: params,
-  //           relativeTo: this.route,
-  //         }
-  //       );
-  // }
 }

@@ -13,6 +13,8 @@ import { CalendarioComponent } from '../shared/components/calendario/calendario.
 import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { ZoomComponent } from '../shared/components/zoom/zoom.component';
+import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
+import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
 
 const routes: Routes = [
   {
@@ -71,7 +73,17 @@ const routes: Routes = [
         path: 'vista-zoom',
         component: ZoomComponent,
         data: { titulo: 'Zoom' },
-      }
+      },
+      {
+        path: 'perfil',
+        component: PerfilUsuarioComponent,
+        data: { titulo: 'Perfil' },
+      }, 
+      {
+        path: 'chat',
+        component: SalaChatComponent,
+        data: { titulo: 'Chat' },
+      },
     ],
   },
 ];

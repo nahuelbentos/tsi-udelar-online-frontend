@@ -19,6 +19,8 @@ import { EncuestasComponent } from './pages/encuestas/encuestas.component';
 import { AdministrarCalificacionesComponent } from './pages/administrar-calificaciones/administrar-calificaciones.component';
 
 import { AdministrarMaterialesComponent } from '../administrador-facultad/pages/administrar-materiales/administrar-materiales.component';
+import { AdministrarClasesDictadasComponent } from './pages/administrar-clases-dictadas/administrar-clases-dictadas.component';
+import { CalendarioActividadesComponent } from './pages/calendario-actividades/calendario-actividades.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { AdministrarMaterialesComponent } from '../administrador-facultad/pages/
     EncuestasComponent,
     AdministrarMaterialesComponent,
     AdministrarCalificacionesComponent,
+    AdministrarClasesDictadasComponent,
+    CalendarioActividadesComponent,
   ],
   imports: [
     CommonModule,

@@ -17,6 +17,7 @@ import { ZoomComponent } from 'src/app/shared/components/zoom/zoom.component';
 import { GestionAlumnocursoComponent } from 'src/app/shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
 import { MisCalificacionesComponent } from '../../dialog/mis-calificaciones/mis-calificaciones.component';
+import { VistaCalendarioComponent } from '../vista-calendario/vista-calendario.component';
 
 @Component({
   selector: 'app-vista-curso',
@@ -43,7 +44,6 @@ export class VistaCursoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.route.queryParams.subscribe((param) => {
       console.log('parm:: ', param);
 
@@ -101,7 +101,7 @@ export class VistaCursoComponent implements OnInit {
           .subscribe((estaInscripto) => {
             if (estaInscripto) {
               // ir a la pantalla de evaluación
-              this.accederAPruebaOnline(activdadTipo.actividad);
+             // this.accederAPruebaOnline(activdadTipo.actividad);
             } else {
               confirmacionUsuario(
                 'Confirmacion de usuario',
@@ -115,9 +115,9 @@ export class VistaCursoComponent implements OnInit {
                     )
                     .subscribe((res) => {
                       this.toast.success(
-                        'Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .'
+                        `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
                       );
-                      this.accederAPruebaOnline(activdadTipo.actividad);
+                    //  this.accederAPruebaOnline(activdadTipo.actividad);
                     });
                 }
               });
@@ -162,12 +162,12 @@ export class VistaCursoComponent implements OnInit {
     downloadLink.click();
   };
 
-  calificaciones = () => {
-
-    const dialogRef = this.dialog.open(MisCalificacionesComponent, {
+  calificaciones = () =>
+    this.dialog.open(MisCalificacionesComponent, {
+      height: 'auto',
+      width: '100%',
       data: { cursoId: this.cursoId },
     });
-  };
 
   claseVirtual = () => {
     const linkSource =
@@ -183,6 +183,7 @@ export class VistaCursoComponent implements OnInit {
     link.click();
   };
 
+<<<<<<< HEAD
   abrirZoom = () => {
     localStorage.setItem("queryParams", JSON.stringify({    
       meetingNumber: this.curso.zoomId , //'99644515024',
@@ -193,4 +194,12 @@ export class VistaCursoComponent implements OnInit {
 
     this.router.navigate(['/zoom'])
   }
+=======
+  verCalendarioActividades = () =>
+    this.dialog.open(VistaCalendarioComponent, {
+      height: 'auto',
+      width: '100%',
+      data: { cursoId: this.cursoId },
+    });
+>>>>>>> e457e36008b065ed24325782a88edb9adb3c7fd1
 }

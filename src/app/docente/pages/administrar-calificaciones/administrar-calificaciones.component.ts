@@ -9,6 +9,7 @@ import { AlumnoCursoService } from 'src/app/services/alumno-curso.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { SeleccionarCursoByUsuarioComponent } from 'src/app/shared/dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
 import { SeleccionarCursoComponent } from 'src/app/shared/dialogs/seleccionar-curso/seleccionar-curso.component';
 
 @Component({
@@ -21,7 +22,7 @@ export class AdministrarCalificacionesComponent implements OnInit {
   tipo = TipoUsuario.Alumno;
   cursos: Curso[] = [];
 
-  cursoDialog = SeleccionarCursoComponent;
+  cursoDialog = SeleccionarCursoByUsuarioComponent;
   verAlumnos = false;
 
   alumnos: AlumnoCurso[];
@@ -48,15 +49,14 @@ export class AdministrarCalificacionesComponent implements OnInit {
         }));
       });
 
-      
     this.actions = [
       {
         tooltip: `Editar calificación`,
         className: 'button-editar',
         tooltipClassName: 'tooltip-blue',
         icon: 'edit',
-        callback: this.editarCalificacion
-      }
+        callback: this.editarCalificacion,
+      },
     ];
   }
 
@@ -71,16 +71,15 @@ export class AdministrarCalificacionesComponent implements OnInit {
       });
   }
 
-  editarCalificacion = (calificacion:  AlumnoCurso) => {
-    
-        const params = { alumnoId: calificacion.alumnoId, cursoId: calificacion.cursoId };
+  editarCalificacion = (calificacion: AlumnoCurso) => {
+    const params = {
+      alumnoId: calificacion.alumnoId,
+      cursoId: calificacion.cursoId,
+    };
 
-
-        this.router.navigate([`abm-alumnocurso`],
-          {
-            queryParams: params,
-            relativeTo: this.route,
-          }
-        );
-  }
+    this.router.navigate([`abm-alumnocurso`], {
+      queryParams: params,
+      relativeTo: this.route,
+    });
+  };
 }

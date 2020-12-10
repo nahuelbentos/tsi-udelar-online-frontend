@@ -38,12 +38,12 @@ export class NavDocenteComponent implements OnInit {
       titulo: 'Manejo de notas de cursos y evaluaciones',
     },
     {
-      link: 'perfil',
-      titulo: 'Perfil',
-    },
-    {
       link: 'administrar-foros',
       titulo: 'Administrar foros',
+    },
+    {
+      link: 'administrar-clasesdictadas',
+      titulo: 'Clases Dictadas',
     },
     // {
     //   link: 'administrar-materiales',
@@ -52,6 +52,14 @@ export class NavDocenteComponent implements OnInit {
     {
       link: 'calendario',
       titulo: 'Calendario de Actividades',
+    },
+    {
+      link: 'perfil',
+      titulo: 'Perfil',
+    },
+    {
+      link: 'chat',
+      titulo: 'Chat',
     },
     {
       link: 'informes',

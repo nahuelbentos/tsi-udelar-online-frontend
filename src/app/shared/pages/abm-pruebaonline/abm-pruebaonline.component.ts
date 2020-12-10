@@ -153,12 +153,13 @@ export class AbmPruebaonlineComponent implements OnInit {
 
     pruebaOnline.nombre = this.nombre.value;
     pruebaOnline.descripcion = this.descripcion.value;
-    pruebaOnline.fechaFinalizada = this.fechaFinalizada.value;
     pruebaOnline.fechaRealizada = this.fechaRealizada.value;
+    pruebaOnline.fechaFinalizada = this.fechaFinalizada.value;
 
-    pruebaOnline.activa = this.activa.value;
-    pruebaOnline.minutosExpiracion = this.minutosExpiracion.value;
     pruebaOnline.fecha = this.fecha.value;
+    pruebaOnline.activa = this.activa.value;
+    pruebaOnline.url = this.url.value;
+    pruebaOnline.minutosExpiracion = this.minutosExpiracion.value;
     pruebaOnline.usuarioId = this.usuarioSesion.id;
     pruebaOnline.pruebaOnlineId = this.pruebaOnlineId;
     

@@ -7,6 +7,7 @@ import {
 import { Carrera } from 'src/app/models/carrera.model';
 import { Curso } from 'src/app/models/curso.model';
 import { SeleccionarRow } from 'src/app/models/seleccionar-row.interface';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -17,7 +18,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class SeleccionarUsuarioComponent {
   usuarios: Usuario[] = [];
-  columnas = ['actions', 'nombres', 'apellidos', 'id'];
+  columnas = ['actions', 'nombres', 'apellidos', 'email'];
 
   constructor(
     private usuarioService: UsuarioService,
@@ -51,6 +52,12 @@ export class SeleccionarUsuarioComponent {
       case 'docenteByFacultad':
         this.usuarioService
           .getDocentesByFacultad(refId)
+          .subscribe((usuarios) => (this.usuarios = usuarios));
+        break;
+
+      case 'docente':
+        this.usuarioService
+          .getUsuariosByTipo(TipoUsuario.Docente)
           .subscribe((usuarios) => (this.usuarios = usuarios));
         break;
 

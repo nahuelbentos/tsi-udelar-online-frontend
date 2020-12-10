@@ -26,7 +26,7 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
   @Input() tituloSingular = 'usuario';
   @Input() tituloPlural = 'usuarios';
 
-  @Input() usuarios: Usuario[] = [];
+  @Input() usuarios: Usuario[] = null;
   createComponent = false;
 
   columnas: string[] = ['nombres', 'apellidos', 'email', 'actions'];
@@ -40,6 +40,8 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('estoy acá:');
+
     if (changes.usuarios) {
       this.usuarios = changes.usuarios.currentValue;
     } else {
@@ -48,23 +50,22 @@ export class GestionUsuarioComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.getUsuarios();
+    
+    if(!this.usuarios){
+      this.getUsuarios();
+    }
   }
 
-  getUsuarios = () =>
+  getUsuarios = () =>{
+    
     this.tipo
       ? this.usuarioService
           .getUsuariosByTipo(this.tipo)
-          .subscribe((usuarios) => {
-            this.usuarios = usuarios;
-            this.createComponent = true;
-          })
+          .subscribe((usuarios) => (this.usuarios = usuarios))
       : this.usuarioService
           .getUsuariosByRol(this.usuarioId)
-          .subscribe((usuarios) => {
-            this.usuarios = usuarios;
-            this.createComponent = true;
-          });
+          .subscribe((usuarios) => (this.usuarios = usuarios))
+  }
 
   onEliminar(data: EliminarRow) {
     if (data.elimino) {

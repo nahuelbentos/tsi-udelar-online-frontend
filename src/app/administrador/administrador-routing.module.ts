@@ -48,6 +48,7 @@ import { GestionMensajeComponent } from '../shared/pages/gestion-mensaje/gestion
 import { GestionRespuestaComponent } from '../shared/pages/gestion-respuesta/gestion-respuesta.component';
 import { GestionTemaforoComponent } from '../shared/pages/gestion-temaforo/gestion-temaforo.component';
 import { GestionTemplateCursoSeccionComponent } from '../shared/pages/gestion-templatecursoseccion/gestion-templatecursoseccion.component';
+import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
 
 const routes: Routes = [
   {
@@ -312,6 +313,11 @@ const routes: Routes = [
         path: 'test',
         component: TestComponentsComponent,
         data: { titulo: 'test' },
+      },
+      {
+        path: 'chat',
+        component: SalaChatComponent,
+        data: { titulo: 'Chat' },
       },
     ],
   },

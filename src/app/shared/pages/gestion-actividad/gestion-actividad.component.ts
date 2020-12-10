@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Actions } from 'src/app/models/actions.model';
 import { Actividad } from 'src/app/models/actividad.model';
 import { EliminarRow } from 'src/app/models/eliminiar-row.interface';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
@@ -10,20 +11,27 @@ import { AutenticacionService } from 'src/app/services/autenticacion.service';
   templateUrl: './gestion-actividad.component.html',
   styleUrls: ['./gestion-actividad.component.scss'],
 })
-export class GestionActividadComponent implements OnInit {
+export class GestionActividadComponent implements OnInit, OnChanges {
   usuarioLogueado: UsuarioSesion = this.autenticacionService.getUser();
   actividades: Actividad[];
   createComponent = false;
   columnas = ['nombre', 'descripcion', 'actions'];
+  @Input() actionsHeader: Actions[] = [];
 
   constructor(
     private actividadService: ActividadService,
-    private autenticacionService: AutenticacionService,
-    ) {
-    if (this.usuarioLogueado.rol === 'Docente'){
+    private autenticacionService: AutenticacionService
+  ) {
+    if (this.usuarioLogueado.rol === 'Docente') {
       this.getActividadesByTipo();
-    }else{
+    } else {
       this.getActividades();
+    }
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    
+    if (changes.actionsHeader && changes.actionsHeader.currentValue) {
+      this.actionsHeader = changes.actionsHeader.currentValue;
     }
   }
 
@@ -51,12 +59,14 @@ export class GestionActividadComponent implements OnInit {
   }
 
   getActividadesByTipo() {
-    this.actividadService.getActividadesByTipo('Trabajo').subscribe((actividades) => {
-      this.actividades = actividades.map((actividad) => ({
-        ...actividad,
-        id: actividad.actividadId,
-      }));
-      this.createComponent = true;
-    });
+    this.actividadService
+      .getActividadesByTipo('Trabajo')
+      .subscribe((actividades) => {
+        this.actividades = actividades.map((actividad) => ({
+          ...actividad,
+          id: actividad.actividadId,
+        }));
+        this.createComponent = true;
+      });
   }
 }

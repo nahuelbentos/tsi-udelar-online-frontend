@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { ChatService } from 'src/app/services/chat.service';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private toast: ToastrService,
+    private chatService: ChatService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.loginForm = this.fb.group({
@@ -51,6 +53,11 @@ export class LoginComponent implements OnInit {
         const color = usuarioSesion.facultad.colorCodigo
           ? `#${usuarioSesion.facultad.colorCodigo}`
           : '#00a9f4';
+          
+        this.chatService.createUsuario(usuarioSesion)
+                .then((res) => console.log('Response de firebase: ', res))
+                .catch((err) => console.error('Error de firebase: ', err));
+
         this.dialogRef.close(usuarioSesion);
       });
   }

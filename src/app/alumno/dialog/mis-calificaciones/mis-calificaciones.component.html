@@ -1,10 +1,28 @@
-<h1> Calificación del curso</h1>
-<app-gestion-alumnocurso tipoSingular="alumnocurso" tipoPlural="Mis Calificaciones" [alumnosCurso]="alumnoCurso" [actions]="actions"
-[columnas]="columnas" [actionsHeader]="actionsHeader">
-</app-gestion-alumnocurso>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <h1 mat-dialog-title>Calificaciones</h1>
+
+      <mat-dialog-content class="mat-typography">
+
+        <h2> Del curso</h2>
+        <app-gestion-alumnocurso tipoSingular="alumnocurso" tipoPlural="Mis Calificaciones" [alumnosCurso]="alumnoCurso"
+          [actions]="actions" [columnas]="columnas" [actionsHeader]="actionsHeader">
+        </app-gestion-alumnocurso>
+
+        <br>
+        <br>
+        <mat-divider></mat-divider>
+        <br>
+        <br>
 
 
-<h1> Calificación de las actividades</h1>
-<app-gestion-custom [dataInput]="alumnoEvaluacion" [columns]="columnasActividades"   [actions]="actionsActividades" [actionsHeader]="actionsHeaderActividades"  >
-</app-gestion-custom>
+        <h2> De las actividades</h2>
+        <app-gestion-custom [dataInput]="alumnoEvaluacion" [columns]="columnasActividades"
+          [actions]="actionsActividades" [actionsHeader]="actionsHeaderActividades">
+        </app-gestion-custom>
 
+      </mat-dialog-content>
+    </div>
+  </div>
+</div>

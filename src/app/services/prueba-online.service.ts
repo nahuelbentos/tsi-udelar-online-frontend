@@ -16,7 +16,7 @@ export class PruebaOnlineService {
 
   updatePruebaOnline = (pruebaOnline: PruebaOnline) => this.http.put(`${this.baseUrl}/${pruebaOnline.pruebaOnlineId}`, pruebaOnline);
 
-  getPruebasOnline = () => this.http.get<PruebaOnline[]>(this.baseUrl);
+  getPruebasOnline = (usuarioId: string) => this.http.get<PruebaOnline[]>(`${this.baseUrl}/usuario/${usuarioId}`);
 
   getPruebaOnlineById = (pruebaOnlineId: string) => this.http.get<PruebaOnline>(`${this.baseUrl}/${pruebaOnlineId}`);
 
