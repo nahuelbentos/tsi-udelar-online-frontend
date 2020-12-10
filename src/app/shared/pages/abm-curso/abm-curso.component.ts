@@ -74,6 +74,12 @@ export class AbmCursoComponent implements OnInit {
   get salaVirtual() {
     return this.cursoForm.get('salaVirtual');
   }
+  get zoomId() {
+    return this.cursoForm.get('zoomId');
+  }
+  get zoomPassword() {
+    return this.cursoForm.get('zoomPassword');
+  }
   get templateCurso() {
     return this.cursoForm.get('templateCurso');
   }
@@ -150,6 +156,8 @@ export class AbmCursoComponent implements OnInit {
     this.modalidadCurso.setValue(curso.modalidadId);
     this.requiereMatriculacion.setValue(curso.requiereMatriculacion);
     this.salaVirtual.setValue(curso.salaVirtual);
+    this.zoomId.setValue(curso.zoomId);
+    this.zoomPassword.setValue(curso.zoomPassword);
     this.templateCurso.setValue(curso.templateCurso);
   }
 
@@ -160,6 +168,8 @@ export class AbmCursoComponent implements OnInit {
       modalidadCurso: ['', Validators.required],
       requiereMatriculacion: [''],
       salaVirtual: ['', Validators.required],
+      zoomId: [''],
+      zoomPassword: [''],
       templateCurso: [''],
     });
   }
@@ -188,6 +198,8 @@ export class AbmCursoComponent implements OnInit {
       ? this.requiereMatriculacion.value
       : false;
     curso.salaVirtual = this.salaVirtual.value;
+    curso.zoomId = this.zoomId.value;
+    curso.zoomPassword = this.zoomPassword.value;
     const templateCurso: TemplateCurso = this.templateCurso.value;
     curso.templateCursoId = templateCurso
       ? templateCurso.templateCursoId

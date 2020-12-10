@@ -83,6 +83,7 @@ import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/s
 import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
 import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
 import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
+import { ZoomComponent } from './components/zoom/zoom.component';
 import { GestionCalsesDictadasComponent } from './pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
 import { SeleccionarCursoByFacultadComponent } from './dialogs/seleccionar-curso-by-facultad/seleccionar-curso-by-facultad.component';
 import { SalaChatComponent } from './pages/sala-chat/sala-chat.component';
@@ -164,6 +165,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     VerCursoSeccionesComponent,
     SeleccionarTrabajoComponent,
     SeleccionarActividadComponent,
+    ZoomComponent,
     SeleccionarCursoByUsuarioComponent,
     GestionCalsesDictadasComponent,
     SeleccionarCursoByFacultadComponent,

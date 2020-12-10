@@ -13,6 +13,7 @@ import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
 import { CursoService } from 'src/app/services/curso.service';
+import { ZoomComponent } from 'src/app/shared/components/zoom/zoom.component';
 import { GestionAlumnocursoComponent } from 'src/app/shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { confirmacionUsuario } from 'src/app/utils/sweet-alert';
 import { MisCalificacionesComponent } from '../../dialog/mis-calificaciones/mis-calificaciones.component';
@@ -200,6 +201,16 @@ export class VistaCursoComponent implements OnInit {
     link.click();
   };
 
+  abrirZoom = () => {
+    localStorage.setItem("queryParams", JSON.stringify({    
+      meetingNumber: this.curso.zoomId , //'99644515024',
+      passWord: this.curso.zoomPassword , //'MEg5M3NoMWcrYXFFYkk1WEk2RGVIQT09',
+      // es el nombre del alumno o el email
+      userName: this.usuarioLogueado.email , //'Angular',
+   } ));
+
+    this.router.navigate(['/zoom'])
+  }
   verCalendarioActividades = () =>
     this.dialog.open(VistaCalendarioComponent, {
       height: 'auto',
