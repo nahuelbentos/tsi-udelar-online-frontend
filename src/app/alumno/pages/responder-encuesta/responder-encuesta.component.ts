@@ -57,7 +57,7 @@ export class ResponderEncuestaComponent implements OnInit {
     this.encuestaForm = this.fb.group({
       nombre: [''],
       descripcion: [''],
-      respuestas: ['', Validators.required],
+      respuestas: [''],
     });
   }
 
@@ -78,6 +78,9 @@ export class ResponderEncuestaComponent implements OnInit {
     const encuesta = new Actividad(this.nombre.value);
     encuesta.tipo = 'Encuesta';
     encuesta.descripcion = this.descripcion.value;
+    this.preguntas.forEach( pregunta => console.log(pregunta.value)
+    )
+    
     encuesta.preguntaLista = this.preguntas.map((preguntaControl) => preguntaControl.value.respuestaLista.push(this.encuestaForm.value.map((respuesta) => respuesta)) );
     encuesta.usuarioId = this.usuarioSesion.id;
     encuesta.actividadId = this.encuestaId;

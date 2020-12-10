@@ -36,6 +36,7 @@
     "flexboxgrid": "^6.3.1",
     "jwt-decode": "^3.1.2",
     "mat-file-upload": "^10.0.0",
+    "moment": "^2.29.1",
     "ng-block-ui": "^3.0.2",
     "ngx-filter-pipe": "^2.1.2",
     "ngx-toastr": "^13.1.0",

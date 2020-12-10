@@ -100,24 +100,29 @@ export class VistaCursoComponent implements OnInit {
           .subscribe((estaInscripto) => {
             if (estaInscripto) {
               // ir a la pantalla de evaluación
-             // this.accederAPruebaOnline(activdadTipo.actividad);
+             this.accederAPruebaOnline(activdadTipo.actividad);
             } else {
               confirmacionUsuario(
                 'Confirmacion de usuario',
-                `Está por inscribirase a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
+                `Está por inscribirse a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
               ).then((response) => {
                 if (response.isConfirmed) {
-                  this.alumnoService
-                    .inscribirseAEvaluacion(
-                      this.usuarioLogueado.id,
-                      activdadTipo.actividad.actividadId
-                    )
-                    .subscribe((res) => {
-                      this.toast.success(
-                        `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
-                      );
-                    //  this.accederAPruebaOnline(activdadTipo.actividad);
-                    });
+
+
+                  // this.alumnoService
+                  //   .inscribirseAEvaluacion(
+                  //     this.usuarioLogueado.id,
+                  //     activdadTipo.actividad.actividadId
+                  //   )
+                  //   .subscribe((res) => {
+                  //     this.toast.success(
+                  //       `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
+                  //     );
+                  //    this.accederAPruebaOnline(activdadTipo.actividad);
+                  //   });
+
+                     this.accederAPruebaOnline(activdadTipo.actividad);
+
                 }
               });
             }
@@ -134,7 +139,8 @@ export class VistaCursoComponent implements OnInit {
     const today = new Date();
     const fecha = new Date(pruebaOnline.fecha);
     const fechaFinalizada = new Date(pruebaOnline.fechaFinalizada);
-
+    console.log('prueba online:: ', pruebaOnline);
+    
     if (today >= fecha && today <= fechaFinalizada) {
       confirmacionUsuario(
         'Confirmacion de usuario',
@@ -142,6 +148,18 @@ export class VistaCursoComponent implements OnInit {
       ).then((response) => {
         if (response.isConfirmed) {
           // ir a prueba online
+          
+        this.router.navigate(
+          [
+            `/${this.autenticacionService
+              .getRolSesion()
+              .toLocaleLowerCase()}/evaluacion-individual`,
+          ],
+          {
+            queryParams: { id: pruebaOnline.actividadId },
+            relativeTo: this.route,
+          }
+        );
         }
       });
     } else if (today > fechaFinalizada) {

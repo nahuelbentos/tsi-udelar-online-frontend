@@ -24,5 +24,7 @@ export class AlumnoService {
 
   getEvaluaciones = (alumnoId: string) => this.http.get<AlumnoPruebaOnline[]>(`${this.baseUrl}/prueba-online/${alumnoId}`);
 
+  
+
 
 }

@@ -64,8 +64,7 @@ export class AbmPruebaonlineComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      this.pruebaOnlineId = param.id;
-
+      
       this.modo = param.modo;
       this.pruebaOnlineId = param.id;
 
