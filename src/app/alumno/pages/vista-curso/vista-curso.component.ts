@@ -183,7 +183,6 @@ export class VistaCursoComponent implements OnInit {
     link.click();
   };
 
-<<<<<<< HEAD
   abrirZoom = () => {
     localStorage.setItem("queryParams", JSON.stringify({    
       meetingNumber: this.curso.zoomId , //'99644515024',
@@ -194,12 +193,10 @@ export class VistaCursoComponent implements OnInit {
 
     this.router.navigate(['/zoom'])
   }
-=======
   verCalendarioActividades = () =>
     this.dialog.open(VistaCalendarioComponent, {
       height: 'auto',
       width: '100%',
       data: { cursoId: this.cursoId },
     });
->>>>>>> e457e36008b065ed24325782a88edb9adb3c7fd1
 }

@@ -83,16 +83,12 @@ import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/s
 import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
 import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
 import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
-<<<<<<< HEAD
 import { ZoomComponent } from './components/zoom/zoom.component';
-import { HttpClientModule } from '@angular/common/http';
-=======
 import { GestionCalsesDictadasComponent } from './pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
 import { SeleccionarCursoByFacultadComponent } from './dialogs/seleccionar-curso-by-facultad/seleccionar-curso-by-facultad.component';
 import { SalaChatComponent } from './pages/sala-chat/sala-chat.component';
  
 import { FilterPipeModule } from 'ngx-filter-pipe';
->>>>>>> e457e36008b065ed24325782a88edb9adb3c7fd1
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -169,14 +165,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     VerCursoSeccionesComponent,
     SeleccionarTrabajoComponent,
     SeleccionarActividadComponent,
-<<<<<<< HEAD
     ZoomComponent,
-=======
     SeleccionarCursoByUsuarioComponent,
     GestionCalsesDictadasComponent,
     SeleccionarCursoByFacultadComponent,
     SalaChatComponent,
->>>>>>> e457e36008b065ed24325782a88edb9adb3c7fd1
   ],
   exports: [
     HeaderComponent,
