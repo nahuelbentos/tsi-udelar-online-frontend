@@ -16,9 +16,7 @@ import { Foro } from 'src/app/models/foro.model';
   styleUrls: ['./abm-temaforo.component.scss'],
 })
 export class AbmTemaForoComponent implements OnInit {
-  usuarioLogueado: UsuarioSesion = JSON.parse(
-    localStorage.getItem('usuarioSesion')
-  );
+  usuarioLogueado: UsuarioSesion = this.auth.getUser();
   temaForoForm: FormGroup;
   temaForoId: string;
   foroId: string;
@@ -88,11 +86,12 @@ export class AbmTemaForoComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.router.navigate([`/${this.usuarioSesion.tipo.toLocaleLowerCase()}/ver-foro`],
-    {
-      queryParams: {id: this.foroId },
-      relativeTo: this.route,
-    });
+    this.location.back();
+    // this.router.navigate([`/${this.usuarioSesion.tipo.toLocaleLowerCase()}/ver-foro`],
+    // {
+    //   queryParams: {id: this.foroId },
+    //   relativeTo: this.route,
+    // });
   }
 
   onUploadClicked(event) {
@@ -140,43 +139,20 @@ export class AbmTemaForoComponent implements OnInit {
 
     temaforo.asunto = this.asunto.value;
     temaforo.mensaje = this.mensaje.value;
-    if (this.archivoData) { temaforo.archivoData = this.archivoData.split(',')[1]; }
+    if (this.archivoData) {
+      temaforo.archivoData = this.archivoData.split(',')[1];
+    }
     temaforo.archivoNombre = this.archivoNombre;
     temaforo.archivoExtension = this.archivoExtension;
     temaforo.emisorId = this.usuarioLogueado.id;
     temaforo.subscripcionADiscusion = this.subrscripcionADiscusion.value;
+    temaforo.foroId = this.foroId;
+ 
 
-    const foro = new Foro();
+    this.temaForoService.createTemaForo(temaforo).subscribe( res => this.location.back());
+ 
 
-    foro.foroId = this.foroId;
-    foro.temaForoLista = [temaforo]; //FIXME
-    foro.descripcion = this.descripcionForo;
-    foro.titulo = this.tituloForo;
-
-    this.foroService.updateForo(foro).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se creó el temaforo ${this.asunto.value} exitosamente.`
-      ).then();
-
-      this.router.navigate([`/${this.usuarioSesion.tipo.toLocaleLowerCase()}/ver-foro`],
-      {
-        queryParams: {id: this.foroId },
-        relativeTo: this.route,
-      });
-    });
   }
 
-  editarTemaForo(temaForo: TemaForo) {
-    this.temaForoService.updateTemaForo(temaForo).subscribe(() => {
-      mensajeConfirmacion(
-        'Excelente!',
-        `Se editó el tema foro ${this.asunto.value} exitosamente.`
-      ).then();
-      this.router.navigate([
-        `/${this.usuarioLogueado.tipo.toLocaleLowerCase()}/temaforo`,
-      ]);
-    });
-  }
 
 }

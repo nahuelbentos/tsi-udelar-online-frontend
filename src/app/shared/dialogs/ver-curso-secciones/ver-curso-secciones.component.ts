@@ -3,11 +3,13 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { Actions } from 'src/app/models/actions.model';
 import { Actividad } from 'src/app/models/actividad.model';
+import { Foro } from 'src/app/models/foro.model';
 import { Seccion } from 'src/app/models/seccion.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { CursoSeccionService } from 'src/app/services/curso-seccion.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { SeleccionarActividadComponent } from '../seleccionar-actividad/seleccionar-actividad.component';
+import { SeleccionarForoComponent } from '../seleccionar-foro/seleccionar-foro.component';
 
 @Component({
   selector: 'app-ver-curso-secciones',
@@ -46,6 +48,12 @@ export class VerCursoSeccionesComponent implements OnInit {
         backgroundColor: '#d50000',
         icon: 'add_task',
       },
+      {
+        tooltip: `Agregar foro`,
+        callback: this.addForo,
+        backgroundColor: '#43a047',
+        icon: 'forum',
+      },
     ];
   }
 
@@ -64,6 +72,28 @@ export class VerCursoSeccionesComponent implements OnInit {
             mensajeConfirmacion(
               'Excelente!',
               `Se ha agregado la actividad al curso ${this.cursoNombre} en la sección ${seccion.nombre} ,exitosamente`
+            )
+          );
+      }
+    });
+
+  };
+
+  addForo = (seccion: Seccion) => {
+    const dialogRef = this.dialog.open( SeleccionarForoComponent, {
+      height: 'auto',
+      width: '700px',
+    });
+
+    dialogRef.afterClosed().subscribe( (foro: Foro) => {
+
+      if (foro) { 
+        this.cursoSeccionService
+          .addForo(this.cursoId, seccion.seccionId, foro.foroId)
+          .subscribe((res) =>
+            mensajeConfirmacion(
+              'Excelente!',
+              `Se ha agregado el foro al curso ${this.cursoNombre} en la sección ${seccion.nombre} ,exitosamente`
             )
           );
       }

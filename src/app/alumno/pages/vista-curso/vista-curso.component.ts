@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivdadTipo } from 'src/app/models/actividad-tipo';
 import { Actividad } from 'src/app/models/actividad.model';
 import { Curso } from 'src/app/models/curso.model';
+import { Foro } from 'src/app/models/foro.model';
 import { Material } from 'src/app/models/material.model';
 import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 import { AlumnoService } from 'src/app/services/alumno.service';
@@ -109,38 +110,41 @@ export class VistaCursoComponent implements OnInit {
   }
 
   evaluarInscripcion(realizoEvaluacion: boolean, activdadTipo: ActivdadTipo) {
-    realizoEvaluacion 
-    ? errorMensaje(  'Evaluación realizada', 'Ya realizaste esta evaluación, verifica tus calificaciones.').then() 
-    : this.alumnoService
-      .estaInscriptoEvaluacion(
-        this.usuarioLogueado.id,
-        activdadTipo.actividad.actividadId
-      )
-      .subscribe((estaInscripto) => {
-        if (estaInscripto) {
-          // ir a la pantalla de evaluación
-          this.accederAPruebaOnline(activdadTipo.actividad);
-        } else {
-          confirmacionUsuario(
-            'Confirmacion de usuario',
-            `Está por inscribirse a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
-          ).then((response) => {
-            if (response.isConfirmed) {
-              this.alumnoService
-                .inscribirseAEvaluacion(
-                  this.usuarioLogueado.id,
-                  activdadTipo.actividad.actividadId
-                )
-                .subscribe((res) => {
-                  this.toast.success(
-                    `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
-                  );
-                  this.accederAPruebaOnline(activdadTipo.actividad);
-                });
+    realizoEvaluacion
+      ? errorMensaje(
+          'Evaluación realizada',
+          'Ya realizaste esta evaluación, verifica tus calificaciones.'
+        ).then()
+      : this.alumnoService
+          .estaInscriptoEvaluacion(
+            this.usuarioLogueado.id,
+            activdadTipo.actividad.actividadId
+          )
+          .subscribe((estaInscripto) => {
+            if (estaInscripto) {
+              // ir a la pantalla de evaluación
+              this.accederAPruebaOnline(activdadTipo.actividad);
+            } else {
+              confirmacionUsuario(
+                'Confirmacion de usuario',
+                `Está por inscribirse a la evaluación ${activdadTipo.actividad.nombre}, desea continuar?`
+              ).then((response) => {
+                if (response.isConfirmed) {
+                  this.alumnoService
+                    .inscribirseAEvaluacion(
+                      this.usuarioLogueado.id,
+                      activdadTipo.actividad.actividadId
+                    )
+                    .subscribe((res) => {
+                      this.toast.success(
+                        `Se inscribió a la evaluación ${activdadTipo.actividad.nombre} correctamente! .`
+                      );
+                      this.accederAPruebaOnline(activdadTipo.actividad);
+                    });
+                }
+              });
             }
           });
-        }
-      });
   }
 
   accederAPruebaOnline = (pruebaOnline: Actividad) => {
@@ -209,22 +213,36 @@ export class VistaCursoComponent implements OnInit {
   };
 
   abrirZoom = () => {
-    localStorage.setItem(
-      'queryParams',
-      JSON.stringify({
-        meetingNumber: this.curso.zoomId, //'99644515024',
-        passWord: this.curso.zoomPassword, //'MEg5M3NoMWcrYXFFYkk1WEk2RGVIQT09',
-        // es el nombre del alumno o el email
-        userName: this.usuarioLogueado.email, //'Angular',
-      })
-    );
+    if (this.curso.zoomId && this.curso.zoomPassword) {
+      localStorage.setItem(
+        'queryParams',
+        JSON.stringify({
+          meetingNumber: this.curso.zoomId, //'99644515024',
+          passWord: this.curso.zoomPassword, //'MEg5M3NoMWcrYXFFYkk1WEk2RGVIQT09',
+          // es el nombre del alumno o el email
+          userName: this.usuarioLogueado.email, //'Angular',
+        })
+      );
 
-    this.router.navigate(['/zoom']);
+      this.router.navigate(['/zoom']);
+    } else {
+      errorMensaje(
+        'Error',
+        'El curso no tiene sala de zoom vinculada, prueba con la sala virtual!'
+      ).then();
+    }
   };
+
   verCalendarioActividades = () =>
     this.dialog.open(VistaCalendarioComponent, {
       height: 'auto',
       width: '100%',
       data: { cursoId: this.cursoId },
+    });
+
+  gotToForo = (foro: Foro) =>
+    this.router.navigate(['/alumno/ver-foro'], {
+      queryParams: { id: foro.foroId },
+      relativeTo: this.route,
     });
 }

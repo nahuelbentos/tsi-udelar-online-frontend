@@ -26,6 +26,7 @@ export class MensajetemaService {
   updateMensajeTema = (mensajeTema: MensajeTema) =>
   this.http.put(`${this.baseUrl}/${mensajeTema.mensajeId}`, mensajeTema)
 
-  getMensajeTemaById = (mensajeId: string) =>
-    this.http.get<MensajeTema>(`${this.baseUrl}/${mensajeId}`)
+  getMensajeTemaById = (mensajeId: string) => this.http.get<MensajeTema>(`${this.baseUrl}/${mensajeId}`)
+  
+  getMensajeTemaByTemaForo = (id: string) => this.http.get<MensajeTema[]>(`${this.baseUrl}/temaforo/${id}`)
 }

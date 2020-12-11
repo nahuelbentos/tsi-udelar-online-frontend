@@ -1,0 +1,22 @@
+<mat-card *ngIf="respuesta"> 
+  <mat-card-header>
+    <mat-card-title> {{respuesta.asunto}} </mat-card-title>
+    <mat-card-subtitle>
+      de  {{respuesta.emisor.nombres}} {{respuesta.emisor.apellidos}} - {{ fechaString }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content> 
+    <p>
+
+      {{respuesta.contenido}}
+
+      
+    </p>
+  
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="responder()" >Responder!</button>
+    <button mat-stroked-button color="warn" (click)="bloquear()"  *ngIf="verBloquear" >Bloquear mensaje</button>
+  </mat-card-actions>
+</mat-card>

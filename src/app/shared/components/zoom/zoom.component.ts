@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { ZoomMtg } from '@zoomus/websdk';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareJssdk();
@@ -10,17 +11,17 @@ ZoomMtg.prepareJssdk();
 @Component({
   selector: 'app-zoom',
   templateUrl: './zoom.component.html',
-  styleUrls: ['./zoom.component.scss']
+  styleUrls: ['./zoom.component.scss'],
 })
 export class ZoomComponent implements OnInit {
   // esto al environment y que sea zoom: {signatureEndpoint = 'https://signaturezoom.herokuapp.com/', apiKey = '2qUjpUXKSwSjdEgKUzEZLA',  leaveUrl = 'http://localhost:4200' }
-  signatureEndpoint = 'https://signaturezoom.herokuapp.com/';
-  apiKey = '2qUjpUXKSwSjdEgKUzEZLA';
+  signatureEndpoint = environment.zoom.signatureEndpoint; // 'https://signaturezoom.herokuapp.com/';
+  apiKey = environment.zoom.apiKey; // '2qUjpUXKSwSjdEgKUzEZLA';
   //apiSecret = 'ULb009E2zBN5ASyQCXYmGlsOjF9qWvfOcJNg'
   //signatureEndpoint =''
   //apiKey = 'OSKxD3BeKWL0s7ojBV8GGJC9RWsD6Hsiq7Yn'
   role = 0;
-  leaveUrl = 'http://localhost:4200';
+  leaveUrl = environment.zoom.leaveUrl; // 'http://localhost:4200';
 
   // Parametros
   // se guardan en el curso
@@ -30,17 +31,19 @@ export class ZoomComponent implements OnInit {
   userName = 'Angular';
   userEmail = '';
   //https://zoom.us/j/98050033235?pwd=VVBmeVRvMnJON1h0eXlXM1preEJNUT09
-  constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document, private route: ActivatedRoute,) {}
+  constructor(
+    public httpClient: HttpClient,
+    @Inject(DOCUMENT) document,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    const param = JSON.parse( localStorage.getItem('queryParams'));
+    const param = JSON.parse(localStorage.getItem('queryParams'));
     localStorage.removeItem('queryParams');
-     
- 
+
     this.meetingNumber = param.meetingNumber;
     this.passWord = param.passWord;
     this.userName = param.userName;
-  
   }
 
   getSignature() {
