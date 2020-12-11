@@ -16,6 +16,7 @@ import { VistaCalendarioComponent } from './pages/vista-calendario/vista-calenda
 import { CalendarioComponent } from '../shared/components/calendario/calendario.component';
 import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-calificaciones.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { EvaluacionIndividualComponent } from './pages/evaluacion-individual/evaluacion-individual.component';
 
 
 
@@ -30,6 +31,7 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     ResponderEncuestaComponent,
     VistaCalendarioComponent,
     MisCalificacionesComponent,
+    EvaluacionIndividualComponent,
   ],
   imports: [
     CommonModule,

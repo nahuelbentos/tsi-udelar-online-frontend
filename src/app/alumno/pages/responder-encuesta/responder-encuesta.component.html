@@ -34,7 +34,7 @@
                 <div class="box">
                   <mat-form-field class="full-width"*ngFor="let pregunta of preguntas; let i=index" >
                     <mat-label>{{pregunta.value.texto}}</mat-label>
-                    <input matInput [formControl]="respuestas">
+                    <input matInput [formControl]="pregunta">
                   </mat-form-field>
                 </div>
               </div>

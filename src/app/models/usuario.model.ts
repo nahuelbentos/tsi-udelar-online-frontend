@@ -20,6 +20,7 @@ export class Usuario {
     public id?: string,
     public mensajeVisto?: boolean,
     public mensajeTimestamp?: Date,
+    public urlFotoPerfil?: Date,
   ) {}
 }
 

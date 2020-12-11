@@ -15,6 +15,8 @@ import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.
 import { ZoomComponent } from '../shared/components/zoom/zoom.component';
 import { PerfilUsuarioComponent } from '../shared/pages/perfil-usuario/perfil-usuario.component';
 import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
+import { EvaluacionIndividualComponent } from './pages/evaluacion-individual/evaluacion-individual.component';
+import { VerTemaForoComponent } from '../shared/pages/ver-tema-foro/ver-tema-foro.component';
 
 const routes: Routes = [
   {
@@ -65,6 +67,11 @@ const routes: Routes = [
         data: { titulo: 'Ver Foro' },
       },
       {
+        path: 'ver-tema-foro',
+        component: VerTemaForoComponent,
+        data: { titulo: 'Ver Tema Foro' },
+      },
+      {
         path: 'abm-temaForo',
         component: AbmTemaForoComponent,
         data: { titulo: 'Añadir un nuevo tema de debate' },
@@ -78,11 +85,16 @@ const routes: Routes = [
         path: 'perfil',
         component: PerfilUsuarioComponent,
         data: { titulo: 'Perfil' },
-      }, 
+      },
       {
         path: 'chat',
         component: SalaChatComponent,
         data: { titulo: 'Chat' },
+      },
+      {
+        path: 'evaluacion-individual',
+        component: EvaluacionIndividualComponent,
+        data: { titulo: 'Evaluación individual' },
       },
     ],
   },

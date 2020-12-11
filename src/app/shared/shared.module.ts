@@ -80,17 +80,22 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { VerForoComponent } from './ver-foro/ver-foro.component';
 import { SeleccionarActividadComponent } from './dialogs/seleccionar-actividad/seleccionar-actividad.component';
-import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
 import { SeleccionarTrabajoComponent } from './dialogs/seleccionar-trabajo/seleccionar-trabajo.component';
 import { VerCursoSeccionesComponent } from './dialogs/ver-curso-secciones/ver-curso-secciones.component';
 import { ZoomComponent } from './components/zoom/zoom.component';
-import { GestionCalsesDictadasComponent } from './pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
-import { SeleccionarCursoByFacultadComponent } from './dialogs/seleccionar-curso-by-facultad/seleccionar-curso-by-facultad.component';
-import { SalaChatComponent } from './pages/sala-chat/sala-chat.component';
  
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { SeleccionarPruebasOnlineComponent } from './dialogs/seleccionar-pruebas-online/seleccionar-pruebas-online.component';
 import { GestionAlumnoPruebaonlineComponent } from './pages/gestion-alumno-pruebaonline/gestion-alumno-pruebaonline.component';
+import { VerTemaForoComponent } from './pages/ver-tema-foro/ver-tema-foro.component';
+import { SeccionTemaForoComponent } from './components/seccion-tema-foro/seccion-tema-foro.component';
+import { SeccionRespuestaTemaForoComponent } from './components/seccion-respuesta-tema-foro/seccion-respuesta-tema-foro.component';
+import { ResponderTemaForoComponent } from './components/responder-tema-foro/responder-tema-foro.component';
+import { SeleccionarForoComponent } from './dialogs/seleccionar-foro/seleccionar-foro.component';
+import { SeleccionarCursoByFacultadComponent } from './dialogs/seleccionar-curso-by-facultad/seleccionar-curso-by-facultad.component';
+import { SeleccionarCursoByUsuarioComponent } from './dialogs/seleccionar-curso-by-usuario/seleccionar-curso-by-usuario.component';
+import { GestionCalsesDictadasComponent } from './pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
+import { SalaChatComponent } from './pages/sala-chat/sala-chat.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -174,6 +179,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SalaChatComponent,
     SeleccionarPruebasOnlineComponent,
     GestionAlumnoPruebaonlineComponent,
+    VerTemaForoComponent,
+    SeccionTemaForoComponent,
+    SeccionRespuestaTemaForoComponent,
+    ResponderTemaForoComponent,
+    SeleccionarForoComponent,
   ],
   exports: [
     HeaderComponent,

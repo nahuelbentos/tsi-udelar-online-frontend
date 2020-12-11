@@ -11,9 +11,18 @@ import { MaterialModule } from '../material/material.module';
 import { GestionarCursosComponent } from './pages/gestionar-cursos/gestionar-cursos.component';
 import { PublicarComunicadoComponent } from './pages/publicar-comunicado/publicar-comunicado.component';
 import { EncuestasComponent } from './pages/encuestas/encuestas.component';
+import { GraficaCursoComponent } from './components/grafica-curso/grafica-curso.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [HomeComponent, NavAdministradorComponent, GestionarCursosComponent, EncuestasComponent, PublicarComunicadoComponent],
+  declarations: [
+    HomeComponent,
+    NavAdministradorComponent,
+    GestionarCursosComponent,
+    EncuestasComponent,
+    PublicarComunicadoComponent,
+    GraficaCursoComponent,
+  ],
   imports: [
     CommonModule,
     AdministradorRoutingModule,
@@ -21,7 +30,8 @@ import { EncuestasComponent } from './pages/encuestas/encuestas.component';
     ReactiveFormsModule,
     LayoutModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    ChartsModule,
   ],
 })
 export class AdministradorModule {}

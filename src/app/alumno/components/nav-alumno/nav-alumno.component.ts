@@ -26,7 +26,8 @@ export class NavAlumnoComponent implements OnInit {
       link: 'chat',
       titulo: 'Chat',
     },
-  ]
+
+  ];
   constructor() {}
 
   ngOnInit(): void {}

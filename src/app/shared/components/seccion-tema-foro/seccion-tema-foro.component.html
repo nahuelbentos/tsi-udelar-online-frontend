@@ -1,0 +1,21 @@
+<mat-card *ngIf="temaForo"> 
+  <mat-card-header>
+    <mat-card-title> {{temaForo.asunto}}  </mat-card-title>
+    <mat-card-subtitle>
+      de  {{temaForo.emisor}} - {{fechaString}} 
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content> 
+    <p>
+
+      {{temaForo.mensaje}}
+
+      
+    </p>
+  
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="responder()" >Responder!</button>    
+  </mat-card-actions>
+</mat-card>

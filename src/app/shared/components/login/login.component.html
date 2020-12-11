@@ -4,7 +4,7 @@
 
     <mat-card class="box example-card">
       <mat-card-header style="margin-bottom: 10px;">
-        <mat-card-title>Iniciar Sesión!</mat-card-title>
+        <mat-card-title>Iniciar Sesión</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
@@ -18,20 +18,20 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width"> 
-          
+        <mat-form-field class="example-full-width">
+
             <input matInput type="password" placeholder="Contraseña" formControlName="password">
             <mat-error *ngIf="password.hasError('required')">
               Password es <strong>requerido</strong>.
             </mat-error>
-           
+
         </mat-form-field>
       </mat-card-content>
 
       <button mat-stroked-button color="accent" class="btn-block" (click)="login()">Iniciar sesión
       </button>
-        <a mat-button  class="btn-register" (click)="register()" >  <small> Registrarse! </small> </a>
-        <a mat-button  class="btn-register" (click)="forgotPassword()" >  <small> Olvide mi contraseña! </small> </a>
+        <a mat-button  class="btn-register" (click)="register()" >  <small> Registrarse </small> </a>
+        <a mat-button  class="btn-register" (click)="forgotPassword()" >  <small> Olvide mi contraseña </small> </a>
 
     </mat-card>
 

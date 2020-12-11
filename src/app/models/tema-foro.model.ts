@@ -1,3 +1,4 @@
+import { MensajeTema } from './mensajeTema';
 import { Usuario } from './usuario.model';
 
 export class TemaForo {
@@ -10,6 +11,9 @@ export class TemaForo {
     public archivoData?: string,
     public archivoNombre?: string,
     public archivoExtension?: string,
-    public subscripcionADiscusion?: boolean
-  ) { }
+    public subscripcionADiscusion?: boolean,
+    public fechaCreado?: Date,
+    public foroId?: string,
+    public listaMensajeTema?: MensajeTema[],
+  ) {}
 }

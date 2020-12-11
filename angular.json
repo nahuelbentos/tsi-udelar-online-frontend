@@ -39,6 +39,9 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+                "lodash"
             ]
           },
           "configurations": {
@@ -61,7 +64,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",

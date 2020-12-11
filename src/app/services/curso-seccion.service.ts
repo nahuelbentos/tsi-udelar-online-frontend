@@ -27,4 +27,7 @@ export class CursoSeccionService {
 
   addActividad = (cursoId: string, seccionId: string, actividadId: string ) =>
     this.http.post(`${this.baseUrl}/actividad`, {cursoId, seccionId, actividadId})
+
+  addForo = (cursoId: string, seccionId: string, foroId: string ) =>
+    this.http.post(`${this.baseUrl}/foro`, {cursoId, seccionId, foroId})
 }
