@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoUsuario } from 'src/app/models/tipo-usuario.enum';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  tipo: string;
+  tipoUsuario: TipoUsuario = TipoUsuario.Docente;
+  actionsHeader = [{}];
+  actions = null;
+  constructor() {}
 
   ngOnInit(): void {
+    this.actions = [{}];
   }
 
 }

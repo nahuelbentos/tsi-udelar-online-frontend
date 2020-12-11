@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Actividad } from 'src/app/models/actividad.model';
+import { Actividad, Pregunta } from 'src/app/models/actividad.model';
 import { ActividadService } from 'src/app/services/actividad.service';
 import { mensajeConfirmacion } from 'src/app/utils/sweet-alert';
 import { Location } from '@angular/common';
@@ -15,7 +15,8 @@ import { AutenticacionService } from 'src/app/services/autenticacion.service';
 export class ResponderEncuestaComponent implements OnInit {
   encuestaForm: FormGroup;
   encuestaId: string;
-  preguntas: FormControl[] = [];
+  respuestas: FormGroup[] = [];
+  preguntas: Pregunta[] = [];
   modo: string;
   usuarioSesion = this.auth.getUser();
   get nombre() {
@@ -51,14 +52,29 @@ export class ResponderEncuestaComponent implements OnInit {
   private setValuesOnForm(actividad: Actividad) {
     this.nombre.setValue(actividad.nombre);
     this.descripcion.setValue(actividad.descripcion);
-    actividad.preguntaLista.forEach((pregunta) => this.preguntas.push(new FormControl(pregunta)));
+    actividad.preguntaLista.forEach((pregunta) =>{
+      const group = this.fb.group({
+        [pregunta.preguntaId]: [''],
+      });
+      console.log('group:: ', group);
+
+      this.respuestas.push(group);
+    }
+
+    );
+    this.preguntas = actividad.preguntaLista.map( pregunta => pregunta);
   }
   private buildForm() {
     this.encuestaForm = this.fb.group({
       nombre: [''],
       descripcion: [''],
-      respuestas: [''],
     });
+  }
+
+  getPregunta(respuesta: FormControl) {
+    const id = Object.keys(respuesta.value)[0];
+     return this.preguntas.find( pregunta => pregunta.preguntaId === id).texto;
+
   }
 
   onNoClick(): void {
@@ -70,18 +86,17 @@ export class ResponderEncuestaComponent implements OnInit {
 
   guardarEncuesta(event: Event) {
     event.preventDefault();
+    console.log('invalidL ', this.encuestaForm.invalid);
 
-    if (this.encuestaForm.invalid) {
-      return;
-    }
+
 
     const encuesta = new Actividad(this.nombre.value);
     encuesta.tipo = 'Encuesta';
     encuesta.descripcion = this.descripcion.value;
-    this.preguntas.forEach( pregunta => console.log(pregunta.value)
-    )
-    
-    encuesta.preguntaLista = this.preguntas.map((preguntaControl) => preguntaControl.value.respuestaLista.push(this.encuestaForm.value.map((respuesta) => respuesta)) );
+    // this.preguntas.forEach( pregunta => console.log(pregunta.value)
+    // )
+
+    // encuesta.preguntaLista = this.preguntas.map((preguntaControl) => preguntaControl.value.respuestaLista.push(this.encuestaForm.value.map((respuesta) => respuesta)) );
     encuesta.usuarioId = this.usuarioSesion.id;
     encuesta.actividadId = this.encuestaId;
     }

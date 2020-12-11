@@ -32,9 +32,9 @@
             <div class="row">
               <div class="col-xs-12">
                 <div class="box">
-                  <mat-form-field class="full-width"*ngFor="let pregunta of preguntas; let i=index" >
-                    <mat-label>{{pregunta.value.texto}}</mat-label>
-                    <input matInput [formControl]="pregunta">
+                  <mat-form-field class="full-width"*ngFor="let respuesta of respuestas; let i=index" >
+                    <mat-label>{{getPregunta(respuesta)}}</mat-label>
+                    <input matInput [formControlName]="respuesta">
                   </mat-form-field>
                 </div>
               </div>

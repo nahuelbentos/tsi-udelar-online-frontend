@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actions } from 'src/app/models/actions.model';
 import { AlumnoCurso } from 'src/app/models/alumno-curso.model';
@@ -17,7 +17,7 @@ import { SeleccionarCursoComponent } from 'src/app/shared/dialogs/seleccionar-cu
   templateUrl: './administrar-calificaciones.component.html',
   styleUrls: ['./administrar-calificaciones.component.scss'],
 })
-export class AdministrarCalificacionesComponent implements OnInit {
+export class AdministrarCalificacionesComponent implements OnInit, OnChanges {
   usuarioLogueado = this.auth.getUser();
   tipo = TipoUsuario.Alumno;
   cursos: Curso[] = [];
@@ -26,8 +26,7 @@ export class AdministrarCalificacionesComponent implements OnInit {
   verAlumnos = false;
 
   alumnos: AlumnoCurso[];
-
-  actions: Actions[] = [];
+  @Input() actions: Actions[] = [];
   actionsHeader: Actions[] = [{}];
   columnas = ['alumno', 'curso', 'feedback', 'calificacion', 'actions'];
 
@@ -58,6 +57,14 @@ export class AdministrarCalificacionesComponent implements OnInit {
         callback: this.editarCalificacion,
       },
     ];
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    if (changes.actions && changes.actions.currentValue) {
+      this.actions = changes.actions.currentValue
+    }
   }
 
   getItem(curso: Curso) {

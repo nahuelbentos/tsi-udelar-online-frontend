@@ -21,7 +21,20 @@ export class Actividad {
     public actividadId?: string,
     public cursoId?: string,
     public curso?: Curso,
-    public preguntaLista?: any[],
+    public preguntaLista?: Pregunta[],
     public usuarioId?: string,
   ) {}
 }
+
+ export class Pregunta{
+   constructor(
+
+    public preguntaId: string ,
+    public texto: string ,
+    public encuesta: Actividad ,
+    public encuestaId: string ,
+    public respuestaLista: string ,
+   ){
+
+   }
+ }
