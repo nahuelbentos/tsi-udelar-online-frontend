@@ -25,3 +25,7 @@ export class Actividad {
     public usuarioId?: string,
   ) {}
 }
+
+
+ 
+ 
