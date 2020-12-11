@@ -89,6 +89,11 @@ import { SeleccionarCursoByFacultadComponent } from './dialogs/seleccionar-curso
 import { SalaChatComponent } from './pages/sala-chat/sala-chat.component';
  
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { VerTemaForoComponent } from './pages/ver-tema-foro/ver-tema-foro.component';
+import { SeccionTemaForoComponent } from './components/seccion-tema-foro/seccion-tema-foro.component';
+import { SeccionRespuestaTemaForoComponent } from './components/seccion-respuesta-tema-foro/seccion-respuesta-tema-foro.component';
+import { ResponderTemaForoComponent } from './components/responder-tema-foro/responder-tema-foro.component';
+import { SeleccionarForoComponent } from './dialogs/seleccionar-foro/seleccionar-foro.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -170,6 +175,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     GestionCalsesDictadasComponent,
     SeleccionarCursoByFacultadComponent,
     SalaChatComponent,
+    VerTemaForoComponent,
+    SeccionTemaForoComponent,
+    SeccionRespuestaTemaForoComponent,
+    ResponderTemaForoComponent,
+    SeleccionarForoComponent,
   ],
   exports: [
     HeaderComponent,

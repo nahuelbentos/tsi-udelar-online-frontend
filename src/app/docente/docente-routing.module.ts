@@ -24,6 +24,9 @@ import { GestionCalsesDictadasComponent } from '../shared/pages/gestion-calses-d
 import { CalendarioActividadesComponent } from './pages/calendario-actividades/calendario-actividades.component';
 import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
 import { HomeComponent } from '../docente/pages/home/home.component';
+import { GestionForoComponent } from '../shared/pages/gestion-foro/gestion-foro.component';
+import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
+import { VerTemaForoComponent } from '../shared/pages/ver-tema-foro/ver-tema-foro.component';
 
 
 const routes: Routes = [
@@ -106,7 +109,22 @@ const routes: Routes = [
         data: { titulo: 'ABM de materiales' },
       },
       {
-        path: 'ver-foro',
+        path: 'ver-tema-foro',
+        component: VerTemaForoComponent,
+        data: { titulo: 'Ver Tema Foro' },
+      },
+      {
+        path: 'administrar-foros',
+        component: GestionForoComponent,
+        data: { titulo: 'Administrar Foros' },
+      },
+      {
+        path: 'administrar-foros/abm-foro',
+        component: AbmForoComponent,
+        data: { titulo: 'ABM Foros' },
+      },
+      {
+        path: 'administrar-foros/ver-foro',
         component: VerForoComponent,
         data: { titulo: 'Ver Foro' },
       },

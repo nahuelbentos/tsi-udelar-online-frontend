@@ -119,14 +119,16 @@
             </mat-expansion-panel-header>
 
             <section *ngIf="cs.foroLista">
-              <div class="row" *ngFor="let foro of cs.foroLista">
-                <div class="col-xs">
-                  <div class="box">
+              
 
-                    {{ foro | json}}
-                  </div>
-                </div>
-              </div>
+                    <mat-selection-list [multiple]="false">
+                      <mat-list-option *ngFor="let foro of cs.foroLista" [value]="foro"
+                        (click)="gotToForo(foro)">
+                        <mat-icon mat-list-icon>forum</mat-icon>
+                        Foro: {{foro.titulo}} - {{foro.descripcion}}
+                      </mat-list-option>
+                    </mat-selection-list>
+ 
             </section>
  
 
