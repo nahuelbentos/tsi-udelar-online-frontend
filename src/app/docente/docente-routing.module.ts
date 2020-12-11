@@ -160,8 +160,7 @@ const routes: Routes = [
         path: 'informes',
         component: HomeComponent,
         data: { titulo: 'Informes' },
-      },
-      },
+      }, 
       {
         path: 'administrar-notas-curso-pruebasonline',
         component: AdministrarPruebasOnlineComponent,

@@ -17,6 +17,7 @@ import { CalendarioComponent } from '../shared/components/calendario/calendario.
 import { MisCalificacionesComponent } from './dialog/mis-calificaciones/mis-calificaciones.component';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { EvaluacionIndividualComponent } from './pages/evaluacion-individual/evaluacion-individual.component';
+import { VerComunicadosComponent } from './dialog/ver-comunicados/ver-comunicados.component';
 
 
 
@@ -32,6 +33,7 @@ import { EvaluacionIndividualComponent } from './pages/evaluacion-individual/eva
     VistaCalendarioComponent,
     MisCalificacionesComponent,
     EvaluacionIndividualComponent,
+    VerComunicadosComponent,
   ],
   imports: [
     CommonModule,

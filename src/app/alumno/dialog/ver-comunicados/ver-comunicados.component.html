@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-header>
+  <mat-toolbar color="primary">
+          <span>Comunicados del curso: {{curso.nombre}} {{curso.descripcion}} </span>
+        </mat-toolbar>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-gestion-custom [dataInput]="comunicados" [columns]="columnas" tipoSingular="comunicado" tituloSingular="comunicado" tituloPlural="comunicados"
+       [actions]="actions"    [actionsHeader]="actionsHeader" >
+    </app-gestion-custom>
+  </mat-card-content>
+
+</mat-card>

@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ActivdadTipo } from 'src/app/models/actividad-tipo';
 import { Actividad } from 'src/app/models/actividad.model';
+import { Comunicado } from 'src/app/models/Comunicado';
 import { Curso } from 'src/app/models/curso.model';
 import { Foro } from 'src/app/models/foro.model';
 import { Material } from 'src/app/models/material.model';
@@ -18,6 +19,7 @@ import { ZoomComponent } from 'src/app/shared/components/zoom/zoom.component';
 import { GestionAlumnocursoComponent } from 'src/app/shared/pages/gestion-alumnocurso/gestion-alumnocurso.component';
 import { confirmacionUsuario, errorMensaje } from 'src/app/utils/sweet-alert';
 import { MisCalificacionesComponent } from '../../dialog/mis-calificaciones/mis-calificaciones.component';
+import { VerComunicadosComponent } from '../../dialog/ver-comunicados/ver-comunicados.component';
 import { VistaCalendarioComponent } from '../vista-calendario/vista-calendario.component';
 
 @Component({
@@ -245,4 +247,18 @@ export class VistaCursoComponent implements OnInit {
       queryParams: { id: foro.foroId },
       relativeTo: this.route,
     });
+
+  verComunicados = (curso: Curso) => {
+    if(curso.comunicados.length > 0){
+
+      this.dialog.open(VerComunicadosComponent, {
+        height: 'auto',
+        width: '100%',
+        data: { curso },
+      });
+    } else {
+      errorMensaje('No hay comunicados', `No existen comunicados para el curso ${curso.nombre}  ${curso.descripcion}`)
+    }
+    
+  }
 }
