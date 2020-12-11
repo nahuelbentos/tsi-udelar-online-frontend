@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { PruebaOnline } from '../models/prueba-online.model';
+import { AlumnoPruebaOnline } from '../models/alumno-prueba-online.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,6 @@ export class PruebaOnlineService {
   getPruebaOnlineById = (pruebaOnlineId: string) => this.http.get<PruebaOnline>(`${this.baseUrl}/${pruebaOnlineId}`);
 
   deletePruebaOnline = (pruebaOnlineId: string) => this.http.delete(`${this.baseUrl}/${pruebaOnlineId}`);
+
+  GetAlumnoPruebaOnlineByPruebaOnline = (pruebaOnlineId: string) => this.http.get<AlumnoPruebaOnline[]>(`${environment.baseUrl}/alumnopruebaonline/byprueba/${pruebaOnlineId}`);
 }

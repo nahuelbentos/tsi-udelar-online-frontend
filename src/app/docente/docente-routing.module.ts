@@ -20,10 +20,11 @@ import { GestionPruebaonlineComponent } from '../shared/pages/gestion-pruebaonli
 import { VerForoComponent } from '../shared/ver-foro/ver-foro.component';
 import { AbmTemaForoComponent } from '../shared/pages/abm-temaforo/abm-temaforo.component';
 import { AbmCursoComponent } from '../shared/pages/abm-curso/abm-curso.component';
+import { AdministrarPruebasOnlineComponent } from './pages/administrar-pruebas-online/administrar-pruebas-online.component';
 import { GestionCalsesDictadasComponent } from '../shared/pages/gestion-calses-dictadas/gestion-calses-dictadas.component';
-import { CalendarioActividadesComponent } from './pages/calendario-actividades/calendario-actividades.component';
 import { SalaChatComponent } from '../shared/pages/sala-chat/sala-chat.component';
 import { HomeComponent } from '../docente/pages/home/home.component';
+import { CalendarioActividadesComponent } from './pages/calendario-actividades/calendario-actividades.component';
 import { GestionForoComponent } from '../shared/pages/gestion-foro/gestion-foro.component';
 import { AbmForoComponent } from '../shared/pages/abm-foro/abm-foro.component';
 import { VerTemaForoComponent } from '../shared/pages/ver-tema-foro/ver-tema-foro.component';
@@ -159,6 +160,12 @@ const routes: Routes = [
         path: 'informes',
         component: HomeComponent,
         data: { titulo: 'Informes' },
+      },
+      },
+      {
+        path: 'administrar-notas-curso-pruebasonline',
+        component: AdministrarPruebasOnlineComponent,
+        data: { titulo: 'Manejo de notas de cursos y evaluaciones' },
       },
     ],
   },
