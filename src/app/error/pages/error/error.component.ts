@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioSesion } from 'src/app/models/usuario-sesion.model';
@@ -12,9 +13,9 @@ export class ErrorComponent implements OnInit {
   usuarioLogueado: UsuarioSesion = this.auth.getUser();
   link = this.auth.getRolSesion() ? this.auth.getRolSesion() : '/home';
 
-  constructor(public router: Router, private auth: AutenticacionService) {}
+  constructor(public router: Router, private auth: AutenticacionService, private location: Location) {}
 
   ngOnInit(): void {}
 
-  volver = () => this.router.navigate([`/${this.link.toLowerCase()}`]);
+  volver = () => this.location.back();
 }

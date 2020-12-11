@@ -15,6 +15,11 @@ export const environment = {
     appId: '1:1055360898923:web:27091f006139d74c3a5e2e',
     measurementId: 'G-7QCT7DJY8E',
   },
+  zoom: {
+    signatureEndpoint: 'https://signaturezoom.herokuapp.com/',
+    apiKey: '2qUjpUXKSwSjdEgKUzEZLA',
+    leaveUrl: 'http://localhost:4200',
+  },
   //baseUrl: 'http://node789-api-udelaronline.web.elasticloud.uy:11015/api',
 };
 
