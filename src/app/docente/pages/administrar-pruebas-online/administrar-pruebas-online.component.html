@@ -1,0 +1,25 @@
+<div class="row " style="margin-top: 20px;">
+
+    <div class="col-xs-offset-4 col-xs-4">
+      <div class="box">
+        <h1> Selecciona una prueba para ver sus estudiantes</h1>
+      </div>
+    </div>
+    
+    <div class="col-xs-offset-3 col-xs-6">
+      <div class="box">
+        <app-autocomplete-custom [data]="pruebasOnline" [refDialog]="pruebaOnlineDialog" label="Pruebas Online" (sendItem)="getItem($event)">
+      </app-autocomplete-custom>
+  
+  
+      </div>
+    </div>
+  </div>  
+  <div class="row" *ngIf="verAlumnos">
+    <div class="col-xs-offset-1 col-xs-10">
+      <div class="box"> 
+        <app-gestion-alumno-pruebaonline tipoSingular="alumnopruebaonline" tipoPlural="alumnos" [alumnosPruebaOnline]="alumnos" [actions]="actions" [columnas]="columnas"  [actionsHeader]="actionsHeader">
+        </app-gestion-alumno-pruebaonline>
+      </div>
+    </div>
+  </div>

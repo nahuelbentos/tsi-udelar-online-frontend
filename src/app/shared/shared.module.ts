@@ -89,6 +89,8 @@ import { SeleccionarCursoByFacultadComponent } from './dialogs/seleccionar-curso
 import { SalaChatComponent } from './pages/sala-chat/sala-chat.component';
  
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { SeleccionarPruebasOnlineComponent } from './dialogs/seleccionar-pruebas-online/seleccionar-pruebas-online.component';
+import { GestionAlumnoPruebaonlineComponent } from './pages/gestion-alumno-pruebaonline/gestion-alumno-pruebaonline.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -170,6 +172,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     GestionCalsesDictadasComponent,
     SeleccionarCursoByFacultadComponent,
     SalaChatComponent,
+    SeleccionarPruebasOnlineComponent,
+    GestionAlumnoPruebaonlineComponent,
   ],
   exports: [
     HeaderComponent,
@@ -192,6 +196,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CalendarioComponent,
     GestionCustomComponent,
     SalaChatComponent,
+    GestionAlumnoPruebaonlineComponent
   ],
   imports: [
     CommonModule,
