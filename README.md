@@ -1,27 +1,42 @@
-# UdelarOnlineFrontend
+# Udelar Online!  :boom: :rocket: :zap:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+El repo consta de todo el código que se desarrollo del lado del Frontend con Angular!
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 10.1.6 y [Node.js](https://nodejs.org/es/) versión 12.16.3 LTS.
 
-## Development server
+  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Antes arrancar..
 
-## Code scaffolding
+  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ejecutar el comando `npm install` en la raíz del proyecto.
 
-## Build
+  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Luego... Servidor de desarrollo
 
-## Running unit tests
+  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Ejecutar `ng serve -o` para levantar un servidor de desarrollo en tu navegador de preferencia. En caso de que no te lo abra, puedes acceder ingresando a la url `http://localhost:4200/`. La aplicación automáticamente se recargará si tú realizas algún cambio en los archivos fuente.
 
-## Running end-to-end tests
+  
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Probar los casos de usos
 
-## Further help
+  
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Para probar los casos de usos en esta entrega debes realizar lo siguiente:
+
+  
+
+- Iniciar sesión con el botón que aparecerá en la parte superior derecha de este [home](http://udelaronline.web.elasticloud.uy/home)
+
+- Si inicias como ***administrador***, te redirigirá al siguiente [módulo](http://udelaronline.web.elasticloud.uy/administrador), en la misma veras un menú a tu izquierda con las funcionalidades que puede acceder el administrador.
+
+
+- Si inicias como ***administrador facultad***, te redirigirá al siguiente [módulo](http://udelaronline.web.elasticloud.uy/administrador), cómo en el caso del administrador, cuentas con las funcionalidades a la izquierda con la diferencia de que solo podrás manipular información de **tú** facultad.
+
+- Si inicias como ***docente***, te redirigirá al siguiente [módulo](http://udelaronline.web.elasticloud.uy/docente). En el mismo, podrás manipular la info de los cursos que tengas asignado, así como chatear con los diferentes usuarios de la aplicación, crear foros, crear evaluaciones (*pruebas online*), cargar calificaciones, etc.
+  
+  
+- Si inicias como ***alumno***, te redirigirá al siguiente [módulo](http://udelaronline.web.elasticloud.uy/docente). En el mismo, podrás matricularte a los diferentes cursos de tu facultad, así como poder ver la info de tus cursos, crear y responder temas de discusión en los foros, resolver evaluaciones, chatear con los diferentes usuarios del sistema, etc.
